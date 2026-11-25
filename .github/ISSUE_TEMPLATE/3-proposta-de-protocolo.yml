@@ -1,0 +1,47 @@
+name: Protocol proposal
+description: A change to what travels between a rover and a relay. / Uma mudança no que trafega entre rover e relé.
+labels: ["protocol-proposal"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Schemas are closed, so any new field is a new protocol revision. This form opens the discussion; the proposal itself becomes a file in `docs/propostas/` (copy `docs/propostas/MODELO.md`). See CONTRIBUTING.md.
+        Os esquemas são fechados: qualquer campo novo é uma revisão nova do protocolo. Este formulário abre a conversa; a proposta vira um arquivo em `docs/propostas/` (copie `docs/propostas/MODELO.md`). Veja o CONTRIBUTING.pt-BR.md.
+  - type: textarea
+    id: problema
+    attributes:
+      label: The problem / O problema
+    validations:
+      required: true
+  - type: textarea
+    id: mudanca
+    attributes:
+      label: The change / A mudança
+      description: Fields, object types, rules or limits, with an example object. / Campos, tipos de objeto, regras ou limites, com um objeto de exemplo.
+      render: json
+    validations:
+      required: true
+  - type: textarea
+    id: por-que-protocolo
+    attributes:
+      label: Why it needs the protocol / Por que precisa do protocolo
+      description: Why a client or a relay cannot solve it alone. / Por que um cliente ou um relé não resolve sozinho.
+    validations:
+      required: true
+  - type: textarea
+    id: compatibilidade
+    attributes:
+      label: Existing relays and clients / Relés e clientes que já existem
+      description: What happens to a relay or client that does not know the change. / O que acontece com um relé ou cliente que não conhece a mudança.
+    validations:
+      required: true
+  - type: textarea
+    id: privacidade-seguranca
+    attributes:
+      label: Privacy and security / Privacidade e segurança
+    validations:
+      required: true
+  - type: textarea
+    id: testes
+    attributes:
+      label: Compatibility tests / Testes de compatibilidade

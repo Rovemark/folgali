@@ -1,0 +1,32 @@
+node_modules/
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+*.db
+.env
+.env.*
+segredo-*
+*.log
+.DS_Store
+
+# fotos de prova do QA visual: pesadas, ficam fora do git
+packages/site/docs/fotos-social/
+packages/site/docs/fotos-relay-real/
+packages/site/docs/fotos-entrar/
+packages/site/docs/fotos-painel/
+
+# folgali: originais em PNG e telas de referência ficam fora do git (só o LEIA.md entra)
+docs/folgali/originais/
+docs/folgali/telas/*.png
+packages/site/docs/fotos/
+
+# provas e relatórios gerados a cada rodada: ficam na máquina de quem roda
+.stryker-tmp*/
+**/.stryker-tmp*/
+reports/
+coverage/
+.qa-visual/
+.qa-evidence/
+packages/site/docs/gate-design*.txt
+packages/site/docs/mutacao*.txt
+*.tgz

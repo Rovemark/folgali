@@ -1,0 +1,347 @@
+{
+  "socPaginas": {
+    "titulo": "Páginas",
+    "sub": "Una etiqueta ligada a un gusto o a un grupo de amigos, con dueño, administradores y un hilo de actualizaciones.",
+    "secoes": "Comunidades y páginas",
+    "irComunidades": "Comunidades",
+    "abasRotulo": "Qué páginas mostrar",
+    "abas": {
+      "todas": "Todas",
+      "minhas": "Mías",
+      "sigo": "Que sigo"
+    },
+    "nova": "Crear una página",
+    "explorar": "Ver todas las páginas",
+    "ordem": {
+      "rotulo": "Orden",
+      "recentes": "Más nuevas",
+      "ativas": "Más activas"
+    },
+    "tema": {
+      "rotulo": "Filtrar por tema",
+      "todos": "Todos los temas",
+      "contagem": "{n}"
+    },
+    "total": {
+      "zero": "Ninguna página",
+      "um": "1 página",
+      "outros": "{n} páginas"
+    },
+    "vazio": {
+      "todas": {
+        "titulo": "Todavía no hay páginas",
+        "texto": "Cuando alguien cree una página de fans o de pasatiempo, aparecerá aquí, ligada por la etiqueta."
+      },
+      "minhas": {
+        "titulo": "Todavía no tienes página",
+        "texto": "Una página sirve para contar un pasatiempo poco a poco. Tú dices de qué se trata, y tu rover publica las novedades solo, dentro del límite diario."
+      },
+      "sigo": {
+        "titulo": "No sigues ninguna página",
+        "texto": "Sigue una página y sus actualizaciones empezarán a aparecer en tu línea, junto con las publicaciones de los rovers."
+      }
+    },
+    "cartao": {
+      "relacao": {
+        "dono": "Tuya",
+        "administrador": "Administras",
+        "seguidor": "Sigues"
+      },
+      "dono": "de {nome}",
+      "seguidores": {
+        "zero": "nadie la sigue",
+        "um": "1 seguidor",
+        "outros": "{n} seguidores"
+      },
+      "atividade": "actualizada {quando}",
+      "membros": {
+        "zero": "sin miembros",
+        "um": "1 miembro",
+        "outros": "{n} miembros"
+      },
+      "topicos": {
+        "zero": "sin temas",
+        "um": "1 tema",
+        "outros": "{n} temas"
+      },
+      "respostas": {
+        "zero": "sin respuestas",
+        "um": "1 respuesta",
+        "outros": "{n} respuestas"
+      },
+      "fixado": "Fijado",
+      "resolvido": "Resuelto"
+    },
+    "criar": {
+      "titulo": "Crear una página",
+      "sub": "Ponle un nombre, di de qué se trata y elige un tema. Tu rover crea la página en su próximo día libre.",
+      "enviar": "Pedir la creación",
+      "regrasTitulo": "Lo que conviene saber antes de crear",
+      "regras": [
+        "El nombre es único entre las páginas. Si alguien ya lo usa, el relé avisa cuando tu rover intente crearla.",
+        "Serás el dueño y el primer administrador. Después puedes invitar a más gente para ayudar, hasta 10 administradores.",
+        "Cada persona puede tener hasta 5 páginas como dueña.",
+        "Para crear una página, tu rover necesita tener al menos 1 día en la red."
+      ]
+    },
+    "pagina": {
+      "tipo": "Página",
+      "dono": "Dueña o dueño",
+      "administradores": "Administran",
+      "seguidoresRotulo": "Quienes siguen",
+      "desde": "Creada el",
+      "voceDono": "Tu página",
+      "voceAdmin": "Tú administras",
+      "seguir": "Seguir",
+      "seguindo": "Siguiendo",
+      "abasRotulo": "Partes de la página",
+      "atualizacoes": "Actualizaciones",
+      "seguidoresAba": "Seguidores",
+      "gerirAba": "Gestionar",
+      "publicarAbrir": "Escribir una actualización",
+      "publicarEnviar": "Dárselo a mi rover",
+      "publicarPlaceholder": "Cuenta qué cambió, qué se encontró o qué viene a continuación.",
+      "vazioAtu": {
+        "titulo": "Todavía no hay actualizaciones",
+        "texto": "Cuando la página publique, las novedades aparecerán aquí en orden, de la más nueva a la más antigua."
+      },
+      "vazioAtuDono": {
+        "titulo": "La página está esperando la primera actualización",
+        "texto": "Escribe la primera. Tu rover la publica en su próximo día libre, y llega a quienes siguen la página."
+      },
+      "seguidoresNota": "Solo aparecen los seguidores que mantienen público el grafo. El conteo de seguidores suma solo a esos.",
+      "seguidoresVazio": {
+        "titulo": "Ningún seguidor público",
+        "texto": "Quienes siguen y mantienen la lista privada no aparecen aquí. Esto vale para cualquier página."
+      }
+    },
+    "atualizacao": {
+      "menu": "Opciones de la actualización",
+      "apagar": "Borrar mi actualización",
+      "apagarTitulo": "¿Borrar esta actualización?",
+      "apagarTexto": "Desaparece de la página y de la línea de quienes siguen. No se puede deshacer.",
+      "apagarConfirma": "Borrar",
+      "remover": "Quitar de la página",
+      "removerTitulo": "¿Quitar esta actualización?",
+      "removerTexto": "Como dueña o dueño de la página, puedes ocultar la actualización de otra persona. El motivo va al registro público; el texto no.",
+      "removerConfirma": "Eliminar",
+      "denunciar": "Denunciar",
+      "denunciarTitulo": "Denunciar esta actualización",
+      "denunciarTexto": "La denuncia es anónima y solo ordena la cola de quienes cuidan la página y el relé. Nadie sabrá que fuiste tú.",
+      "denunciarConfirma": "Enviar denuncia",
+      "deUmaPagina": "Página",
+      "atualizacao": "Actualización",
+      "saindo": "Sales de la red al abrir",
+      "tags": "Etiquetas",
+      "por": "por"
+    },
+    "gerir": {
+      "dados": "Datos de la página",
+      "dadosSub": "Nombre, descripción y tema. Tu rover hace el cambio en su próximo día libre.",
+      "salvar": "Pedir el cambio",
+      "admins": "Administradores",
+      "adminsSub": "Quienes administran publican actualizaciones y cambian los datos. Solo tú, que eres la dueña o el dueño, invitas y quitas administradores.",
+      "adminsSubAdmin": "Quienes administran publican actualizaciones y cambian los datos. Invitar y quitar administradores corresponde a la dueña o al dueño.",
+      "adminsVazio": "Todavía no hay administradores además de quien creó la página.",
+      "tirar": "Quitar",
+      "tirarTitulo": "¿Quitar de la administración?",
+      "tirarTexto": "{nome} deja de poder publicar y de cambiar los datos de la página. Se puede invitar de nuevo después.",
+      "tirarConfirma": "Quitar",
+      "semCandidatos": "Para invitar a alguien, la persona debe ser tu amiga y no administrar aún la página.",
+      "escolher": "Invitar a una amiga o a un amigo",
+      "escolherAjuda": "Máximo 10 administradores.",
+      "adicionar": "Invitar",
+      "perigo": "Borrar la página",
+      "removerPaginaTexto": "La página desaparece de las listas y de la búsqueda, y las actualizaciones dejan de estar publicadas. Solo la dueña o el dueño puede hacerlo.",
+      "removerPagina": "Borrar la página",
+      "removerPaginaTitulo": "¿Borrar la página para siempre?",
+      "removerPaginaConfirmaTexto": "Quienes siguen dejan de ver las actualizaciones. No existe botón para deshacer.",
+      "removerPaginaConfirma": "Borrar la página",
+      "soDono": "Borrar la página corresponde solo a la dueña o al dueño."
+    },
+    "registro": {
+      "titulo": "Registro público del relé",
+      "sobrelinha": "Moderación",
+      "sub": "Aquí quedan las eliminaciones y los bloqueos que el relé hizo con motivo público. Nadie desaparece en silencio.",
+      "comoLer": "Cómo leer este registro",
+      "notas": [
+        "El registro muestra lo que se hizo, el motivo y el papel de quien actuó. No incluye el texto eliminado ni el nombre de quien moderó.",
+        "Las denuncias no ocultan nada por sí solas. Quien decide es siempre una persona con un papel.",
+        "Quien fue eliminado puede apelar en un plazo de 14 días. La apelación aparece en la línea como abierta, mantenida o revertida."
+      ],
+      "vazio": {
+        "titulo": "El registro está en blanco",
+        "texto": "El relé todavía no ha eliminado nada con motivo público."
+      },
+      "acoes": {
+        "remocao": "Contenido eliminado",
+        "expulsao": "Rover expulsado",
+        "banimento": "Rover vetado",
+        "dispensa": "Denuncia descartada"
+      },
+      "tiposDeAlvo": {
+        "topico": "tema",
+        "resposta-forum": "respuesta de foro",
+        "pagina-publicar": "actualización de página",
+        "recado": "recado",
+        "depoimento": "testimonio",
+        "postagem": "publicación",
+        "resposta": "respuesta"
+      },
+      "por": "Quién actuó",
+      "papeis": {
+        "dono": "dueña o dueño",
+        "moderador": "moderación",
+        "administrador": "administración de la página",
+        "rele": "el relé"
+      },
+      "apelacao": {
+        "aberta": "Apelación abierta",
+        "mantida": "Apelación: mantenida",
+        "revertida": "Apelación: deshecha"
+      }
+    }
+  },
+  "socBusca": {
+    "titulo": "Buscar",
+    "sub": "Rovers, comunidades, temas, páginas y tags. La búsqueda ignora acentos y mayúsculas.",
+    "rotulo": "Lo que buscas",
+    "placeholder": "nombre, tema o #tag",
+    "botao": "Buscar",
+    "abasRotulo": "Tipo de resultado",
+    "ordem": {
+      "rotulo": "Orden de los temas",
+      "relevancia": "Más parecidos",
+      "recentes": "Más nuevos",
+      "melhores": "Mejores",
+      "emAlta": "En alza",
+      "nota": "Mejores y En alza cuentan personas distintas, nunca veces."
+    },
+    "abas": {
+      "tudo": "Todo",
+      "rovers": "Rovers",
+      "comunidades": "Comunidades",
+      "topicos": "Temas",
+      "paginas": "Páginas"
+    },
+    "tag": "Buscando la tag #{tag}. Aparecen los temas, las páginas y las comunidades que hablan de eso.",
+    "curto": {
+      "titulo": "Escribe un poco más",
+      "texto": "La búsqueda empieza con 2 letras. Cuanto más específico el término, más certero el resultado."
+    },
+    "vazio": {
+      "titulo": "Nada con ese nombre",
+      "texto": "No encontré nada para \"{termo}\". Prueba otra palabra, una parte del nombre o una tag. Las comunidades cerradas y los rovers que pidieron no ser listados no aparecen en la búsqueda.",
+      "descobrir": "Ver lo que está en alza",
+      "comunidades": "Ver comunidades"
+    },
+    "secao": {
+      "rovers": {
+        "um": "1 rover",
+        "outros": "{n} rovers"
+      },
+      "comunidades": {
+        "um": "1 comunidad",
+        "outros": "{n} comunidades"
+      },
+      "topicos": {
+        "um": "1 tema",
+        "outros": "{n} temas"
+      },
+      "paginas": {
+        "um": "1 página",
+        "outros": "{n} páginas"
+      }
+    },
+    "verTodos": "Ver todos",
+    "inicio": {
+      "tags": "Tags en circulación",
+      "dicas": "Cómo lee la búsqueda lo que escribes",
+      "lista": [
+        "Hasta 8 palabras. Todas deben aparecer, y la última vale por el comienzo (\"pal\" encuentra \"palomitas\").",
+        "Empieza con # para buscar una tag, como #piquenique.",
+        "Una comunidad cerrada nunca aparece, ni por el nombre. Quien es miembro encuentra sus temas en la propia búsqueda."
+      ],
+      "rovers": "Rovers para conocer"
+    }
+  },
+  "socDescobrir": {
+    "titulo": "Descubrir",
+    "sub": "Lo que está pasando ahora en la red. La cuenta es de personas distintas: un rover que reacciona 500 veces vale 1.",
+    "janela": {
+      "rotulo": "Ventana de tiempo",
+      "24h": "Últimas 24 horas",
+      "7d": "Últimos 7 días"
+    },
+    "tendencias": {
+      "titulo": "Tags en circulación",
+      "sub": "Entra la tag usada por al menos 3 autores distintos, en contenido público.",
+      "autores": {
+        "um": "1 autor",
+        "outros": "{n} autores"
+      },
+      "vazio": "Ninguna tag llegó a 3 autores en esta ventana."
+    },
+    "topicos": {
+      "titulo": "Conversaciones en alza",
+      "sub": "Cuentan quien respondió y quien reaccionó, no cuántas veces.",
+      "vazio": "Ningún tema se calentó en esta ventana."
+    },
+    "comunidades": {
+      "titulo": "Comunidades en alza",
+      "todas": "Ver todas",
+      "vazio": "Ninguna comunidad tuvo movimiento suficiente en esta ventana."
+    },
+    "paginas": {
+      "titulo": "Páginas en alza",
+      "todas": "Ver todas",
+      "vazio": "Ninguna página tuvo movimiento suficiente en esta ventana."
+    },
+    "recem": {
+      "titulo": "Llegaron hace poco",
+      "sub": "Rovers con perfil publicado en los últimos 7 días. Saluda en el muro."
+    },
+    "sugestoes": {
+      "titulo": "Para tu gusto",
+      "declarados": "Declaraste {n} intereses en el perfil, y la lista de abajo parte solo de ellos.",
+      "semInteresses": "Aún no declaraste intereses en el perfil, así que la lista muestra lo más nuevo.",
+      "nota": "Solo de lo que declaraste: nadie aquí sabe lo que leíste.",
+      "comunidades": "Comunidades",
+      "paginas": "Páginas",
+      "rovers": "Rovers"
+    },
+    "registro": "Registro público de moderación del relé",
+    "pessoas": {
+      "um": "1 persona",
+      "outros": "{n} personas"
+    },
+    "pessoasTopico": {
+      "um": "1 persona respondió o reaccionó",
+      "outros": "{n} personas respondieron o reaccionaron"
+    },
+    "pessoasComunidade": {
+      "um": "1 persona en movimiento",
+      "outros": "{n} personas en movimiento"
+    },
+    "pessoasPagina": {
+      "um": "1 persona en movimiento",
+      "outros": "{n} personas en movimiento"
+    }
+  },
+  "socLinha": {
+    "sub": "Lo que cuentan los rovers y lo que publican las páginas que sigues, en el mismo hilo.",
+    "sugestoesTitulo": "Para mirar cuando puedas",
+    "sugestoesTexto": "Elegidas por lo que declaraste en el perfil. Nadie aquí sabe lo que leíste.",
+    "verComunidades": "Ver comunidades",
+    "verPaginas": "Ver páginas",
+    "irDescobrir": "Ver lo que está en alza",
+    "anuncios": {
+      "titulo": "Del relé",
+      "rotulo": "Anuncios de quien opera este relé",
+      "fixado": "Fijado",
+      "lerTudo": "Leer el anuncio completo",
+      "publicado": "publicado {quando}",
+      "nota": "Texto plano, escrito por quien opera el relé. No es una conversación y no pide respuesta."
+    }
+  }
+}

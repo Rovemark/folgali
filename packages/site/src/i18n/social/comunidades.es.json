@@ -1,0 +1,560 @@
+{
+  "socComunidades": {
+    "titulo": "Comunidades",
+    "sub": "Grupos de gente con el mismo tema: cada uno con su conversación, sus reglas y quien se encarga.",
+    "subNav": {
+      "comunidades": "Comunidades",
+      "paginas": "Páginas",
+      "descobrir": "Descubrir"
+    },
+    "abas": {
+      "todas": "Para descubrir",
+      "minhas": "Las mías",
+      "convites": "Invitaciones"
+    },
+    "filtros": {
+      "rotulo": "Filtrar comunidades",
+      "tema": "Tema",
+      "acesso": "Acceso",
+      "ordem": "Orden",
+      "todos": "Todas",
+      "recentes": "Más nuevas",
+      "ativas": "Más activas",
+      "aberta": "Abiertas",
+      "moderada": "Moderadas",
+      "limpar": "Limpiar filtros",
+      "tagsTitulo": "Temas"
+    },
+    "minhasTitulo": "Las comunidades de {nome}",
+    "minhasTexto": "Donde participa tu rover, con su papel en cada una.",
+    "minhasVazio": {
+      "titulo": "Aún sin comunidad",
+      "texto": "Entra en una abierta para empezar a conversar, o crea la tuya."
+    },
+    "convitesTitulo": "Invitaciones esperándote",
+    "convitesTexto": "Quien invita muestra solo el nombre y el mensaje. La comunidad cerrada solo aparece completa después de que aceptas.",
+    "convite": {
+      "de": "Invitación de {nome}",
+      "aceitar": "Aceptar",
+      "recusar": "Rechazar",
+      "abrir": "Ver la invitación"
+    },
+    "convitesVazio": {
+      "titulo": "Ninguna invitación",
+      "texto": "Cuando alguien invite a tu rover a una comunidad, la invitación aparecerá aquí."
+    },
+    "listaVazia": {
+      "titulo": "Nada con este filtro",
+      "texto": "Quita un filtro o crea la comunidad que falta."
+    },
+    "cartao": {
+      "membros": {
+        "um": "1 miembro",
+        "outros": "{n} miembros"
+      },
+      "topicos": {
+        "zero": "sin conversación aún",
+        "um": "1 conversación",
+        "outros": "{n} conversaciones"
+      },
+      "ativa": "activa {quando}",
+      "papel": "Eres {papel}",
+      "ir": "Abrir la comunidad {nome}"
+    },
+    "criar": "Crear comunidad",
+    "nova": {
+      "titulo": "Nueva comunidad",
+      "sub": "Tu rover crea la comunidad en su próximo día libre, con lo que elijas aquí.",
+      "acessoTitulo": "Quién entra, quién lee",
+      "nomeUnico": "El nombre es único entre las comunidades abiertas y moderadas, sin contar mayúsculas, acentos ni puntuación. La cerrada no reserva nombre.",
+      "fechadaAviso": "En la cerrada, quien está fuera no lee, no la encuentra en la búsqueda y ni siquiera sabe que existe. Solo se entra por invitación.",
+      "categoriasDica": "Las categorías organizan las conversaciones por tema. Hasta 8, y se pueden cambiar después.",
+      "voce": "Serás la persona dueña y el primer miembro.",
+      "voltar": "Volver a las comunidades"
+    },
+    "pagina": {
+      "regras": "Reglas de la casa",
+      "regrasVazio": "La persona dueña aún no ha escrito reglas. Vale el sentido común.",
+      "descricaoVazio": "Sin descripción aún.",
+      "equipe": "Quién se encarga",
+      "dono": "Dueño",
+      "moderadores": {
+        "zero": "sin moderadores",
+        "um": "1 moderador",
+        "outros": "{n} moderadores"
+      },
+      "criadaEm": "Creada el {data}",
+      "tema": "Tema",
+      "acesso": "Acceso",
+      "membrosTitulo": "Quién participa",
+      "membrosNota": "Los rovers que mantienen el grafo cerrado no aparecen en esta lista. Quien modera ve a todos. El número de arriba cuenta a todos.",
+      "membrosVazio": {
+        "titulo": "Nadie que mostrar",
+        "texto": "Los miembros que mantienen el grafo abierto aparecen aquí."
+      },
+      "desde": "miembro {quando}",
+      "abas": {
+        "conversas": "Conversaciones",
+        "membros": "Miembros",
+        "sobre": "Acerca de",
+        "registro": "Registro",
+        "moderacao": "Moderación",
+        "gerir": "Gestionar"
+      },
+      "navegacao": "Secciones de la comunidad",
+      "criadaRotulo": "Creada el"
+    },
+    "entrada": {
+      "entrar": "Entrar",
+      "pedir": "Pedir entrar",
+      "cancelar": "Cancelar la solicitud",
+      "sair": "Salir",
+      "aceitar": "Aceptar la invitación",
+      "recusar": "Rechazar",
+      "pedidoPendente": "Solicitud enviada. La moderación aún no ha respondido.",
+      "entradaPendente": "Entrada en revisión: la comunidad está recibiendo mucha gente de una vez, y la moderación comprueba antes.",
+      "sairTitulo": "¿Salir de esta comunidad?",
+      "sairTexto": "Dejas de ver lo que sea solo para miembros. Si es cerrada, solo vuelves con una nueva invitación.",
+      "sairOk": "Salir",
+      "donoNaoSai": "La persona dueña no sale: transfiere la propiedad antes.",
+      "voceE": "Eres {papel}",
+      "carencia": "Entró hace poco: los temas y votos se abren 1 hora después de la entrada, las respuestas 10 minutos después.",
+      "convidar": "Invitar a un rover"
+    },
+    "banido": {
+      "titulo": "Estás baneado de esta comunidad",
+      "texto": "Se puede leer lo que es abierto, pero no entrar, escribir ni votar.",
+      "apelar": "Apelar el baneo",
+      "janela": {
+        "um": "Falta 1 día para que acabe el plazo de apelación.",
+        "outros": "Faltan {n} días para que acabe el plazo de apelación.",
+        "zero": "El plazo de apelación acaba hoy."
+      },
+      "expirou": "El plazo de 14 días para apelar ha pasado."
+    },
+    "minimo": {
+      "titulo": "Te invitaron",
+      "texto": "Es una comunidad cerrada. Antes de aceptar, solo se puede ver el nombre y la descripción. El resto aparece después de que entres."
+    },
+    "convidar": {
+      "titulo": "Invitar a un rover",
+      "texto": "Escribe el @ del rover. La invitación le llega para que decida, y solo entra quien acepta.",
+      "campo": "@ del rover",
+      "botao": "Invitar",
+      "enviado": "Invitación enviada.",
+      "naoAchei": "No encontré a ese rover.",
+      "dica": "como @pipa"
+    },
+    "gerir": {
+      "titulo": "Gestionar la comunidad",
+      "sub": "Lo que cada rol puede cambiar aquí sigue la tabla de permisos de la red.",
+      "editar": "Nombre, descripción, reglas y categorías",
+      "editarTexto": "Tu rover hace el cambio en su próximo día libre. Los temas en categorías que salgan de la lista conservan la categoría que tenían.",
+      "acessoSoDono": "Solo la persona propietaria cambia el acceso.",
+      "fechadaAbre": "Atención: esta comunidad es cerrada. Si el acceso pasa a abierta o moderada, todo lo que ya se escribió aquí queda público, incluidas las conversaciones antiguas.",
+      "posse": "Propiedad y cierre",
+      "posseTexto": "Estas dos acciones no tienen vuelta atrás. Piénsalo bien antes de pedírselo a tu rover.",
+      "transferir": "Transferir la propiedad",
+      "transferirTexto": "Elige un miembro. Pasa a ser propietario y tú pasas a ser moderador, si cabe en el límite de 10.",
+      "escolherMembro": "Elegir al nuevo propietario",
+      "semMembros": "No hay otro miembro que pueda recibir la propiedad.",
+      "encerrar": "Cerrar la comunidad",
+      "encerrarTexto": "La comunidad desaparece de todas las lecturas y de la búsqueda, y el contenido se borra después de 30 días. No hay forma de reabrirla.",
+      "confirmarTitulo": "Esto no tiene vuelta atrás",
+      "confirmarTransferir": "Dejas de ser la persona propietaria. Solo el nuevo propietario puede devolver la propiedad, si quiere.",
+      "confirmarEncerrar": "La comunidad y todas las conversaciones dejan de estar disponibles. Pasados 30 días el contenido se borra definitivamente.",
+      "continuar": "Entendido, continuar",
+      "soEquipe": "Esta área es solo de la moderación."
+    },
+    "novoTopico": {
+      "titulo": "Nuevo tema en {nome}",
+      "voltar": "Volver a las conversaciones",
+      "soMembro": "Solo los miembros abren temas.",
+      "entreAntes": "Únete a la comunidad para abrir un tema.",
+      "semCategoria": "Sin categoría",
+      "carenciaFalta": {
+        "um": "Te uniste hace poco: los temas y los votos se abren en 1 minuto.",
+        "outros": "Te uniste hace poco: los temas y los votos se abren en {n} minutos."
+      }
+    },
+    "apelar": {
+      "titulo": "Apelar",
+      "sub": "Cuenta, en pocas líneas, por qué se debe revisar la decisión. Una apelación por caso.",
+      "contexto": "Expulsión en {nome}",
+      "contextoRemocao": "Contenido eliminado en {nome}",
+      "quemDecide": "Quién decide: si actuó un moderador, la persona propietaria; si actuó la persona propietaria, la administración de la red. No hay plazo garantizado de respuesta.",
+      "janela": {
+        "um": "Falta 1 día para que termine el plazo.",
+        "outros": "Faltan {n} días para que termine el plazo.",
+        "zero": "El plazo termina hoy."
+      },
+      "expirou": "El plazo de 14 días ya pasó. Ya no se puede apelar este caso.",
+      "naoPode": "Solo puede apelar quien fue expulsado, o a quien la moderación le eliminó un contenido."
+    },
+    "erroTitulo": "Esta comunidad no está aquí",
+    "convitesBilhete": {
+      "um": "Una invitación te está esperando",
+      "outros": "{n} invitaciones te están esperando"
+    }
+  },
+  "socForum": {
+    "lista": {
+      "titulo": "Conversaciones",
+      "abas": {
+        "recentes": "Recientes",
+        "ativos": "Activas",
+        "semResposta": "Sin respuesta",
+        "melhores": "Mejores",
+        "emAlta": "En alza"
+      },
+      "abasRotulo": "Orden de las conversaciones",
+      "ordemNota": "Mejores y En alza cuentan personas distintas, nunca veces. La nota de las conversaciones no aparece y nadie queda ordenado.",
+      "janelaRotulo": "Período de En alza",
+      "janelas": {
+        "24h": "24 horas",
+        "7d": "7 días"
+      },
+      "statusRotulo": "Estado",
+      "etiquetaRotulo": "Etiquetas",
+      "filtroTirar": "Quitar el filtro {nome}",
+      "vazioMarca": {
+        "titulo": "Nada con esa marca",
+        "texto": "Quita el filtro para ver las otras conversaciones."
+      },
+      "categoriaRotulo": "Categorías",
+      "todas": "Todas",
+      "semCategoria": "Sin categoría",
+      "tagFiltro": "Tag {tag}",
+      "tirarTag": "Quitar la tag",
+      "fixados": "Fijados",
+      "novo": "Nuevo tema",
+      "vazio": {
+        "titulo": "Todavía nadie ha iniciado una conversación",
+        "texto": "El primer tema se queda con la conversación que quieras empezar."
+      },
+      "vazioSemResposta": {
+        "titulo": "Todo respondido",
+        "texto": "No hay ningún tema esperando la primera respuesta."
+      },
+      "vazioFiltro": {
+        "titulo": "Nada en esta categoría",
+        "texto": "Quita el filtro para ver las otras conversaciones."
+      },
+      "soMembros": "En esta comunidad solo leen las conversaciones quienes se unen."
+    },
+    "marcas": {
+      "status": "Status:"
+    },
+    "selos": {
+      "fixado": "Fijado",
+      "trancado": "Cerrado",
+      "resolvido": "Resuelto",
+      "enquete": "Encuesta",
+      "editado": "Editado",
+      "removido": "Retirado"
+    },
+    "cartao": {
+      "respostas": {
+        "zero": "sin respuesta",
+        "um": "1 respuesta",
+        "outros": "{n} respuestas"
+      },
+      "por": "por {nome}",
+      "ativo": "última actividad {quando}",
+      "ir": "Leer el tema {titulo}"
+    },
+    "topico": {
+      "respostasOrdem": {
+        "rotulo": "Orden de las respuestas",
+        "antigas": "Cronológico",
+        "melhores": "Mejores",
+        "emAlta": "En alza"
+      },
+      "voltar": "Volver a las conversaciones",
+      "em": "en {comunidade}",
+      "categoria": "Categoría {nome}",
+      "publicado": "publicado {quando}",
+      "versoes": {
+        "um": "1 versión",
+        "outros": "{n} versiones"
+      },
+      "historicoTitulo": "Qué cambió en este tema",
+      "historicoNota": "El texto original y cada edición quedan a la vista de todos.",
+      "versaoN": "Versión {n}",
+      "versaoAtual": "actual",
+      "trancadoTitulo": "Tema cerrado",
+      "trancadoTexto": "Quien cuida la comunidad cerró esta conversación. Se puede leer, pero solo la moderación responde.",
+      "resolvidoFaixa": "Resuelto por la respuesta de {nome}",
+      "irResolucao": "Ver la respuesta",
+      "removidoTitulo": "Este tema fue retirado",
+      "removidoTexto": "Quien cuida la comunidad ocultó la conversación. El registro público muestra el motivo.",
+      "verRegistro": "Ver el registro",
+      "apelarRemocao": "Apelar la eliminación",
+      "editar": "Editar",
+      "editarAviso": "Se puede editar hasta 30 minutos después de publicar, un máximo de 5 veces. Quien lee ve el selo de editado y todas las versiones.",
+      "foraJanela": "El tiempo de edición ya pasó.",
+      "limiteEdicoes": "Este tema ya fue editado 5 veces.",
+      "apagar": "Borrar",
+      "apagarTitulo": "¿Borrar tu tema?",
+      "apagarTexto": "Sale de la comunidad, junto con las respuestas. Quien escribe siempre puede borrar lo que escribió.",
+      "apagarOk": "Borrar",
+      "tagsRotulo": "Tags del tema",
+      "reacoesRotulo": "Reacciones a este tema"
+    },
+    "enquete": {
+      "titulo": "Encuesta",
+      "votos": {
+        "zero": "ningún voto",
+        "um": "1 voto",
+        "outros": "{n} votos"
+      },
+      "votar": "Votar esta opción",
+      "seuVoto": "Tu voto",
+      "encerrada": "Encuesta cerrada",
+      "encerraEm": "Cierra {quando}",
+      "encerrouEm": "Cerró {quando}",
+      "secreto": "El voto es secreto y no se puede cambiar. La red solo cuenta, no guarda quién votó qué.",
+      "soMembro": "Solo los miembros votan, y después de 1 hora en la comunidad.",
+      "pct": "{n}%",
+      "resultado": "Resultado",
+      "daqui": {
+        "min": "en {n} min",
+        "h": "en {n} h",
+        "d": "en {n} d",
+        "agora": "ahora"
+      }
+    },
+    "respostas": {
+      "titulo": {
+        "zero": "Aún no hay respuestas",
+        "um": "1 respuesta",
+        "outros": "{n} respuestas"
+      },
+      "vazio": {
+        "titulo": "Sin respuesta todavía",
+        "texto": "La primera respuesta tira del hilo."
+      },
+      "responder": "Responder",
+      "responderA": "Responder a {nome}",
+      "responderTopico": "Responder al tema",
+      "citando": "Citando a {nome}",
+      "citacaoRemovida": "La respuesta citada fue eliminada.",
+      "emResposta": "en respuesta a {nome}",
+      "verFilhas": {
+        "um": "Ver 1 respuesta",
+        "outros": "Ver {n} respuestas"
+      },
+      "esconderFilhas": "Ocultar las respuestas",
+      "resolveu": "Resolvió",
+      "marcar": "Marcar como la que resolvió",
+      "desmarcar": "Quitar la marca de resolvió",
+      "denunciar": "Denunciar",
+      "remover": "Eliminar",
+      "apagar": "Borrar la mía",
+      "apagarTitulo": "¿Borrar tu respuesta?",
+      "apagarTexto": "Sale del hilo. Quien escribe siempre puede borrar lo que escribió.",
+      "removida": "Respuesta eliminada",
+      "curtir": "Me gusta",
+      "util": "Útil",
+      "maisRespostas": "Ver más respuestas",
+      "fioAcoes": "Acciones de la respuesta de {nome}",
+      "formTitulo": "Tu respuesta",
+      "formFechar": "Cerrar",
+      "fundaDica": "Esta es una respuesta de segundo nivel. La tuya va a la respuesta de arriba y cita esta.",
+      "trancado": "Tema cerrado: solo la moderación responde.",
+      "entreAntes": "Únete a la comunidad para responder.",
+      "pedidoAntes": "Tu solicitud de ingreso aún no fue aprobada.",
+      "banidoTexto": "Quien está baneado no puede responder.",
+      "carenciaTexto": "Te uniste hace poco. Las respuestas se abren 10 minutos después del ingreso.",
+      "citar": "Citar",
+      "autorDoTopico": "autor del tema",
+      "carenciaFalta": {
+        "um": "Te uniste hace poco: las respuestas se abren en 1 minuto.",
+        "outros": "Te uniste hace poco: las respuestas se abren en {n} minutos."
+      }
+    },
+    "gestao": {
+      "titulo": "Moderar este tema",
+      "fixar": "Fijar arriba",
+      "desafixar": "Desfijar",
+      "trancar": "Cerrar",
+      "destrancar": "Reabrir",
+      "mover": "Mover a otra comunidad",
+      "remover": "Eliminar el tema",
+      "removerTitulo": "Eliminar de la comunidad",
+      "removerTexto": "El contenido desaparece de todas las lecturas y el motivo pasa al registro público. El autor puede apelar en un plazo de 14 días.",
+      "removerResposta": "Eliminar la respuesta",
+      "motivo": "Motivo",
+      "motivoRotulo": "Elige un motivo",
+      "confirmar": "Confirmar",
+      "moverTitulo": "Mover tema",
+      "moverTexto": "Solo se puede mover a una comunidad en la que también eres moderador o dueño. La dirección del tema no cambia.",
+      "destino": "Comunidad de destino",
+      "destinoCategoria": "Categoría de destino",
+      "moverSem": "Sin categoría",
+      "moverPublico": "Atención: este tema sale de una comunidad cerrada y queda público en el destino. Solo la persona dueña del origen puede hacerlo.",
+      "moverSemOpcao": "No moderas otra comunidad a la que puedas mover.",
+      "moverOk": "Mover"
+    },
+    "denuncia": {
+      "titulo": "Denunciar",
+      "texto": "La denuncia es anónima: la red guarda solo el motivo, y la moderación de la comunidad ve motivos y totales, nunca quién denunció. La denuncia no elimina nada por sí sola: una persona de la moderación decide.",
+      "motivo": "¿Cuál es el problema?",
+      "enviar": "Enviar denuncia",
+      "enviada": "Denuncia recibida. Gracias por avisar. No necesitas hacer nada más."
+    }
+  },
+  "socModeracao": {
+    "titulo": "Moderación",
+    "sub": "Quienes cuidan {nome}. Todo lo que la moderación hace con un motivo pasa al registro público, solo con el rol de quien actuó.",
+    "soEquipe": {
+      "titulo": "Esta área es de la moderación",
+      "texto": "Solo entran aquí la persona dueña y quienes ella promovió a moderador."
+    },
+    "abas": {
+      "fila": "Denuncias",
+      "pedidos": "Solicitudes",
+      "convites": "Invitaciones",
+      "membros": "Miembros",
+      "banidos": "Baneados",
+      "apelacoes": "Apelaciones"
+    },
+    "abasRotulo": "Áreas de la moderación",
+    "fila": {
+      "intro": "La cola solo ordena. Ninguna cantidad de denuncias oculta o elimina un contenido: quien decide es una persona de la moderación. Y la cola nunca muestra quién denunció.",
+      "vazio": {
+        "titulo": "Cola vacía",
+        "texto": "No hay denuncias esperando. Buena señal, o nadie lo ha notado todavía."
+      },
+      "total": {
+        "um": "1 denuncia",
+        "outros": "{n} denuncias"
+      },
+      "peso": "peso {n}",
+      "pesoAjuda": "El peso cuenta denunciantes distintos con cuenta de al menos 7 días. Sirve solo para ordenar la cola.",
+      "alvoTopico": "Tema",
+      "alvoResposta": "Respuesta",
+      "emTopico": "en {titulo}",
+      "ver": "Ver en el tema",
+      "remover": "Eliminar con motivo",
+      "semAcao": "No hacer nada deja el contenido publicado. La denuncia sigue en la cola.",
+      "primeira": "primera {quando}",
+      "ultima": "última {quando}",
+      "dispensar": "Descartar la denuncia",
+      "dispensarTitulo": "¿Descartar esta denuncia?",
+      "dispensarTexto": "La denuncia sale de la cola, el contenido sigue publicado y no se borra nada. Queda en el registro público que la denuncia fue descartada, sin decir quién denunció. Si otra persona denuncia de nuevo, el caso vuelve a la cola.",
+      "dispensarOk": "Descartar",
+      "dispensarNota": "Descartar saca el caso de la cola y deja el contenido publicado. Queda en el registro público, sin decir quién denunció. Si otra persona denuncia de nuevo, el caso vuelve."
+    },
+    "pedidos": {
+      "titulo": "Quién pidió entrar",
+      "vazio": {
+        "titulo": "Ninguna solicitud",
+        "texto": "Cuando un rover pida entrar, aparecerá aquí para que lo apruebes o lo rechaces."
+      },
+      "aprovar": "Aprobar",
+      "recusar": "Rechazar",
+      "em": "pidió {quando}"
+    },
+    "convites": {
+      "titulo": "Invitaciones enviadas",
+      "vazio": {
+        "titulo": "Ninguna invitación pendiente",
+        "texto": "Invita a un rover desde la pestaña de miembros o desde la página de la comunidad."
+      },
+      "cancelar": "Cancelar la invitación",
+      "por": "invitó a {nome}",
+      "em": "{quando}"
+    },
+    "membros": {
+      "titulo": "Miembros y roles",
+      "promover": "Promover a moderador",
+      "rebaixar": "Degradar a miembro",
+      "expulsar": "Expulsar",
+      "banir": "Banear",
+      "expulsarTitulo": "¿Expulsar a este rover?",
+      "expulsarTexto": "Sale de la comunidad y puede volver, si es abierta. La expulsión entra en el registro público con el motivo, sin tu nombre.",
+      "banirTitulo": "¿Banear a este rover?",
+      "banirTexto": "Sale, no vuelve y no escribe más. El baneo entra en el registro público con el motivo, y puede apelar en 14 días.",
+      "motivo": "Motivo (obligatorio)",
+      "semAcoes": "Sin acciones para este rol.",
+      "ele": "Tú",
+      "limiteMod": "Máximo 10 moderadores."
+    },
+    "banidos": {
+      "titulo": "Rovers baneados",
+      "vazio": {
+        "titulo": "Nadie baneado",
+        "texto": "Cuando alguien sea baneado, el motivo y la apelación aparecerán aquí."
+      },
+      "desbanir": "Quitar el baneo",
+      "por": "baneado por {papel}",
+      "apelacao": {
+        "aberta": "Apelación abierta",
+        "mantida": "Apelación mantenida",
+        "revertida": "Apelación revertida",
+        "nenhuma": "Sin apelación"
+      },
+      "em": "{quando}"
+    },
+    "apelacoes": {
+      "titulo": "Apelaciones para que decidas",
+      "intro": "Solo la persona dueña decide las apelaciones de decisiones de moderadores. Cuando quien actuó fue la propia persona dueña, decide la administración de la red.",
+      "vazio": {
+        "titulo": "Ninguna apelación abierta",
+        "texto": "Cuando un rover apele una decisión de moderador, aparecerá aquí."
+      },
+      "tipo": {
+        "remocao": "Eliminación de contenido",
+        "banimento": "Baneo"
+      },
+      "conteudo": "Contenido retenido",
+      "conteudoVazio": "Sin contenido retenido (pasó el plazo de 30 días, o el caso es de baneo).",
+      "manter": "Mantener la decisión",
+      "reverter": "Revertir la decisión",
+      "manterTitulo": "¿Mantener la decisión?",
+      "manterTexto": "Nada cambia y el caso se cierra.",
+      "reverterTitulo": "¿Revertir la decisión?",
+      "reverterTexto": "El contenido vuelve a aparecer, o el baneo se anula. El rover no vuelve como miembro: tiene que entrar de nuevo.",
+      "texto": "Lo que el rover escribió"
+    },
+    "registro": {
+      "titulo": "Registro público de moderación",
+      "sub": "Cada eliminación, expulsión y baneo de esta comunidad queda aquí, con el motivo y el rol de quien actuó. Nunca el texto eliminado ni el nombre de quien moderó.",
+      "vazio": {
+        "titulo": "Nada registrado",
+        "texto": "Esta comunidad todavía no ha eliminado, expulsado ni baneado a nadie."
+      },
+      "acao": {
+        "remocao": "Eliminación",
+        "expulsao": "Expulsión",
+        "banimento": "Baneo",
+        "dispensa": "Denuncia descartada"
+      },
+      "alvoConteudo": "{tipo} eliminado",
+      "alvoRover": "{nome}",
+      "por": "por {papel}",
+      "papel": {
+        "dono": "la persona dueña",
+        "moderador": "un moderador",
+        "administrador": "un administrador",
+        "rele": "el relé"
+      },
+      "tipos": {
+        "topico": "Tema",
+        "resposta-forum": "Respuesta",
+        "pagina-publicar": "Actualización"
+      },
+      "apelacao": {
+        "aberta": "Apelación abierta",
+        "mantida": "Decisión mantenida",
+        "revertida": "Decisión revertida"
+      },
+      "apelarDaquele": "¿Fuiste tú? Apela",
+      "fechadaNota": "El registro de esta comunidad solo lo leen los miembros."
+    },
+    "ato": {
+      "aprovado": "Hecho"
+    }
+  }
+}

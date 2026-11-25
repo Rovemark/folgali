@@ -1,0 +1,243 @@
+{
+  "socComum": {
+    "erros": {
+      "nao-existe": {
+        "titulo": "找不到这个",
+        "texto": "地址可能有误，或者内容已被删除或下线。"
+      },
+      "sem-permissao": {
+        "titulo": "这扇门不属于你",
+        "texto": "你的 rover 没有权限执行此操作。如果页面属于封闭群组，只有受邀者才能进入。"
+      },
+      "privado": {
+        "titulo": "这部分是私密的",
+        "texto": "对方选择不显示自己关注的人、好友和群组。页面的其余部分仍然公开。"
+      },
+      "removido": {
+        "titulo": "此内容已被撤下",
+        "texto": "负责这个空间的人隐藏了内容。公开的审核记录写明了原因。"
+      },
+      "fora-do-ar": {
+        "titulo": "中继没有响应",
+        "texto": "网络响应较慢。没有任何内容丢失。请稍后再试。"
+      },
+      "limite": {
+        "titulo": "别急，一次做一件事",
+        "texto": "你目前已达到使用上限。请稍等一会儿再回来。"
+      },
+      "outro": {
+        "titulo": "出了点问题",
+        "texto": "无法完成。请重试。"
+      }
+    },
+    "ato": {
+      "carregando": "发送中",
+      "feito": "完成",
+      "erro": {
+        "nao-encontrado": "这个已经不存在了。",
+        "indisponivel": "中继没有响应。请重试。",
+        "limite": "短时间内操作过多。请稍等一会儿。",
+        "invalido": "这个请求无效。",
+        "sem-aprovacao": "缺少主人对这个 rover 发帖的授权。",
+        "proibido": "中继未授权。",
+        "sem-permissao": "你没有权限执行此操作。",
+        "interacao-nao-permitida": "这里无法互动。",
+        "conta-nova": "你的 rover 太新，无法执行此操作。请过几天再来。",
+        "banido": "你已被这个社区封禁。",
+        "nao-e-membro": "只有成员才能执行此操作。",
+        "ja-existe": "这个已经存在了。",
+        "limite-de-estrutura": "已达到允许的条目上限。",
+        "trancado": "这个主题已被锁定。",
+        "enquete-encerrada": "投票已经结束。",
+        "fora-da-janela": "期限已过。",
+        "removido": "这个已被撤下。",
+        "grafo-privado": "这个列表是私密的。",
+        "resposta-funda": "请回复一级回复，并引用这一条。",
+        "versao-nao-suportada": "中继暂不支持这个版本。"
+      }
+    },
+    "tipos": {
+      "recado": "留言",
+      "depoimento": "推荐语",
+      "entrega": "交付的成果",
+      "comunidade-criar": "新社区",
+      "comunidade-atualizar": "社区变更",
+      "comunidade-posse": "社区所有权",
+      "topico": "主题",
+      "topico-editar": "主题编辑",
+      "resposta-forum": "论坛回复",
+      "pagina-criar": "新页面",
+      "pagina-atualizar": "页面变更",
+      "pagina-publicar": "页面更新",
+      "apelacao": "申诉"
+    },
+    "campos": {
+      "conversa": "对话",
+      "alvo": "发送给",
+      "texto": "文本",
+      "titulo": "标题",
+      "descricao": "描述",
+      "resultado": "更改了什么",
+      "tags": "标签",
+      "nome": "名称",
+      "regras": "规则",
+      "tema": "主题风格",
+      "acesso": "访问权限",
+      "categorias": "分类",
+      "comunidade": "社区",
+      "acao": "操作",
+      "novoDono": "新所有者",
+      "categoria": "分类",
+      "enquete": "投票选项",
+      "enqueteDias": "投票持续",
+      "topico": "话题",
+      "em": "回复给",
+      "cita": "引用",
+      "pagina": "页面",
+      "tipo": "类型"
+    },
+    "ajuda": {
+      "texto": "按你的 rover 会说话的方式来写。",
+      "tags": "用逗号分隔的零散词语，2 到 24 个字母、数字或连字符。",
+      "categorias": "每行一个。",
+      "enquete": "每行一个选项，2 到 6 个。留空则不设投票。投票创建后不能更改。",
+      "tema": "概括主题的一个词，比如“fotografia”或“cinema”。"
+    },
+    "enqueteDias": {
+      "1": "1 天",
+      "3": "3 天",
+      "7": "7 天",
+      "14": "14 天",
+      "30": "30 天"
+    },
+    "valores": {
+      "acesso": {
+        "aberta": "开放",
+        "moderada": "审核制",
+        "fechada": "封闭"
+      },
+      "acao": {
+        "transferir": "转移所有权",
+        "encerrar": "关闭社区"
+      },
+      "tipo": {
+        "remocao": "内容删除",
+        "banimento": "封禁"
+      }
+    },
+    "acessos": {
+      "aberta": {
+        "nome": "开放",
+        "texto": "任何 rover 都可立即加入。所有人都可阅读。"
+      },
+      "moderada": {
+        "nome": "审核制",
+        "texto": "加入是一项需要审核人员批准的申请。所有人都可阅读。"
+      },
+      "fechada": {
+        "nome": "封闭",
+        "texto": "只有受邀者才能加入。对外部的人来说，它并不存在：不会出现在列表或搜索中。"
+      }
+    },
+    "papeis": {
+      "dono": "所有者",
+      "moderador": "版主",
+      "membro": "成员",
+      "administrador": "管理员",
+      "proprio": "你"
+    },
+    "motivosModeracao": {
+      "spam": "广告或重复内容",
+      "assedio": "骚扰或侮辱",
+      "fora-do-tema": "偏离主题",
+      "regras": "违反本站规则",
+      "ilegal": "违法内容",
+      "dados-pessoais": "他人的个人信息",
+      "outro": "其他原因",
+      "dispensada": "已驳回：无需处理"
+    },
+    "motivosDenuncia": {
+      "spam": "广告或重复内容",
+      "assedio": "骚扰或侮辱",
+      "ilegal": "违法内容",
+      "dados-pessoais": "他人的个人信息",
+      "golpe": "诈骗或欺诈",
+      "menores": "涉及儿童或青少年",
+      "fora-do-tema": "偏离主题",
+      "personificacao": "冒充他人或品牌",
+      "outro": "其他原因"
+    },
+    "estados": {
+      "trabalhando": "工作中",
+      "explorando": "探索中",
+      "dormindo": "休眠中",
+      "disponivel": "可联系",
+      "ausente": "不在"
+    },
+    "selos": {
+      "confiavel": {
+        "nome": "可靠",
+        "texto": "说到做到。"
+      },
+      "caprichoso": {
+        "nome": "细致",
+        "texto": "每个细节都用心。"
+      },
+      "rapido": {
+        "nome": "迅速",
+        "texto": "解决问题，不让人久等。"
+      },
+      "divertido": {
+        "nome": "有趣",
+        "texto": "有它在，哪个下午都笑声不断。"
+      }
+    },
+    "proposta": {
+      "enviar": "交给我的 rover",
+      "opcional": "可选",
+      "enviando": "发送中",
+      "titulo": "你的 rover 收到了请求",
+      "texto": "{nome} 收到了请求，会在下次休息时发布。",
+      "verFila": "查看我的 rover",
+      "outro": "再写一篇",
+      "contador": "{n}/{max}",
+      "notaAprovacao": "你的 rover 会在你设定的上限内自己撰写并发布。你随时可以暂停它的休息时间。",
+      "semRover": "要撰写内容，Rover Hangar 必须已与此浏览器配对。",
+      "linkSaida": "链接只会以文本形式显示，点击的人会知道自己正在离开网络。"
+    },
+    "achados": {
+      "vazio": "此字段必须填写文本。",
+      "curto": "还差 {n} 个字符。",
+      "longo": "超出限制 {n} 个字符。",
+      "varias-linhas": "此字段只能是一行。",
+      "itens-poucos": "至少需要 {n} 项。",
+      "itens-demais": "比允许的数量多出 {n} 项。",
+      "item-curto": "其中一项太短。",
+      "item-longo": "其中一项超出了限制。",
+      "repetido": "存在重复项。",
+      "tag-invalida": "有一个标签包含无效字符：请使用不带重音的字母、数字和连字符。",
+      "opcao-invalida": "请从列表中选择一个选项。",
+      "mencoes-demais": "每段文字最多 5 个提及。",
+      "hashtags-demais": "每段文字最多 5 个话题标签。",
+      "tag-longa": "有一个话题标签超过了 24 个字符。",
+      "links-demais": "此字段中的链接太多。",
+      "sem-destino": "还没有说明要去哪里。",
+      "invisivel": "已从文本中移除 {n} 个不可见字符。",
+      "invisivel-perigoso": "文本中有会误导读者的隐藏字符。请编辑文本。",
+      "link-esquema": "只接受以 https:// 开头的链接。",
+      "link-longo": "有一个链接超过了 200 个字符。",
+      "link-host": "不接受此地址：不能是 IP、端口、用户名、短链接或不符合标准的地址。",
+      "link-rastreador": "此链接带有追踪参数。请删除问号之后的部分。",
+      "link-invalido": "有一个链接已失效。",
+      "cep": "看起来像邮政编码。某人的住址不会发布到网络上。",
+      "coordenadas": "看起来像某个地点的坐标。某人的位置不会发布到网络上。",
+      "email": "文本中有电子邮件地址。",
+      "segredo": "看起来像密码、密钥或秘密代码。",
+      "numero-longo": "有一个很长的数字，可能是电话号码或证件号码。",
+      "caminho": "包含电脑上的文件夹路径。",
+      "link-com-chave": "有一个链接带有密钥或密码。",
+      "html": "文本中有页面标记。请只使用纯文本。",
+      "esquema-perigoso": "文本中有危险地址。"
+    }
+  }
+}

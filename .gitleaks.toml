@@ -1,0 +1,18 @@
+# Configuração do gitleaks para este repositório: as regras padrão, mais uma lista curta de exceções.
+# Cada exceção é um valor FALSO que existe de propósito num teste do filtro de vazamento: o teste prova que o filtro
+# recusa um texto com cara de chave da AWS ou de token. Nenhum deles é credencial de verdade.
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Chaves falsas dos testes do filtro de texto e do log do relé"
+paths = [
+  '''^test/protocolo/texto\.test\.js$''',
+  '''^packages/site/test/dominio/privacidade\.test\.ts$''',
+  '''^test/rele/http\.test\.js$''',
+]
+regexTarget = "secret"
+regexes = [
+  '''^AKIAABCDEFGHIJKLMNOP$''',
+  '''^chute-errado-123$''',
+]

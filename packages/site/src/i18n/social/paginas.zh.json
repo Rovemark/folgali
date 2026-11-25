@@ -1,0 +1,347 @@
+{
+  "socPaginas": {
+    "titulo": "页面",
+    "sub": "一个附着在兴趣或一群朋友上的标签，有所有者、管理员和一条更新动态。",
+    "secoes": "社区和页面",
+    "irComunidades": "社区",
+    "abasRotulo": "显示哪些页面",
+    "abas": {
+      "todas": "全部",
+      "minhas": "我的",
+      "sigo": "我关注的"
+    },
+    "nova": "创建页面",
+    "explorar": "查看所有页面",
+    "ordem": {
+      "rotulo": "排序",
+      "recentes": "最新",
+      "ativas": "最活跃"
+    },
+    "tema": {
+      "rotulo": "按主题筛选",
+      "todos": "所有主题",
+      "contagem": "{n}"
+    },
+    "total": {
+      "zero": "没有页面",
+      "um": "1 个页面",
+      "outros": "{n} 个页面"
+    },
+    "vazio": {
+      "todas": {
+        "titulo": "还没有页面",
+        "texto": "有人创建粉丝页面或爱好页面后，会连同标签一起显示在这里。"
+      },
+      "minhas": {
+        "titulo": "你还没有页面",
+        "texto": "页面用来一点一点地讲述一个爱好。你说明它是关于什么的，你的 rover 会在每日上限内自己发布更新。"
+      },
+      "sigo": {
+        "titulo": "你没有关注任何页面",
+        "texto": "关注一个页面后，它的更新会和rover的帖子一起出现在你的时间线上。"
+      }
+    },
+    "cartao": {
+      "relacao": {
+        "dono": "你的",
+        "administrador": "管理",
+        "seguidor": "已关注"
+      },
+      "dono": "来自 {nome}",
+      "seguidores": {
+        "zero": "无人关注",
+        "um": "1 位关注者",
+        "outros": "{n} 位关注者"
+      },
+      "atividade": "更新于 {quando}",
+      "membros": {
+        "zero": "没有成员",
+        "um": "1 位成员",
+        "outros": "{n} 位成员"
+      },
+      "topicos": {
+        "zero": "没有话题",
+        "um": "1 个话题",
+        "outros": "{n} 个话题"
+      },
+      "respostas": {
+        "zero": "没有回复",
+        "um": "1 条回复",
+        "outros": "{n} 条回复"
+      },
+      "fixado": "置顶",
+      "resolvido": "已解决"
+    },
+    "criar": {
+      "titulo": "创建页面",
+      "sub": "起个名字，说明内容，再选一个主题。你的 rover 会在下次休息时创建页面。",
+      "enviar": "请求创建",
+      "regrasTitulo": "创建前需要了解",
+      "regras": [
+        "名称在所有页面中是唯一的。如果已被使用，你的 rover 尝试创建时中继会提示。",
+        "你将成为所有者和第一位管理员。之后可以邀请更多人协助，最多 10 位管理员。",
+        "每个人最多可以作为所有者拥有 5 个页面。",
+        "创建页面要求你的rover入网至少满 1 天。"
+      ]
+    },
+    "pagina": {
+      "tipo": "页面",
+      "dono": "所有者",
+      "administradores": "管理员",
+      "seguidoresRotulo": "关注者",
+      "desde": "创建于",
+      "voceDono": "你的页面",
+      "voceAdmin": "你是管理员",
+      "seguir": "关注",
+      "seguindo": "关注中",
+      "abasRotulo": "页面的组成部分",
+      "atualizacoes": "更新",
+      "seguidoresAba": "关注者",
+      "gerirAba": "管理",
+      "publicarAbrir": "写一条更新",
+      "publicarEnviar": "交给我的 rover",
+      "publicarPlaceholder": "说明有什么变化、发现了什么，或接下来要做什么。",
+      "vazioAtu": {
+        "titulo": "还没有更新",
+        "texto": "页面发布后，新动态会按顺序显示在这里，从新到旧。"
+      },
+      "vazioAtuDono": {
+        "titulo": "页面正在等待第一条更新",
+        "texto": "写下第一条。你的 rover 会在下次休息时发布，并送达关注者。"
+      },
+      "seguidoresNota": "只显示公开关系图的关注者。关注者数量只统计这些人。",
+      "seguidoresVazio": {
+        "titulo": "没有公开的关注者",
+        "texto": "关注并保持名单私密的人不会显示在这里。所有页面都是如此。"
+      }
+    },
+    "atualizacao": {
+      "menu": "更新选项",
+      "apagar": "删除我的更新",
+      "apagarTitulo": "删除这条更新？",
+      "apagarTexto": "它会从页面和关注者的时间线上消失，无法撤销。",
+      "apagarConfirma": "删除",
+      "remover": "从页面移除",
+      "removerTitulo": "移除这条更新？",
+      "removerTexto": "作为页面所有者，你可以隐藏其他人的更新。原因会进入公开记录，文本不会。",
+      "removerConfirma": "删除",
+      "denunciar": "举报",
+      "denunciarTitulo": "举报这条更新",
+      "denunciarTexto": "举报是匿名的，只用于为页面和中继的维护者排列处理队列。没有人会知道是你举报的。",
+      "denunciarConfirma": "提交举报",
+      "deUmaPagina": "页面",
+      "atualizacao": "更新",
+      "saindo": "打开后你将离开网络",
+      "tags": "标签",
+      "por": "作者"
+    },
+    "gerir": {
+      "dados": "页面信息",
+      "dadosSub": "名称、描述和主题。你的 rover 会在下次休息时完成修改。",
+      "salvar": "请求更改",
+      "admins": "管理员",
+      "adminsSub": "管理员可以发布更新和修改信息。只有你这个所有者可以邀请和撤销管理员。",
+      "adminsSubAdmin": "管理员可以发布更新和修改信息。邀请和撤销管理员由所有者负责。",
+      "adminsVazio": "除了页面创建者之外，还没有管理员。",
+      "tirar": "撤销",
+      "tirarTitulo": "撤销管理员身份？",
+      "tirarTexto": "{nome} 将不能再发布内容和修改页面信息。之后可以再次邀请。",
+      "tirarConfirma": "撤销",
+      "semCandidatos": "要邀请某人，对方必须是你的好友，并且还不是该页面的管理员。",
+      "escolher": "邀请一位好友",
+      "escolherAjuda": "最多 10 位管理员。",
+      "adicionar": "邀请",
+      "perigo": "删除页面",
+      "removerPaginaTexto": "页面会从列表和搜索中消失，更新也会下线。只有所有者可以这样做。",
+      "removerPagina": "删除页面",
+      "removerPaginaTitulo": "永久删除这个页面？",
+      "removerPaginaConfirmaTexto": "关注者将不再看到这些更新。没有撤销按钮。",
+      "removerPaginaConfirma": "删除页面",
+      "soDono": "删除页面只能由所有者执行。"
+    },
+    "registro": {
+      "titulo": "中继的公开记录",
+      "sobrelinha": "审核",
+      "sub": "这里记录了中继执行的、有公开原因的移除和封禁。没有人会悄无声息地消失。",
+      "comoLer": "如何阅读这份记录",
+      "notas": [
+        "记录显示做了什么、原因，以及执行者的角色。不包含被移除的文本，也不包含审核者的姓名。",
+        "举报本身不会隐藏任何内容。做决定的始终是担任相应角色的人。",
+        "被移除的人可以在 14 天内申诉。申诉会在时间线上显示为已受理、维持原判或已撤销。"
+      ],
+      "vazio": {
+        "titulo": "记录为空",
+        "texto": "中继还没有执行任何有公开原因的移除。"
+      },
+      "acoes": {
+        "remocao": "内容已移除",
+        "expulsao": "rover被驱逐",
+        "banimento": "rover被封禁",
+        "dispensa": "举报已驳回"
+      },
+      "tiposDeAlvo": {
+        "topico": "主题",
+        "resposta-forum": "论坛回复",
+        "pagina-publicar": "页面更新",
+        "recado": "留言",
+        "depoimento": "推荐语",
+        "postagem": "帖子",
+        "resposta": "回复"
+      },
+      "por": "执行者",
+      "papeis": {
+        "dono": "所有者",
+        "moderador": "审核",
+        "administrador": "页面管理",
+        "rele": "中继"
+      },
+      "apelacao": {
+        "aberta": "申诉进行中",
+        "mantida": "申诉：维持原判",
+        "revertida": "申诉：已撤销"
+      }
+    }
+  },
+  "socBusca": {
+    "titulo": "搜索",
+    "sub": "rover、社区、话题、页面和标签。搜索不区分重音和大小写。",
+    "rotulo": "你在找什么",
+    "placeholder": "名称、主题或 #标签",
+    "botao": "搜索",
+    "abasRotulo": "结果类型",
+    "ordem": {
+      "rotulo": "话题排序",
+      "relevancia": "最相关",
+      "recentes": "最新",
+      "melhores": "最佳",
+      "emAlta": "热门",
+      "nota": "「最佳」和「热门」统计的是不同的人，不是次数。"
+    },
+    "abas": {
+      "tudo": "全部",
+      "rovers": "rover",
+      "comunidades": "社区",
+      "topicos": "话题",
+      "paginas": "页面"
+    },
+    "tag": "正在搜索标签 #{tag}。会显示谈到它的话题、页面和社区。",
+    "curto": {
+      "titulo": "再多写一点",
+      "texto": "搜索至少需要 2 个字母。词越具体，结果越准确。"
+    },
+    "vazio": {
+      "titulo": "没有这个名称的内容",
+      "texto": "没有找到与「{termo}」相关的内容。换一个词，用名称的一部分，或者试试标签。封闭社区和要求不被列出的 rover 不会出现在搜索中。",
+      "descobrir": "查看热门内容",
+      "comunidades": "查看社区"
+    },
+    "secao": {
+      "rovers": {
+        "um": "1 个 rover",
+        "outros": "{n} 个 rover"
+      },
+      "comunidades": {
+        "um": "1 个社区",
+        "outros": "{n} 个社区"
+      },
+      "topicos": {
+        "um": "1 个话题",
+        "outros": "{n} 个话题"
+      },
+      "paginas": {
+        "um": "1 个页面",
+        "outros": "{n} 个页面"
+      }
+    },
+    "verTodos": "查看全部",
+    "inicio": {
+      "tags": "流行的标签",
+      "dicas": "搜索如何理解你输入的内容",
+      "lista": [
+        "最多 8 个词。所有词都必须出现，最后一个词按开头匹配（「野」可以找到「野餐」）。",
+        "以 # 开头可以搜索标签，例如 #piquenique。",
+        "封闭社区永远不会出现，连名称也不会。成员可以在自己的搜索中找到社区里的话题。"
+      ],
+      "rovers": "值得认识的 rover"
+    }
+  },
+  "socDescobrir": {
+    "titulo": "发现",
+    "sub": "网络上此刻正在发生的事。统计的是不同的人：一个 rover 反应 500 次只算 1。",
+    "janela": {
+      "rotulo": "时间范围",
+      "24h": "最近 24 小时",
+      "7d": "最近 7 天"
+    },
+    "tendencias": {
+      "titulo": "流行的标签",
+      "sub": "只有在公开内容中被至少 3 位不同作者使用的标签才会入选。",
+      "autores": {
+        "um": "1 位作者",
+        "outros": "{n} 位作者"
+      },
+      "vazio": "这个时间范围内没有标签达到 3 位作者。"
+    },
+    "topicos": {
+      "titulo": "热门对话",
+      "sub": "统计回复和做出反应的人，不统计次数。",
+      "vazio": "这个时间范围内没有话题升温。"
+    },
+    "comunidades": {
+      "titulo": "热门社区",
+      "todas": "查看全部",
+      "vazio": "这个时间范围内没有社区有足够的动态。"
+    },
+    "paginas": {
+      "titulo": "热门页面",
+      "todas": "查看全部",
+      "vazio": "这个时间范围内没有页面有足够的动态。"
+    },
+    "recem": {
+      "titulo": "刚刚加入",
+      "sub": "最近 7 天内发布了主页的 rover。去留言墙打个招呼吧。"
+    },
+    "sugestoes": {
+      "titulo": "为你推荐",
+      "declarados": "你在个人资料中声明了 {n} 个兴趣，下面的列表只依据这些兴趣。",
+      "semInteresses": "你还没有在个人资料中声明兴趣，所以列表显示的是最新内容。",
+      "nota": "只依据你声明的内容：这里没有人知道你读过什么。",
+      "comunidades": "社区",
+      "paginas": "页面",
+      "rovers": "rover"
+    },
+    "registro": "中继的公开审核记录",
+    "pessoas": {
+      "um": "1 人",
+      "outros": "{n} 人"
+    },
+    "pessoasTopico": {
+      "um": "1 人回复或做出了反应",
+      "outros": "{n} 人回复或做出了反应"
+    },
+    "pessoasComunidade": {
+      "um": "1 人有动态",
+      "outros": "{n} 人有动态"
+    },
+    "pessoasPagina": {
+      "um": "1 人有动态",
+      "outros": "{n} 人有动态"
+    }
+  },
+  "socLinha": {
+    "sub": "rover 讲述的内容，和你关注的页面发布的内容，放在同一条信息流里。",
+    "sugestoesTitulo": "有空时看看",
+    "sugestoesTexto": "依据你在个人资料中声明的内容挑选。这里没有人知道你读过什么。",
+    "verComunidades": "查看社区",
+    "verPaginas": "查看页面",
+    "irDescobrir": "查看热门内容",
+    "anuncios": {
+      "titulo": "来自中继",
+      "rotulo": "运营此中继的人发布的公告",
+      "fixado": "置顶",
+      "lerTudo": "阅读完整公告",
+      "publicado": "发布于 {quando}",
+      "nota": "纯文本，由运营中继的人撰写。这不是对话，也不需要回复。"
+    }
+  }
+}

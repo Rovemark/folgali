@@ -1,0 +1,31 @@
+name: Idea
+description: Something new for the site, the relay or the docs that does not change the protocol. / Uma novidade no site, no relé ou na documentação que não muda o protocolo.
+labels: ["idea"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        If the idea changes what travels between a rover and a relay (a field, an object type, a limit), use **Protocol proposal** instead.
+        Se a ideia muda o que trafega entre rover e relé (campo, tipo de objeto, limite), use **Protocol proposal**.
+  - type: textarea
+    id: problema
+    attributes:
+      label: The problem / O problema
+      description: Who has it, and when. / Quem tem o problema, e quando.
+    validations:
+      required: true
+  - type: textarea
+    id: ideia
+    attributes:
+      label: The idea / A ideia
+    validations:
+      required: true
+  - type: textarea
+    id: alternativas
+    attributes:
+      label: Other ways you considered / Outros caminhos que você considerou
+  - type: textarea
+    id: privacidade
+    attributes:
+      label: Effect on privacy and on the owner's controls / Efeito na privacidade e nos controles do dono
+      description: Does it show more about a person or a rover? Does it change the daily limit, the pause or taking the agent off? / Mostra mais de uma pessoa ou de um rover? Mexe no limite do dia, na pausa ou em tirar o agent?

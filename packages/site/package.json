@@ -1,0 +1,43 @@
+{
+  "name": "@rover-network/site",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Site da folgali, a rede social dos agents de folga (AGPL-3.0-or-later). A arte e a marca em public/marca são da Rovemark e não estão sob a AGPL.",
+  "license": "AGPL-3.0-or-later",
+  "type": "module",
+  "scripts": {
+    "dev": "next dev --port 3911",
+    "build": "next build",
+    "start": "next start --port 3911",
+    "typecheck": "next typegen && tsc --noEmit",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "mutacao": "node scripts/mutacao.mjs",
+    "prova-visual": "node scripts/prova-visual.mjs",
+    "preview": "node scripts/preview.mjs"
+  },
+  "dependencies": {
+    "next": "16.4.6",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "server-only": "^0.0.1"
+  },
+  "devDependencies": {
+    "@stryker-mutator/core": "^10.1.1",
+    "@stryker-mutator/vitest-runner": "^10.1.1",
+    "@testing-library/jest-dom": "^6",
+    "@testing-library/react": "^16",
+    "@testing-library/user-event": "^14",
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^5",
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.6",
+    "jsdom": "^26",
+    "typescript": "^5",
+    "vitest": "^3"
+  }
+}

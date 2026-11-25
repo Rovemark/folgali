@@ -1,0 +1,58 @@
+/* Páginas editoriais (ajuda, glossário, guias, protocolo e institucionais). Só variáveis semânticas do site. */
+.editorial { display: grid; gap: 28px; }
+.editorial .titulo-pag { margin: 0; }
+.migalhas ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 0; font-size: 14px; color: var(--tinta-3); }
+.migalhas li + li::before { content: '/'; margin-inline: 10px; color: var(--linha); }
+.migalhas a { color: var(--tinta-3); display: inline-flex; align-items: center; min-height: 32px; }
+.migalhas a:hover { color: var(--tinta); }
+.migalhas [aria-current='page'] { color: var(--tinta-2); }
+.resposta-curta { border-inline-start: 3px solid var(--acao); padding-block: 4px 4px; padding-inline: 20px 0; }
+.resposta-curta .sobrelinha { margin: 0 0 8px; }
+.resposta-curta p { margin: 0; font-size: 18px; line-height: 1.55; color: var(--tinta); }
+.editorial-secao { display: grid; gap: 10px; }
+.editorial-secao h2 { margin: 12px 0 0; font-family: var(--f-display); font-size: 22px; line-height: 1.25; letter-spacing: -0.01em; }
+.editorial-secao p, .editorial-secao li { font-size: 16px; line-height: 1.65; color: var(--tinta-2); margin: 0; }
+.editorial-secao ul { margin: 0; padding-inline-start: 24px; display: grid; gap: 8px; list-style: disc; }
+.editorial pre { margin: 0; padding: 14px 16px; background: var(--tecido-2); border: 1px solid var(--linha); border-radius: var(--raio-peq); overflow-x: auto; font-family: var(--f-mono); font-size: 14px; line-height: 1.55; }
+.fontes h2, .ver-tambem h2 { margin: 0 0 8px; font-family: var(--f-mono); font-size: 12px; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--tinta-3); }
+.fontes ul, .ver-tambem ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.fontes a, .ver-tambem a { display: inline-flex; align-items: center; min-height: 36px; }
+.atualizado { margin: 0; font-size: 13px; color: var(--tinta-3); }
+
+/* ajuda: pergunta, resposta curta e detalhe, tudo visível (nada escondido em acordeão: o que está escondido vale menos para quem lê e para quem indexa) */
+.faq-grupo { display: grid; gap: 24px; }
+.faq-grupo > h2 { margin: 8px 0 0; font-family: var(--f-display); font-size: 22px; letter-spacing: -0.01em; }
+.faq-item { display: grid; gap: 8px; padding-top: 16px; border-top: 1px solid var(--linha); }
+.faq-item h3 { margin: 0; font-size: 18px; line-height: 1.35; }
+.faq-item h3 a { display: inline-flex; align-items: center; min-height: 44px; }
+.faq-item .curta { margin: 0; font-weight: 600; color: var(--tinta); line-height: 1.55; }
+.faq-item .detalhe { margin: 0; color: var(--tinta-2); line-height: 1.65; }
+
+/* listas de verbetes, guias e novidades */
+.lista-editorial { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.lista-editorial li ul li { display: list-item; }
+.faq-item .fontes { margin-top: 8px; }
+.lista-editorial li ul { list-style: disc; margin: 8px 0 0; padding-inline-start: 20px; display: grid; gap: 4px; color: var(--tinta-2); }
+.lista-editorial li { padding: 16px 0; border-top: 1px solid var(--linha); display: grid; gap: 4px; }
+.lista-editorial li:last-child { border-bottom: 1px solid var(--linha); }
+.lista-editorial a { font-weight: 700; font-size: 17px; color: var(--tinta); }
+.lista-editorial p { margin: 0; color: var(--tinta-2); line-height: 1.55; }
+.lista-editorial time { font-family: var(--f-mono); font-size: 12px; color: var(--tinta-3); }
+
+/* tabela de rotas da API */
+.api-grupo { display: grid; gap: 8px; }
+.api-grupo h2 { margin: 12px 0 0; font-family: var(--f-display); font-size: 22px; }
+.tabela-api { width: 100%; border-collapse: collapse; font-size: 15px; }
+.tabela-api th, .tabela-api td { text-align: start; padding-block: 10px 10px; padding-inline: 0 12px; border-top: 1px solid var(--linha); vertical-align: top; }
+.tabela-api th { font-family: var(--f-mono); font-size: 12px; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; color: var(--tinta-3); border-top: 0; }
+.tabela-api td:first-child { font-family: var(--f-mono); font-size: 14px; white-space: nowrap; color: var(--tinta); }
+@media (max-width: 699px) { .tabela-api, .tabela-api tbody, .tabela-api tr, .tabela-api td { display: block; } .tabela-api thead { display: none; } .tabela-api td:first-child { white-space: normal; padding-bottom: 0; border-top: 1px solid var(--linha); } .tabela-api td + td { border-top: 0; padding-top: 2px; } }
+
+/* status */
+.estado-lista { display: grid; grid-template-columns: max-content 1fr; gap: 10px 24px; margin: 0; }
+.estado-lista dt { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--tinta-3); padding-top: 3px; }
+.estado-lista dd { margin: 0; color: var(--tinta); }
+
+/* Link para o skill dos agentes (página de desenvolvedores): sublinhado, porque no meio do texto um link sem marca não se distingue,
+   e com 44 px de alvo de toque. */
+.link-skill { display: inline-flex; align-items: center; min-block-size: 44px; font-weight: 600; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }

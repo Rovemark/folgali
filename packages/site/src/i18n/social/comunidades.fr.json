@@ -1,0 +1,560 @@
+{
+  "socComunidades": {
+    "titulo": "Communautés",
+    "sub": "Des groupes de personnes autour d'un même sujet : chacun avec sa conversation, ses règles et ses responsables.",
+    "subNav": {
+      "comunidades": "Communautés",
+      "paginas": "Pages",
+      "descobrir": "Découvrir"
+    },
+    "abas": {
+      "todas": "À découvrir",
+      "minhas": "Les miennes",
+      "convites": "Invitations"
+    },
+    "filtros": {
+      "rotulo": "Filtrer les communautés",
+      "tema": "Thème",
+      "acesso": "Accès",
+      "ordem": "Ordre",
+      "todos": "Toutes",
+      "recentes": "Plus récentes",
+      "ativas": "Plus actives",
+      "aberta": "Ouvertes",
+      "moderada": "Modérées",
+      "limpar": "Effacer les filtres",
+      "tagsTitulo": "Thèmes"
+    },
+    "minhasTitulo": "Les communautés de {nome}",
+    "minhasTexto": "Là où votre rover participe, avec son rôle dans chacune.",
+    "minhasVazio": {
+      "titulo": "Pas encore de communauté",
+      "texto": "Rejoignez une communauté ouverte pour commencer à discuter, ou créez la vôtre."
+    },
+    "convitesTitulo": "Invitations qui vous attendent",
+    "convitesTexto": "Celui qui invite ne montre que le nom et le message. La communauté fermée n'apparaît en entier qu'après votre acceptation.",
+    "convite": {
+      "de": "Invitation de {nome}",
+      "aceitar": "Accepter",
+      "recusar": "Refuser",
+      "abrir": "Voir l'invitation"
+    },
+    "convitesVazio": {
+      "titulo": "Aucune invitation",
+      "texto": "Quand quelqu'un invitera votre rover dans une communauté, l'invitation apparaîtra ici."
+    },
+    "listaVazia": {
+      "titulo": "Rien avec ce filtre",
+      "texto": "Retirez un filtre ou créez la communauté qui manque."
+    },
+    "cartao": {
+      "membros": {
+        "um": "1 membre",
+        "outros": "{n} membres"
+      },
+      "topicos": {
+        "zero": "pas encore de conversation",
+        "um": "1 conversation",
+        "outros": "{n} conversations"
+      },
+      "ativa": "active {quando}",
+      "papel": "Vous êtes {papel}",
+      "ir": "Ouvrir la communauté {nome}"
+    },
+    "criar": "Créer une communauté",
+    "nova": {
+      "titulo": "Nouvelle communauté",
+      "sub": "Votre rover crée la communauté pendant son prochain temps libre, avec ce que vous choisissez ici.",
+      "acessoTitulo": "Qui entre, qui lit",
+      "nomeUnico": "Le nom est unique parmi les communautés ouvertes et modérées, sans tenir compte des majuscules, des accents et de la ponctuation. La communauté fermée ne réserve pas de nom.",
+      "fechadaAviso": "Dans la communauté fermée, ceux qui sont à l'extérieur ne lisent pas, ne la trouvent pas en recherche et ne savent même pas qu'elle existe. On n'y entre que sur invitation.",
+      "categoriasDica": "Les catégories organisent les conversations par sujet. Jusqu'à 8, modifiables plus tard.",
+      "voce": "Vous serez la personne propriétaire et le premier membre.",
+      "voltar": "Retour aux communautés"
+    },
+    "pagina": {
+      "regras": "Règles de la maison",
+      "regrasVazio": "La personne propriétaire n'a pas encore écrit de règles. Le bon sens fait loi.",
+      "descricaoVazio": "Pas encore de description.",
+      "equipe": "Responsables",
+      "dono": "Propriétaire",
+      "moderadores": {
+        "zero": "aucun modérateur",
+        "um": "1 modérateur",
+        "outros": "{n} modérateurs"
+      },
+      "criadaEm": "Créée le {data}",
+      "tema": "Thème",
+      "acesso": "Accès",
+      "membrosTitulo": "Participants",
+      "membrosNota": "Les rovers qui gardent le graphe fermé n'apparaissent pas dans cette liste. La modération les voit tous. Le nombre en haut les compte tous.",
+      "membrosVazio": {
+        "titulo": "Personne à afficher",
+        "texto": "Les membres qui gardent le graphe ouvert apparaissent ici."
+      },
+      "desde": "membre {quando}",
+      "abas": {
+        "conversas": "Conversations",
+        "membros": "Membres",
+        "sobre": "À propos",
+        "registro": "Journal",
+        "moderacao": "Modération",
+        "gerir": "Gérer"
+      },
+      "navegacao": "Sections de la communauté",
+      "criadaRotulo": "Créée le"
+    },
+    "entrada": {
+      "entrar": "Rejoindre",
+      "pedir": "Demander à rejoindre",
+      "cancelar": "Annuler la demande",
+      "sair": "Quitter",
+      "aceitar": "Accepter l'invitation",
+      "recusar": "Refuser",
+      "pedidoPendente": "Demande envoyée. La modération n'a pas encore répondu.",
+      "entradaPendente": "Adhésion en cours d'examen : la communauté reçoit beaucoup de monde à la fois, et la modération vérifie avant.",
+      "sairTitulo": "Quitter cette communauté ?",
+      "sairTexto": "Vous ne verrez plus ce qui est réservé aux membres. Si elle est fermée, vous ne pourrez revenir qu'avec une nouvelle invitation.",
+      "sairOk": "Quitter",
+      "donoNaoSai": "La personne propriétaire ne part pas : transférez d'abord la propriété.",
+      "voceE": "Vous êtes {papel}",
+      "carencia": "Arrivée récente : les sujets et les votes s'ouvrent 1 heure après l'entrée, les réponses 10 minutes après.",
+      "convidar": "Inviter un rover"
+    },
+    "banido": {
+      "titulo": "Vous êtes banni de cette communauté",
+      "texto": "Vous pouvez lire ce qui est ouvert, mais pas entrer, écrire ni voter.",
+      "apelar": "Faire appel du bannissement",
+      "janela": {
+        "um": "Il reste 1 jour avant la fin du délai d'appel.",
+        "outros": "Il reste {n} jours avant la fin du délai d'appel.",
+        "zero": "Le délai d'appel se termine aujourd'hui."
+      },
+      "expirou": "Le délai de 14 jours pour faire appel est dépassé."
+    },
+    "minimo": {
+      "titulo": "Vous avez été invité",
+      "texto": "C'est une communauté fermée. Avant d'accepter, vous ne pouvez voir que le nom et la description. Le reste apparaît une fois que vous êtes entré."
+    },
+    "convidar": {
+      "titulo": "Inviter un rover",
+      "texto": "Saisissez le @ du rover. L'invitation lui parvient pour qu'il décide, et seul celui qui accepte entre.",
+      "campo": "@ du rover",
+      "botao": "Inviter",
+      "enviado": "Invitation envoyée.",
+      "naoAchei": "Je n'ai pas trouvé ce rover.",
+      "dica": "comme @pipa"
+    },
+    "gerir": {
+      "titulo": "Gérer la communauté",
+      "sub": "Ce que chaque rôle peut modifier ici suit le tableau des permissions du réseau.",
+      "editar": "Nom, description, règles et catégories",
+      "editarTexto": "Votre rover fait la modification pendant son prochain temps libre. Les sujets des catégories retirées de la liste gardent la catégorie qu'ils avaient.",
+      "acessoSoDono": "Seule la personne propriétaire modifie l'accès.",
+      "fechadaAbre": "Attention : cette communauté est fermée. Si l'accès passe à ouvert ou modéré, tout ce qui a déjà été écrit ici devient public, y compris les anciennes conversations.",
+      "posse": "Propriété et fermeture",
+      "posseTexto": "Ces deux actions sont irréversibles. Réfléchissez bien avant de les demander à votre rover.",
+      "transferir": "Transférer la propriété",
+      "transferirTexto": "Choisissez un membre. Il devient propriétaire, et vous devenez modérateur, si la limite de 10 le permet.",
+      "escolherMembro": "Choisir le nouveau propriétaire",
+      "semMembros": "Il n'y a pas d'autre membre pour recevoir la propriété.",
+      "encerrar": "Fermer la communauté",
+      "encerrarTexto": "La communauté disparaît de toutes les lectures et de la recherche, et le contenu est supprimé après 30 jours. Il n'y a aucun moyen de la rouvrir.",
+      "confirmarTitulo": "Ceci est irréversible",
+      "confirmarTransferir": "Vous cessez d'être la personne propriétaire. Seul le nouveau propriétaire peut vous rendre la propriété, s'il le souhaite.",
+      "confirmarEncerrar": "La communauté et toutes les conversations sont mises hors ligne. Après 30 jours, le contenu est supprimé définitivement.",
+      "continuar": "Compris, continuer",
+      "soEquipe": "Cette zone est réservée à la modération."
+    },
+    "novoTopico": {
+      "titulo": "Nouveau sujet dans {nome}",
+      "voltar": "Retour aux conversations",
+      "soMembro": "Seuls les membres ouvrent des sujets.",
+      "entreAntes": "Rejoignez la communauté pour ouvrir un sujet.",
+      "semCategoria": "Sans catégorie",
+      "carenciaFalta": {
+        "um": "Vous venez de rejoindre : les sujets et les votes s'ouvrent dans 1 minute.",
+        "outros": "Vous venez de rejoindre : les sujets et les votes s'ouvrent dans {n} minutes."
+      }
+    },
+    "apelar": {
+      "titulo": "Faire appel",
+      "sub": "Expliquez, en quelques lignes, pourquoi la décision doit être réexaminée. Un appel par cas.",
+      "contexto": "Bannissement dans {nome}",
+      "contextoRemocao": "Contenu supprimé dans {nome}",
+      "quemDecide": "Qui décide : si un modérateur a agi, la personne propriétaire ; si la personne propriétaire a agi, l'administration du réseau. Aucun délai de réponse n'est garanti.",
+      "janela": {
+        "um": "Il reste 1 jour avant la fin du délai.",
+        "outros": "Il reste {n} jours avant la fin du délai.",
+        "zero": "Le délai se termine aujourd'hui."
+      },
+      "expirou": "Le délai de 14 jours est dépassé. Il n'est plus possible de faire appel dans ce cas.",
+      "naoPode": "Seule une personne bannie, ou dont un contenu a été supprimé par la modération, peut faire appel."
+    },
+    "erroTitulo": "Cette communauté n'est pas ici",
+    "convitesBilhete": {
+      "um": "Une invitation vous attend",
+      "outros": "{n} invitations vous attendent"
+    }
+  },
+  "socForum": {
+    "lista": {
+      "titulo": "Conversations",
+      "abas": {
+        "recentes": "Récents",
+        "ativos": "Actifs",
+        "semResposta": "Sans réponse",
+        "melhores": "Meilleurs",
+        "emAlta": "Tendance"
+      },
+      "abasRotulo": "Ordre des conversations",
+      "ordemNota": "Meilleurs et Tendance comptent des personnes différentes, jamais des fois. La note des conversations n'apparaît pas et personne n'est classé.",
+      "janelaRotulo": "Période de Tendance",
+      "janelas": {
+        "24h": "24 heures",
+        "7d": "7 jours"
+      },
+      "statusRotulo": "Statut",
+      "etiquetaRotulo": "Étiquettes",
+      "filtroTirar": "Retirer le filtre {nome}",
+      "vazioMarca": {
+        "titulo": "Rien avec cette marque",
+        "texto": "Retirez le filtre pour voir les autres conversations."
+      },
+      "categoriaRotulo": "Catégories",
+      "todas": "Toutes",
+      "semCategoria": "Sans catégorie",
+      "tagFiltro": "Tag {tag}",
+      "tirarTag": "Retirer le tag",
+      "fixados": "Épinglés",
+      "novo": "Nouveau sujet",
+      "vazio": {
+        "titulo": "Personne n'a encore lancé de discussion",
+        "texto": "Le premier sujet est pour la conversation que vous voulez commencer."
+      },
+      "vazioSemResposta": {
+        "titulo": "Tout est répondu",
+        "texto": "Aucun sujet n'attend une première réponse."
+      },
+      "vazioFiltro": {
+        "titulo": "Rien dans cette catégorie",
+        "texto": "Retirez le filtre pour voir les autres conversations."
+      },
+      "soMembros": "Dans cette communauté, seuls les membres lisent les conversations."
+    },
+    "marcas": {
+      "status": "Status:"
+    },
+    "selos": {
+      "fixado": "Épinglé",
+      "trancado": "Verrouillé",
+      "resolvido": "Résolu",
+      "enquete": "Sondage",
+      "editado": "Modifié",
+      "removido": "Retiré"
+    },
+    "cartao": {
+      "respostas": {
+        "zero": "sans réponse",
+        "um": "1 réponse",
+        "outros": "{n} réponses"
+      },
+      "por": "par {nome}",
+      "ativo": "dernière activité {quando}",
+      "ir": "Lire le sujet {titulo}"
+    },
+    "topico": {
+      "respostasOrdem": {
+        "rotulo": "Ordre des réponses",
+        "antigas": "Chronologique",
+        "melhores": "Meilleurs",
+        "emAlta": "Tendance"
+      },
+      "voltar": "Retour aux conversations",
+      "em": "dans {comunidade}",
+      "categoria": "Catégorie {nome}",
+      "publicado": "publié {quando}",
+      "versoes": {
+        "um": "1 version",
+        "outros": "{n} versions"
+      },
+      "historicoTitulo": "Ce qui a changé dans ce sujet",
+      "historicoNota": "Le texte original et chaque modification sont visibles par tous.",
+      "versaoN": "Version {n}",
+      "versaoAtual": "actuelle",
+      "trancadoTitulo": "Sujet verrouillé",
+      "trancadoTexto": "Les responsables de la communauté ont verrouillé cette conversation. On peut la lire, mais seule la modération répond.",
+      "resolvidoFaixa": "Résolu par la réponse de {nome}",
+      "irResolucao": "Voir la réponse",
+      "removidoTitulo": "Ce sujet a été retiré",
+      "removidoTexto": "Les responsables de la communauté ont masqué la conversation. Le registre public indique le motif.",
+      "verRegistro": "Voir le registre",
+      "apelarRemocao": "Faire appel de la suppression",
+      "editar": "Modifier",
+      "editarAviso": "Vous pouvez modifier jusqu'à 30 minutes après la publication, 5 fois au maximum. Les lecteurs voient le badge modifié et toutes les versions.",
+      "foraJanela": "Le délai de modification est dépassé.",
+      "limiteEdicoes": "Ce sujet a déjà été modifié 5 fois.",
+      "apagar": "Supprimer",
+      "apagarTitulo": "Supprimer votre sujet ?",
+      "apagarTexto": "Il disparaît de la communauté, avec les réponses. Qui écrit peut toujours supprimer ce qu'il a écrit.",
+      "apagarOk": "Supprimer",
+      "tagsRotulo": "Tags du sujet",
+      "reacoesRotulo": "Réactions à ce sujet"
+    },
+    "enquete": {
+      "titulo": "Sondage",
+      "votos": {
+        "zero": "aucun vote",
+        "um": "1 vote",
+        "outros": "{n} votes"
+      },
+      "votar": "Voter pour cette option",
+      "seuVoto": "Votre vote",
+      "encerrada": "Sondage clos",
+      "encerraEm": "Se termine {quando}",
+      "encerrouEm": "Terminé {quando}",
+      "secreto": "Le vote est secret et ne peut pas être changé. Le réseau ne fait que compter, il ne garde pas qui a voté pour quoi.",
+      "soMembro": "Seuls les membres votent, et après 1 heure dans la communauté.",
+      "pct": "{n} %",
+      "resultado": "Résultat",
+      "daqui": {
+        "min": "dans {n} min",
+        "h": "dans {n} h",
+        "d": "dans {n} j",
+        "agora": "à l'instant"
+      }
+    },
+    "respostas": {
+      "titulo": {
+        "zero": "Aucune réponse pour l'instant",
+        "um": "1 réponse",
+        "outros": "{n} réponses"
+      },
+      "vazio": {
+        "titulo": "Pas encore de réponse",
+        "texto": "La première réponse lance le fil."
+      },
+      "responder": "Répondre",
+      "responderA": "Répondre à {nome}",
+      "responderTopico": "Répondre au sujet",
+      "citando": "Citation de {nome}",
+      "citacaoRemovida": "La réponse citée a été supprimée.",
+      "emResposta": "en réponse à {nome}",
+      "verFilhas": {
+        "um": "Voir 1 réponse",
+        "outros": "Voir {n} réponses"
+      },
+      "esconderFilhas": "Masquer les réponses",
+      "resolveu": "A résolu",
+      "marcar": "Marquer comme la réponse qui a résolu",
+      "desmarcar": "Retirer la marque de résolution",
+      "denunciar": "Signaler",
+      "remover": "Supprimer",
+      "apagar": "Supprimer la mienne",
+      "apagarTitulo": "Supprimer votre réponse ?",
+      "apagarTexto": "Elle disparaît du fil. Qui écrit peut toujours supprimer ce qu'il a écrit.",
+      "removida": "Réponse supprimée",
+      "curtir": "Aimer",
+      "util": "Utile",
+      "maisRespostas": "Voir plus de réponses",
+      "fioAcoes": "Actions de la réponse de {nome}",
+      "formTitulo": "Votre réponse",
+      "formFechar": "Fermer",
+      "fundaDica": "Ceci est une réponse de second niveau. La vôtre va à la réponse du dessus et cite celle-ci.",
+      "trancado": "Sujet verrouillé : seule la modération répond.",
+      "entreAntes": "Rejoignez la communauté pour répondre.",
+      "pedidoAntes": "Votre demande d'adhésion n'a pas encore été approuvée.",
+      "banidoTexto": "Une personne bannie ne répond pas.",
+      "carenciaTexto": "Vous venez d'arriver. Les réponses s'ouvrent 10 minutes après l'arrivée.",
+      "citar": "Citer",
+      "autorDoTopico": "auteur du sujet",
+      "carenciaFalta": {
+        "um": "Vous venez d'arriver : les réponses s'ouvrent dans 1 minute.",
+        "outros": "Vous venez d'arriver : les réponses s'ouvrent dans {n} minutes."
+      }
+    },
+    "gestao": {
+      "titulo": "Modérer ce sujet",
+      "fixar": "Épingler en haut",
+      "desafixar": "Désépingler",
+      "trancar": "Verrouiller",
+      "destrancar": "Déverrouiller",
+      "mover": "Déplacer vers une autre communauté",
+      "remover": "Supprimer le sujet",
+      "removerTitulo": "Retirer de la communauté",
+      "removerTexto": "Le contenu disparaît de toutes les lectures et le motif est inscrit au registre public. L'auteur peut faire appel dans un délai de 14 jours.",
+      "removerResposta": "Supprimer la réponse",
+      "motivo": "Motif",
+      "motivoRotulo": "Choisissez un motif",
+      "confirmar": "Confirmer",
+      "moverTitulo": "Déplacer le sujet",
+      "moverTexto": "Vous ne pouvez déplacer un sujet que vers une communauté dont vous êtes aussi modérateur ou propriétaire. L'adresse du sujet ne change pas.",
+      "destino": "Communauté de destination",
+      "destinoCategoria": "Catégorie de destination",
+      "moverSem": "Sans catégorie",
+      "moverPublico": "Attention : ce sujet quitte une communauté fermée et devient public à destination. Seule la personne propriétaire de la communauté d'origine peut le faire.",
+      "moverSemOpcao": "Vous ne modérez aucune autre communauté vers laquelle déplacer.",
+      "moverOk": "Déplacer"
+    },
+    "denuncia": {
+      "titulo": "Signaler",
+      "texto": "Le signalement est anonyme : le réseau ne conserve que le motif, et la modération de la communauté voit les motifs et les totaux, jamais qui a signalé. Il ne supprime rien à lui seul : une personne de la modération décide.",
+      "motivo": "Quel est le problème ?",
+      "enviar": "Envoyer le signalement",
+      "enviada": "Signalement reçu. Merci de l'avoir fait. Vous n'avez rien d'autre à faire."
+    }
+  },
+  "socModeracao": {
+    "titulo": "Modération",
+    "sub": "Les personnes qui s'occupent de {nome}. Tout ce que la modération fait avec un motif est inscrit au registre public, avec seulement le rôle de la personne qui a agi.",
+    "soEquipe": {
+      "titulo": "Cet espace est réservé à la modération",
+      "texto": "Seuls la personne propriétaire et celles qu'elle a promues modératrices y entrent."
+    },
+    "abas": {
+      "fila": "Signalements",
+      "pedidos": "Demandes",
+      "convites": "Invitations",
+      "membros": "Membres",
+      "banidos": "Bannis",
+      "apelacoes": "Appels"
+    },
+    "abasRotulo": "Espaces de modération",
+    "fila": {
+      "intro": "La file ne fait que classer. Aucun nombre de signalements ne masque ni ne supprime un contenu : c'est une personne de la modération qui décide. Et la file n'affiche jamais qui a signalé.",
+      "vazio": {
+        "titulo": "File vide",
+        "texto": "Aucun signalement en attente. Bon signe, ou personne n'a encore remarqué."
+      },
+      "total": {
+        "um": "1 signalement",
+        "outros": "{n} signalements"
+      },
+      "peso": "poids {n}",
+      "pesoAjuda": "Le poids compte les signalants différents dont le compte a au moins 7 jours. Il ne sert qu'à classer la file.",
+      "alvoTopico": "Sujet",
+      "alvoResposta": "Réponse",
+      "emTopico": "dans {titulo}",
+      "ver": "Voir dans le sujet",
+      "remover": "Supprimer avec un motif",
+      "semAcao": "Ne rien faire laisse le contenu en ligne. Le signalement reste dans la file.",
+      "primeira": "premier {quando}",
+      "ultima": "dernier {quando}",
+      "dispensar": "Écarter le signalement",
+      "dispensarTitulo": "Écarter ce signalement ?",
+      "dispensarTexto": "Le signalement quitte la file, le contenu reste en ligne et rien n'est supprimé. Le registre public indique que le signalement a été écarté, sans dire qui a signalé. Si une autre personne signale à nouveau, le cas revient dans la file.",
+      "dispensarOk": "Écarter",
+      "dispensarNota": "Écarter retire le cas de la file et laisse le contenu en ligne. C'est inscrit au registre public, sans dire qui a signalé. Si une autre personne signale à nouveau, le cas revient."
+    },
+    "pedidos": {
+      "titulo": "Qui a demandé à rejoindre",
+      "vazio": {
+        "titulo": "Aucune demande",
+        "texto": "Quand un rover demandera à rejoindre, il apparaîtra ici pour que vous l'approuviez ou le refusiez."
+      },
+      "aprovar": "Approuver",
+      "recusar": "Refuser",
+      "em": "a demandé {quando}"
+    },
+    "convites": {
+      "titulo": "Invitations envoyées",
+      "vazio": {
+        "titulo": "Aucune invitation en attente",
+        "texto": "Invitez un rover depuis l'onglet des membres ou depuis la page de la communauté."
+      },
+      "cancelar": "Annuler l'invitation",
+      "por": "a invité {nome}",
+      "em": "{quando}"
+    },
+    "membros": {
+      "titulo": "Membres et rôles",
+      "promover": "Promouvoir modérateur",
+      "rebaixar": "Rétrograder en membre",
+      "expulsar": "Expulser",
+      "banir": "Bannir",
+      "expulsarTitulo": "Expulser ce rover ?",
+      "expulsarTexto": "Il quitte la communauté et peut revenir si elle est ouverte. L'expulsion est inscrite au registre public avec le motif, sans votre nom.",
+      "banirTitulo": "Bannir ce rover ?",
+      "banirTexto": "Il part, ne revient pas et n'écrit plus. Le bannissement est inscrit au registre public avec le motif, et il peut faire appel sous 14 jours.",
+      "motivo": "Motif (obligatoire)",
+      "semAcoes": "Aucune action pour ce rôle.",
+      "ele": "Vous",
+      "limiteMod": "10 modérateurs au maximum."
+    },
+    "banidos": {
+      "titulo": "Rovers bannis",
+      "vazio": {
+        "titulo": "Personne n'est banni",
+        "texto": "Quand quelqu'un sera banni, le motif et l'appel apparaîtront ici."
+      },
+      "desbanir": "Débannir",
+      "por": "banni par {papel}",
+      "apelacao": {
+        "aberta": "Appel ouvert",
+        "mantida": "Appel maintenu",
+        "revertida": "Appel annulé",
+        "nenhuma": "Sans appel"
+      },
+      "em": "{quando}"
+    },
+    "apelacoes": {
+      "titulo": "Appels à trancher",
+      "intro": "Seule la personne propriétaire tranche les appels contre des décisions de modérateurs. Quand c'est la personne propriétaire elle-même qui a agi, c'est l'administration du réseau qui tranche.",
+      "vazio": {
+        "titulo": "Aucun appel ouvert",
+        "texto": "Quand un rover fera appel d'une décision de modérateur, elle apparaîtra ici."
+      },
+      "tipo": {
+        "remocao": "Suppression de contenu",
+        "banimento": "Bannissement"
+      },
+      "conteudo": "Contenu retenu",
+      "conteudoVazio": "Aucun contenu retenu (le délai de 30 jours est passé, ou il s'agit d'un bannissement).",
+      "manter": "Maintenir la décision",
+      "reverter": "Annuler la décision",
+      "manterTitulo": "Maintenir la décision ?",
+      "manterTexto": "Rien ne change et le cas est clos.",
+      "reverterTitulo": "Annuler la décision ?",
+      "reverterTexto": "Le contenu réapparaît, ou le bannissement tombe. Le rover ne revient pas comme membre : il doit rejoindre à nouveau.",
+      "texto": "Ce que le rover a écrit"
+    },
+    "registro": {
+      "titulo": "Registre public de modération",
+      "sub": "Chaque suppression, expulsion et bannissement de cette communauté figure ici, avec le motif et le rôle de la personne qui a agi. Jamais le texte supprimé et jamais le nom de qui a modéré.",
+      "vazio": {
+        "titulo": "Rien d'enregistré",
+        "texto": "Cette communauté n'a encore supprimé, expulsé ni banni personne."
+      },
+      "acao": {
+        "remocao": "Suppression",
+        "expulsao": "Expulsion",
+        "banimento": "Bannissement",
+        "dispensa": "Signalement écarté"
+      },
+      "alvoConteudo": "{tipo} supprimé",
+      "alvoRover": "{nome}",
+      "por": "par {papel}",
+      "papel": {
+        "dono": "la personne propriétaire",
+        "moderador": "un modérateur",
+        "administrador": "un administrateur",
+        "rele": "le relais"
+      },
+      "tipos": {
+        "topico": "Sujet",
+        "resposta-forum": "Réponse",
+        "pagina-publicar": "Mise à jour"
+      },
+      "apelacao": {
+        "aberta": "Appel ouvert",
+        "mantida": "Décision maintenue",
+        "revertida": "Décision annulée"
+      },
+      "apelarDaquele": "C'était vous ? Faites appel",
+      "fechadaNota": "Le registre de cette communauté n'est lisible que par les membres."
+    },
+    "ato": {
+      "aprovado": "Terminé"
+    }
+  }
+}

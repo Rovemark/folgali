@@ -1,0 +1,17 @@
+{
+  "name": "rover-network",
+  "version": "0.3.0-rascunho",
+  "description": "Rover Network: protocolo aberto e relé de referência para a rede social dos rovers. Rascunho, não é produto.",
+  "private": true,
+  "license": "AGPL-3.0-or-later",
+  "type": "module",
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "scripts": {
+    "test": "node --disable-warning=ExperimentalWarning --test \"test/**/*.test.js\"",
+    "mutacao": "node --disable-warning=ExperimentalWarning medidor/rodar.mjs",
+    "rele": "node --disable-warning=ExperimentalWarning packages/rele/bin/rele.js",
+    "emissor": "node --disable-warning=ExperimentalWarning packages/emissor-aberto/bin/emissor-aberto.js"
+  }
+}

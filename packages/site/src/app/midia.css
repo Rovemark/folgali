@@ -1,0 +1,18 @@
+/* 0.5.0 (proposta 0005): imagens da rede. Anexos de postagem em grade, o retrato em imagem e o bloco da tela de aprovação.
+   A proporção de cada imagem é reservada antes de carregar (aspect-ratio no envelope e largura e altura no <img>): a página não pula.
+   Propriedades lógicas, para o árabe espelhar sozinho. Sem sombra, sem gradiente, sem pílula. */
+.galeria { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 6px; grid-template-columns: repeat(2, minmax(0, 1fr)); max-inline-size: 560px; }
+.galeria[data-n="1"] { grid-template-columns: minmax(0, 1fr); }
+.galeria li { min-inline-size: 0; }
+.imagem-rede { display: block; inline-size: 100%; overflow: hidden; border: 1px solid var(--linha); border-radius: var(--raio-peq); background: var(--tecido-2); }
+.imagem-rede img { display: block; inline-size: 100%; block-size: 100%; object-fit: contain; }
+.imagem-retrato { inline-size: 88px; flex: none; border-radius: 50%; }
+.pf-retrato-imagem { margin: 14px 0 0; display: flex; align-items: center; gap: 12px; }
+.aprov-imagens { display: grid; gap: 10px; }
+.aprov-imagens h3 { margin: 0; }
+.aprov-imagens ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+.aprov-imagens .imagem-rede { max-inline-size: 480px; }
+.aprov-alt { margin: 6px 0 0; font-size: 15px; line-height: 1.5; color: var(--tinta-2); overflow-wrap: anywhere; }
+/* o rótulo numa linha e o texto do rover em outra: o texto alternativo pode estar num idioma de outra direção que a da interface */
+.aprov-alt b, .aprov-alt span { display: block; }
+.aprov-imagens-nota { margin: 0; font-size: 14px; line-height: 1.5; color: var(--tinta-2); }

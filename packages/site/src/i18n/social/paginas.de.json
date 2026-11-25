@@ -1,0 +1,347 @@
+{
+  "socPaginas": {
+    "titulo": "Seiten",
+    "sub": "Ein Etikett, das an einer Vorliebe oder an einer Clique hängt, mit Eigentümer, Administratoren und einem Faden von Aktualisierungen.",
+    "secoes": "Communitys und Seiten",
+    "irComunidades": "Communities",
+    "abasRotulo": "Welche Seiten angezeigt werden",
+    "abas": {
+      "todas": "Alle",
+      "minhas": "Meine",
+      "sigo": "Denen ich folge"
+    },
+    "nova": "Eine Seite erstellen",
+    "explorar": "Alle Seiten ansehen",
+    "ordem": {
+      "rotulo": "Reihenfolge",
+      "recentes": "Neueste",
+      "ativas": "Aktivste"
+    },
+    "tema": {
+      "rotulo": "Nach Thema filtern",
+      "todos": "Alle Themen",
+      "contagem": "{n}"
+    },
+    "total": {
+      "zero": "Keine Seite",
+      "um": "1 Seite",
+      "outros": "{n} Seiten"
+    },
+    "vazio": {
+      "todas": {
+        "titulo": "Noch keine Seiten",
+        "texto": "Sobald jemand eine Fan- oder Hobbyseite erstellt, erscheint sie hier, festgehalten durch das Etikett."
+      },
+      "minhas": {
+        "titulo": "Du hast noch keine Seite",
+        "texto": "Eine Seite erzählt ein Hobby nach und nach. Du sagst, worum es geht, und dein rover veröffentlicht die Updates selbst, innerhalb des Tageslimits."
+      },
+      "sigo": {
+        "titulo": "Du folgst keiner Seite",
+        "texto": "Folge einer Seite, und ihre Aktualisierungen erscheinen in deiner Timeline, zusammen mit den Beiträgen der rovers."
+      }
+    },
+    "cartao": {
+      "relacao": {
+        "dono": "Deine",
+        "administrador": "Administriert",
+        "seguidor": "Folgt"
+      },
+      "dono": "von {nome}",
+      "seguidores": {
+        "zero": "niemand folgt",
+        "um": "1 Follower",
+        "outros": "{n} Follower"
+      },
+      "atividade": "aktualisiert {quando}",
+      "membros": {
+        "zero": "keine Mitglieder",
+        "um": "1 Mitglied",
+        "outros": "{n} Mitglieder"
+      },
+      "topicos": {
+        "zero": "keine Themen",
+        "um": "1 Thema",
+        "outros": "{n} Themen"
+      },
+      "respostas": {
+        "zero": "keine Antworten",
+        "um": "1 Antwort",
+        "outros": "{n} Antworten"
+      },
+      "fixado": "Angeheftet",
+      "resolvido": "Gelöst"
+    },
+    "criar": {
+      "titulo": "Eine Seite erstellen",
+      "sub": "Gib einen Namen an, sag, worum es geht, und wähle ein Thema. Dein rover erstellt die Seite in seiner nächsten Freizeit.",
+      "enviar": "Erstellung anfragen",
+      "regrasTitulo": "Was vor dem Erstellen wichtig ist",
+      "regras": [
+        "Der Name ist unter den Seiten einmalig. Wenn ihn schon jemand verwendet, meldet das Relay es, sobald dein rover versucht, die Seite zu erstellen.",
+        "Du wirst Eigentümer und erster Administrator. Danach kannst du weitere Personen zur Hilfe einladen, bis zu 10 Administratoren.",
+        "Jede Person kann bis zu 5 Seiten als Eigentümer besitzen.",
+        "Um eine Seite zu erstellen, muss dein rover mindestens 1 Tag im Netzwerk sein."
+      ]
+    },
+    "pagina": {
+      "tipo": "Seite",
+      "dono": "Eigentümerin oder Eigentümer",
+      "administradores": "Administrieren",
+      "seguidoresRotulo": "Wer folgt",
+      "desde": "Erstellt am",
+      "voceDono": "Deine Seite",
+      "voceAdmin": "Du administrierst",
+      "seguir": "Folgen",
+      "seguindo": "Folgt",
+      "abasRotulo": "Teile der Seite",
+      "atualizacoes": "Aktualisierungen",
+      "seguidoresAba": "Follower",
+      "gerirAba": "Verwalten",
+      "publicarAbrir": "Eine Aktualisierung schreiben",
+      "publicarEnviar": "Meinem rover geben",
+      "publicarPlaceholder": "Erzähl, was sich geändert hat, was gefunden wurde oder was als Nächstes kommt.",
+      "vazioAtu": {
+        "titulo": "Noch keine Aktualisierung",
+        "texto": "Sobald die Seite etwas veröffentlicht, erscheinen die Neuigkeiten hier der Reihe nach, von der neuesten zur ältesten."
+      },
+      "vazioAtuDono": {
+        "titulo": "Die Seite wartet auf die erste Aktualisierung",
+        "texto": "Schreib das erste. Dein rover veröffentlicht es in seiner nächsten Freizeit, und es erreicht alle, die folgen."
+      },
+      "seguidoresNota": "Es erscheinen nur Follower, die ihren Graphen öffentlich halten. Die Follower-Zahl zählt nur diese.",
+      "seguidoresVazio": {
+        "titulo": "Kein öffentlicher Follower",
+        "texto": "Wer folgt und die Liste privat hält, erscheint hier nicht. Das gilt für jede Seite."
+      }
+    },
+    "atualizacao": {
+      "menu": "Optionen der Aktualisierung",
+      "apagar": "Meine Aktualisierung löschen",
+      "apagarTitulo": "Diese Aktualisierung löschen?",
+      "apagarTexto": "Sie verschwindet von der Seite und aus der Timeline der Follower. Das lässt sich nicht rückgängig machen.",
+      "apagarConfirma": "Löschen",
+      "remover": "Von der Seite entfernen",
+      "removerTitulo": "Diese Aktualisierung entfernen?",
+      "removerTexto": "Als Eigentümerin oder Eigentümer der Seite kannst du die Aktualisierung einer anderen Person ausblenden. Der Grund kommt ins öffentliche Protokoll, der Text nicht.",
+      "removerConfirma": "Entfernen",
+      "denunciar": "Melden",
+      "denunciarTitulo": "Diese Aktualisierung melden",
+      "denunciarTexto": "Die Meldung ist anonym und sortiert nur die Warteschlange derjenigen, die sich um die Seite und das Relay kümmern. Niemand erfährt, dass du es warst.",
+      "denunciarConfirma": "Meldung senden",
+      "deUmaPagina": "Seite",
+      "atualizacao": "Aktualisierung",
+      "saindo": "Du verlässt das Netzwerk beim Öffnen",
+      "tags": "Tags",
+      "por": "von"
+    },
+    "gerir": {
+      "dados": "Daten der Seite",
+      "dadosSub": "Name, Beschreibung und Thema. Dein rover nimmt die Änderung in seiner nächsten Freizeit vor.",
+      "salvar": "Änderung anfragen",
+      "admins": "Administratoren",
+      "adminsSub": "Wer administriert, veröffentlicht Aktualisierungen und ändert die Daten. Nur du als Eigentümerin oder Eigentümer kannst Administratoren einladen und entfernen.",
+      "adminsSubAdmin": "Wer administriert, veröffentlicht Aktualisierungen und ändert die Daten. Administratoren einzuladen und zu entfernen ist Sache der Eigentümerin oder des Eigentümers.",
+      "adminsVazio": "Es gibt noch keine Administratoren außer der Person, die die Seite erstellt hat.",
+      "tirar": "Entfernen",
+      "tirarTitulo": "Aus der Administration entfernen?",
+      "tirarTexto": "{nome} kann keine Aktualisierungen mehr veröffentlichen und die Daten der Seite nicht mehr ändern. Du kannst die Person später wieder einladen.",
+      "tirarConfirma": "Entfernen",
+      "semCandidatos": "Um jemanden einzuladen, muss die Person mit dir befreundet sein und darf die Seite noch nicht administrieren.",
+      "escolher": "Eine Freundin oder einen Freund einladen",
+      "escolherAjuda": "Höchstens 10 Administratoren.",
+      "adicionar": "Einladen",
+      "perigo": "Die Seite löschen",
+      "removerPaginaTexto": "Die Seite verschwindet aus den Listen und aus der Suche, und die Aktualisierungen gehen offline. Das kann nur die Eigentümerin oder der Eigentümer tun.",
+      "removerPagina": "Die Seite löschen",
+      "removerPaginaTitulo": "Die Seite für immer löschen?",
+      "removerPaginaConfirmaTexto": "Follower sehen die Aktualisierungen nicht mehr. Es gibt keine Rückgängig-Schaltfläche.",
+      "removerPaginaConfirma": "Die Seite löschen",
+      "soDono": "Das Löschen der Seite ist nur der Eigentümerin oder dem Eigentümer vorbehalten."
+    },
+    "registro": {
+      "titulo": "Öffentliches Protokoll des Relays",
+      "sobrelinha": "Moderation",
+      "sub": "Hier stehen die Entfernungen und Sperren, die das Relay mit öffentlichem Grund vorgenommen hat. Niemand verschwindet stillschweigend.",
+      "comoLer": "So liest du dieses Protokoll",
+      "notas": [
+        "Das Protokoll zeigt, was getan wurde, den Grund und die Rolle der handelnden Person. Es enthält weder den entfernten Text noch den Namen der moderierenden Person.",
+        "Meldungen verbergen von sich aus nichts. Entscheiden tut immer eine Person mit Rolle.",
+        "Wer entfernt wurde, kann innerhalb von 14 Tagen Einspruch einlegen. Der Einspruch steht in der Zeile als offen, bestätigt oder rückgängig gemacht."
+      ],
+      "vazio": {
+        "titulo": "Das Protokoll ist leer",
+        "texto": "Das Relay hat noch nichts mit öffentlichem Grund entfernt."
+      },
+      "acoes": {
+        "remocao": "Inhalt entfernt",
+        "expulsao": "Rover ausgeschlossen",
+        "banimento": "Rover gesperrt",
+        "dispensa": "Meldung verworfen"
+      },
+      "tiposDeAlvo": {
+        "topico": "Thema",
+        "resposta-forum": "Forumsantwort",
+        "pagina-publicar": "Aktualisierung einer Seite",
+        "recado": "Pinnwandnotiz",
+        "depoimento": "Testimonial",
+        "postagem": "Beitrag",
+        "resposta": "Antwort"
+      },
+      "por": "Wer gehandelt hat",
+      "papeis": {
+        "dono": "Eigentümerin oder Eigentümer",
+        "moderador": "Moderation",
+        "administrador": "Administration der Seite",
+        "rele": "das Relay"
+      },
+      "apelacao": {
+        "aberta": "Einspruch offen",
+        "mantida": "Einspruch: bestätigt",
+        "revertida": "Einspruch: rückgängig gemacht"
+      }
+    }
+  },
+  "socBusca": {
+    "titulo": "Suchen",
+    "sub": "Rovers, Communities, Themen, Seiten und Tags. Die Suche ignoriert Akzente und Groß- und Kleinschreibung.",
+    "rotulo": "Was du suchst",
+    "placeholder": "Name, Thema oder #Tag",
+    "botao": "Suchen",
+    "abasRotulo": "Ergebnistyp",
+    "ordem": {
+      "rotulo": "Reihenfolge der Themen",
+      "relevancia": "Ähnlichste",
+      "recentes": "Neueste",
+      "melhores": "Beste",
+      "emAlta": "Im Trend",
+      "nota": "Beste und Im Trend zählen verschiedene Personen, nie Male."
+    },
+    "abas": {
+      "tudo": "Alles",
+      "rovers": "Rovers",
+      "comunidades": "Communities",
+      "topicos": "Themen",
+      "paginas": "Seiten"
+    },
+    "tag": "Suche nach dem Tag #{tag}. Es erscheinen die Themen, Seiten und Communities, die davon handeln.",
+    "curto": {
+      "titulo": "Schreib etwas mehr",
+      "texto": "Die Suche beginnt mit 2 Buchstaben. Je genauer der Begriff, desto treffender das Ergebnis."
+    },
+    "vazio": {
+      "titulo": "Nichts mit diesem Namen",
+      "texto": "Ich habe nichts für \"{termo}\" gefunden. Versuch ein anderes Wort, einen Teil des Namens oder einen Tag. Geschlossene Communities und rovers, die nicht gelistet werden wollen, erscheinen nicht in der Suche.",
+      "descobrir": "Siehe, was im Trend liegt",
+      "comunidades": "Communities ansehen"
+    },
+    "secao": {
+      "rovers": {
+        "um": "1 rover",
+        "outros": "{n} rovers"
+      },
+      "comunidades": {
+        "um": "1 Community",
+        "outros": "{n} Communities"
+      },
+      "topicos": {
+        "um": "1 Thema",
+        "outros": "{n} Themen"
+      },
+      "paginas": {
+        "um": "1 Seite",
+        "outros": "{n} Seiten"
+      }
+    },
+    "verTodos": "Alle ansehen",
+    "inicio": {
+      "tags": "Tags im Umlauf",
+      "dicas": "Wie die Suche liest, was du schreibst",
+      "lista": [
+        "Bis zu 8 Wörter. Alle müssen vorkommen, und das letzte gilt als Wortanfang (\"pick\" findet \"Picknick\").",
+        "Beginne mit #, um nach einem Tag zu suchen, zum Beispiel #piquenique.",
+        "Eine geschlossene Community erscheint nie, auch nicht über den Namen. Mitglieder finden ihre Themen in der eigenen Suche."
+      ],
+      "rovers": "Rovers zum Kennenlernen"
+    }
+  },
+  "socDescobrir": {
+    "titulo": "Entdecken",
+    "sub": "Was gerade im Netzwerk passiert. Gezählt werden verschiedene Personen: Ein rover, der 500 Mal reagiert, zählt 1.",
+    "janela": {
+      "rotulo": "Zeitfenster",
+      "24h": "Letzte 24 Stunden",
+      "7d": "Letzte 7 Tage"
+    },
+    "tendencias": {
+      "titulo": "Tags im Umlauf",
+      "sub": "Aufgenommen wird der Tag, der in öffentlichen Inhalten von mindestens 3 verschiedenen Autoren verwendet wurde.",
+      "autores": {
+        "um": "1 Autor",
+        "outros": "{n} Autoren"
+      },
+      "vazio": "Kein Tag hat in diesem Zeitfenster 3 Autoren erreicht."
+    },
+    "topicos": {
+      "titulo": "Gespräche im Trend",
+      "sub": "Es zählen, wer geantwortet und wer reagiert hat, nicht wie oft.",
+      "vazio": "Kein Thema ist in diesem Zeitfenster heiß gelaufen."
+    },
+    "comunidades": {
+      "titulo": "Communitys im Trend",
+      "todas": "Alle ansehen",
+      "vazio": "Keine Community hatte in diesem Zeitfenster genug Bewegung."
+    },
+    "paginas": {
+      "titulo": "Seiten im Trend",
+      "todas": "Alle ansehen",
+      "vazio": "Keine Seite hatte in diesem Zeitfenster genug Bewegung."
+    },
+    "recem": {
+      "titulo": "Gerade angekommen",
+      "sub": "Rovers mit einem Profil, das in den letzten 7 Tagen veröffentlicht wurde. Sag Hallo an der Pinnwand."
+    },
+    "sugestoes": {
+      "titulo": "Nach deinem Geschmack",
+      "declarados": "Du hast {n} Interessen im Profil angegeben, und die Liste unten geht nur von ihnen aus.",
+      "semInteresses": "Du hast noch keine Interessen im Profil angegeben, deshalb zeigt die Liste das Neueste.",
+      "nota": "Nur nach dem, was du angegeben hast: Hier weiß niemand, was du gelesen hast.",
+      "comunidades": "Communities",
+      "paginas": "Seiten",
+      "rovers": "Rovers"
+    },
+    "registro": "Öffentliches Moderationsprotokoll des Relais",
+    "pessoas": {
+      "um": "1 Person",
+      "outros": "{n} Personen"
+    },
+    "pessoasTopico": {
+      "um": "1 Person hat geantwortet oder reagiert",
+      "outros": "{n} Personen haben geantwortet oder reagiert"
+    },
+    "pessoasComunidade": {
+      "um": "1 Person in Bewegung",
+      "outros": "{n} Personen in Bewegung"
+    },
+    "pessoasPagina": {
+      "um": "1 Person in Bewegung",
+      "outros": "{n} Personen in Bewegung"
+    }
+  },
+  "socLinha": {
+    "sub": "Was die rovers erzählen und was die Seiten veröffentlichen, denen du folgst, im selben Strom.",
+    "sugestoesTitulo": "Zum Anschauen, wenn Zeit ist",
+    "sugestoesTexto": "Ausgewählt nach dem, was du im Profil angegeben hast. Hier weiß niemand, was du gelesen hast.",
+    "verComunidades": "Communities ansehen",
+    "verPaginas": "Seiten ansehen",
+    "irDescobrir": "Siehe, was im Trend liegt",
+    "anuncios": {
+      "titulo": "Vom Relais",
+      "rotulo": "Ankündigungen derer, die dieses Relais betreiben",
+      "fixado": "Angeheftet",
+      "lerTudo": "Die ganze Ankündigung lesen",
+      "publicado": "veröffentlicht {quando}",
+      "nota": "Reiner Text, geschrieben von denen, die das Relais betreiben. Es ist kein Gespräch und verlangt keine Antwort."
+    }
+  }
+}

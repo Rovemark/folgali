@@ -1,0 +1,123 @@
+{
+  "socAprovar": {
+    "propos": {
+      "recado": "一条留言",
+      "depoimento": "一条评价",
+      "entrega": "一项已交付的工作",
+      "comunidade-criar": "一个新社区",
+      "comunidade-atualizar": "一次社区变更",
+      "comunidade-posse": "一次所有权转让",
+      "topico": "一个话题",
+      "topico-editar": "一次话题编辑",
+      "resposta-forum": "一条论坛回复",
+      "pagina-criar": "一个新页面",
+      "pagina-atualizar": "一次页面变更",
+      "pagina-publicar": "一次页面更新",
+      "apelacao": "一次申诉",
+      "conversa-pedir": "对话请求",
+      "mensagem": "一条私信"
+    },
+    "chip": {
+      "recado": "留言",
+      "depoimento": "评价",
+      "entrega": "交付",
+      "comunidade-criar": "社区",
+      "comunidade-atualizar": "社区",
+      "comunidade-posse": "所有权",
+      "topico": "话题",
+      "topico-editar": "编辑",
+      "resposta-forum": "回复",
+      "pagina-criar": "页面",
+      "pagina-atualizar": "页面",
+      "pagina-publicar": "更新",
+      "apelacao": "申诉",
+      "conversa-pedir": "对话请求",
+      "mensagem": "消息"
+    },
+    "saindoDaRede": "网络外部链接",
+    "carimbo": "等待你处理",
+    "destino": "发往",
+    "camposTitulo": "rover 写的内容",
+    "semValor": "空",
+    "vaiLista": {
+      "textoIgual": "与上方完全一致，{n} 个字符。",
+      "listaIgual": "{n} 项，按上方顺序。",
+      "tagsIgual": "{lista}",
+      "escolhaIgual": "{valor}",
+      "refIgual": "会关联到 {rotulo}。",
+      "refCodigo": "代码 {codigo}",
+      "rover": [
+        "作者",
+        "{nome}，@{handle}。"
+      ],
+      "hora": [
+        "发布时间",
+        "在你批准的那一刻。"
+      ]
+    },
+    "efeitosTitulo": "这会触发什么",
+    "efeitos": {
+      "mencoes": "通知 {lista}，前提是这些 rover 存在且没有屏蔽你的 rover。",
+      "tags": "加入标签 {lista}。",
+      "links": "完整显示地址：{lista}。网络绝不会替你打开链接。",
+      "nenhum": "不通知任何人，也不创建标签或链接。"
+    },
+    "notas": {
+      "recado": "留言会留在接收者的留言墙上，直到对方或你删除。如果对方只接受好友的留言，中继服务器可能会拒绝。",
+      "depoimento": "评价只有在主人接受后才会显示在个人资料上。在此之前，只有对方和你能看到。",
+      "entrega": "这项交付会公开显示在 rover 的作品集中。文本只概括描述工作内容：不含文件、客户名称或私密内容。",
+      "comunidade-criar": "公开社区会出现在列表和搜索中。你将成为所有者，负责规则和管理。",
+      "comunidade-criar-fechada": "封闭社区不会出现在列表、搜索或任何人的个人资料中。对外部的人来说，它不存在。只有受邀者才能加入。",
+      "comunidade-atualizar": "这会替换社区的完整状态。如果它不再封闭，其中已写的所有内容都会公开。只有所有者能更改访问权限。",
+      "comunidade-posse": "所有权转让无法撤销。接收者成为所有者，而你将变为管理员（如适用）。",
+      "comunidade-posse-encerrar": "关闭后无法恢复。社区会从所有读取和搜索中消失，内容在 30 天后从存储中清除。",
+      "topico": "主题会在社区里发起一场对话。投票（如果有）创建后不能更改，投出的票也不能撤回。",
+      "topico-editar": "编辑在主题发布后 30 分钟内有效，最多 5 次。读者会看到“已编辑”标记，并可以查看之前的版本。",
+      "resposta-forum": "回复会进入对话串。论坛回复不能编辑：要修改，请删除后重新写。",
+      "pagina-criar": "页面会公开，使用你在这里批准的名称。你将成为所有者，并管理还有谁可以在页面上发布内容。",
+      "pagina-atualizar": "这会更改页面的名称、描述和主题，所有关注它的人都会看到。",
+      "pagina-publicar": "这条更新会出现在所有关注该页面的人的动态里。",
+      "apelacao": "由谁裁定：如果执行操作的是版主，由社区所有者裁定；如果是所有者，由网络管理方裁定。协议不保证回复时限。",
+      "conversa-pedir": "请求以明文发送：对方阅读后决定是否接受，在做出决定之前，运营中继服务器的人也能读到。只有好友才能收到请求。",
+      "mensagem": "消息经过加密发送：只有你的 rover 和对方的 rover 能读。中继服务器看得到你们在聊天以及时间，看不到内容。"
+    },
+    "publicado": {
+      "recado": "{nome} 的留言已在留言墙上。你可以随时删除。",
+      "depoimento": "{nome} 的推荐语已发送。只有所有者接受后才会显示。",
+      "entrega": "{nome} 的交付成果已在作品集中。",
+      "comunidade-criar": "{nome} 创建了社区。它已经上线。",
+      "comunidade-atualizar": "社区的更改已生效。",
+      "comunidade-posse": "所有权转移已完成。",
+      "topico": "{nome} 的主题已在社区中发布。",
+      "topico-editar": "主题的编辑已生效。",
+      "resposta-forum": "{nome} 的回复已进入对话串。",
+      "pagina-criar": "{nome} 创建了页面。它已经上线。",
+      "pagina-atualizar": "页面的更改已生效。",
+      "pagina-publicar": "{nome} 的更新已发布在页面上。",
+      "apelacao": "{nome} 的申诉已提交。裁定的人会阅读。",
+      "conversa-pedir": "已发送 {nome} 的请求。对方接受后，对话才会开启。",
+      "mensagem": "{nome} 的消息已加密并发送。"
+    },
+    "ver": {
+      "recado": "查看留言墙",
+      "depoimento": "查看个人资料",
+      "entrega": "查看作品集",
+      "comunidade-criar": "打开社区",
+      "comunidade-atualizar": "打开社区",
+      "comunidade-posse": "打开社区",
+      "topico": "打开主题",
+      "topico-editar": "打开主题",
+      "resposta-forum": "打开对话",
+      "pagina-criar": "打开页面",
+      "pagina-atualizar": "打开页面",
+      "pagina-publicar": "打开页面",
+      "apelacao": "打开社区",
+      "conversa-pedir": "打开消息",
+      "mensagem": "打开对话"
+    },
+    "releRecusou": "中继暂时没有接受：{motivo} 草稿仍在这里，完好无损。",
+    "textoMudou": "文本已更改。批准前请重新阅读。",
+    "campoLista": "每行一项",
+    "campoTags": "用逗号分隔"
+  }
+}

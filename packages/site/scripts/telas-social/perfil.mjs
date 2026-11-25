@@ -1,0 +1,38 @@
+// Telas da área perfil, amigos e avisos. Rodar: node scripts/prova-social.mjs --area perfil --base http://127.0.0.1:3931
+import { clicar, clicarSel, digitar, id, rolarPara, seq } from '../prova-lib.mjs'
+
+const mais = clicar('Mais opções')
+export const TELAS = [
+  { nome: 'pipa-selos', rota: '/pt/r/pipa', antes: rolarPara('.pf-selos') },
+  { nome: 'pipa-acoes', rota: '/pt/r/pipa', antes: rolarPara('.pf-relacao') },
+  { nome: 'pipa-abas', rota: '/pt/r/pipa', antes: rolarPara('.pf-abas') },
+  { nome: 'lumi-estado', rota: '/pt/r/lumi', antes: rolarPara('.pf-estado-seletor') },
+  { nome: 'pipa-mural', rota: '/pt/r/pipa', fim: true, completa: true },
+  { nome: 'pipa-mural-escrevendo', rota: '/pt/r/pipa', antes: seq(rolarPara('.pf-escrever'), digitar('textarea', 'Passei para dizer que a foto da nuvem ficou linda. Falo com você em @pipa amanhã. #nuvens')) },
+  { nome: 'pipa-mais-opcoes', rota: '/pt/r/pipa', antes: seq(mais, rolarPara('.pf-mais-opcoes')) },
+  { nome: 'pipa-depoimentos', rota: '/pt/r/pipa?aba=depoimentos', antes: rolarPara('.pf-abas'), fim: true, completa: true },
+  { nome: 'pipa-amigos', rota: '/pt/r/pipa?aba=amigos', antes: rolarPara('.pf-abas'), fim: true },
+  { nome: 'pipa-grupos', rota: '/pt/r/pipa?aba=grupos', antes: rolarPara('.pf-abas'), fim: true },
+  { nome: 'pipa-postagens', rota: '/pt/r/pipa?aba=postagens', antes: rolarPara('.pf-abas') },
+  { nome: 'zeca-pedido-recebido', rota: '/pt/r/zeca' },
+  { nome: 'lola-pedido-enviado', rota: '/pt/r/lola' },
+  { nome: 'bento-bloqueado', rota: '/pt/r/bento', fim: true },
+  { nome: 'didi-grafo-privado', rota: '/pt/r/didi' },
+  { nome: 'didi-amigos-privado', rota: '/pt/r/didi?aba=amigos', antes: rolarPara('.pf-abas') },
+  { nome: 'didi-grupos-privado', rota: '/pt/r/didi?aba=grupos', antes: rolarPara('.pf-abas') },
+  { nome: 'nina-recados-amigos', rota: '/pt/r/nina' },
+  { nome: 'biscoito-recados-ninguem', rota: '/pt/r/biscoito', fim: true },
+  { nome: 'nuvem-sem-nada', rota: '/pt/r/nuvem', fim: true },
+  { nome: 'nuvem-depoimentos-vazio', rota: '/pt/r/nuvem?aba=depoimentos', antes: rolarPara('.pf-abas') },
+  { nome: 'lumi-proprio', rota: '/pt/r/lumi', fim: true, completa: true },
+  { nome: 'lumi-depoimentos-pendentes', rota: '/pt/r/lumi?aba=depoimentos', antes: rolarPara('.pf-abas'), fim: true },
+  { nome: 'lumi-grupos', rota: '/pt/r/lumi?aba=grupos', antes: rolarPara('.pf-abas'), fim: true },
+  { nome: 'amigos', rota: '/pt/amigos', fim: true, completa: true },
+  { nome: 'avisos', rota: '/pt/avisos', fim: true, completa: true },
+  { nome: 'denuncia-recado', rota: `/pt/denunciar/${id('rdalumi')}?tipo=recado&de=pipa&volta=/r/pipa`, fim: true },
+  { nome: 'denuncia-enviada', rota: `/pt/denunciar/${id('rdalumi')}?tipo=recado&de=pipa`, antes: seq(clicarSel('input[value=spam]'), clicar('Enviar denúncia')) },
+  { nome: 'erro-rele', rota: '/pt/r/fora_do_ar' },
+  { nome: 'nao-encontrado', rota: '/pt/r/nao_existe_mesmo' },
+  { nome: 'pipa-en', rota: '/en/r/pipa' },
+  { nome: 'avisos-en', rota: '/en/avisos' },
+]

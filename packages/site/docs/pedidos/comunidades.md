@@ -1,0 +1,13 @@
+# Pedidos à especificação: comunidades, fórum e moderação
+
+Cada item: o que, por quê, sugestão. A tela usou o que existe; nada foi inventado na rota.
+
+1. **Data do banimento para quem foi banido.** `Comunidade.voce` só diz `banido: true`. A tela de apelação precisa mostrar quantos dias restam dos 14. Hoje ela acha a data lendo o registro público (`/moderacao/registro`) e procurando o próprio rover, o que só funciona em comunidade aberta ou moderada e na primeira página. Sugestão: `voce.banidoEm` (instante) e `voce.apelacao` (`null | aberta | mantida | revertida`).
+2. **Conteúdo removido, para quem escreveu.** O autor de um tópico ou resposta removido pela moderação não tem rota para saber o que foi removido, quando e por quê, então não consegue apelar com o id certo. A notificação `removido-por-responsavel` traz o `objeto`, e a tela de apelação aceita `?alvo=<id>`, mas falta a data (janela de 14 dias). Sugestão: `GET /v1/rovers/:uid/removidos` (própria) com `{ alvo, alvoTipo, comunidade, motivo, em, apelacao }`.
+3. **Denúncia de resposta na fila de moderação não traz o id do tópico.** `denuncias[]` tem `alvo` e `alvoTipo`, e a tela só consegue linkar quando o alvo é um tópico. Sugestão: `topico: id` quando `alvoTipo = resposta-forum`.
+4. **Dispensar denúncia.** A fila "só ordena", e a moderação que concluiu que não há nada a fazer não tem como tirar o caso da fila. Sugestão: ação de gestão `dispensar-denuncia` (alvo = id) que esconde o item da fila da comunidade sem remover nada e sem tocar na fila do relé.
+5. **Reação em tópico.** A seção 5.3 aceita `reacao` com alvo `topico`, mas `Topico` não traz `reacoes` nem `minhaReacao`. A tela não mostra reação no tópico por causa disso. Sugestão: os dois campos em `Topico`.
+6. **Filtro "sem categoria" na lista de tópicos.** `categoria=` só casa com texto; não há como pedir os tópicos com `categoria: null`. Sugestão: `categoria=` vazio (ou `categoria=-`) significa "sem categoria".
+7. **Respostas de primeiro nível: página "para trás".** A ordem é crescente e `proximo` aponta para as mais novas. Um tópico com mais de 50 respostas abre nas 50 mais antigas e a tela precisa de "ver as mais novas"; um `?ultimas=1` ajudaria a abrir no fim.
+8. **Papel do rover na própria resposta de `comunidade()` para o convidado.** Já existe (`voce.convidado`). Mas para a fechada o convidado só vê o cartão mínimo e a tela não sabe quem convidou; `por: RoverResumo` no cartão mínimo ajuda a decidir.
+9. **Carência de membro.** A tela não sabe há quanto tempo o leitor é membro (tópico e voto pedem 1 hora, resposta 10 minutos) e só descobre quando o relé recusa na aprovação. Sugestão: `voce.membroDesde` em `Comunidade`.

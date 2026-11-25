@@ -1,0 +1,146 @@
+{
+  "pt": {
+    "erro": {
+      "titulo": "A rede não respondeu",
+      "texto": "O relé que guarda as postagens não deu sinal. Nada foi perdido: o que já foi publicado continua guardado.",
+      "tecnico": "Código"
+    },
+    "comum": {
+      "tentarDeNovo": "Tentar de novo",
+      "irParaLinha": "Ir para a linha",
+      "carregando": "Carregando"
+    }
+  },
+  "en": {
+    "erro": {
+      "titulo": "The network didn't answer",
+      "texto": "The relay that keeps the posts gave no sign. Nothing was lost: what was already posted is still stored.",
+      "tecnico": "Code"
+    },
+    "comum": {
+      "tentarDeNovo": "Try again",
+      "irParaLinha": "Go to the thread",
+      "carregando": "Loading"
+    }
+  },
+  "es": {
+    "erro": {
+      "titulo": "La red no respondió",
+      "texto": "El relé que guarda las publicaciones no dio señal. No se perdió nada: lo que ya se publicó sigue guardado.",
+      "tecnico": "Código"
+    },
+    "comum": {
+      "tentarDeNovo": "Intentar de nuevo",
+      "irParaLinha": "Ir a la línea",
+      "carregando": "Cargando"
+    }
+  },
+  "fr": {
+    "erro": {
+      "titulo": "Le réseau n'a pas répondu",
+      "texto": "Le relais qui garde les publications n'a donné aucun signe. Rien n'est perdu : ce qui a déjà été publié reste conservé.",
+      "tecnico": "Code"
+    },
+    "comum": {
+      "tentarDeNovo": "Réessayer",
+      "irParaLinha": "Aller au fil",
+      "carregando": "Chargement"
+    }
+  },
+  "de": {
+    "erro": {
+      "titulo": "Das Netzwerk hat nicht geantwortet",
+      "texto": "Das Relay, das die Beiträge speichert, hat kein Signal gegeben. Nichts ist verloren: Was schon veröffentlicht wurde, bleibt gespeichert.",
+      "tecnico": "Code"
+    },
+    "comum": {
+      "tentarDeNovo": "Erneut versuchen",
+      "irParaLinha": "Zur Zeitleiste",
+      "carregando": "Lädt"
+    }
+  },
+  "it": {
+    "erro": {
+      "titulo": "La rete non ha risposto",
+      "texto": "Il relay che conserva i post non ha dato segno di vita. Non è andato perso nulla: ciò che è già stato pubblicato resta conservato.",
+      "tecnico": "Codice"
+    },
+    "comum": {
+      "tentarDeNovo": "Riprova",
+      "irParaLinha": "Vai alla linea",
+      "carregando": "Caricamento"
+    }
+  },
+  "nl": {
+    "erro": {
+      "titulo": "Het netwerk reageerde niet",
+      "texto": "De relay die de posts bewaart gaf geen teken. Er is niets verloren: wat al gepubliceerd is, blijft bewaard.",
+      "tecnico": "Code"
+    },
+    "comum": {
+      "tentarDeNovo": "Opnieuw proberen",
+      "irParaLinha": "Naar de tijdlijn",
+      "carregando": "Laden"
+    }
+  },
+  "ru": {
+    "erro": {
+      "titulo": "Сеть не ответила",
+      "texto": "Ретранслятор, который хранит посты, не подал сигнала. Ничего не потеряно: то, что уже опубликовано, по-прежнему хранится.",
+      "tecnico": "Код"
+    },
+    "comum": {
+      "tentarDeNovo": "Попробовать снова",
+      "irParaLinha": "Перейти к ленте",
+      "carregando": "Загрузка"
+    }
+  },
+  "ar": {
+    "erro": {
+      "titulo": "لم تستجب الشبكة",
+      "texto": "المرحّل الذي يحفظ المنشورات لم يُرسل أي إشارة. لم يضع شيء: ما نُشر بالفعل ما زال محفوظًا.",
+      "tecnico": "الشيفرة"
+    },
+    "comum": {
+      "tentarDeNovo": "حاول مرة أخرى",
+      "irParaLinha": "الانتقال إلى الخط",
+      "carregando": "جارٍ التحميل"
+    }
+  },
+  "zh": {
+    "erro": {
+      "titulo": "网络没有响应",
+      "texto": "保存帖子的中继服务器没有回应。没有任何内容丢失：已经发布的内容仍然保存着。",
+      "tecnico": "代码"
+    },
+    "comum": {
+      "tentarDeNovo": "重试",
+      "irParaLinha": "前往时间线",
+      "carregando": "加载中"
+    }
+  },
+  "ja": {
+    "erro": {
+      "titulo": "ネットワークから応答がありません",
+      "texto": "投稿を保管しているリレーから応答がありません。失われたものはなく、すでに公開された内容はそのまま保管されています。",
+      "tecnico": "コード"
+    },
+    "comum": {
+      "tentarDeNovo": "再試行",
+      "irParaLinha": "タイムラインへ移動",
+      "carregando": "読み込み中"
+    }
+  },
+  "ko": {
+    "erro": {
+      "titulo": "네트워크가 응답하지 않았습니다",
+      "texto": "게시물을 보관하는 릴레이에서 신호가 없습니다. 잃어버린 것은 없습니다. 이미 올라간 글은 그대로 보관되어 있습니다.",
+      "tecnico": "코드"
+    },
+    "comum": {
+      "tentarDeNovo": "다시 시도",
+      "irParaLinha": "타임라인으로 이동",
+      "carregando": "불러오는 중"
+    }
+  }
+}

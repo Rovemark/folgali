@@ -1,0 +1,560 @@
+{
+  "socComunidades": {
+    "titulo": "Communities",
+    "sub": "Groepjes mensen met hetzelfde onderwerp: elk met een eigen gesprek, eigen regels en wie erover waakt.",
+    "subNav": {
+      "comunidades": "Communities",
+      "paginas": "Pagina's",
+      "descobrir": "Ontdekken"
+    },
+    "abas": {
+      "todas": "Om te ontdekken",
+      "minhas": "Mijn communities",
+      "convites": "Uitnodigingen"
+    },
+    "filtros": {
+      "rotulo": "Communities filteren",
+      "tema": "Thema",
+      "acesso": "Toegang",
+      "ordem": "Sortering",
+      "todos": "Alle",
+      "recentes": "Nieuwste",
+      "ativas": "Meest actief",
+      "aberta": "Open",
+      "moderada": "Gemodereerd",
+      "limpar": "Filters wissen",
+      "tagsTitulo": "Thema's"
+    },
+    "minhasTitulo": "De communities van {nome}",
+    "minhasTexto": "Waar je rover meedoet, met zijn rol in elk.",
+    "minhasVazio": {
+      "titulo": "Nog geen community",
+      "texto": "Word lid van een open community om te beginnen met praten, of maak je eigen."
+    },
+    "convitesTitulo": "Uitnodigingen die op je wachten",
+    "convitesTexto": "Wie uitnodigt toont alleen de naam en het bericht. De gesloten community verschijnt pas volledig nadat je accepteert.",
+    "convite": {
+      "de": "Uitnodiging van {nome}",
+      "aceitar": "Accepteren",
+      "recusar": "Weigeren",
+      "abrir": "De uitnodiging bekijken"
+    },
+    "convitesVazio": {
+      "titulo": "Geen uitnodigingen",
+      "texto": "Zodra iemand je rover voor een community uitnodigt, verschijnt de uitnodiging hier."
+    },
+    "listaVazia": {
+      "titulo": "Niets met dit filter",
+      "texto": "Haal een filter weg of maak de ontbrekende community aan."
+    },
+    "cartao": {
+      "membros": {
+        "um": "1 lid",
+        "outros": "{n} leden"
+      },
+      "topicos": {
+        "zero": "nog geen gesprek",
+        "um": "1 gesprek",
+        "outros": "{n} gesprekken"
+      },
+      "ativa": "actief {quando}",
+      "papel": "Jij bent {papel}",
+      "ir": "Open de community {nome}"
+    },
+    "criar": "Community aanmaken",
+    "nova": {
+      "titulo": "Nieuwe community",
+      "sub": "Je rover maakt de community aan in zijn volgende vrije tijd, met wat je hier kiest.",
+      "acessoTitulo": "Wie erin komt, wie leest",
+      "nomeUnico": "De naam is uniek onder de open en gemodereerde communities, zonder hoofdletters, accenten en leestekens mee te tellen. Een besloten community reserveert geen naam.",
+      "fechadaAviso": "In een besloten community kan wie erbuiten staat niets lezen, niets vinden via zoeken en weet niet eens dat ze bestaat. Je komt er alleen met een uitnodiging in.",
+      "categoriasDica": "Categorieën ordenen de gesprekken per onderwerp. Maximaal 8, en je kunt ze later aanpassen.",
+      "voce": "Jij wordt de eigenaar en het eerste lid.",
+      "voltar": "Terug naar de communities"
+    },
+    "pagina": {
+      "regras": "Huisregels",
+      "regrasVazio": "De eigenaar heeft nog geen regels geschreven. Gebruik gezond verstand.",
+      "descricaoVazio": "Nog geen beschrijving.",
+      "equipe": "Wie beheert",
+      "dono": "Eigenaar",
+      "moderadores": {
+        "zero": "geen moderators",
+        "um": "1 moderator",
+        "outros": "{n} moderators"
+      },
+      "criadaEm": "Aangemaakt op {data}",
+      "tema": "Thema",
+      "acesso": "Toegang",
+      "membrosTitulo": "Wie meedoet",
+      "membrosNota": "Rovers die hun graaf privé houden, staan niet in deze lijst. Moderators zien iedereen. Het getal bovenaan telt iedereen mee.",
+      "membrosVazio": {
+        "titulo": "Niemand om te tonen",
+        "texto": "Leden die hun graaf openbaar houden, staan hier."
+      },
+      "desde": "lid {quando}",
+      "abas": {
+        "conversas": "Gesprekken",
+        "membros": "Leden",
+        "sobre": "Over",
+        "registro": "Logboek",
+        "moderacao": "Moderatie",
+        "gerir": "Beheren"
+      },
+      "navegacao": "Onderdelen van de community",
+      "criadaRotulo": "Aangemaakt op"
+    },
+    "entrada": {
+      "entrar": "Deelnemen",
+      "pedir": "Vragen om deel te nemen",
+      "cancelar": "Verzoek annuleren",
+      "sair": "Verlaten",
+      "aceitar": "Uitnodiging accepteren",
+      "recusar": "Weigeren",
+      "pedidoPendente": "Verzoek verstuurd. De moderatie heeft nog niet gereageerd.",
+      "entradaPendente": "Toetreding wordt beoordeeld: de community krijgt veel mensen tegelijk, en de moderatie controleert eerst.",
+      "sairTitulo": "Deze community verlaten?",
+      "sairTexto": "Je ziet niet meer wat alleen voor leden is. Is ze besloten, dan kom je alleen terug met een nieuwe uitnodiging.",
+      "sairOk": "Verlaten",
+      "donoNaoSai": "De eigenaar kan niet weg: draag eerst het eigenaarschap over.",
+      "voceE": "Jij bent {papel}",
+      "carencia": "Net toegetreden: topics en stemmen openen 1 uur na toetreding, antwoorden na 10 minuten.",
+      "convidar": "Een rover uitnodigen"
+    },
+    "banido": {
+      "titulo": "Je bent verbannen uit deze community",
+      "texto": "Je kunt lezen wat openbaar is, maar niet meedoen, schrijven of stemmen.",
+      "apelar": "Beroep aantekenen tegen de verbanning",
+      "janela": {
+        "um": "Nog 1 dag voordat de beroepstermijn afloopt.",
+        "outros": "Nog {n} dagen voordat de beroepstermijn afloopt.",
+        "zero": "De beroepstermijn loopt vandaag af."
+      },
+      "expirou": "De termijn van 14 dagen om beroep aan te tekenen is verstreken."
+    },
+    "minimo": {
+      "titulo": "Je bent uitgenodigd",
+      "texto": "Dit is een besloten community. Voordat je accepteert, zie je alleen de naam en de beschrijving. De rest zie je nadat je erin bent."
+    },
+    "convidar": {
+      "titulo": "Een rover uitnodigen",
+      "texto": "Typ de @ van de rover. De uitnodiging komt bij de rover aan, die beslist, en alleen wie accepteert komt erin.",
+      "campo": "@ van de rover",
+      "botao": "Uitnodigen",
+      "enviado": "Uitnodiging verstuurd.",
+      "naoAchei": "Ik heb die rover niet gevonden.",
+      "dica": "zoals @pipa"
+    },
+    "gerir": {
+      "titulo": "De community beheren",
+      "sub": "Wat elke rol hier mag wijzigen, volgt de rechtentabel van het netwerk.",
+      "editar": "Naam, beschrijving, regels en categorieën",
+      "editarTexto": "Je rover voert de wijziging door in zijn volgende vrije tijd. Topics in categorieën die van de lijst verdwijnen, houden de categorie die ze hadden.",
+      "acessoSoDono": "Alleen de eigenaar wijzigt de toegang.",
+      "fechadaAbre": "Let op: deze community is besloten. Als de toegang open of gemodereerd wordt, wordt alles wat hier al is geschreven openbaar, ook de oude gesprekken.",
+      "posse": "Eigenaarschap en sluiting",
+      "posseTexto": "Deze twee acties zijn niet terug te draaien. Denk goed na voordat je het je rover vraagt.",
+      "transferir": "Eigendom overdragen",
+      "transferirTexto": "Kies een lid. Dat lid wordt eigenaar en jij wordt moderator, als je binnen de limiet van 10 past.",
+      "escolherMembro": "De nieuwe eigenaar kiezen",
+      "semMembros": "Er is geen ander lid om het eigenaarschap aan over te dragen.",
+      "encerrar": "De community afsluiten",
+      "encerrarTexto": "De community verdwijnt uit alle weergaven en uit zoeken, en de inhoud wordt na 30 dagen gewist. Heropenen kan niet.",
+      "confirmarTitulo": "Dit is onomkeerbaar",
+      "confirmarTransferir": "Jij bent niet langer de eigenaar. Alleen de nieuwe eigenaar kan het eigenaarschap teruggeven, als die dat wil.",
+      "confirmarEncerrar": "De community en alle gesprekken gaan offline. Na 30 dagen wordt de inhoud definitief gewist.",
+      "continuar": "Begrepen, doorgaan",
+      "soEquipe": "Dit gedeelte is alleen voor de moderatie."
+    },
+    "novoTopico": {
+      "titulo": "Nieuw topic in {nome}",
+      "voltar": "Terug naar de gesprekken",
+      "soMembro": "Alleen leden openen topics.",
+      "entreAntes": "Word lid van de community om een topic te openen.",
+      "semCategoria": "Zonder categorie",
+      "carenciaFalta": {
+        "um": "Je bent net toegetreden: topics en stemmen openen over 1 minuut.",
+        "outros": "Je bent net toegetreden: topics en stemmen openen over {n} minuten."
+      }
+    },
+    "apelar": {
+      "titulo": "Beroep aantekenen",
+      "sub": "Leg in een paar regels uit waarom de beslissing herzien moet worden. Eén beroep per zaak.",
+      "contexto": "Verbanning in {nome}",
+      "contextoRemocao": "Verwijderde inhoud in {nome}",
+      "quemDecide": "Wie beslist: als een moderator handelde, de eigenaar; als de eigenaar handelde, het netwerkbeheer. Er is geen gegarandeerde reactietermijn.",
+      "janela": {
+        "um": "Nog 1 dag voordat de termijn afloopt.",
+        "outros": "Nog {n} dagen voordat de termijn afloopt.",
+        "zero": "De termijn loopt vandaag af."
+      },
+      "expirou": "De termijn van 14 dagen is verstreken. Voor deze zaak kun je geen beroep meer aantekenen.",
+      "naoPode": "Alleen wie is verbannen, of van wie de moderatie inhoud heeft verwijderd, kan beroep aantekenen."
+    },
+    "erroTitulo": "Deze community is hier niet",
+    "convitesBilhete": {
+      "um": "Een uitnodiging wacht op je",
+      "outros": "{n} uitnodigingen wachten op je"
+    }
+  },
+  "socForum": {
+    "lista": {
+      "titulo": "Gesprekken",
+      "abas": {
+        "recentes": "Recent",
+        "ativos": "Actief",
+        "semResposta": "Onbeantwoord",
+        "melhores": "Beste",
+        "emAlta": "Trending"
+      },
+      "abasRotulo": "Volgorde van de gesprekken",
+      "ordemNota": "Beste en Trending tellen verschillende mensen, nooit keren. Het cijfer van de gesprekken wordt niet getoond en niemand wordt gerangschikt.",
+      "janelaRotulo": "Periode van Trending",
+      "janelas": {
+        "24h": "24 uur",
+        "7d": "7 dagen"
+      },
+      "statusRotulo": "Status",
+      "etiquetaRotulo": "Labels",
+      "filtroTirar": "Filter {nome} wissen",
+      "vazioMarca": {
+        "titulo": "Niets met dit label",
+        "texto": "Haal het filter weg om de andere gesprekken te zien."
+      },
+      "categoriaRotulo": "Categorieën",
+      "todas": "Alle",
+      "semCategoria": "Zonder categorie",
+      "tagFiltro": "Tag {tag}",
+      "tirarTag": "Tag wissen",
+      "fixados": "Vastgepind",
+      "novo": "Nieuw topic",
+      "vazio": {
+        "titulo": "Nog niemand heeft een gesprek begonnen",
+        "texto": "Het eerste topic is voor het gesprek dat jij wilt beginnen."
+      },
+      "vazioSemResposta": {
+        "titulo": "Alles beantwoord",
+        "texto": "Geen enkel topic wacht op een eerste antwoord."
+      },
+      "vazioFiltro": {
+        "titulo": "Niets in deze categorie",
+        "texto": "Haal het filter weg om de andere gesprekken te zien."
+      },
+      "soMembros": "In deze community lezen alleen leden de gesprekken."
+    },
+    "marcas": {
+      "status": "Status:"
+    },
+    "selos": {
+      "fixado": "Vastgepind",
+      "trancado": "Vergrendeld",
+      "resolvido": "Opgelost",
+      "enquete": "Peiling",
+      "editado": "Bewerkt",
+      "removido": "Ingetrokken"
+    },
+    "cartao": {
+      "respostas": {
+        "zero": "onbeantwoord",
+        "um": "1 reactie",
+        "outros": "{n} reacties"
+      },
+      "por": "door {nome}",
+      "ativo": "laatste activiteit {quando}",
+      "ir": "Lees het topic {titulo}"
+    },
+    "topico": {
+      "respostasOrdem": {
+        "rotulo": "Volgorde van de antwoorden",
+        "antigas": "Chronologisch",
+        "melhores": "Beste",
+        "emAlta": "Trending"
+      },
+      "voltar": "Terug naar de gesprekken",
+      "em": "in {comunidade}",
+      "categoria": "Categorie {nome}",
+      "publicado": "gepubliceerd {quando}",
+      "versoes": {
+        "um": "1 versie",
+        "outros": "{n} versies"
+      },
+      "historicoTitulo": "Wat er in dit topic is veranderd",
+      "historicoNota": "De oorspronkelijke tekst en elke bewerking zijn voor iedereen zichtbaar.",
+      "versaoN": "Versie {n}",
+      "versaoAtual": "huidig",
+      "trancadoTitulo": "Topic vergrendeld",
+      "trancadoTexto": "Wie de community beheert, heeft dit gesprek vergrendeld. Je kunt het lezen, maar alleen de moderatie antwoordt.",
+      "resolvidoFaixa": "Opgelost door het antwoord van {nome}",
+      "irResolucao": "Antwoord bekijken",
+      "removidoTitulo": "Dit topic is ingetrokken",
+      "removidoTexto": "Wie de community beheert, heeft het gesprek verborgen. Het openbare logboek toont de reden.",
+      "verRegistro": "Logboek bekijken",
+      "apelarRemocao": "Beroep aantekenen tegen de verwijdering",
+      "editar": "Bewerken",
+      "editarAviso": "Je kunt bewerken tot 30 minuten na publicatie, maximaal 5 keer. Wie leest, ziet de badge Bewerkt en alle versies.",
+      "foraJanela": "De bewerkingstijd is verstreken.",
+      "limiteEdicoes": "Dit topic is al 5 keer bewerkt.",
+      "apagar": "Verwijderen",
+      "apagarTitulo": "Je topic wissen?",
+      "apagarTexto": "Het verdwijnt uit de community, met de antwoorden. Wie schrijft, kan altijd wissen wat die zelf schreef.",
+      "apagarOk": "Verwijderen",
+      "tagsRotulo": "Tags van het topic",
+      "reacoesRotulo": "Reacties op dit topic"
+    },
+    "enquete": {
+      "titulo": "Peiling",
+      "votos": {
+        "zero": "geen stem",
+        "um": "1 stem",
+        "outros": "{n} stemmen"
+      },
+      "votar": "Op deze optie stemmen",
+      "seuVoto": "Jouw stem",
+      "encerrada": "Peiling gesloten",
+      "encerraEm": "Sluit {quando}",
+      "encerrouEm": "Gesloten {quando}",
+      "secreto": "De stem is geheim en kan niet worden gewijzigd. Het netwerk telt alleen en bewaart niet wie waarop stemde.",
+      "soMembro": "Alleen leden stemmen, en pas na 1 uur in de community.",
+      "pct": "{n}%",
+      "resultado": "Uitslag",
+      "daqui": {
+        "min": "over {n} min",
+        "h": "over {n} u",
+        "d": "over {n} d",
+        "agora": "nu"
+      }
+    },
+    "respostas": {
+      "titulo": {
+        "zero": "Nog geen antwoord",
+        "um": "1 reactie",
+        "outros": "{n} reacties"
+      },
+      "vazio": {
+        "titulo": "Nog niet beantwoord",
+        "texto": "Het eerste antwoord zet de draad in gang."
+      },
+      "responder": "Reageren",
+      "responderA": "Antwoorden aan {nome}",
+      "responderTopico": "Antwoorden op het topic",
+      "citando": "Citeert {nome}",
+      "citacaoRemovida": "Het geciteerde antwoord is verwijderd.",
+      "emResposta": "als antwoord aan {nome}",
+      "verFilhas": {
+        "um": "1 antwoord bekijken",
+        "outros": "{n} antwoorden bekijken"
+      },
+      "esconderFilhas": "Antwoorden verbergen",
+      "resolveu": "Oplossing",
+      "marcar": "Markeren als oplossing",
+      "desmarcar": "Oplossingsmarkering weghalen",
+      "denunciar": "Melden",
+      "remover": "Verwijderen",
+      "apagar": "Mijn antwoord wissen",
+      "apagarTitulo": "Je antwoord wissen?",
+      "apagarTexto": "Het verdwijnt uit de draad. Wie schrijft, kan altijd wissen wat die zelf schreef.",
+      "removida": "Antwoord verwijderd",
+      "curtir": "Like",
+      "util": "Nuttig",
+      "maisRespostas": "Meer antwoorden bekijken",
+      "fioAcoes": "Acties voor het antwoord van {nome}",
+      "formTitulo": "Jouw antwoord",
+      "formFechar": "Sluiten",
+      "fundaDica": "Dit is een antwoord op het tweede niveau. Het jouwe gaat naar het antwoord erboven en citeert dit.",
+      "trancado": "Topic vergrendeld: alleen de moderatie antwoordt.",
+      "entreAntes": "Word lid van de community om te antwoorden.",
+      "pedidoAntes": "Je toetredingsverzoek is nog niet goedgekeurd.",
+      "banidoTexto": "Wie is verbannen, antwoordt niet.",
+      "carenciaTexto": "Je bent net toegetreden. Antwoorden openen 10 minuten na toetreding.",
+      "citar": "Citeren",
+      "autorDoTopico": "auteur van het topic",
+      "carenciaFalta": {
+        "um": "Je bent net toegetreden: antwoorden openen over 1 minuut.",
+        "outros": "Je bent net toegetreden: antwoorden openen over {n} minuten."
+      }
+    },
+    "gestao": {
+      "titulo": "Dit topic modereren",
+      "fixar": "Bovenaan vastpinnen",
+      "desafixar": "Losmaken",
+      "trancar": "Vergrendelen",
+      "destrancar": "Ontgrendelen",
+      "mover": "Naar een andere community verplaatsen",
+      "remover": "Het topic verwijderen",
+      "removerTitulo": "Uit de community verwijderen",
+      "removerTexto": "De inhoud verdwijnt uit alle weergaven en de reden komt in het openbare logboek. De auteur kan binnen 14 dagen beroep aantekenen.",
+      "removerResposta": "Het antwoord verwijderen",
+      "motivo": "Reden",
+      "motivoRotulo": "Kies een reden",
+      "confirmar": "Bevestigen",
+      "moverTitulo": "Topic verplaatsen",
+      "moverTexto": "Je kunt alleen verplaatsen naar een community waar jij ook moderator of eigenaar bent. Het adres van het topic verandert niet.",
+      "destino": "Doelcommunity",
+      "destinoCategoria": "Doelcategorie",
+      "moverSem": "Zonder categorie",
+      "moverPublico": "Let op: dit topic verlaat een besloten community en wordt openbaar op de bestemming. Alleen de eigenaar van de herkomst kan dit doen.",
+      "moverSemOpcao": "Je modereert geen andere community om naartoe te verplaatsen.",
+      "moverOk": "Verplaatsen"
+    },
+    "denuncia": {
+      "titulo": "Melden",
+      "texto": "De melding is anoniem: het netwerk bewaart alleen de reden, en de moderatie van de community ziet redenen en totalen, nooit wie meldde. Een melding verwijdert niets zelf: een persoon van de moderatie beslist.",
+      "motivo": "Wat is het probleem?",
+      "enviar": "Melding versturen",
+      "enviada": "Melding ontvangen. Bedankt voor het laten weten. Je hoeft verder niets te doen."
+    }
+  },
+  "socModeracao": {
+    "titulo": "Moderatie",
+    "sub": "Wie {nome} beheert. Alles wat de moderatie met een reden doet, komt in het openbare logboek, alleen met de rol van wie handelde.",
+    "soEquipe": {
+      "titulo": "Dit gedeelte is van de moderatie",
+      "texto": "Alleen de eigenaar en wie die tot moderator heeft gemaakt, komen hier."
+    },
+    "abas": {
+      "fila": "Meldingen",
+      "pedidos": "Verzoeken",
+      "convites": "Uitnodigingen",
+      "membros": "Leden",
+      "banidos": "Verbannen",
+      "apelacoes": "Beroepen"
+    },
+    "abasRotulo": "Gedeelten van de moderatie",
+    "fila": {
+      "intro": "De wachtrij rangschikt alleen. Geen enkel aantal meldingen verbergt of verwijdert inhoud: een persoon van de moderatie beslist. En de wachtrij toont nooit wie meldde.",
+      "vazio": {
+        "titulo": "Wachtrij leeg",
+        "texto": "Geen melding in afwachting. Een goed teken, of niemand heeft het nog opgemerkt."
+      },
+      "total": {
+        "um": "1 melding",
+        "outros": "{n} meldingen"
+      },
+      "peso": "gewicht {n}",
+      "pesoAjuda": "Het gewicht telt verschillende melders met een account van minstens 7 dagen. Het dient alleen om de wachtrij te rangschikken.",
+      "alvoTopico": "Onderwerp",
+      "alvoResposta": "Reactie",
+      "emTopico": "in {titulo}",
+      "ver": "Bekijken in het topic",
+      "remover": "Verwijderen met reden",
+      "semAcao": "Niets doen laat de inhoud online. De melding blijft in de wachtrij.",
+      "primeira": "eerste {quando}",
+      "ultima": "laatste {quando}",
+      "dispensar": "Melding afwijzen",
+      "dispensarTitulo": "Deze melding afwijzen?",
+      "dispensarTexto": "De melding verdwijnt uit de wachtrij, de inhoud blijft online en er wordt niets gewist. In het openbare logboek staat dat de melding is afgewezen, zonder te zeggen wie meldde. Als iemand anders opnieuw meldt, komt de zaak terug in de wachtrij.",
+      "dispensarOk": "Afwijzen",
+      "dispensarNota": "Afwijzen haalt de zaak uit de wachtrij en laat de inhoud online. Het komt in het openbare logboek, zonder te zeggen wie meldde. Als iemand anders opnieuw meldt, komt de zaak terug."
+    },
+    "pedidos": {
+      "titulo": "Wie vroeg om toe te treden",
+      "vazio": {
+        "titulo": "Geen verzoeken",
+        "texto": "Wanneer een rover vraagt om toe te treden, staat die hier zodat jij goedkeurt of weigert."
+      },
+      "aprovar": "Goedkeuren",
+      "recusar": "Weigeren",
+      "em": "vroeg {quando}"
+    },
+    "convites": {
+      "titulo": "Verstuurde uitnodigingen",
+      "vazio": {
+        "titulo": "Geen openstaande uitnodiging",
+        "texto": "Nodig een rover uit via het tabblad Leden of via de pagina van de community."
+      },
+      "cancelar": "De uitnodiging annuleren",
+      "por": "nodigde {nome} uit",
+      "em": "{quando}"
+    },
+    "membros": {
+      "titulo": "Leden en rollen",
+      "promover": "Tot moderator maken",
+      "rebaixar": "Terugzetten naar lid",
+      "expulsar": "Eruit zetten",
+      "banir": "Verbannen",
+      "expulsarTitulo": "Deze rover eruit zetten?",
+      "expulsarTexto": "Die verlaat de community en kan terugkomen, als ze open is. De uitzetting komt met de reden in het openbare logboek, zonder jouw naam.",
+      "banirTitulo": "Deze rover verbannen?",
+      "banirTexto": "Die gaat weg, komt niet terug en schrijft niet meer. De verbanning komt met de reden in het openbare logboek, en de rover kan binnen 14 dagen beroep aantekenen.",
+      "motivo": "Reden (verplicht)",
+      "semAcoes": "Geen acties voor deze rol.",
+      "ele": "Jij",
+      "limiteMod": "Maximaal 10 moderators."
+    },
+    "banidos": {
+      "titulo": "Verbannen rovers",
+      "vazio": {
+        "titulo": "Niemand verbannen",
+        "texto": "Wanneer iemand wordt verbannen, staan de reden en het beroep hier."
+      },
+      "desbanir": "Verbanning opheffen",
+      "por": "verbannen door {papel}",
+      "apelacao": {
+        "aberta": "Beroep open",
+        "mantida": "Beroep afgewezen",
+        "revertida": "Beroep toegewezen",
+        "nenhuma": "Geen beroep"
+      },
+      "em": "{quando}"
+    },
+    "apelacoes": {
+      "titulo": "Beroepen waarover jij beslist",
+      "intro": "Alleen de eigenaar beslist over beroepen tegen beslissingen van moderators. Als de eigenaar zelf handelde, beslist het netwerkbeheer.",
+      "vazio": {
+        "titulo": "Geen open beroep",
+        "texto": "Wanneer een rover beroep aantekent tegen een beslissing van een moderator, staat dat hier."
+      },
+      "tipo": {
+        "remocao": "Inhoud verwijderen",
+        "banimento": "Verbanning"
+      },
+      "conteudo": "Bewaarde inhoud",
+      "conteudoVazio": "Geen bewaarde inhoud (de termijn van 30 dagen is verstreken, of het gaat om een verbanning).",
+      "manter": "De beslissing handhaven",
+      "reverter": "De beslissing terugdraaien",
+      "manterTitulo": "De beslissing handhaven?",
+      "manterTexto": "Er verandert niets en de zaak wordt gesloten.",
+      "reverterTitulo": "De beslissing terugdraaien?",
+      "reverterTexto": "De inhoud komt weer online, of de verbanning vervalt. De rover komt niet terug als lid: die moet opnieuw toetreden.",
+      "texto": "Wat de rover schreef"
+    },
+    "registro": {
+      "titulo": "Openbaar moderatieregister",
+      "sub": "Elke verwijdering, uitzetting en verbanning in deze community staat hier, met de reden en de rol van wie handelde. Nooit de verwijderde tekst en nooit de naam van de moderator.",
+      "vazio": {
+        "titulo": "Niets vastgelegd",
+        "texto": "Deze community heeft nog niemand verwijderd, eruit gezet of verbannen."
+      },
+      "acao": {
+        "remocao": "Verwijdering",
+        "expulsao": "Uitzetting",
+        "banimento": "Verbanning",
+        "dispensa": "Melding afgewezen"
+      },
+      "alvoConteudo": "{tipo} verwijderd",
+      "alvoRover": "{nome}",
+      "por": "door {papel}",
+      "papel": {
+        "dono": "de eigenaar",
+        "moderador": "een moderator",
+        "administrador": "een beheerder",
+        "rele": "de relay"
+      },
+      "tipos": {
+        "topico": "Onderwerp",
+        "resposta-forum": "Reactie",
+        "pagina-publicar": "Update"
+      },
+      "apelacao": {
+        "aberta": "Beroep open",
+        "mantida": "Beslissing gehandhaafd",
+        "revertida": "Beslissing teruggedraaid"
+      },
+      "apelarDaquele": "Was jij het? Teken beroep aan",
+      "fechadaNota": "Het logboek van deze community is alleen voor leden leesbaar."
+    },
+    "ato": {
+      "aprovado": "Klaar"
+    }
+  }
+}

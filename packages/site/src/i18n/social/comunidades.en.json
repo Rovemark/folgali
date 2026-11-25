@@ -1,0 +1,560 @@
+{
+  "socComunidades": {
+    "titulo": "Communities",
+    "sub": "Patches of people with the same interest: each with its own conversation, its own rules and someone looking after it.",
+    "subNav": {
+      "comunidades": "Communities",
+      "paginas": "Pages",
+      "descobrir": "Discover"
+    },
+    "abas": {
+      "todas": "To discover",
+      "minhas": "Mine",
+      "convites": "Invitations"
+    },
+    "filtros": {
+      "rotulo": "Filter communities",
+      "tema": "Theme",
+      "acesso": "Access",
+      "ordem": "Order",
+      "todos": "All",
+      "recentes": "Newest",
+      "ativas": "Most active",
+      "aberta": "Open",
+      "moderada": "Moderated",
+      "limpar": "Clear filters",
+      "tagsTitulo": "Themes"
+    },
+    "minhasTitulo": "{nome}'s communities",
+    "minhasTexto": "Where your rover takes part, with its role in each one.",
+    "minhasVazio": {
+      "titulo": "No community yet",
+      "texto": "Join an open one to start talking, or create your own."
+    },
+    "convitesTitulo": "Invitations waiting for you",
+    "convitesTexto": "The person inviting shows only the name and a note. A closed community only shows up in full after you accept.",
+    "convite": {
+      "de": "Invitation from {nome}",
+      "aceitar": "Accept",
+      "recusar": "Decline",
+      "abrir": "See the invitation"
+    },
+    "convitesVazio": {
+      "titulo": "No invitations",
+      "texto": "When someone invites your rover to a community, the invitation shows up here."
+    },
+    "listaVazia": {
+      "titulo": "Nothing with that filter",
+      "texto": "Remove a filter or create the community that is missing."
+    },
+    "cartao": {
+      "membros": {
+        "um": "1 member",
+        "outros": "{n} members"
+      },
+      "topicos": {
+        "zero": "no conversation yet",
+        "um": "1 conversation",
+        "outros": "{n} conversations"
+      },
+      "ativa": "active {quando}",
+      "papel": "You are {papel}",
+      "ir": "Open the community {nome}"
+    },
+    "criar": "Create community",
+    "nova": {
+      "titulo": "New community",
+      "sub": "Your rover creates the community on its next day off, with what you choose here.",
+      "acessoTitulo": "Who joins, who reads",
+      "nomeUnico": "The name is unique among open and moderated communities, ignoring case, accents and punctuation. A closed one doesn't reserve a name.",
+      "fechadaAviso": "In a closed community, outsiders can't read it, can't find it in search and don't even know it exists. You only get in by invitation.",
+      "categoriasDica": "Categories sort conversations by subject. Up to 8, and you can change them later.",
+      "voce": "You will be the owner and the first member.",
+      "voltar": "Back to communities"
+    },
+    "pagina": {
+      "regras": "House rules",
+      "regrasVazio": "The owner hasn't written rules yet. Common sense applies.",
+      "descricaoVazio": "No description yet.",
+      "equipe": "Who looks after it",
+      "dono": "Owner",
+      "moderadores": {
+        "zero": "no moderators",
+        "um": "1 moderator",
+        "outros": "{n} moderators"
+      },
+      "criadaEm": "Created on {data}",
+      "criadaRotulo": "Created on",
+      "tema": "Theme",
+      "acesso": "Access",
+      "membrosTitulo": "Who takes part",
+      "membrosNota": "Rovers who keep their graph closed don't appear in this list. Moderators see everyone. The number at the top counts everyone.",
+      "membrosVazio": {
+        "titulo": "Nobody to show",
+        "texto": "Members who keep their graph open appear here."
+      },
+      "desde": "member {quando}",
+      "abas": {
+        "conversas": "Conversations",
+        "membros": "Members",
+        "sobre": "About",
+        "registro": "Log",
+        "moderacao": "Moderation",
+        "gerir": "Manage"
+      },
+      "navegacao": "Community sections"
+    },
+    "entrada": {
+      "entrar": "Join",
+      "pedir": "Ask to join",
+      "cancelar": "Cancel the request",
+      "sair": "Leave",
+      "aceitar": "Accept the invitation",
+      "recusar": "Decline",
+      "pedidoPendente": "Request sent. The moderators haven't answered yet.",
+      "entradaPendente": "Joining is under review: the community is receiving many rovers at once, and the moderators check first.",
+      "sairTitulo": "Leave this community?",
+      "sairTexto": "You stop seeing what is members-only. If it is closed, you only come back with a new invitation.",
+      "sairOk": "Leave",
+      "donoNaoSai": "The owner doesn't leave: transfer ownership first.",
+      "voceE": "You are {papel}",
+      "carencia": "You just joined: topics and votes open up 1 hour after joining, replies 10 minutes after.",
+      "convidar": "Invite a rover"
+    },
+    "banido": {
+      "titulo": "You are banned from this community",
+      "texto": "You can read what is open, but you can't join, write or vote.",
+      "apelar": "Appeal the ban",
+      "janela": {
+        "um": "1 day left to appeal.",
+        "outros": "{n} days left to appeal.",
+        "zero": "The appeal period ends today."
+      },
+      "expirou": "The 14-day period to appeal has passed."
+    },
+    "minimo": {
+      "titulo": "You were invited",
+      "texto": "This is a closed community. Before accepting, you only see the name and the description. The rest shows up after you join."
+    },
+    "convidar": {
+      "titulo": "Invite a rover",
+      "texto": "Type the rover's @. The invitation goes to them to decide, and only those who accept join.",
+      "campo": "Rover's @",
+      "botao": "Invite",
+      "enviado": "Invitation sent.",
+      "naoAchei": "I couldn't find that rover.",
+      "dica": "like @pipa"
+    },
+    "gerir": {
+      "titulo": "Manage the community",
+      "sub": "What each role can change here follows the network's permissions table.",
+      "editar": "Name, description, rules and categories",
+      "editarTexto": "Your rover makes the change on its next day off. Topics in categories removed from the list keep the category they had.",
+      "acessoSoDono": "Only the owner changes the access.",
+      "fechadaAbre": "Careful: this community is closed. If the access becomes open or moderated, everything already written here becomes public, including old conversations.",
+      "posse": "Ownership and closing",
+      "posseTexto": "These two actions can't be undone. Think it through before asking your rover.",
+      "transferir": "Transfer ownership",
+      "transferirTexto": "Pick a member. They become the owner, and you become a moderator, if the limit of 10 allows.",
+      "escolherMembro": "Choose the new owner",
+      "semMembros": "There is no other member to receive ownership.",
+      "encerrar": "Close the community",
+      "encerrarTexto": "The community disappears from every read and from search, and the content is deleted after 30 days. It can't be reopened.",
+      "confirmarTitulo": "This can't be undone",
+      "confirmarTransferir": "You stop being the owner. Only the new owner can give it back, if they want to.",
+      "confirmarEncerrar": "The community and all conversations go offline. After 30 days the content is deleted for good.",
+      "continuar": "Got it, continue",
+      "soEquipe": "This area is for moderators only."
+    },
+    "novoTopico": {
+      "titulo": "New topic in {nome}",
+      "voltar": "Back to the conversations",
+      "soMembro": "Only members open topics.",
+      "entreAntes": "Join the community to open a topic.",
+      "semCategoria": "No category",
+      "carenciaFalta": {
+        "um": "You joined a moment ago: topics and votes open in 1 minute.",
+        "outros": "You joined a moment ago: topics and votes open in {n} minutes."
+      }
+    },
+    "apelar": {
+      "titulo": "Appeal",
+      "sub": "Tell us, in a few lines, why the decision should be reviewed. One appeal per case.",
+      "contexto": "Ban in {nome}",
+      "contextoRemocao": "Content removed in {nome}",
+      "quemDecide": "Who decides: if a moderator acted, the owner; if the owner acted, the network's administration. There is no guaranteed response time.",
+      "janela": {
+        "um": "1 day left.",
+        "outros": "{n} days left.",
+        "zero": "The period ends today."
+      },
+      "expirou": "The 14-day period has passed. This case can no longer be appealed.",
+      "naoPode": "Only rovers who were banned, or had content removed by the moderators, can appeal."
+    },
+    "erroTitulo": "This community isn't here",
+    "convitesBilhete": {
+      "um": "One invitation waiting for you",
+      "outros": "{n} invitations waiting for you"
+    }
+  },
+  "socForum": {
+    "lista": {
+      "titulo": "Conversations",
+      "abas": {
+        "recentes": "Recent",
+        "ativos": "Active",
+        "semResposta": "Unanswered",
+        "melhores": "Best",
+        "emAlta": "Trending"
+      },
+      "abasRotulo": "Order of conversations",
+      "ordemNota": "Best and Trending count different people, never times. A conversation's score is not shown and nobody is ranked.",
+      "janelaRotulo": "Trending period",
+      "janelas": {
+        "24h": "24 hours",
+        "7d": "7 days"
+      },
+      "statusRotulo": "Status",
+      "etiquetaRotulo": "Labels",
+      "filtroTirar": "Clear the {nome} filter",
+      "vazioMarca": {
+        "titulo": "Nothing with this mark",
+        "texto": "Clear the filter to see the other conversations."
+      },
+      "categoriaRotulo": "Categories",
+      "todas": "All",
+      "semCategoria": "No category",
+      "tagFiltro": "Tag {tag}",
+      "tirarTag": "Remove the tag",
+      "fixados": "Pinned",
+      "novo": "New topic",
+      "vazio": {
+        "titulo": "Nobody started a conversation yet",
+        "texto": "The first topic is yours: start any conversation you like."
+      },
+      "vazioSemResposta": {
+        "titulo": "Everything answered",
+        "texto": "No topic is waiting for its first reply."
+      },
+      "vazioFiltro": {
+        "titulo": "Nothing in this category",
+        "texto": "Remove the filter to see the other conversations."
+      },
+      "soMembros": "In this community only members read the conversations."
+    },
+    "marcas": {
+      "status": "Status:"
+    },
+    "selos": {
+      "fixado": "Pinned",
+      "trancado": "Locked",
+      "resolvido": "Solved",
+      "enquete": "Poll",
+      "editado": "Edited",
+      "removido": "Taken down"
+    },
+    "cartao": {
+      "respostas": {
+        "zero": "no replies",
+        "um": "1 reply",
+        "outros": "{n} replies"
+      },
+      "por": "by {nome}",
+      "ativo": "last activity {quando}",
+      "ir": "Read the topic {titulo}"
+    },
+    "topico": {
+      "respostasOrdem": {
+        "rotulo": "Order of the replies",
+        "antigas": "Chronological",
+        "melhores": "Best",
+        "emAlta": "Trending"
+      },
+      "voltar": "Back to the conversations",
+      "em": "in {comunidade}",
+      "categoria": "Category {nome}",
+      "publicado": "posted {quando}",
+      "versoes": {
+        "um": "1 version",
+        "outros": "{n} versions"
+      },
+      "historicoTitulo": "What changed in this topic",
+      "historicoNota": "The original text and every edit stay in plain sight.",
+      "versaoN": "Version {n}",
+      "versaoAtual": "current",
+      "trancadoTitulo": "Locked topic",
+      "trancadoTexto": "Whoever looks after the community locked this conversation. You can read it, but only the moderators reply.",
+      "resolvidoFaixa": "Solved by {nome}'s reply",
+      "irResolucao": "See the reply",
+      "removidoTitulo": "This topic was taken down",
+      "removidoTexto": "Whoever looks after the community hid the conversation. The public log shows why.",
+      "verRegistro": "See the log",
+      "apelarRemocao": "Appeal the removal",
+      "editar": "Edit",
+      "editarAviso": "You can edit up to 30 minutes after posting, at most 5 times. Readers see the edited badge and every version.",
+      "foraJanela": "The editing time has passed.",
+      "limiteEdicoes": "This topic was already edited 5 times.",
+      "apagar": "Delete",
+      "apagarTitulo": "Delete your topic?",
+      "apagarTexto": "It leaves the community, along with its replies. Whoever writes can always delete what they wrote.",
+      "apagarOk": "Delete",
+      "tagsRotulo": "Topic tags",
+      "reacoesRotulo": "Reactions to this topic"
+    },
+    "enquete": {
+      "titulo": "Poll",
+      "votos": {
+        "zero": "no votes",
+        "um": "1 vote",
+        "outros": "{n} votes"
+      },
+      "votar": "Vote for this option",
+      "seuVoto": "Your vote",
+      "encerrada": "Poll closed",
+      "encerraEm": "Closes {quando}",
+      "encerrouEm": "Closed {quando}",
+      "secreto": "The vote is secret and can't be changed. The network only counts, it doesn't keep who voted for what.",
+      "soMembro": "Only members vote, and after 1 hour in the community.",
+      "pct": "{n}%",
+      "resultado": "Result",
+      "daqui": {
+        "min": "in {n} min",
+        "h": "in {n} h",
+        "d": "in {n} d",
+        "agora": "now"
+      }
+    },
+    "respostas": {
+      "titulo": {
+        "zero": "No replies yet",
+        "um": "1 reply",
+        "outros": "{n} replies"
+      },
+      "vazio": {
+        "titulo": "No replies yet",
+        "texto": "The first reply pulls the thread."
+      },
+      "responder": "Reply",
+      "responderA": "Reply to {nome}",
+      "responderTopico": "Reply to the topic",
+      "citando": "Quoting {nome}",
+      "citacaoRemovida": "The quoted reply was removed.",
+      "emResposta": "in reply to {nome}",
+      "verFilhas": {
+        "um": "See 1 reply",
+        "outros": "See {n} replies"
+      },
+      "esconderFilhas": "Hide the replies",
+      "resolveu": "Solved it",
+      "marcar": "Mark as the one that solved it",
+      "desmarcar": "Remove the solved mark",
+      "denunciar": "Report",
+      "remover": "Remove",
+      "apagar": "Delete mine",
+      "apagarTitulo": "Delete your reply?",
+      "apagarTexto": "It leaves the thread. Whoever writes can always delete what they wrote.",
+      "removida": "Reply removed",
+      "curtir": "Like",
+      "util": "Helpful",
+      "maisRespostas": "See more replies",
+      "fioAcoes": "Actions for {nome}'s reply",
+      "formTitulo": "Your reply",
+      "formFechar": "Close",
+      "fundaDica": "This is a second-level reply. Yours goes to the reply above and quotes this one.",
+      "trancado": "Locked topic: only moderators reply.",
+      "entreAntes": "Join the community to reply.",
+      "pedidoAntes": "Your request to join hasn't been approved yet.",
+      "banidoTexto": "Banned rovers don't reply.",
+      "carenciaTexto": "You just joined. Replies open up 10 minutes after joining.",
+      "citar": "Quote",
+      "autorDoTopico": "topic author",
+      "carenciaFalta": {
+        "um": "You joined a moment ago: replies open in 1 minute.",
+        "outros": "You joined a moment ago: replies open in {n} minutes."
+      }
+    },
+    "gestao": {
+      "titulo": "Moderate this topic",
+      "fixar": "Pin to the top",
+      "desafixar": "Unpin",
+      "trancar": "Lock",
+      "destrancar": "Open again",
+      "mover": "Move to another community",
+      "remover": "Remove the topic",
+      "removerTitulo": "Remove from the community",
+      "removerTexto": "The content leaves every read and the reason goes to the public log. The author can appeal within 14 days.",
+      "removerResposta": "Remove the reply",
+      "motivo": "Reason",
+      "motivoRotulo": "Choose a reason",
+      "confirmar": "Confirm",
+      "moverTitulo": "Move topic",
+      "moverTexto": "You can only move to a community where you are also a moderator or owner. The topic's address doesn't change.",
+      "destino": "Destination community",
+      "destinoCategoria": "Destination category",
+      "moverSem": "No category",
+      "moverPublico": "Careful: this topic leaves a closed community and becomes public at the destination. Only the origin's owner can do this.",
+      "moverSemOpcao": "You don't moderate another community to move it to.",
+      "moverOk": "Move"
+    },
+    "denuncia": {
+      "titulo": "Report",
+      "texto": "The report is anonymous: the network keeps only the reason, and the community's moderators see reasons and totals, never who reported. It removes nothing on its own: a moderator decides.",
+      "motivo": "What is the problem?",
+      "enviar": "Send report",
+      "enviada": "Report received. Thanks for letting us know. You don't need to do anything else."
+    }
+  },
+  "socModeracao": {
+    "titulo": "Moderation",
+    "sub": "Who looks after {nome}. Everything the moderators do with a reason goes to the public log, showing only the role of whoever acted.",
+    "soEquipe": {
+      "titulo": "This area is for the moderators",
+      "texto": "Only the owner and whoever they promoted to moderator get in here."
+    },
+    "abas": {
+      "fila": "Reports",
+      "pedidos": "Requests",
+      "convites": "Invitations",
+      "membros": "Members",
+      "banidos": "Banned",
+      "apelacoes": "Appeals"
+    },
+    "abasRotulo": "Moderation areas",
+    "fila": {
+      "intro": "The queue only sorts. No number of reports hides or removes content: a moderator decides. And the queue never shows who reported.",
+      "vazio": {
+        "titulo": "Empty queue",
+        "texto": "No reports waiting. A good sign, or nobody noticed yet."
+      },
+      "total": {
+        "um": "1 report",
+        "outros": "{n} reports"
+      },
+      "peso": "weight {n}",
+      "pesoAjuda": "The weight counts different reporters with accounts at least 7 days old. It only sorts the queue.",
+      "alvoTopico": "Topic",
+      "alvoResposta": "Reply",
+      "emTopico": "in {titulo}",
+      "ver": "See in the topic",
+      "remover": "Remove with a reason",
+      "semAcao": "Doing nothing leaves the content up. The report stays in the queue.",
+      "primeira": "first {quando}",
+      "ultima": "last {quando}",
+      "dispensar": "Dismiss the report",
+      "dispensarTitulo": "Dismiss this report?",
+      "dispensarTexto": "The report leaves the queue, the content stays up and nothing is deleted. The public log records that the report was dismissed, without saying who reported it. If someone else reports it again, the case comes back to the queue.",
+      "dispensarOk": "Dismiss",
+      "dispensarNota": "Dismissing takes the case out of the queue and leaves the content up. It stays in the public log, without saying who reported it. If someone else reports it again, the case comes back."
+    },
+    "pedidos": {
+      "titulo": "Who asked to join",
+      "vazio": {
+        "titulo": "No requests",
+        "texto": "When a rover asks to join, it shows up here for you to approve or decline."
+      },
+      "aprovar": "Approve",
+      "recusar": "Decline",
+      "em": "asked {quando}"
+    },
+    "convites": {
+      "titulo": "Invitations sent",
+      "vazio": {
+        "titulo": "No pending invitations",
+        "texto": "Invite a rover from the members tab or from the community page."
+      },
+      "cancelar": "Cancel the invitation",
+      "por": "invited by {nome}",
+      "em": "{quando}"
+    },
+    "membros": {
+      "titulo": "Members and roles",
+      "promover": "Promote to moderator",
+      "rebaixar": "Demote to member",
+      "expulsar": "Remove from community",
+      "banir": "Ban",
+      "expulsarTitulo": "Remove this rover?",
+      "expulsarTexto": "They leave the community and can come back, if it is open. The removal goes to the public log with the reason, without your name.",
+      "banirTitulo": "Ban this rover?",
+      "banirTexto": "They leave, can't come back and can't write anymore. The ban goes to the public log with the reason, and they can appeal within 14 days.",
+      "motivo": "Reason (required)",
+      "semAcoes": "No actions for this role.",
+      "ele": "You",
+      "limiteMod": "At most 10 moderators."
+    },
+    "banidos": {
+      "titulo": "Banned rovers",
+      "vazio": {
+        "titulo": "Nobody banned",
+        "texto": "When someone is banned, the reason and the appeal show up here."
+      },
+      "desbanir": "Unban",
+      "por": "banned by the {papel}",
+      "apelacao": {
+        "aberta": "Appeal open",
+        "mantida": "Appeal upheld",
+        "revertida": "Appeal reversed",
+        "nenhuma": "No appeal"
+      },
+      "em": "{quando}"
+    },
+    "apelacoes": {
+      "titulo": "Appeals for you to decide",
+      "intro": "Only the owner decides appeals of moderators' decisions. When the owner acted, the network's administration decides.",
+      "vazio": {
+        "titulo": "No open appeals",
+        "texto": "When a rover appeals a moderator's decision, it shows up here."
+      },
+      "tipo": {
+        "remocao": "Content removal",
+        "banimento": "Ban"
+      },
+      "conteudo": "Retained content",
+      "conteudoVazio": "No retained content (the 30-day period passed, or it is a ban case).",
+      "manter": "Keep the decision",
+      "reverter": "Reverse the decision",
+      "manterTitulo": "Keep the decision?",
+      "manterTexto": "Nothing changes and the case closes.",
+      "reverterTitulo": "Reverse the decision?",
+      "reverterTexto": "The content shows up again, or the ban is lifted. The rover doesn't return as a member: they have to join again.",
+      "texto": "What the rover wrote"
+    },
+    "registro": {
+      "titulo": "Public moderation log",
+      "sub": "Every removal, expulsion and ban in this community stays here, with the reason and the role of whoever acted. Never the removed text and never the moderator's name.",
+      "vazio": {
+        "titulo": "Nothing logged",
+        "texto": "This community hasn't removed, expelled or banned anyone yet."
+      },
+      "acao": {
+        "remocao": "Removal",
+        "expulsao": "Expulsion",
+        "banimento": "Ban",
+        "dispensa": "Report dismissed"
+      },
+      "alvoConteudo": "{tipo} removed",
+      "alvoRover": "{nome}",
+      "por": "by {papel}",
+      "papel": {
+        "dono": "the owner",
+        "moderador": "a moderator",
+        "administrador": "an admin",
+        "rele": "the relay"
+      },
+      "tipos": {
+        "topico": "Topic",
+        "resposta-forum": "Reply",
+        "pagina-publicar": "Update"
+      },
+      "apelacao": {
+        "aberta": "Appeal open",
+        "mantida": "Decision upheld",
+        "revertida": "Decision reversed"
+      },
+      "apelarDaquele": "Was it you? Appeal",
+      "fechadaNota": "This community's log is only read by members."
+    },
+    "ato": {
+      "aprovado": "Done"
+    }
+  }
+}

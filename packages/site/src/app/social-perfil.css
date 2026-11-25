@@ -1,0 +1,240 @@
+/* folgali (antes Rover Network) · rede social: perfil, amigos e avisos.
+   A página do rover é uma FICHA de personagem: o palco leva a cor da pelúcia, o contorno do cartão também.
+   O recado é um BILHETE preso por um ponto de costura; o depoimento é uma CARTA com aspas; o selo é uma
+   MEDALHA bordada; o trabalho entregue é uma FICHA DE ENTREGA. A cor da pelúcia só tinge fundo e contorno:
+   o texto usa sempre a tinta do tema. */
+
+/* ---------- ficha ---------- */
+.pf-ficha {
+  position: relative; background: var(--tecido); border-radius: var(--raio); overflow: hidden; margin-bottom: 14px;
+  box-shadow: var(--sombra), 0 0 0 2px color-mix(in oklch, var(--pelucia) 42%, var(--linha)); border: 1px solid var(--linha); }
+.pf-palco { min-height: 270px; }
+.pf-estado {
+  position: absolute; z-index: 2; top: 18px; inset-inline-start: 18px; display: inline-flex; align-items: center; gap: 8px; min-height: 34px; padding-block: 4px 4px; padding-inline: 12px 14px;
+  border-radius: var(--raio-peq); background: var(--tecido); color: var(--tinta); font-weight: 800; font-size: 14px; border: 1px solid var(--linha); }
+.pf-dot { display: inline-block; width: 11px; height: 11px; border-radius: 50%; background: var(--tinta-3); box-shadow: 0 0 0 2px color-mix(in oklch, currentColor 20%, transparent); flex: none; }
+.pf-dot[data-estado='trabalhando'] { background: var(--acao); }
+.pf-dot[data-estado='explorando'] { background: var(--ok); }
+.pf-dot[data-estado='disponivel'] { background: var(--ok); }
+.pf-dot[data-estado='dormindo'] { background: var(--tinta-3); }
+.pf-dot[data-estado='ausente'] { background: var(--aviso); }
+.pf-corpo { padding: 20px 22px 24px; display: grid; gap: 18px; }
+.pf-sobre { display: grid; gap: 6px; font-size: 17px; line-height: 1.5; color: var(--tinta-2); }
+.pf-meu { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; color: var(--tinta-2); }
+.pf-privado { display: inline-flex; color: var(--tinta-3); align-items: center; min-height: 29px; }
+/* quatro contagens (amigos, grupos, seguidores, seguindo): no celular duas por linha, para nenhum número ficar sozinho na segunda */
+.pf-contagens { margin: 0; grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 520px) {
+  .pf-contagens { grid-template-columns: repeat(2, 1fr); row-gap: 12px; }
+}
+
+/* seletor de estado (o próprio rover) */
+.pf-estado-seletor { display: grid; gap: 6px; padding: 14px; border-radius: var(--raio); background: var(--tecido-2); }
+.pf-estados { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.pf-estado-btn {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: var(--raio-peq); cursor: pointer; font-weight: 800; font-size: 16px;
+  background: var(--tecido); color: var(--tinta-2); border: 1.5px solid var(--linha);
+}
+.pf-estado-btn:hover { background: var(--tecido-2); color: var(--tinta); }
+.pf-estado-btn[aria-pressed='true'] { background: var(--acao); border-color: var(--acao); color: var(--acao-tinta); }
+.pf-estado-btn[aria-pressed='true'] .pf-dot { box-shadow: 0 0 0 2px var(--acao-tinta); }
+
+/* ---------- selos: medalhas bordadas ---------- */
+.pf-selos { display: grid; gap: 10px; padding: 14px; border-radius: var(--raio); background: color-mix(in oklch, var(--pelucia) 10%, var(--tecido-2)); }
+.pf-selos-cab { display: grid; gap: 2px; }
+.pf-medalhas { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 8px; }
+@media (min-width: 520px) { .pf-medalhas { grid-template-columns: repeat(4, 1fr); } }
+.pf-medalha { display: grid; justify-items: center; align-content: start; gap: 2px; text-align: center; }
+.pf-medalha strong { font-family: var(--f-display); font-size: 16px; font-weight: 800; margin-top: 4px; }
+.pf-medalha small { font-size: 14px; color: var(--tinta-2); }
+.pf-medalha-disco {
+  --fundo-m: oklch(0.92 0.03 var(--h)); --tinta-m: oklch(0.3 0.06 var(--h)); --ponto-m: oklch(0.55 0.08 var(--h));
+  position: relative; display: grid; place-items: center; align-content: center; width: 68px; height: 68px; border-radius: 50%; background: var(--fundo-m); color: var(--tinta-m);
+  box-shadow: 0 6px 0 -2px color-mix(in oklch, var(--ponto-m) 55%, transparent);
+}
+:root[data-tema='escuro'] .pf-medalha-disco { --fundo-m: oklch(0.32 0.04 var(--h)); --tinta-m: oklch(0.94 0.03 var(--h)); --ponto-m: oklch(0.7 0.07 var(--h)); }
+.pf-medalha-disco svg { width: 20px; height: 20px; margin-bottom: -2px; }
+.pf-medalha-disco b { font-family: var(--f-display); font-weight: 800; font-size: 22px; line-height: 1; }
+.pf-medalha[data-vazia='true'] .pf-medalha-disco { filter: saturate(0.35); }
+.pf-medalha .btn { min-height: 44px; font-size: 16px; }
+.pf-razao { text-wrap: pretty; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-tema]) .pf-medalha-disco { --fundo-m: oklch(0.32 0.04 var(--h)); --tinta-m: oklch(0.94 0.03 var(--h)); --ponto-m: oklch(0.7 0.07 var(--h)); }
+}
+
+/* ---------- botões de relação ---------- */
+.pf-relacao { display: grid; gap: 10px; }
+.pf-relacao-linha { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.pf-mais-btn { margin-inline-start: auto; }
+.pf-mais-opcoes { display: flex; flex-wrap: wrap; gap: 8px; padding: 12px; border-radius: var(--raio); background: var(--tecido-2); }
+.pf-mais-nota { flex-basis: 100%; text-wrap: pretty; }
+.pf-aviso-bloqueio { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px; border-radius: var(--raio); border: 1px solid color-mix(in oklch, var(--perigo) 45%, transparent); background: var(--perigo-fundo); color: var(--tinta); }
+.pf-aviso-bloqueio p { color: var(--tinta-2); font-size: 16px; }
+
+/* ---------- abas e seções ---------- */
+.pf-abas { margin-top: 4px; }
+.pf-aba { display: grid; gap: 14px; align-content: start; padding-top: 4px; }
+.pf-aba h2 { font-size: 24px; }
+.pf-aba h3 { font-size: 18px; }
+.pf-nota { padding: 12px 14px; border-radius: var(--raio); background: var(--tecido-2); color: var(--tinta-2); font-size: 16px; text-wrap: pretty; }
+.pf-escrever { display: grid; gap: 10px; padding: 16px; border-radius: var(--raio); background: var(--tecido); border: 1px solid color-mix(in oklch, var(--tinta) 22%, transparent); }
+.pf-recolhivel > summary { list-style: none; cursor: pointer; justify-self: start; }
+.pf-recolhivel > summary::-webkit-details-marker { display: none; }
+.pf-recolhivel[open] > summary { margin-bottom: 6px; }
+.pf-mais-lista { display: grid; justify-items: center; gap: 8px; margin-top: 8px; }
+.pf-n { font-family: var(--f-mono); font-size: 14px; font-weight: 700; color: var(--tinta-3); }
+
+/* ---------- mural: bilhetes ---------- */
+.pf-mural { display: grid; gap: 18px; padding: 8px 2px; }
+.pf-bilhete {
+  position: relative; display: grid; gap: 8px; padding: 18px 16px 14px; border-radius: var(--raio-peq) var(--raio) var(--raio) var(--raio);
+  background: color-mix(in oklch, var(--pelucia) 16%, var(--tecido));
+}
+.pf-ponto {
+  position: absolute; z-index: 1; top: -7px; left: 50%; width: 16px; height: 16px; margin-inline-start: -8px; border-radius: 50%; background: var(--fio); box-shadow: 0 0 0 3px var(--fundo), inset 0 0 0 2px var(--fio-forte);
+}
+.pf-bilhete header, .pf-carta footer { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; position: relative; z-index: 1; }
+.pf-bilhete header time { color: var(--tinta-3); font-size: 14px; margin-inline-start: auto; }
+.pf-bilhete-autor { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; border-radius: var(--raio); }
+.pf-bilhete-autor:hover { text-decoration: none; }
+.pf-bilhete-autor span { display: grid; line-height: 1.2; }
+.pf-bilhete-autor strong { font-family: var(--f-display); font-size: 17px; font-weight: 800; }
+.pf-bilhete-autor small { font-family: var(--f-mono); font-size: 13px; color: var(--tinta-3); }
+.pf-bilhete-texto { font-size: 18px; line-height: 1.5; position: relative; z-index: 1; }
+.pf-menu-conteudo { position: relative; z-index: 3; }
+.pf-bilhete .pf-menu-conteudo { margin-inline-start: 0; }
+.pf-bilhete .icone-btn, .pf-carta .icone-btn { margin-inline-end: -8px; }
+
+/* ---------- depoimentos: cartas ---------- */
+.pf-cartas { display: grid; gap: 16px; }
+.pf-carta {
+  position: relative; display: grid; gap: 12px; padding: 22px 18px 16px; border-radius: var(--raio); background: var(--tecido);
+  box-shadow: var(--sombra), inset 5px 0 0 color-mix(in oklch, var(--pelucia) 60%, var(--tecido)); border: 1px solid var(--linha); }
+.pf-carta.pendente { border: 1px solid color-mix(in oklch, var(--aviso) 55%, transparent); box-shadow: none; background: var(--aviso-fundo); color: var(--tinta); }
+.pf-aspas { position: absolute; top: 10px; inset-inline-end: 14px; color: color-mix(in oklch, var(--pelucia) 70%, var(--tinta-3)); opacity: 0.55; }
+.pf-aspas svg { width: 34px; height: 34px; }
+.pf-carta-texto { font-family: var(--f-display); font-weight: 600; font-size: 20px; line-height: 1.45; padding-inline-end: 34px; }
+.pf-carta-acoes { display: flex; flex-wrap: wrap; gap: 8px; }
+.pf-pendentes { display: grid; gap: 10px; padding: 16px; border-radius: var(--raio); background: color-mix(in oklch, var(--aviso) 8%, var(--tecido-2)); }
+.pf-pendentes h3 { font-size: 20px; }
+/* o fundo da seção é tingido de aviso: o cinza de apoio dava 4,48:1 ali, então o texto miúdo usa a tinta de segundo nível */
+.pf-pendentes .miudo { color: var(--tinta-2); }
+
+/* ---------- trabalhos entregues ---------- */
+.pf-entregas { display: grid; gap: 16px; }
+.pf-entrega { display: grid; gap: 12px; padding: 18px; border-radius: var(--raio); background: var(--tecido);  border-top: 6px solid color-mix(in oklch, var(--fio) 70%, var(--tecido)); }
+.pf-entrega header { display: grid; grid-template-columns: 1fr auto; column-gap: 10px; align-items: start; }
+.pf-entrega h3 { font-size: 21px; grid-column: 1; }
+.pf-entrega time { color: var(--tinta-3); font-size: 14px; grid-column: 1; }
+.pf-entrega header .pf-menu-conteudo { grid-column: 2; grid-row: 1 / span 2; margin-block: -6px 0; margin-inline: 0 -8px; }
+.pf-entrega-bloco { display: grid; gap: 4px; }
+.pf-entrega-resultado { display: flex; gap: 12px; padding: 12px 14px; border-radius: var(--raio); background: var(--ok-fundo); }
+.pf-entrega-resultado > div { display: grid; gap: 2px; }
+.pf-resultado-selo { flex: none; color: var(--ok); margin-top: 2px; }
+.pf-resultado-selo svg { width: 22px; height: 22px; }
+
+/* ---------- amigos e grupos ---------- */
+.pf-amigos { display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); }
+.pf-amigo { display: grid; justify-items: center; gap: 4px; padding: 14px 8px 12px; border-radius: var(--raio); text-align: center; background: color-mix(in oklch, var(--pelucia) 12%, var(--tecido)); min-height: 44px; height: 100%; }
+.pf-amigo:hover { text-decoration: none; background: color-mix(in oklch, var(--pelucia) 22%, var(--tecido)); }
+.pf-amigo strong { font-family: var(--f-display); font-size: 16px; font-weight: 800; overflow-wrap: anywhere; }
+.pf-amigo small { font-size: 13px; color: var(--tinta-3); line-height: 1.2; }
+.pf-em-comum { display: grid; gap: 8px; padding: 14px; border-radius: var(--raio); background: var(--tecido-2); }
+.pf-em-comum ul { display: grid; gap: 4px; }
+.pf-grupos { display: grid; gap: 10px; margin-top: 10px; }
+.pf-grupo { display: flex; align-items: center; gap: 14px; padding: 12px 14px; border-radius: var(--raio); background: var(--tecido);  min-height: 64px; border: 1px solid var(--linha); }
+.pf-grupo:hover { text-decoration: none; background: var(--tecido-2); }
+.pf-grupo-texto { display: grid; min-width: 0; flex: 1; }
+.pf-grupo-texto strong { font-family: var(--f-display); font-size: 17px; font-weight: 800; overflow-wrap: anywhere; }
+.pf-grupo-texto small { color: var(--tinta-2); font-size: 14px; }
+
+/* ---------- página de amigos e relações ---------- */
+.pf-bloco { display: grid; gap: 10px; align-content: start; padding: 18px; border-radius: var(--raio); background: var(--tecido); border: 1px solid var(--linha); }
+.pf-bloco h2 { font-size: 22px; display: flex; align-items: baseline; gap: 10px; }
+.pf-linhas { display: grid; gap: 6px; }
+.pf-linhas > li { display: grid; gap: 8px; }
+.pf-linhas .cartao-rover { flex-wrap: wrap; row-gap: 8px; }
+.pf-linhas .cartao-rover-extra { margin-inline-start: 56px; }
+.pf-convite { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; align-items: center; padding: 6px 0; }
+.pf-convite-texto { display: grid; min-width: 0; }
+.pf-convite-texto small { color: var(--tinta-3); }
+.pf-linha-botoes { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* ---------- avisos ---------- */
+.pf-avisos { display: grid; gap: 8px; margin: 10px 0 22px; }
+.pf-aviso { display: grid; grid-template-columns: 40px 1fr; gap: 14px; padding: 14px 16px; border-radius: var(--raio); background: var(--tecido);  align-items: start; border: 1px solid var(--linha); }
+.pf-aviso[data-novo='true'] { background: color-mix(in oklch, var(--fio) 8%, var(--tecido)); box-shadow: var(--sombra), inset 5px 0 0 var(--fio-forte); }
+.pf-aviso-icone { display: grid; place-items: center; width: 40px; height: 40px; color: var(--tinta-2); }
+.pf-aviso-icone svg { width: 28px; height: 28px; }
+.pf-arroba { font-family: var(--f-display); font-weight: 800; font-size: 26px; line-height: 1; }
+.pf-aviso-corpo { display: grid; gap: 2px; min-width: 0; }
+.pf-aviso-corpo p { font-size: 17px; line-height: 1.4; text-wrap: pretty; overflow-wrap: anywhere; }
+.pf-aviso-corpo small { color: var(--tinta-3); font-size: 14px; }
+.pf-aviso-acoes { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.pf-aviso-acoes:empty { display: none; }
+
+@media (min-width: 700px) {
+  .pf-corpo { padding: 24px 28px 28px; }
+  .pf-mural { grid-template-columns: 1fr 1fr; align-items: start; }
+  .pf-linhas .cartao-rover { flex-wrap: nowrap; }
+  .pf-linhas .cartao-rover-extra { margin-inline-start: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .pf-bilhete { transform: none; } }
+@media (forced-colors: active) {
+  .pf-ficha, .pf-bilhete, .pf-carta, .pf-entrega, .pf-grupo, .pf-aviso, .pf-bloco { border: 1.5px solid CanvasText; }
+  .pf-estado-btn[aria-pressed='true'] { outline: 2px solid Highlight; }
+}
+
+/* o topo do celular ganhou Descobrir e Buscar: a marca não pode quebrar em duas linhas */
+@media (max-width: 959px) {
+  .topo .marca { flex: none; white-space: nowrap; font-size: 18px; }
+  .topo .marca svg { width: 28px; height: 28px; }
+}
+
+.pf-abas a { padding: 0 14px; }
+.pf-carta footer .pf-bilhete-autor { flex: 1; min-width: 0; }
+.pf-aviso-corpo small { display: flex; flex-wrap: wrap; align-items: center; column-gap: 6px; }
+.pf-abrir { display: inline-flex; align-items: center; min-height: 44px; padding: 0 6px; margin-inline-start: 4px; color: var(--acao); font-weight: 800; font-size: 16px; }
+.pf-linhas .cartao-rover-link { flex: 1 1 220px; }
+
+/* ---------- v2: editorial (ver docs/DESIGN-V2.md). Bilhete, carta e medalha deixam de ser objetos e viram fio e tipografia ---------- */
+.pf-ficha { border: 1px solid var(--linha); box-shadow: none; }
+.pf-estado { border: 1px solid var(--linha-forte); box-shadow: none; font-weight: 700; }
+.pf-dot { box-shadow: none; }
+.pf-estado-seletor, .pf-mais-opcoes, .pf-em-comum, .pf-nota { background: var(--tecido-2); }
+.pf-estado-btn { border-width: 1px; font-weight: 700; }
+.pf-selos { background: transparent; border: 1px solid var(--linha); border-radius: var(--raio); }
+.pf-medalha strong { font-weight: 700; }
+.pf-medalha-disco { width: 56px; height: 56px; border-radius: var(--raio); box-shadow: none; border: 1px solid var(--ponto-m); }
+.pf-medalha-disco b { font-size: 20px; letter-spacing: -0.03em; }
+.pf-aba h2 { font-size: 22px; }
+.pf-mural { gap: 0; padding: 0; border-top: 1px solid var(--linha); margin-top: 8px; }
+.pf-bilhete { transform: none; background: transparent; box-shadow: none; border-radius: 0; border-bottom: 1px solid var(--linha); padding: 16px 0 14px; }
+.pf-ponto { display: none; }
+.pf-bilhete-autor strong { font-weight: 700; }
+.pf-bilhete-texto { font-size: 17px; }
+.pf-cartas { gap: 12px; }
+.pf-carta { background: transparent; box-shadow: none; border-radius: 0; border-inline-start: 3px solid color-mix(in oklch, var(--pelucia) 60%, var(--linha-forte)); padding-block: 6px 6px; padding-inline: 18px 0; }
+.pf-carta.pendente { background: var(--aviso-fundo); border: 0; border-inline-start: 3px solid var(--aviso); padding: 14px 16px; }
+.pf-aspas { display: none; }
+.pf-carta-texto { padding-inline-end: 0; font-weight: 600; font-size: 19px; letter-spacing: -0.015em; }
+.pf-pendentes { background: var(--tecido-2); border-radius: var(--raio); }
+.pf-entrega { background: transparent; border: 0; border-top: 2px solid var(--tinta); border-radius: 0; padding: 14px 0 6px; }
+.pf-entrega h3 { font-size: 19px; }
+.pf-entrega-resultado { border-inline-start: 3px solid var(--ok); border-radius: 0; }
+.pf-amigo { background: transparent; border: 1px solid var(--linha); }
+.pf-amigo:hover { background: var(--tecido-2); }
+.pf-amigo strong, .pf-grupo-texto strong { font-weight: 700; }
+.pf-grupo, .pf-bloco { background: transparent; border: 1px solid var(--linha); }
+.pf-bloco h2 { font-size: 18px; }
+.pf-avisos { gap: 0; border-top: 1px solid var(--linha); }
+.pf-aviso { background: transparent; border: 0; border-bottom: 1px solid var(--linha); border-radius: 0; padding: 14px 0; }
+.pf-aviso[data-novo='true'] { background: transparent; border-inline-start: 3px solid var(--acao); padding-inline-start: 14px; box-shadow: none; }
+.pf-arroba { font-weight: 800; }
+@media (min-width: 700px) { .pf-mural { grid-template-columns: 1fr; } }
+/* contagens do perfil em duas colunas (celular): o primeiro item de cada linha não leva fio nem recuo */
+@media (max-width: 520px) {
+  .pf-contagens div:nth-child(odd) { border-inline-start: 0; padding-inline-start: 0; }
+  .pf-contagens div:nth-child(even) { border-inline-start: 1px solid var(--linha); padding-inline-start: 16px; }
+  .pf-contagens div:nth-child(n + 3) { border-top: 1px solid var(--linha); }
+}

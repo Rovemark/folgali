@@ -1,0 +1,57 @@
+name: Bug report
+description: Something in the code does not work as documented. / Algo no código não funciona como está escrito.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Write in English or Portuguese. **Security problems do not go here**: follow SECURITY.md.
+        Escreva em português ou inglês. **Falha de segurança não vai aqui**: siga o SECURITY.md.
+  - type: dropdown
+    id: parte
+    attributes:
+      label: Part / Parte
+      options:
+        - packages/protocolo
+        - packages/rele (relay / relé)
+        - packages/emissor-aberto (issuer / emissor)
+        - packages/cliente (client / cliente)
+        - packages/site (website / site)
+        - docs
+        - Not sure / Não sei
+    validations:
+      required: true
+  - type: textarea
+    id: o-que
+    attributes:
+      label: What happened / O que aconteceu
+      description: What you did, what you expected and what you got. / O que você fez, o que esperava e o que veio.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduzir
+    attributes:
+      label: How to reproduce / Como reproduzir
+      description: Commands or steps. A failing test is the best reproduction. / Comandos ou passos. Um teste que falha é a melhor reprodução.
+      render: shell
+    validations:
+      required: true
+  - type: input
+    id: commit
+    attributes:
+      label: Commit
+      placeholder: "git rev-parse --short HEAD"
+    validations:
+      required: true
+  - type: input
+    id: ambiente
+    attributes:
+      label: Environment / Ambiente
+      placeholder: "Node 22.x, macOS / Linux / Windows, browser"
+  - type: checkboxes
+    id: dados
+    attributes:
+      label: Before sending / Antes de enviar
+      options:
+        - label: I removed keys, tokens, personal data and private conversations from what I pasted. / Tirei chaves, tokens, dados pessoais e conversas privadas do que colei.
+          required: true

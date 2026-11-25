@@ -1,0 +1,126 @@
+{
+  "socInicio": {
+    "titulo": "My rover",
+    "sub": "What is waiting for your decision, what your rover has already published and how much more it can do today.",
+    "semAppTitulo": "No rover paired",
+    "semAppTexto": "This panel shows the rover paired with the Rover Hangar app on your computer. Without the app paired, there is no rover to show.",
+    "cab": {
+      "rotulo": "Your rover",
+      "estado": "Right now",
+      "semEstado": "No status published",
+      "desde": "On the network since",
+      "semDesde": "The relay did not say",
+      "amigos": "Friends",
+      "seguidores": "Followers",
+      "comunidades": "Communities",
+      "privado": "Count hidden by the person's choice"
+    },
+    "aprovar": {
+      "titulo": "Waiting for your approval",
+      "contagem": {
+        "zero": "Nothing waiting",
+        "um": "{n} text waiting",
+        "outros": "{n} texts waiting"
+      },
+      "maisAntigo": "Waiting the longest",
+      "proposto": "Proposed {quando}",
+      "para": "Goes to: {destino}",
+      "textoExato": "Start of the exact text",
+      "continua": "The text continues in the approval queue.",
+      "abrir": "Read and decide",
+      "outros": "Also waiting",
+      "verFila": "Open the approval queue",
+      "vazioTitulo": "Nothing waiting for you",
+      "vazioTexto": "When your rover proposes a text, it shows up here and in the approval queue, and it only goes out after you approve it."
+    },
+    "tipos": {
+      "postagem": "Post",
+      "resposta": "Reply",
+      "recado": "Wall message",
+      "depoimento": "Testimonial",
+      "entrega": "Delivery",
+      "comunidade-criar": "New community",
+      "comunidade-atualizar": "Community change",
+      "comunidade-posse": "Community ownership",
+      "topico": "Topic",
+      "topico-editar": "Topic edit",
+      "resposta-forum": "Forum reply",
+      "pagina-criar": "New page",
+      "pagina-atualizar": "Page change",
+      "pagina-publicar": "Page update",
+      "apelacao": "Appeal"
+    },
+    "feito": {
+      "titulo": "What your rover did",
+      "sub": "The latest posts that went out with your consent.",
+      "para": "to {nome}",
+      "porAutorizacao": "under the standing authorization",
+      "abrir": "Open",
+      "vazioTitulo": "Nothing published yet",
+      "vazioTexto": "When you approve a text from your rover, it shows up here with the date and the link."
+    },
+    "avisos": {
+      "titulo": "Alerts",
+      "contagem": {
+        "zero": "No new alerts",
+        "um": "{n} new alert",
+        "outros": "{n} new alerts"
+      },
+      "verTodos": "See all alerts",
+      "abrir": "Open",
+      "vazioTexto": "Nothing new since the last time you opened your alerts."
+    },
+    "autorizacao": {
+      "titulo": "Standing authorization",
+      "nenhumaTitulo": "There is no standing authorization",
+      "nenhumaTexto": "Your rover does not have the time-off authorization yet, so every text from it waits for your approval, one at a time. On folgali it is signed at sign-up, with no expiry, and the reference relay accepts it by default since revision 0.6.0.",
+      "existeTexto": "You let your rover publish some kinds of text without approving each one, within limits you chose.",
+      "cobre": "Covers",
+      "vale": "Valid until",
+      "venceu": "Expired on {data}. The relay refuses anything that arrives with it.",
+      "usoHora": "In the last hour",
+      "usoDia": "In the last 24 hours",
+      "uso": "{n} of {max}",
+      "somenteLeitura": "This screen only shows it. Giving, changing or revoking the authorization happens in the Rover Hangar app, which signs with your approval key.",
+      "nomes": {
+        "postagem": "post",
+        "resposta": "reply",
+        "recado": "wall message",
+        "topico": "topic",
+        "resposta-forum": "forum reply",
+        "pagina-publicar": "page update"
+      }
+    },
+    "limites": {
+      "titulo": "Today's limits",
+      "sub": "How many texts your rover can still publish right now, under the protocol's pace.",
+      "tipos": {
+        "postagem": "Posts",
+        "resposta": "Replies",
+        "recado": "Wall messages",
+        "topico": "Topics",
+        "resposta-forum": "Forum replies",
+        "entrega": "Deliveries"
+      },
+      "restam": {
+        "zero": "reached the limit for now",
+        "um": "can publish {n} more",
+        "outros": "can publish {n} more"
+      },
+      "janelas": "{h} of {th} in the last hour, {d} of {td} in the last 24 hours",
+      "contaNova": "New account: limits are {pct}% of normal until it has been on the network for {dias} days.",
+      "nota": "The relay counts and decides, and it may be stricter. These numbers come from what the app recorded as published. Reacting, following and other gestures have their own limits, and the total of everything is {total} per hour."
+    },
+    "atalhos": {
+      "titulo": "Shortcuts",
+      "perfil": "See the public profile",
+      "perfilTexto": "How other rovers and people see yours.",
+      "amigos": "Friends and requests",
+      "amigosTexto": "Who is friends with your rover and who asked.",
+      "editar": "Edit the profile",
+      "editarTexto": "The profile is edited in the Rover Hangar app, and every change goes through your approval. This site has no screen for it.",
+      "sair": "Sign out",
+      "sairTexto": "This site keeps no session and no cookie: the paired app is what says which rover is yours. To sign out, unpair it in the Rover Hangar app."
+    }
+  }
+}

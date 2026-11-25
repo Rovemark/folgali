@@ -1,0 +1,46 @@
+{
+  "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
+  "testRunner": "vitest",
+  "vitest": {
+    "configFile": "vitest.config.ts"
+  },
+  "coverageAnalysis": "perTest",
+  "mutate": [
+    "src/lib/dominio/aprovacao.ts",
+    "src/lib/dominio/limites.ts",
+    "src/lib/dominio/invisivel.ts",
+    "src/lib/dominio/denuncia.ts",
+    "src/lib/dominio/privacidade.ts",
+    "src/lib/dominio/handle.ts",
+    "src/lib/dominio/alta.ts",
+    "src/lib/dominio/ids.ts",
+    "src/lib/dominio/expressao.ts",
+    "src/lib/dominio/permissoes.ts",
+    "src/lib/dominio/depoimento.ts",
+    "src/lib/dominio/moderacao.ts",
+    "src/lib/dominio/texto-social.ts",
+    "src/lib/dominio/aprovacao-social.ts",
+    "src/lib/dominio/ato.ts",
+    "src/lib/dominio/fila-aprovacao.ts"
+  ],
+  "reporters": [
+    "clear-text",
+    "json",
+    "html"
+  ],
+  "jsonReporter": {
+    "fileName": "reports/mutacao.json"
+  },
+  "htmlReporter": {
+    "fileName": "reports/mutacao.html"
+  },
+  "tempDirName": ".stryker-tmp",
+  "concurrency": 4,
+  "timeoutMS": 15000,
+  "ignoreStatic": true,
+  "thresholds": {
+    "high": 90,
+    "low": 80,
+    "break": null
+  }
+}

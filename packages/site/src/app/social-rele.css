@@ -1,0 +1,53 @@
+/* Revisão 0.3.2: vocabulário das comunidades (etiquetas e status), nota das ordens por pessoas e anúncios do operador do relé.
+   As oito cores do protocolo são fixas (azul, verde, ambar, vermelho, violeta, rosa, laranja, cinza) e o chip sempre leva o texto: a cor
+   nunca é o único sinal. Cada cor tem um par de claro e escuro com contraste de texto de pelo menos 4,5:1. */
+
+.voc-chip {
+  --voc-h: 268; --voc-c: 0.012;
+  display: inline-flex; align-items: center; gap: 6px; min-height: 28px; padding: 2px 12px; border-radius: var(--raio-peq);
+  font-size: 14px; font-weight: 800; line-height: 1.2; white-space: nowrap; max-width: 100%;
+  background: light-dark(oklch(0.93 calc(var(--voc-c) * 4) var(--voc-h)), oklch(0.3 calc(var(--voc-c) * 2.2) var(--voc-h)));
+  color: light-dark(oklch(0.38 calc(var(--voc-c) * 6) var(--voc-h)), oklch(0.88 calc(var(--voc-c) * 5) var(--voc-h)));
+}
+/* o status é um selo com ponto; a etiqueta é uma pílula lisa: a forma também diz qual dos dois é */
+.voc-chip[data-tipo='status'] { border-radius: var(--raio); border: 1.5px solid currentColor; }
+.voc-chip[data-tipo='etiqueta'] { border-radius: var(--raio-peq); }
+.voc-ponto { width: 8px; height: 8px; border-radius: 50%; background: currentColor; flex: none; }
+.voc-chip[data-cor='azul'] { --voc-h: 255; --voc-c: 0.03; }
+.voc-chip[data-cor='verde'] { --voc-h: 155; --voc-c: 0.03; }
+.voc-chip[data-cor='ambar'] { --voc-h: 80; --voc-c: 0.03; }
+.voc-chip[data-cor='vermelho'] { --voc-h: 25; --voc-c: 0.03; }
+.voc-chip[data-cor='violeta'] { --voc-h: 300; --voc-c: 0.03; }
+.voc-chip[data-cor='rosa'] { --voc-h: 350; --voc-c: 0.03; }
+.voc-chip[data-cor='laranja'] { --voc-h: 50; --voc-c: 0.03; }
+.voc-chip[data-cor='cinza'] { --voc-h: 268; --voc-c: 0.012; }
+
+/* filtros por marca: o chip dentro de um link de 44 px, com o selecionado destacado por anel (e não só por cor) */
+.voc-filtros { display: grid; gap: 4px; }
+.voc-filtro { display: inline-flex; align-items: center; min-height: 44px; padding: 0 4px; border-radius: var(--raio-peq); flex: none; }
+.voc-filtro:hover { text-decoration: none; }
+.voc-filtro:hover .voc-chip { filter: brightness(0.96); }
+.voc-filtro[aria-current='true'] .voc-chip { outline: 2.5px solid var(--acao); outline-offset: 2px; }
+.voc-filtro:focus-visible { outline: 3px solid var(--acao); outline-offset: 1px; }
+
+/* a nota das ordens por pessoas */
+.ordem-pessoas { display: grid; gap: 8px; margin: 0 0 8px; }
+.ordem-nota { max-width: 62ch; text-wrap: pretty; }
+
+/* anúncios do operador do relé (início) */
+.anuncios-rele { display: grid; gap: 10px; margin: 0 0 20px; padding: 16px 18px 14px; border-radius: var(--raio); background: var(--tecido); border: 1.5px solid var(--linha); border-inline-start: 6px solid var(--acao); }
+.anuncios-rele ul { display: grid; gap: 14px; margin: 0; padding: 0; list-style: none; }
+.anuncio { display: grid; gap: 6px; min-width: 0; }
+.anuncio + .anuncio { padding-top: 14px; border-top: 1px solid var(--linha); }
+.anuncio-cab { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+.anuncio h3 { font-size: 18px; line-height: 1.25; overflow-wrap: anywhere; }
+.anuncio-texto { color: var(--tinta-2); white-space: pre-line; overflow-wrap: anywhere; text-wrap: pretty; max-width: 68ch; }
+.anuncio details summary { cursor: pointer; font-weight: 800; color: var(--acao); min-height: 44px; display: inline-flex; align-items: center; }
+.anuncio details[open] summary { margin-bottom: 4px; }
+.anuncios-rele .miudo { color: var(--tinta-3); }
+
+@media (forced-colors: active) {
+  .voc-chip { border: 1px solid CanvasText; }
+  .voc-filtro[aria-current='true'] .voc-chip { outline-color: Highlight; }
+  .anuncios-rele { border-inline-start-color: Highlight; }
+}

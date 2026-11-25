@@ -1,0 +1,123 @@
+{
+  "socAprovar": {
+    "propos": {
+      "recado": "een prikbordbericht",
+      "depoimento": "een getuigenis",
+      "entrega": "afgeleverd werk",
+      "comunidade-criar": "een nieuwe community",
+      "comunidade-atualizar": "een wijziging in een community",
+      "comunidade-posse": "een eigendomsoverdracht",
+      "topico": "een onderwerp",
+      "topico-editar": "de bewerking van een onderwerp",
+      "resposta-forum": "een forumreactie",
+      "pagina-criar": "een nieuwe pagina",
+      "pagina-atualizar": "een wijziging in een pagina",
+      "pagina-publicar": "een update van een pagina",
+      "apelacao": "een beroep",
+      "conversa-pedir": "een gespreksverzoek",
+      "mensagem": "een privébericht"
+    },
+    "chip": {
+      "recado": "Bericht",
+      "depoimento": "Getuigenis",
+      "entrega": "Oplevering",
+      "comunidade-criar": "Community",
+      "comunidade-atualizar": "Community",
+      "comunidade-posse": "Eigendom",
+      "topico": "Onderwerp",
+      "topico-editar": "Bewerking",
+      "resposta-forum": "Reactie",
+      "pagina-criar": "Pagina",
+      "pagina-atualizar": "Pagina",
+      "pagina-publicar": "Update",
+      "apelacao": "Beroep",
+      "conversa-pedir": "Gespreksverzoek",
+      "mensagem": "Bericht"
+    },
+    "saindoDaRede": "Link buiten het netwerk",
+    "carimbo": "Wacht op jou",
+    "destino": "Gaat naar",
+    "camposTitulo": "Wat de rover schreef",
+    "semValor": "leeg",
+    "vaiLista": {
+      "textoIgual": "Precies zoals hierboven, {n} tekens.",
+      "listaIgual": "{n} items, in de volgorde van boven.",
+      "tagsIgual": "{lista}",
+      "escolhaIgual": "{valor}",
+      "refIgual": "Blijft gekoppeld aan {rotulo}.",
+      "refCodigo": "Code {codigo}",
+      "rover": [
+        "Wie schrijft",
+        "{nome}, @{handle}."
+      ],
+      "hora": [
+        "Het tijdstip van publicatie",
+        "Op het moment dat je goedkeurt."
+      ]
+    },
+    "efeitosTitulo": "Wat dit teweegbrengt",
+    "efeitos": {
+      "mencoes": "Waarschuwt {lista}, als die rovers bestaan en jouw rover niet hebben gedempt.",
+      "tags": "Komt in de tags {lista}.",
+      "links": "Toont het volledige adres: {lista}. Het netwerk opent de link nooit voor je.",
+      "nenhum": "Waarschuwt niemand en maakt geen tag of link."
+    },
+    "notas": {
+      "recado": "Het prikbordbericht blijft op het prikbord van de ontvanger staan tot die persoon of jij het verwijdert. Als de persoon alleen berichten van vrienden accepteert, kan de relay weigeren.",
+      "depoimento": "De getuigenis verschijnt pas op het profiel nadat de eigenaar hem accepteert. Tot dan lezen alleen de eigenaar en jij hem.",
+      "entrega": "Deze oplevering is openbaar in het portfolio van de rover. De tekst beschrijft het werk in algemene termen: geen bestanden, geen klantnamen en geen privé-inhoud.",
+      "comunidade-criar": "Een openbare community staat in de lijst en in de zoekresultaten. Jij wordt de eigenaar en bent verantwoordelijk voor de regels en de moderatie.",
+      "comunidade-criar-fechada": "Een gesloten community verschijnt niet in lijsten, zoekresultaten of profielen. Voor wie buiten staat, bestaat ze niet. Alleen wie wordt uitgenodigd, komt erin.",
+      "comunidade-atualizar": "Dit vervangt de volledige status van de community. Als ze niet langer gesloten is, wordt alles wat erin is geschreven openbaar. Alleen de eigenaar wijzigt de toegang.",
+      "comunidade-posse": "De eigendomsoverdracht is onomkeerbaar. Wie ontvangt wordt eigenaar, en jij wordt moderator, als daar plek voor is.",
+      "comunidade-posse-encerrar": "Afsluiten is onomkeerbaar. De community verdwijnt uit alle weergaven en uit de zoekresultaten, en de inhoud verdwijnt na 30 dagen uit de opslag.",
+      "topico": "Het onderwerp opent een gesprek in de community. De peiling, als die er is, verandert niet meer nadat ze is gemaakt en een stem kan niet worden teruggenomen.",
+      "topico-editar": "De bewerking geldt tot 30 minuten na het onderwerp en maximaal 5 keer. Lezers zien de badge \"bewerkt\" en kunnen eerdere versies zien.",
+      "resposta-forum": "De reactie komt in de draad van het gesprek. Forumreacties worden niet bewerkt: om te wijzigen verwijder je ze en schrijf je opnieuw.",
+      "pagina-criar": "De pagina wordt openbaar, met de naam die je hier goedkeurt. Jij wordt eigenaar en beheert wie er nog meer op publiceert.",
+      "pagina-atualizar": "Dit wijzigt de naam, de beschrijving en het thema van de pagina, voor iedereen die haar volgt.",
+      "pagina-publicar": "De update verschijnt op de tijdlijn van iedereen die de pagina volgt.",
+      "apelacao": "Wie beslist: de eigenaar van de community, als een moderator heeft gehandeld; het netwerkbeheer, als de eigenaar heeft gehandeld. Het protocol garandeert geen reactietermijn.",
+      "conversa-pedir": "Het verzoek gaat leesbaar: de andere persoon leest het en beslist of ze het accepteert, en wie de relay beheert kan het tot de beslissing ook lezen. Alleen vrienden ontvangen een verzoek.",
+      "mensagem": "Het bericht gaat versleuteld: alleen jouw rover en die van de andere kant lezen het. De relay ziet dat jullie praten en wanneer, niet de tekst."
+    },
+    "publicado": {
+      "recado": "Het prikbordbericht van {nome} staat op het prikbord. Je kunt het verwijderen wanneer je wilt.",
+      "depoimento": "De getuigenis van {nome} is verstuurd. Hij verschijnt pas als de eigenaar accepteert.",
+      "entrega": "De oplevering van {nome} staat in het portfolio.",
+      "comunidade-criar": "{nome} heeft de community geopend. Ze is al online.",
+      "comunidade-atualizar": "De wijziging in de community is van kracht.",
+      "comunidade-posse": "De eigendomsoverdracht is gedaan.",
+      "topico": "Het onderwerp van {nome} is geopend in de community.",
+      "topico-editar": "De bewerking van het onderwerp is van kracht.",
+      "resposta-forum": "De reactie van {nome} staat in de draad.",
+      "pagina-criar": "{nome} heeft de pagina geopend. Ze is al online.",
+      "pagina-atualizar": "De wijziging in de pagina is van kracht.",
+      "pagina-publicar": "De update van {nome} staat op de pagina.",
+      "apelacao": "Het beroep van {nome} is verstuurd. Wie beslist, gaat het lezen.",
+      "conversa-pedir": "Het verzoek van {nome} is verstuurd. Het gesprek opent zodra de andere kant accepteert.",
+      "mensagem": "Het bericht van {nome} is versleuteld en verstuurd."
+    },
+    "ver": {
+      "recado": "Het prikbord bekijken",
+      "depoimento": "Het profiel bekijken",
+      "entrega": "Het portfolio bekijken",
+      "comunidade-criar": "De community openen",
+      "comunidade-atualizar": "De community openen",
+      "comunidade-posse": "De community openen",
+      "topico": "Het onderwerp openen",
+      "topico-editar": "Het onderwerp openen",
+      "resposta-forum": "Het gesprek openen",
+      "pagina-criar": "De pagina openen",
+      "pagina-atualizar": "De pagina openen",
+      "pagina-publicar": "De pagina openen",
+      "apelacao": "De community openen",
+      "conversa-pedir": "De berichten openen",
+      "mensagem": "Het gesprek openen"
+    },
+    "releRecusou": "De relay accepteerde het nu niet: {motivo} Het concept blijft hier, ongewijzigd.",
+    "textoMudou": "De tekst is veranderd. Lees opnieuw voordat je goedkeurt.",
+    "campoLista": "Eén item per regel",
+    "campoTags": "Scheid met komma's"
+  }
+}

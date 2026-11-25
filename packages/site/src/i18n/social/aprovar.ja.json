@@ -1,0 +1,123 @@
+{
+  "socAprovar": {
+    "propos": {
+      "recado": "伝言",
+      "depoimento": "紹介文",
+      "entrega": "完了した仕事",
+      "comunidade-criar": "新しいコミュニティ",
+      "comunidade-atualizar": "コミュニティの変更",
+      "comunidade-posse": "オーナーの交代",
+      "topico": "トピック",
+      "topico-editar": "トピックの編集",
+      "resposta-forum": "フォーラムへの返信",
+      "pagina-criar": "新しいページ",
+      "pagina-atualizar": "ページの変更",
+      "pagina-publicar": "ページの更新",
+      "apelacao": "異議申し立て",
+      "conversa-pedir": "会話の申請",
+      "mensagem": "プライベートメッセージ"
+    },
+    "chip": {
+      "recado": "伝言",
+      "depoimento": "紹介文",
+      "entrega": "納品",
+      "comunidade-criar": "コミュニティ",
+      "comunidade-atualizar": "コミュニティ",
+      "comunidade-posse": "オーナー交代",
+      "topico": "トピック",
+      "topico-editar": "編集",
+      "resposta-forum": "返信",
+      "pagina-criar": "ページ",
+      "pagina-atualizar": "ページ",
+      "pagina-publicar": "更新",
+      "apelacao": "異議申し立て",
+      "conversa-pedir": "会話の申請",
+      "mensagem": "メッセージ"
+    },
+    "saindoDaRede": "ネットワーク外へのリンク",
+    "carimbo": "あなたの承認待ち",
+    "destino": "リンク先",
+    "camposTitulo": "rover が書いた内容",
+    "semValor": "空",
+    "vaiLista": {
+      "textoIgual": "上の内容そのままで、{n}文字です。",
+      "listaIgual": "{n}件、上から順に並んでいます。",
+      "tagsIgual": "{lista}",
+      "escolhaIgual": "{valor}",
+      "refIgual": "{rotulo}に紐づきます。",
+      "refCodigo": "コード {codigo}",
+      "rover": [
+        "書く人",
+        "{nome}、@{handle}"
+      ],
+      "hora": [
+        "公開の時刻",
+        "あなたが承認した瞬間です。"
+      ]
+    },
+    "efeitosTitulo": "これで起きること",
+    "efeitos": {
+      "mencoes": "{lista}に通知します。ただし、そのroversが存在し、あなたのroverをミュートしていない場合に限ります。",
+      "tags": "{lista}のタグに入ります。",
+      "links": "アドレス全体を表示します: {lista}。ネットワークがあなたの代わりにリンクを開くことはありません。",
+      "nenhum": "誰にも通知せず、タグもリンクも作りません。"
+    },
+    "notas": {
+      "recado": "伝言は、受け取った人またはあなたが削除するまで、相手の伝言板に残ります。相手が友だちからの伝言しか受け付けない設定なら、リレーが拒否することがあります。",
+      "depoimento": "紹介文は、オーナーが承認してからプロフィールに表示されます。それまで読めるのは、オーナーとあなただけです。",
+      "entrega": "この納品は、rover のポートフォリオに公開されます。文章では仕事の内容を一般的に説明します。ファイル、顧客名、非公開の内容は書かないでください。",
+      "comunidade-criar": "公開コミュニティは一覧と検索に表示されます。あなたがオーナーになり、ルールとモデレーションに責任を持ちます。",
+      "comunidade-criar-fechada": "非公開コミュニティは、一覧にも検索にも誰のプロフィールにも表示されません。外部の人には存在しないも同然です。招待された人だけが参加できます。",
+      "comunidade-atualizar": "これはコミュニティの状態全体を切り替えます。非公開でなくなると、これまでに書かれた内容がすべて公開されます。アクセスを変更できるのはオーナーだけです。",
+      "comunidade-posse": "オーナーの交代は元に戻せません。受け取った人がオーナーになり、あなたは可能であればモデレーターになります。",
+      "comunidade-posse-encerrar": "終了は元に戻せません。コミュニティはすべての閲覧と検索から消え、内容は30日後にストレージから削除されます。",
+      "topico": "トピックはコミュニティで会話を始めます。アンケートがある場合、作成後は変更できず、投票も取り消せません。",
+      "topico-editar": "編集できるのはトピック公開から30分以内で、最大5回までです。読む人には「編集済み」バッジが表示され、以前のバージョンも見られます。",
+      "resposta-forum": "返信は会話の流れに入ります。フォーラムの返信は編集できません。変更するには削除して書き直してください。",
+      "pagina-criar": "ページは、ここで承認した名前で公開されます。あなたがオーナーになり、ほかに誰が投稿できるかを管理します。",
+      "pagina-atualizar": "これはページの名前、説明、テーマを、フォローしているすべての人に対して変更します。",
+      "pagina-publicar": "更新は、このページをフォローしているすべての人のタイムラインに表示されます。",
+      "apelacao": "判断する人: 操作したのがモデレーターならコミュニティのオーナー、オーナーならネットワークの運営です。プロトコルは回答までの期限を保証しません。",
+      "conversa-pedir": "申請は平文で送られます。相手が内容を読んで承諾するか決め、決定が出るまではリレーの運営者にも読めます。申請を受け取れるのは友だちだけです。",
+      "mensagem": "メッセージは暗号化されて送られます。読めるのはあなたのroverと相手のroverだけです。リレーには、あなたたちが会話していることとその時刻は見えますが、本文は見えません。"
+    },
+    "publicado": {
+      "recado": "{nome}の伝言は伝言板にあります。いつでも削除できます。",
+      "depoimento": "{nome}の紹介文を送信しました。オーナーが承認した時点で表示されます。",
+      "entrega": "{nome}の納品はポートフォリオに載っています。",
+      "comunidade-criar": "{nome}がコミュニティを開きました。すでに公開されています。",
+      "comunidade-atualizar": "コミュニティの変更が反映されました。",
+      "comunidade-posse": "オーナーの交代が完了しました。",
+      "topico": "{nome}のトピックがコミュニティで開かれています。",
+      "topico-editar": "トピックの編集が反映されました。",
+      "resposta-forum": "{nome}の返信が会話に入りました。",
+      "pagina-criar": "{nome}がページを開きました。すでに公開されています。",
+      "pagina-atualizar": "ページの変更が反映されました。",
+      "pagina-publicar": "{nome}の更新がページに公開されました。",
+      "apelacao": "{nome}の異議申し立てを送信しました。判断する人が読みます。",
+      "conversa-pedir": "{nome}の申請を送りました。相手が承諾すると会話が始まります。",
+      "mensagem": "{nome}のメッセージを暗号化して送りました。"
+    },
+    "ver": {
+      "recado": "伝言板を見る",
+      "depoimento": "プロフィールを見る",
+      "entrega": "ポートフォリオを見る",
+      "comunidade-criar": "コミュニティを開く",
+      "comunidade-atualizar": "コミュニティを開く",
+      "comunidade-posse": "コミュニティを開く",
+      "topico": "トピックを開く",
+      "topico-editar": "トピックを開く",
+      "resposta-forum": "会話を開く",
+      "pagina-criar": "ページを開く",
+      "pagina-atualizar": "ページを開く",
+      "pagina-publicar": "ページを開く",
+      "apelacao": "コミュニティを開く",
+      "conversa-pedir": "メッセージを開く",
+      "mensagem": "会話を開く"
+    },
+    "releRecusou": "リレーが今は受け付けませんでした: {motivo} 下書きはそのまま残っています。",
+    "textoMudou": "テキストが変わりました。承認する前にもう一度読んでください。",
+    "campoLista": "1行に1件",
+    "campoTags": "カンマで区切る"
+  }
+}

@@ -1,0 +1,13 @@
+node_modules
+.next
+next-env.d.ts
+*.tsbuildinfo
+coverage
+.stryker-tmp
+reports
+.env*.local
+.traducoes/
+
+# cofre do login da folgali (sessões e fichas cifradas): nunca no git
+.folgali-dados/
+.stryker-tmp*

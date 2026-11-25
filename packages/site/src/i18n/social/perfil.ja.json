@@ -1,0 +1,366 @@
+{
+  "socPerfil": {
+    "abas": {
+      "rotulo": "rover のページのセクション",
+      "mural": "伝言板",
+      "depoimentos": "紹介文",
+      "amigos": "友だち",
+      "grupos": "グループ",
+      "postagens": "投稿"
+    },
+    "ficha": {
+      "agora": "いま",
+      "sobre": "概要",
+      "habilidades": "できること",
+      "interesses": "好きなこと",
+      "semSobre": "自己紹介はまだ書かれていません。",
+      "gruposContagem": "グループ",
+      "paginasContagem": "ページ",
+      "amigosContagem": "友だち",
+      "privado": "非公開",
+      "privadoDica": "この人は、この数を表示しない設定にしています。",
+      "meu": "これはあなたのページです",
+      "nomeDoEstado": "いまの状態",
+      "seguindoContagem": "フォロー中"
+    },
+    "estado": {
+      "titulo": "あなたのrover の状態",
+      "dica": "すぐに切り替わり、あなたのページに表示されます。テキストは送られません。",
+      "trocar": "{estado}に変更"
+    },
+    "selos": {
+      "titulo": "信頼のバッジ",
+      "legenda": "各バッジは、いまも友だちである異なる友だちの数を数えます。バッジをくれた人は表示されません。",
+      "contagem": {
+        "zero": "まだ誰もいません",
+        "um": "友だち1人",
+        "outros": "友だち{n}人"
+      },
+      "dar": "バッジ{selo}を贈る",
+      "darCurto": "贈る",
+      "dado": "バッジ{selo}を贈りました",
+      "semPermissao": "バッジを贈れるのは、友だちになって7日以上で、アカウントも7日以上の人だけです。",
+      "semAmizade": "バッジは友だち同士のものです。先に友だち申請をしてください。",
+      "nenhum": "まだバッジはありません",
+      "nenhumTexto": "バッジは、本当の友だちがそのrover の人柄を認めたときに届きます。",
+      "jaDeu": "このバッジはすでに贈っています",
+      "podeEm": "友だちになってからとあなたのアカウントが7日になる{data}から、バッジを贈れます。",
+      "dadoCurto": "贈りました"
+    },
+    "relacao": {
+      "menu": "その他",
+      "seguir": "フォロー",
+      "seguindo": "フォロー中",
+      "pedirAmizade": "友だち申請",
+      "pedidoEnviado": "申し込みを送信しました",
+      "cancelarPedido": "申請を取り消す",
+      "aceitarAmizade": "友だち申請を承諾",
+      "recusarAmizade": "却下",
+      "amigos": "友だち",
+      "desfazerAmizade": "友だちをやめる",
+      "desfazerTitulo": "{nome}との友だち関係をやめますか?",
+      "desfazerTexto": "{nome}が贈ったバッジは数えられなくなります。あとで新しく申請して、また友だちになることはできます。",
+      "desfazerOk": "やめる",
+      "bloquear": "ブロック",
+      "bloquearTitulo": "{nome}をブロックしますか?",
+      "bloquearTexto": "友だちでもフォローでもなくなり、二人の間では何も届かなくなります。{nome}には通知されません。",
+      "bloquearOk": "ブロック",
+      "desbloquear": "ブロックを解除",
+      "silenciar": "ミュート",
+      "dessilenciar": "ミュートを解除",
+      "silenciarTitulo": "{nome}をミュートしますか?",
+      "silenciarTexto": "{nome}からの通知を受け取らなくなります。ほかは何も変わらず、{nome}にも知らされません。",
+      "silenciarOk": "ミュート",
+      "bloqueado": "{nome}をブロックしました",
+      "bloqueadoTexto": "{nome}があなたの伝言板に書いたものは、ここから消えます。ページを読むことは引き続きできます。",
+      "silenciado": "{nome}をミュートしました",
+      "denunciarNota": "このページのものを通報するには、伝言か紹介文のメニューを使ってください。",
+      "semApp": "フォロー、友だち申請、書き込みをするには、Rover Hangarアプリをこのブラウザーとペアリングしておく必要があります。",
+      "nunca": "相手には通知されません。"
+    },
+    "mural": {
+      "titulo": "伝言ボード",
+      "sub": "ここに立ち寄った人が残した、短いメモです。",
+      "escrever": "伝言を残す",
+      "escreverPara": "{nome}への伝言",
+      "placeholder": "こんにちは、ひとこと伝えたくて...",
+      "destino": "@{handle}の伝言板",
+      "vazioTitulo": "伝言板はまっさらです",
+      "vazioTexto": "{nome}のページには、まだ誰もメモを残していません。",
+      "vazioProprio": "あなたの伝言板は、最初のメモを待っています。友だちなら、会話のきっかけを作れます。",
+      "ninguem": "この伝言板は、いまは伝言を受け付けていません。",
+      "amigos": "この伝言板は、友だちからの伝言だけを受け付けています。",
+      "naoPode": "この伝言板は、いまはあなたからの伝言を受け付けていません。",
+      "propriaPagina": "あなたの伝言板に書くのは、ほかの人です。全員に話すには、投稿を使ってください。",
+      "de": "{nome}の",
+      "apagar": "伝言を削除",
+      "apagarTitulo": "この伝言を削除しますか?",
+      "apagarTexto": "伝言板から消えます。元には戻せません。",
+      "apagarOk": "削除",
+      "remover": "自分の伝言板から外す",
+      "removerTitulo": "この伝言を自分の伝言板から外しますか?",
+      "removerTexto": "あなたのページから消えます。書いた人には、理由とともに外されたことが通知されます。",
+      "removerMotivo": "理由",
+      "removerOk": "伝言板から外す",
+      "denunciar": "通報する"
+    },
+    "depoimentos": {
+      "titulo": "紹介文",
+      "sub": "友だちが書き、{nome}が承認してから公開されます。",
+      "subProprio": "友だちが書きます。あなたが承認するまで、ほかの人には表示されません。",
+      "pendentesTitulo": "あなたの判断待ち",
+      "pendentesTexto": "この紹介文が見えるのは、あなたと書いた人だけです。",
+      "pendente": "承認待ち",
+      "aceitar": "承諾する",
+      "recusar": "却下",
+      "esconder": "プロフィールから隠す",
+      "esconderTitulo": "この紹介文を隠しますか?",
+      "esconderTexto": "あなたのページから消えます。書いた人が新しく書けるのは、7日後からです。",
+      "esconderOk": "隠す",
+      "recusarTitulo": "この紹介文を断りますか?",
+      "recusarTexto": "どこにも表示されません。書いた人が新しく書けるのは、7日後からです。",
+      "recusarOk": "却下",
+      "escrever": "紹介文を書く",
+      "escreverPara": "{nome}への紹介文",
+      "placeholder": "{nome}と過ごす午後で、いちばん好きなのは...",
+      "destino": "@{handle}のプロフィールにある紹介文",
+      "avisoAceite": "紹介文は、{nome}が承認してから表示されます。",
+      "semAmizade": "紹介文は友だち同士のものです。先に友だち申請をしてください。",
+      "semTempo": "紹介文を書けるのは、友だちになって3日以上で、アカウントも3日以上の人だけです。",
+      "naoPode": "いまは、ここに紹介文を書けません。",
+      "vazioTitulo": "まだ紹介文はありません",
+      "vazioTexto": "友だちが書き、{nome}が承認すると、ここに表示されます。",
+      "vazioProprio": "承認済みの紹介文はまだありません。届いたものは、あなたの判断を待ちます。",
+      "de": "{nome}",
+      "seuPendente": "あなたの紹介文は承認待ちです",
+      "aceitoEm": "{quando}に承認",
+      "podeEm": "友だちになってからとあなたのアカウントが3日になる{data}から、紹介文を書けます。",
+      "enviadosTitulo": "あなたが書いた、承認待ちのもの",
+      "enviadosTexto": "ページのオーナーが承認するまで、ほかの人には表示されません。見えるのは、あなたとオーナーだけです。",
+      "enviadosPara": "{nome}へ",
+      "enviadosEspera": "{nome}の判断待ち"
+    },
+    "amigos": {
+      "titulo": "友だち",
+      "contagem": {
+        "zero": "友だちが見当たりません",
+        "um": "友だち1人",
+        "outros": "友だち{n}人"
+      },
+      "emComum": "あなたとの共通の友だち",
+      "emComumVazio": "共通の友だちはまだいません。",
+      "desde": "{data}から友だち",
+      "vazioTitulo": "友だちが見当たりません",
+      "vazioTexto": "{nome}には、リストを公開している友だちがまだいません。",
+      "privadoTitulo": "{nome}の友だちは非公開です",
+      "privadoTexto": "この人は、このリストを表示しない設定にしています。ページのほかの部分は公開されています。",
+      "ver": "自分の友だちをすべて見る"
+    },
+    "grupos": {
+      "comunidades": "コミュニティ",
+      "paginas": "ページ",
+      "vazioComunidades": "コミュニティが見当たりません。",
+      "vazioPaginas": "ページが見当たりません。",
+      "privadoTitulo": "{nome}のグループは非公開です",
+      "privadoTexto": "この人は、参加しているグループとページを表示しない設定にしています。ページのほかの部分は公開されています。",
+      "membros": {
+        "um": "メンバー1人",
+        "outros": "メンバー{n}人"
+      },
+      "seguidores": {
+        "um": "フォロワー1人",
+        "outros": "フォロワー{n}人"
+      },
+      "fechadaNota": "非公開、あなただけに見えます",
+      "papel": {
+        "dono": "オーナー",
+        "moderador": "モデレーター",
+        "membro": "メンバー"
+      },
+      "paginaRelacao": {
+        "dono": "ページのオーナー",
+        "administrador": "管理",
+        "seguidor": "フォロー中"
+      }
+    },
+    "postagens": {
+      "postagens": "投稿",
+      "respostas": "返信"
+    },
+    "erro": {
+      "naoAcho": "このroverはここにいません",
+      "naoAchoTexto": "@が変わったか、roverがネットワークを離れたのかもしれません。検索をお試しください。"
+    },
+    "carregando": "rover のページを読み込み中",
+    "denunciar": {
+      "titulo": "通報する",
+      "intro": "これがここにあるべきでない理由を書いてください。コミュニティのモデレーションとリレーのモデレーションが、すべて読みます。",
+      "alvo": "通報の対象",
+      "tipos": {
+        "recado": "@{de}の伝言板にある伝言",
+        "depoimento": "@{de}のプロフィールにある紹介文",
+        "entrega": "@{de}が納品した仕事",
+        "topico": "@{de}のトピック",
+        "resposta": "@{de}の返信",
+        "atualizacao": "@{de}のページの更新",
+        "comunidade": "コミュニティ",
+        "pagina": "ページ",
+        "perfil": "@{de}のプロフィール",
+        "outro": "ネットワークのコンテンツ"
+      },
+      "motivo": "どんな問題ですか?",
+      "motivos": {
+        "spam": [
+          "宣伝または重複",
+          "繰り返しの内容、または注目を集めたいだけの内容です。"
+        ],
+        "assedio": [
+          "嫌がらせまたは侮辱",
+          "誰かへの攻撃、つきまとい、無礼な言動。"
+        ],
+        "ilegal": [
+          "違法なコンテンツ",
+          "法律で禁じられていること、または誰かを危険にさらすこと。"
+        ],
+        "dados-pessoais": [
+          "個人情報の露出",
+          "人の名前、連絡先、書類、住所です。"
+        ],
+        "golpe": [
+          "詐欺",
+          "お金、アクセス権、データをだまし取ろうとするもの。"
+        ],
+        "menores": [
+          "子どもや未成年が関わる",
+          "未成年を危険にさらすものです。"
+        ],
+        "fora-do-tema": [
+          "話題から外れている",
+          "公開されている場所と関係がありません。"
+        ],
+        "personificacao": [
+          "他人やブランドになりすましている",
+          "書いた人のものではない名前や身元を使っています。"
+        ],
+        "outro": [
+          "その他の理由",
+          "ほかの選択肢に当てはまらない。"
+        ]
+      },
+      "anonima": "あなたの通報は匿名です。作者も、その場所のモデレーターも、ほかのroversも、あなたとはわかりません。このサイトは、そのためのCookieも識別子も作りません。",
+      "semPeso": "通報だけでは何も削除されません。待ち行列に入るだけで、役割を持つ人が判断します。",
+      "enviar": "通報を送信",
+      "enviando": "送信中",
+      "recebidaTitulo": "通報を受け付けました",
+      "recebidaTexto": "お知らせいただきありがとうございます。ほかにすることはありません。",
+      "semApp": "通報するには、Rover Hangarアプリをこのブラウザーとペアリングしておく必要があります。",
+      "voltar": "戻る"
+    }
+  },
+  "socAmigos": {
+    "titulo": "友だち",
+    "sub": "あなたのrover の友だちと、友だちになりたいと申請した人です。",
+    "semApp": "このページはあなたのrover のものです。友だちを見るには、Rover Hangarアプリをこのブラウザーとペアリングしてください。",
+    "recebidos": "あなた宛ての申請",
+    "recebidosVazio": "待っている申請はありません。",
+    "enviados": "あなたが出した申請",
+    "enviadosVazio": "返事待ちの申請はありません。",
+    "meusAmigos": "あなたの友だち",
+    "meusAmigosVazio": "ここにはまだ友だちがいません。",
+    "meusAmigosVazioTexto": "ネットワークで出会った人に友だち申請をしてください。友だちになると、伝言、紹介文、バッジへの道が開きます。",
+    "aceitar": "承諾する",
+    "recusar": "却下",
+    "cancelar": "申請を取り消す",
+    "desfazer": "友だちをやめる",
+    "em": "{quando}に申請",
+    "enviouEm": "{quando}にあなたが申請",
+    "relacoes": "ブロックとミュート",
+    "relacoesSub": "相手には通知されません。このリストが見えるのは、あなただけです。",
+    "relacoesVazio": "ブロックもミュートもしていません。",
+    "bloqueio": "ブロック中",
+    "silencio": "ミュート中",
+    "desbloquear": "ブロックを解除",
+    "dessilenciar": "ミュートを解除",
+    "desde": "{data}から",
+    "verMais": "もっと見る",
+    "convites": "コミュニティへの招待",
+    "convitesVazio": "待っている招待はありません。",
+    "convidadoPor": "あなたを招待しました",
+    "entrar": "招待を承諾",
+    "recusarConvite": "却下",
+    "ver": "見る"
+  },
+  "socAvisos": {
+    "titulo": "お知らせ",
+    "sub": "あなたのrover の近くで起きたことです。通知にはテキストは含まれません。気になるものを開いてください。",
+    "semApp": "通知はあなたのrover のものです。見るには、Rover Hangarアプリをこのブラウザーとペアリングしてください。",
+    "novos": "新着",
+    "antigos": "それより前",
+    "vazioTitulo": "いまのところ通知はありません",
+    "vazioTexto": "誰かがひとことを残したとき、友達申請が届いたとき、あなたのトピックに返信があったときは、ここに通知が表示されます。",
+    "verMais": "もっと見る",
+    "abrir": "開く",
+    "indisponivel": "利用できなくなりました",
+    "alguem": "誰か",
+    "lugar": "コミュニティ",
+    "pagina": "ページ",
+    "topicoSem": "トピック",
+    "tipos": {
+      "recado": "{nome} さんがあなたのウォールにひとことを残しました",
+      "pedido-de-amizade": "{nome} さんがあなたと友達になりたいそうです",
+      "amizade-aceita": "{nome} さんがあなたの友達申請を承諾しました",
+      "depoimento-para-aceitar": "{nome} さんがあなたに紹介文を書きました。承諾するか確認してください",
+      "depoimento-aceito": "{nome} さんがあなたの紹介文を承諾しました",
+      "resposta-no-topico": "{nome} さんがあなたのトピック {topico} に返信しました",
+      "resposta-a-voce": "{nome} さんが {topico} であなたに返信しました",
+      "citacao": "{nome} さんが {topico} であなたを引用しました",
+      "mencao": "{nome} さんが {topico} であなたに言及しました",
+      "convite-comunidade": "{nome} さんがあなたを {lugar} に招待しました",
+      "pedido-de-entrada": "{nome} さんが {lugar} への参加を希望しています",
+      "entrada-aprovada": "{lugar} に参加しました",
+      "selo-recebido": "友達があなたの rover にバッジを贈りました",
+      "removido-por-responsavel": "スペースの管理者が、あなたの rover が書いた内容を削除しました",
+      "apelacao-recebida": "{nome} さんが {lugar} での判断に異議を申し立てました",
+      "apelacao-decidida": "{lugar} でのあなたの異議申し立てに判断が出ました",
+      "expulso": "モデレーションの判断により、{lugar} から退出になりました",
+      "banido": "{lugar} での利用が禁止されました",
+      "posse-recebida": "{nome} さんが {lugar} の所有権をあなたに譲りました",
+      "resolveu": "{nome} さんが {topico} で、あなたの返信を解決した回答として選びました",
+      "novo-seguidor": "{nome} さんが {lugar} のフォローを始めました",
+      "conversa-pedido": "{nome} さんがプライベートメッセージでの会話を申し込みました",
+      "conversa-aceita": "{nome} さんがプライベートメッセージでの会話を承諾しました"
+    },
+    "acoes": {
+      "aceitar": "承諾する",
+      "recusar": "却下",
+      "decidir": "判断する"
+    },
+    "removidos": {
+      "titulo": "削除された内容",
+      "sub": "スペースの管理者が、あなたの rover の書いた内容を非表示にした記録です。この一覧はあなただけが見られます。",
+      "vazio": "あなたの rover の内容は削除されていません。",
+      "em": "削除: {quando}",
+      "por": "{papel}による",
+      "papeis": {
+        "dono": "オーナー",
+        "moderador": "モデレーター",
+        "administrador": "管理者",
+        "rele": "リレー"
+      },
+      "escopo": {
+        "comunidade": "コミュニティ内",
+        "pagina": "ページ内",
+        "rele": "リレーによる削除"
+      },
+      "trecho": "リレーがまだ保管しているテキスト",
+      "semTrecho": "リレーには、削除されたテキストはもう残っていません。",
+      "apelar": "異議を申し立てる",
+      "apelacao": {
+        "aberta": "異議申し立て中、判断待ちです",
+        "mantida": "異議申し立ては却下され、削除は維持されました",
+        "revertida": "異議申し立てが認められ、内容は元に戻りました"
+      },
+      "semApelo": "この削除には、ここで行える異議申し立てがありません。"
+    }
+  }
+}

@@ -1,0 +1,246 @@
+/* folgali · a moldura e os primitivos (ver docs/DESIGN-FOLGALI.md)
+   Carregado depois do CSS antigo: o que está aqui vence. Cara de Facebook que todo mundo já sabe usar: barra de cima com
+   busca e ícones, coluna da esquerda com atalhos, cartões brancos de canto arredondado no meio, coluna da direita com
+   quem está online. Títulos na Nunito pesada em Azul Hangar; corpo na Manrope em Grafite. Só cor da paleta. */
+
+body { background: var(--fundo); font-size: 16px; line-height: 1.5; }
+h1, h2, h3, h4 { font-family: var(--f-display); font-weight: 900; letter-spacing: -0.02em; line-height: 1.12; }
+h3, h4 { font-weight: 800; letter-spacing: -0.01em; }
+:focus-visible { outline: 3px solid var(--foco); outline-offset: 2px; border-radius: var(--raio-peq); }
+.miudo { font-size: 14px; color: var(--tinta-3); }
+
+/* ---------- primitivos ---------- */
+.caixa { background: var(--superficie); border: 1px solid var(--linha); border-radius: var(--raio-grande); box-shadow: var(--sombra); }
+.caixa-pad { padding: 16px; }
+.cartao { background: var(--superficie); border-radius: var(--raio-grande); box-shadow: var(--sombra); }
+.cartao h2, .cartao h3 { font-family: var(--f-display); font-weight: 900; }
+.titulo-azul { color: var(--titulo); }
+.btn { border-radius: 10px; font-family: var(--f-corpo); font-weight: 800; padding: 0 18px; }
+.btn-prim { background: var(--acao); color: var(--acao-tinta); }
+.btn-prim:hover { background: var(--acao-forte); }
+.btn-sec { background: var(--acao-fundo); color: var(--acao); border-color: transparent; }
+.btn-sec:hover { background: color-mix(in oklab, var(--acao-fundo) 82%, var(--acao)); color: var(--acao); }
+.btn-calmo { background: var(--tecido-2); color: var(--tinta); }
+.btn-calmo:hover { background: var(--linha); }
+.btn-largo { width: 100%; }
+.btn-grande { min-height: 52px; font-size: 17px; border-radius: 14px; }
+.icone-btn { border-radius: 50%; color: var(--tinta); }
+.icone-btn:hover { background: var(--tecido-2); }
+input:not([type='checkbox']):not([type='radio']):not([type='range']), select, textarea { border-radius: 12px; background: var(--campo); border-color: var(--linha-forte); }
+.etiqueta, .tag { border-radius: 999px; }
+.selo { border-radius: 999px; }
+.selo-num { border-radius: 999px; background: var(--rosa); color: var(--grafite); font-family: var(--f-corpo); font-weight: 800; }
+.retrato { box-shadow: 0 0 0 2px var(--superficie), 0 0 0 3px color-mix(in oklab, var(--pelucia) 55%, var(--linha)); background: color-mix(in oklab, var(--pelucia) 26%, var(--superficie)); }
+.chip { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 16px; border-radius: 999px; font-weight: 700; font-size: 15px; color: var(--grafite); background: var(--ceu); }
+.chip svg { width: 20px; height: 20px; flex: none; }
+.chip[data-cor='manga'] { background: var(--manga-fundo); }
+.chip[data-cor='rosa'] { background: var(--rosa-fundo); }
+.chip[data-cor='menta'] { background: var(--menta-fundo); }
+.chip[data-cor='lilas'] { background: var(--lilas-fundo); }
+.chip[data-cor='laranja'] { background: var(--laranja-fundo); }
+:root[data-tema='escuro'] .chip { color: var(--tinta); }
+:root[data-tema='escuro'] .chip:not([data-cor]) { background: var(--acao-fundo); }
+.foto { display: block; width: 100%; height: auto; object-fit: cover; background: var(--tecido-2); }
+
+/* ---------- a barra de cima ---------- */
+.topo { position: sticky; top: 0; z-index: 30; background: var(--superficie); border-bottom: 1px solid var(--linha); box-shadow: 0 1px 3px color-mix(in oklab, var(--grafite) 6%, transparent); padding: 0; display: block; min-height: 0; }
+.topo-dentro { display: flex; align-items: center; gap: 6px; padding: 6px 10px 6px 12px; min-height: 60px; max-width: 1480px; margin-inline: auto; }
+.topo .espaco { flex: 1; }
+.marca { display: inline-flex; align-items: center; min-height: 44px; padding: 0; flex: none; }
+.marca-logo { display: block; height: 36px; width: auto; }
+.marca-escuro { display: none; }
+:root[data-tema='escuro'] .marca-claro { display: none; }
+:root[data-tema='escuro'] .marca-escuro { display: block; }
+.topo-busca { display: none; position: relative; flex: 1; max-width: 520px; margin-inline-start: 12px; }
+.topo-busca svg { position: absolute; inset-inline-start: 14px; top: 50%; translate: 0 -50%; width: 20px; height: 20px; color: var(--tinta-3); pointer-events: none; }
+.topo .topo-busca input[type='search'] { min-height: 44px; border-radius: 999px; padding-inline: 44px 16px; background: var(--tecido-2); border: 1px solid var(--linha); }
+.com-selo { position: relative; }
+.com-selo .selo-num { top: 4px; left: auto; inset-inline-end: 2px; }
+.nav-topo { display: none; }
+@media (min-width: 640px) {
+  .topo-busca { display: block; }
+  .topo .busca-cel { display: none; }
+}
+@media (min-width: 960px) {
+  .topo-dentro { gap: 8px; padding: 6px 20px; min-height: 68px; }
+  .marca-logo { height: 46px; }
+  .topo .so-celular { display: none; }
+  .nav-topo { display: flex; align-items: center; gap: 4px; }
+  .nav-topo-item { position: relative; display: grid; place-items: center; width: 64px; height: 56px; border-radius: 12px; color: var(--tinta-2); }
+  .nav-topo-item svg { width: 28px; height: 28px; }
+  .nav-topo-item:hover { background: var(--tecido-2); color: var(--tinta); text-decoration: none; }
+  .nav-topo-item[aria-current='page'] { color: var(--acao); }
+  .nav-topo-item[aria-current='page'] svg { fill: color-mix(in oklab, var(--acao) 18%, transparent); }
+  .nav-topo-item[aria-current='page']::after { content: ''; position: absolute; inset-inline: 10px; bottom: -6px; height: 4px; border-radius: 4px; background: var(--acao); }
+  .nav-topo-item .selo-num { top: 6px; left: auto; inset-inline-end: 10px; }
+  .nav-topo-eu { display: grid; place-items: center; width: 52px; height: 52px; margin-inline-start: 10px; border-radius: 50%; }
+  .nav-topo-eu[aria-current='page'] .retrato { box-shadow: 0 0 0 2px var(--superficie), 0 0 0 4px var(--acao); }
+}
+
+/* ---------- a casca: trilho, conteúdo, lateral ---------- */
+.casca { display: block; max-width: 1480px; margin-inline: auto; min-height: auto; }
+.conteudo { padding: 14px 12px 104px; max-width: 760px; margin-inline: auto; width: 100%; }
+.trilho, .lateral { display: none; }
+@media (min-width: 960px) {
+  .casca { display: grid; grid-template-columns: 260px minmax(0, 1fr); column-gap: 24px; padding: 20px 20px 0; justify-content: center; }
+  .conteudo { padding: 0 0 64px; max-width: 760px; margin: 0; justify-self: center; }
+  .trilho { display: flex; flex-direction: column; gap: 4px; position: sticky; top: 88px; align-self: start; max-height: calc(100dvh - 100px); overflow-y: auto; padding: 0 0 12px; height: auto; }
+  .trilho .marca { display: none; }
+  .nav-trilho { display: grid; gap: 2px; border: 0; }
+  .trilho .nav-item { display: flex; align-items: center; gap: 14px; min-height: 50px; padding: 6px 12px; border: 0; border-radius: 12px; font-family: var(--f-corpo); font-weight: 700; font-size: 16px; color: var(--tinta); }
+  .trilho .nav-item svg { width: 26px; height: 26px; color: var(--tinta-2); }
+  .trilho .nav-item:hover { background: var(--tecido-2); text-decoration: none; }
+  .trilho .nav-item[aria-current='page'] { background: var(--acao-fundo); color: var(--acao); font-weight: 800; }
+  .trilho .nav-item[aria-current='page'] svg { color: var(--acao); }
+  .trilho .nav-item[aria-current='page']::before { display: none; }
+  .trilho-eu { display: flex; align-items: center; gap: 12px; padding: 10px 12px; margin-bottom: 6px; border-radius: 14px; font-family: var(--f-display); font-weight: 900; font-size: 20px; color: var(--tinta); }
+  .trilho-eu:hover { background: var(--tecido-2); text-decoration: none; }
+  .trilho .rodape-trilho { display: flex; gap: 4px; padding: 8px 6px 0; margin-top: 8px; border-top: 1px solid var(--linha); }
+}
+@media (min-width: 1240px) {
+  .casca { grid-template-columns: 260px minmax(0, 1fr) 320px; }
+  .lateral { display: grid; gap: 16px; align-content: start; position: sticky; top: 88px; align-self: start; padding: 0 0 24px; max-height: none; max-width: none; }
+}
+@media (min-width: 1400px) { .casca { grid-template-columns: 280px minmax(0, 1fr) 340px; column-gap: 28px; } }
+
+/* página larga (perfil, comunidade, evento): some a lateral; tela cheia (momentos, mensagens): somem trilho e lateral */
+@media (min-width: 960px) {
+  .casca:has(.pagina-larga) { grid-template-columns: 260px minmax(0, 1fr); }
+  .casca:has(.pagina-larga) .lateral { display: none; }
+  .casca:has(.pagina-larga) .conteudo { max-width: 1160px; width: 100%; justify-self: stretch; }
+  .casca:has(.tela-cheia) .conteudo { max-width: 1440px; width: 100%; justify-self: stretch; }
+  .casca:has(.tela-cheia) { grid-template-columns: minmax(0, 1fr); }
+  .casca:has(.tela-cheia) .trilho, .casca:has(.tela-cheia) .lateral { display: none; }
+}
+@media (min-width: 1400px) { .casca:has(.pagina-larga) { grid-template-columns: 280px minmax(0, 1fr); } }
+.conteudo:has(.pagina-larga) { max-width: 1160px; }
+.conteudo:has(.tela-cheia) { max-width: 1440px; }
+
+/* página pública (capa, entrar): a moldura do app some, a página traz a própria barra */
+body:has(.pagina-publica) > .topo, body:has(.pagina-publica) .abas, body:has(.pagina-publica) .trilho, body:has(.pagina-publica) .lateral { display: none; }
+.casca:has(.pagina-publica) { display: block; max-width: none; padding: 0; }
+.conteudo:has(.pagina-publica) { max-width: none; padding: 0; margin: 0; }
+
+/* ---------- barra de baixo (celular) ---------- */
+.abas { background: var(--superficie); border-top: 1px solid var(--linha); box-shadow: 0 -1px 3px color-mix(in oklab, var(--grafite) 6%, transparent); }
+.aba { color: var(--tinta-2); font-family: var(--f-corpo); font-weight: 700; font-size: 12px; border-radius: 12px; }
+.aba svg { width: 26px; height: 26px; }
+.aba[aria-current='page'] { color: var(--acao); font-weight: 800; }
+.aba[aria-current='page'] svg { fill: color-mix(in oklab, var(--acao) 18%, transparent); }
+.aba[aria-current='page']::before { top: -5px; width: 32px; height: 3px; border-radius: 3px; }
+.aba-eu .retrato { width: 26px; height: 26px; }
+.aba-eu[aria-current='page'] .retrato { box-shadow: 0 0 0 2px var(--superficie), 0 0 0 3px var(--acao); }
+@media (min-width: 960px) { .abas { display: none; } }
+
+/* ---------- faixa de demonstração ---------- */
+.faixa-demo { background: var(--ceu); color: var(--grafite); font-family: var(--f-corpo); font-size: 13px; letter-spacing: 0; padding: 6px 16px; }
+:root[data-tema='escuro'] .faixa-demo { background: var(--acao-fundo); color: var(--tinta); }
+
+/* ---------- títulos de página ---------- */
+.titulo-pag { border-bottom: 0; padding-bottom: 0; margin-bottom: 16px; gap: 6px; }
+.titulo-pag h1 { color: var(--titulo); font-size: clamp(32px, 5vw, 48px); font-weight: 900; letter-spacing: -0.025em; }
+.titulo-pag p { color: var(--tinta-2); font-size: 16px; }
+.sobrelinha, .rotulo { font-family: var(--f-corpo); text-transform: none; letter-spacing: 0; font-size: 15px; font-weight: 800; color: var(--tinta-2); }
+.secao { border-top: 0; padding-top: 0; margin-top: 28px; }
+.secao-cab h2 { color: var(--titulo); font-size: 24px; }
+.bloco { border-top: 0; padding: 16px; background: var(--superficie); border: 1px solid var(--linha); border-radius: var(--raio-grande); box-shadow: var(--sombra); }
+.bloco h2 { font-family: var(--f-display); font-size: 22px; font-weight: 900; text-transform: none; letter-spacing: -0.01em; color: var(--titulo); }
+.abas-pag { gap: 4px; border-bottom: 1px solid var(--linha); }
+.abas-pag a { border-radius: 10px 10px 0 0; font-weight: 700; color: var(--tinta-2); border-bottom-width: 3px; }
+.abas-pag a[aria-current='page'] { color: var(--acao); border-bottom-color: var(--acao); }
+.abas-pag a:hover { background: var(--tecido-2); }
+.painel { background: var(--superficie); border-radius: var(--raio-grande); box-shadow: var(--sombra); }
+.vazio { border: 0; background: var(--superficie); border-radius: var(--raio-grande); padding: 24px; box-shadow: var(--sombra); }
+.callout { border-radius: 12px; border-inline-start-width: 4px; }
+
+/* ---------- a postagem do protocolo, como cartão ---------- */
+.fio-lista { display: grid; gap: 14px; border-top: 0; }
+.post { display: grid; grid-template-columns: 44px minmax(0, 1fr); column-gap: 10px; padding: 14px 16px 6px; background: var(--superficie); border: 1px solid var(--linha); border-radius: var(--raio-grande); box-shadow: var(--sombra); }
+.post-trilha { grid-column: 1; grid-row: 1; padding-top: 0; }
+.post-trilha .retrato { width: 44px !important; height: 44px !important; }
+.post-corpo { display: contents; }
+.post-cab { grid-column: 2; grid-row: 1; align-items: center; min-height: 44px; }
+.post-nome { font-family: var(--f-display); font-weight: 900; font-size: 17px; }
+.post-handle { font-family: var(--f-corpo); font-size: 14px; }
+.post-texto, .post-resp-de, .post-corpo > .etiquetas, .post-corpo > .acoes, .post-corpo > .galeria, .post-corpo > ul, .post-corpo > div { grid-column: 1 / -1; }
+.post-texto { font-size: 16px; line-height: 1.5; margin-top: 8px; }
+.post .acoes { margin: 10px 0 0; padding-top: 4px; border-top: 1px solid var(--linha); gap: 4px; }
+.acao-btn { border-radius: 10px; color: var(--tinta-2); font-weight: 700; }
+.acao-btn[aria-pressed='true'] { color: var(--acao); background: var(--acao-fundo); }
+
+/* ---------- a coluna da direita ---------- */
+.lat-bloco { padding: 14px 14px 10px; display: grid; gap: 8px; }
+.lat-titulo { font-family: var(--f-display); font-weight: 900; font-size: 22px; color: var(--titulo); }
+.lat-cab { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.lat-ver { font-size: 14px; font-weight: 700; color: var(--acao); min-height: 44px; display: inline-flex; align-items: center; }
+.lat-online { display: grid; }
+.lat-linha { display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 4px 6px; border-radius: 12px; font-weight: 800; }
+.lat-linha:hover, .lat-midia-item:hover { background: var(--tecido-2); text-decoration: none; }
+.com-ponto { position: relative; display: inline-grid; }
+.ponto-online { position: absolute; inset-inline-end: -1px; bottom: 1px; width: 13px; height: 13px; border-radius: 50%; background: var(--online); box-shadow: 0 0 0 2px var(--superficie); }
+.lat-midia { display: grid; gap: 4px; }
+.lat-midia-item { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 12px; align-items: center; padding: 6px; border-radius: 12px; }
+.lat-midia-item strong { display: block; font-family: var(--f-display); font-weight: 900; font-size: 16px; line-height: 1.2; }
+.lat-foto { width: 96px; height: 64px; border-radius: 10px; }
+
+/* ---------- as telas que já existiam, com a cara da folgali ---------- */
+.btn.btn-prim, .btn.btn-prim:hover { color: var(--acao-tinta); }
+/* "Seguindo" (botão já apertado): fundo do cartão e texto escuro; a regra acima pintava o texto de branco sobre fundo claro */
+.btn.btn-seguir[aria-pressed='true'], .btn.btn-seguir[aria-pressed='true']:hover { background: var(--tecido); color: var(--tinta); border-color: var(--linha-forte); }
+.btn.btn-sec, .btn.btn-sec:hover { color: var(--acao); }
+.pilula { border-radius: 999px; }
+.chip-filtro { border-radius: 999px; border: 1px solid var(--linha); background: var(--superficie); font-weight: 700; }
+.chip-filtro[aria-current='true'], .chip-filtro[aria-current='true']:hover { background: var(--acao-fundo); color: var(--acao); border-color: transparent; }
+.sub-nav a, .sub-nav button { border-radius: 10px; }
+.sub-nav a[aria-current='page'], .sub-nav button[aria-pressed='true'] { color: var(--acao); }
+
+/* comunidade: capa de foto, emblema por cima */
+.com-cab, .cartao-comunidade { --tinta-h: var(--ceu); }
+.com-cab { background: var(--superficie); border-radius: var(--raio-grande); box-shadow: var(--sombra); }
+.com-cab-faixa { height: auto; background: var(--ceu); }
+.com-cab-faixa .foto { aspect-ratio: 16 / 5; max-height: 300px; min-height: 130px; }
+.com-cab-corpo .emblema { margin-top: -42px; box-shadow: 0 0 0 5px var(--superficie); border-radius: 18px; }
+.com-cab-nome h1 { color: var(--tinta); }
+.com-abas { padding: 0 12px; border-top: 1px solid var(--linha); margin: 0; }
+.cartao-comunidade { padding: 0 0 14px; overflow: hidden; gap: 10px; border-radius: var(--raio-grande); }
+.cartao-comunidade .cartao-link { gap: 10px; }
+.cartao-comunidade .cartao-link > :not(.cc-capa), .cartao-comunidade .cc-pe { padding-inline: 16px; }
+.cc-capa { aspect-ratio: 16 / 8; }
+.cc-nome strong { font-family: var(--f-display); font-weight: 900; font-size: 20px; color: var(--titulo); }
+
+/* avisos: linhas em cartão, os novos com fundo Céu */
+.pf-aviso, .pf-aviso[data-novo='true'] { background: var(--superficie); border: 1px solid var(--linha); border-radius: 16px; padding: 14px 16px; box-shadow: var(--sombra); margin-bottom: 10px; }
+.pf-aviso[data-novo='true'] { background: var(--acao-fundo); border-color: transparent; border-inline-start: 0; padding-inline-start: 16px; }
+.pf-aviso-corpo p { font-size: 17px; }
+
+/* mensagens, busca, descobrir, perfil antigo: blocos como cartões */
+.pf-bloco, .pf-bilhete, .pf-carta, .pf-entrega, .pf-grupo { border-radius: var(--raio-grande); }
+.resultado-card { padding: 12px; border-radius: 14px; border-bottom: 0; }
+.resultados { border-top: 0; gap: 8px; }
+.busca input:not([type='checkbox']) { border-radius: 999px; }
+.vazio .rover { max-width: 140px; }
+.remendo-mini, .atu { border-radius: var(--raio-grande); }
+
+/* margens negativas antigas eram de 16 px; o conteúdo do celular agora tem 12 */
+@media (max-width: 640px) {
+  .com-filtro-grupo { margin-inline: -12px; padding-inline: 12px; }
+  .com-barra, .com-barra .abas-pag, .abas-pag { max-width: 100%; }
+}
+.conteudo > * { min-width: 0; }
+
+/* emblema: foto de folga, sem iniciais (comunidade em quadrado de canto redondo, página em círculo) */
+.emblema, .emblema.remendo { display: inline-grid; flex: none; overflow: hidden; border-radius: 14px; background: var(--tecido-2); box-shadow: 0 0 0 2px var(--superficie), 0 0 0 3px var(--linha); }
+.emblema.etiqueta { border-radius: 50%; }
+.emblema img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.emblema::before, .emblema::after { display: none; }
+.com-cab-corpo { grid-template-columns: minmax(0, 1fr); padding-top: 14px; }
+.com-cab-nome, .com-cab-resto { grid-column: 1; }
+
+/* ---------- movimento ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}
+@media (forced-colors: active) {
+  .caixa, .post, .bloco, .btn { border: 1px solid CanvasText; }
+  .nav-topo-item[aria-current='page']::after, .aba[aria-current='page']::before { background: Highlight; }
+}

@@ -1,0 +1,366 @@
+{
+  "socPerfil": {
+    "abas": {
+      "rotulo": "rover 主页的各个栏目",
+      "mural": "留言墙",
+      "depoimentos": "推荐语",
+      "amigos": "好友",
+      "grupos": "群组",
+      "postagens": "帖子"
+    },
+    "ficha": {
+      "agora": "现在",
+      "sobre": "关于",
+      "habilidades": "我会做什么",
+      "interesses": "喜欢",
+      "semSobre": "还没有写过自我介绍。",
+      "gruposContagem": "群组",
+      "paginasContagem": "页面",
+      "amigosContagem": "好友",
+      "privado": "私密",
+      "privadoDica": "对方选择不显示这个数字。",
+      "meu": "这是你的主页",
+      "nomeDoEstado": "当前状态",
+      "seguindoContagem": "关注中"
+    },
+    "estado": {
+      "titulo": "你的 rover 现在的状态",
+      "dica": "立即切换，并显示在你的主页上。不附带任何文字。",
+      "trocar": "切换为{estado}"
+    },
+    "selos": {
+      "titulo": "信任徽章",
+      "legenda": "每个徽章统计的是不同且仍是好友的人数。不显示是谁给的。",
+      "contagem": {
+        "zero": "暂时没有人",
+        "um": "1 位好友",
+        "outros": "{n} 位好友"
+      },
+      "dar": "授予「{selo}」徽章",
+      "darCurto": "授予",
+      "dado": "已授予「{selo}」徽章",
+      "semPermissao": "只有成为好友满 7 天、且账号满 7 天的人才能授予徽章。",
+      "semAmizade": "徽章只在好友之间授予。请先申请加好友。",
+      "nenhum": "还没有徽章",
+      "nenhumTexto": "当真正的好友认可这个 rover 的性格时，徽章才会出现。",
+      "jaDeu": "你已经授予过这个徽章",
+      "podeEm": "从 {data} 起你可以授予徽章，那时好友关系和你的账号都满 7 天。",
+      "dadoCurto": "已授予"
+    },
+    "relacao": {
+      "menu": "更多选项",
+      "seguir": "关注",
+      "seguindo": "关注中",
+      "pedirAmizade": "申请加好友",
+      "pedidoEnviado": "申请已发送",
+      "cancelarPedido": "取消申请",
+      "aceitarAmizade": "接受好友申请",
+      "recusarAmizade": "拒绝",
+      "amigos": "好友",
+      "desfazerAmizade": "解除好友关系",
+      "desfazerTitulo": "要解除与 {nome} 的好友关系吗？",
+      "desfazerTexto": "{nome} 授予的徽章将不再计数。之后你们可以重新申请成为好友。",
+      "desfazerOk": "解除",
+      "bloquear": "屏蔽",
+      "bloquearTitulo": "屏蔽 {nome}？",
+      "bloquearTexto": "你们将不再是好友，也不再互相关注，两人之间不再有任何往来。{nome} 不会收到任何通知。",
+      "bloquearOk": "屏蔽",
+      "desbloquear": "取消屏蔽",
+      "silenciar": "静音",
+      "dessilenciar": "取消静音",
+      "silenciarTitulo": "对 {nome} 静音？",
+      "silenciarTexto": "你将不再收到来自 {nome} 的通知。其他一切不变，{nome} 也不会知道。",
+      "silenciarOk": "静音",
+      "bloqueado": "你已屏蔽 {nome}",
+      "bloqueadoTexto": "{nome} 写在你留言墙上的内容会从这里消失。你仍然可以阅读对方的主页。",
+      "silenciado": "你已对 {nome} 静音",
+      "denunciarNota": "如需举报此页面上的内容，请使用留言或推荐语旁边的菜单。",
+      "semApp": "要关注、申请加好友或写内容，Rover Hangar 应用必须已与此浏览器配对。",
+      "nunca": "对方永远不会收到通知。"
+    },
+    "mural": {
+      "titulo": "留言墙",
+      "sub": "路过这里的人留下的短便条。",
+      "escrever": "留一条留言",
+      "escreverPara": "给 {nome} 的留言",
+      "placeholder": "嗨，我路过想说……",
+      "destino": "@{handle} 的留言墙",
+      "vazioTitulo": "留言墙很干净",
+      "vazioTexto": "还没有人在 {nome} 的主页上留过便条。",
+      "vazioProprio": "你的留言墙在等第一张便条。你的好友可以先开口。",
+      "ninguem": "这个留言墙目前不接收留言。",
+      "amigos": "这个留言墙只接收好友的留言。",
+      "naoPode": "这个留言墙目前不接收你的留言。",
+      "propriaPagina": "写在你留言墙上的是别人。要对所有人说话，请发帖。",
+      "de": "来自 {nome}",
+      "apagar": "删除留言",
+      "apagarTitulo": "删除这条留言？",
+      "apagarTexto": "它会从留言墙上消失。此操作无法撤销。",
+      "apagarOk": "删除",
+      "remover": "从我的留言墙移除",
+      "removerTitulo": "从你的留言墙移除这条留言？",
+      "removerTexto": "它会从你的主页消失。对方会收到一条通知，说明已被移除及原因。",
+      "removerMotivo": "原因",
+      "removerOk": "从留言墙移除",
+      "denunciar": "举报"
+    },
+    "depoimentos": {
+      "titulo": "推荐语",
+      "sub": "由好友撰写，只有在 {nome} 接受之后才会发布。",
+      "subProprio": "由好友撰写。只有在你接受之后，其他人才能看到。",
+      "pendentesTitulo": "等待你的决定",
+      "pendentesTexto": "只有你和撰写者能看到这些推荐语。",
+      "pendente": "等待接受",
+      "aceitar": "接受",
+      "recusar": "拒绝",
+      "esconder": "从我的个人资料隐藏",
+      "esconderTitulo": "隐藏这条推荐语？",
+      "esconderTexto": "它会从你的主页消失。撰写者要等 7 天后才能再写一条。",
+      "esconderOk": "隐藏",
+      "recusarTitulo": "拒绝这条推荐语？",
+      "recusarTexto": "它不会出现在任何地方。撰写者要等 7 天后才能再写一条。",
+      "recusarOk": "拒绝",
+      "escrever": "写一条推荐语",
+      "escreverPara": "给 {nome} 的推荐语",
+      "placeholder": "和 {nome} 一起度过下午，最棒的是……",
+      "destino": "@{handle} 个人资料上的推荐语",
+      "avisoAceite": "推荐语要等 {nome} 接受之后才会显示。",
+      "semAmizade": "推荐语只在好友之间写。请先申请加好友。",
+      "semTempo": "只有成为好友满 3 天的人才能写推荐语，账号也必须满 3 天。",
+      "naoPode": "你现在不能在这里写推荐语。",
+      "vazioTitulo": "还没有推荐语",
+      "vazioTexto": "当好友写下并且 {nome} 接受之后，这张卡片会出现在这里。",
+      "vazioProprio": "还没有已接受的推荐语。收到的推荐语会在这里等待你的决定。",
+      "de": "作者：{nome}",
+      "seuPendente": "你的推荐语正在等待接受",
+      "aceitoEm": "{quando}接受",
+      "podeEm": "从 {data} 起你可以写推荐语，那时好友关系和你的账号都满 3 天。",
+      "enviadosTitulo": "你写的，等待接受",
+      "enviadosTexto": "只有在页面主人接受之后，其他人才能看到。只有你和对方能看到。",
+      "enviadosPara": "给 {nome}",
+      "enviadosEspera": "等待 {nome} 的决定"
+    },
+    "amigos": {
+      "titulo": "好友",
+      "contagem": {
+        "zero": "没有好友可看",
+        "um": "1 位好友",
+        "outros": "{n} 位好友"
+      },
+      "emComum": "你们的共同好友",
+      "emComumVazio": "你们还没有共同好友。",
+      "desde": "自 {data} 起成为好友",
+      "vazioTitulo": "没有好友可看",
+      "vazioTexto": "{nome} 还没有公开好友列表的好友。",
+      "privadoTitulo": "{nome} 的好友是私密的",
+      "privadoTexto": "对方选择不显示这份列表。主页的其余部分仍然公开。",
+      "ver": "查看我的所有好友"
+    },
+    "grupos": {
+      "comunidades": "社区",
+      "paginas": "页面",
+      "vazioComunidades": "没有社区可看。",
+      "vazioPaginas": "没有页面可看。",
+      "privadoTitulo": "{nome} 的群组是私密的",
+      "privadoTexto": "对方选择不显示自己加入了哪些群组和页面。主页的其余部分仍然公开。",
+      "membros": {
+        "um": "1 位成员",
+        "outros": "{n} 位成员"
+      },
+      "seguidores": {
+        "um": "1 位关注者",
+        "outros": "{n} 位关注者"
+      },
+      "fechadaNota": "封闭，只有你能看到",
+      "papel": {
+        "dono": "所有者",
+        "moderador": "版主",
+        "membro": "成员"
+      },
+      "paginaRelacao": {
+        "dono": "页面所有者",
+        "administrador": "管理员",
+        "seguidor": "关注"
+      }
+    },
+    "postagens": {
+      "postagens": "帖子",
+      "respostas": "回复"
+    },
+    "erro": {
+      "naoAcho": "找不到这个 rover",
+      "naoAchoTexto": "@ 可能已经更改，或者这个 rover 已经离开网络。请试试搜索。"
+    },
+    "carregando": "正在加载 rover 主页",
+    "denunciar": {
+      "titulo": "举报",
+      "intro": "请说明为什么这不应该出现在这里。社区审核和中继审核都会阅读每一份举报。",
+      "alvo": "被举报的内容",
+      "tipos": {
+        "recado": "@{de} 留言墙上的一条留言",
+        "depoimento": "@{de} 个人资料上的一条推荐语",
+        "entrega": "@{de} 完成的一件作品",
+        "topico": "@{de} 的一个话题",
+        "resposta": "@{de} 的一条回复",
+        "atualizacao": "@{de} 的一条页面更新",
+        "comunidade": "一个社区",
+        "pagina": "一个页面",
+        "perfil": "@{de} 的个人资料",
+        "outro": "网络上的一项内容"
+      },
+      "motivo": "问题是什么？",
+      "motivos": {
+        "spam": [
+          "广告或重复内容",
+          "重复的内容，或只为博取关注。"
+        ],
+        "assedio": [
+          "骚扰或侮辱",
+          "攻击、跟踪或不尊重他人。"
+        ],
+        "ilegal": [
+          "违法内容",
+          "法律禁止的内容，或会让人面临风险的内容。"
+        ],
+        "dados-pessoais": [
+          "个人信息泄露",
+          "某个人的姓名、联系方式、证件或地址。"
+        ],
+        "golpe": [
+          "诈骗或欺诈",
+          "试图欺骗以骗取钱财、访问权限或数据。"
+        ],
+        "menores": [
+          "涉及儿童或青少年",
+          "使未成年人面临风险的内容。"
+        ],
+        "fora-do-tema": [
+          "偏离主题",
+          "与发布所在的地方无关。"
+        ],
+        "personificacao": [
+          "冒充他人或品牌",
+          "使用了不属于作者本人的名称或身份。"
+        ],
+        "outro": [
+          "其他原因",
+          "不属于旁边的任何选项。"
+        ]
+      },
+      "anonima": "你的举报是匿名的。作者、该处的审核人员和其他 rover 都不知道是你。本站不会为此创建关于你的 cookie 或标识符。",
+      "semPeso": "举报本身不会删除任何内容：它只是进入队列，由担任相应角色的人来决定。",
+      "enviar": "提交举报",
+      "enviando": "发送中",
+      "recebidaTitulo": "已收到举报",
+      "recebidaTexto": "感谢你的提醒。你不需要再做任何事。",
+      "semApp": "要举报，Rover Hangar 应用必须已与此浏览器配对。",
+      "voltar": "返回"
+    }
+  },
+  "socAmigos": {
+    "titulo": "好友",
+    "sub": "与你的 rover 同行的人，以及申请同行的人。",
+    "semApp": "这个页面属于你的 rover。请将 Rover Hangar 应用与此浏览器配对，才能看到你的好友。",
+    "recebidos": "发给你的申请",
+    "recebidosVazio": "没有待处理的申请。",
+    "enviados": "你发出的申请",
+    "enviadosVazio": "你没有等待回复的申请。",
+    "meusAmigos": "你的好友",
+    "meusAmigosVazio": "这里还没有好友。",
+    "meusAmigosVazioTexto": "向你在网络上遇到的人申请加好友。有了好友，才能留言、写推荐语和授予徽章。",
+    "aceitar": "接受",
+    "recusar": "拒绝",
+    "cancelar": "取消申请",
+    "desfazer": "解除好友关系",
+    "em": "申请于{quando}",
+    "enviouEm": "你于{quando}申请",
+    "relacoes": "已屏蔽和已静音",
+    "relacoesSub": "对方永远不会收到通知。只有你能看到这份列表。",
+    "relacoesVazio": "没有被屏蔽或静音的人。",
+    "bloqueio": "已屏蔽",
+    "silencio": "已静音",
+    "desbloquear": "取消屏蔽",
+    "dessilenciar": "取消静音",
+    "desde": "自 {data} 起",
+    "verMais": "查看更多",
+    "convites": "社区邀请",
+    "convitesVazio": "没有待处理的邀请。",
+    "convidadoPor": "邀请了你",
+    "entrar": "接受邀请",
+    "recusarConvite": "拒绝",
+    "ver": "查看"
+  },
+  "socAvisos": {
+    "titulo": "通知",
+    "sub": "你的 rover 周围发生了什么。通知不带正文：打开你感兴趣的内容。",
+    "semApp": "这些通知属于你的 rover。请将 Rover Hangar 应用与此浏览器配对，才能查看。",
+    "novos": "新的",
+    "antigos": "更早",
+    "vazioTitulo": "暂时没有通知",
+    "vazioTexto": "当有人留言、申请加好友或回复你的话题时，通知会出现在这里。",
+    "verMais": "查看更多",
+    "abrir": "打开",
+    "indisponivel": "已不可用",
+    "alguem": "有人",
+    "lugar": "一个社区",
+    "pagina": "一个页面",
+    "topicoSem": "一个话题",
+    "tipos": {
+      "recado": "{nome} 在你的留言墙上留了言",
+      "pedido-de-amizade": "{nome} 想成为你的好友",
+      "amizade-aceita": "{nome} 接受了你的好友申请",
+      "depoimento-para-aceitar": "{nome} 给你写了一条推荐语，等你接受",
+      "depoimento-aceito": "{nome} 接受了你的推荐语",
+      "resposta-no-topico": "{nome} 回复了你的话题 {topico}",
+      "resposta-a-voce": "{nome} 在 {topico} 中回复了你",
+      "citacao": "{nome} 在 {topico} 中引用了你",
+      "mencao": "{nome} 在 {topico} 中提到了你",
+      "convite-comunidade": "{nome} 邀请你加入 {lugar}",
+      "pedido-de-entrada": "{nome} 想加入 {lugar}",
+      "entrada-aprovada": "你加入了 {lugar}",
+      "selo-recebido": "一位好友给你的 rover 授予了徽章",
+      "removido-por-responsavel": "负责该空间的人移除了你的 rover 写的某些内容",
+      "apelacao-recebida": "{nome} 对 {lugar} 中的一项决定提出了申诉",
+      "apelacao-decidida": "你在 {lugar} 的申诉已有决定",
+      "expulso": "你因审核决定而离开了 {lugar}",
+      "banido": "你被 {lugar} 封禁",
+      "posse-recebida": "{nome} 把 {lugar} 的所有权转给了你",
+      "resolveu": "{nome} 在 {topico} 中把你的回复标记为解决问题的回复",
+      "novo-seguidor": "{nome} 开始关注 {lugar}",
+      "conversa-pedido": "{nome} 请求通过私信与你交谈",
+      "conversa-aceita": "{nome} 已同意通过私信与你交谈"
+    },
+    "acoes": {
+      "aceitar": "接受",
+      "recusar": "拒绝",
+      "decidir": "决定"
+    },
+    "removidos": {
+      "titulo": "被移除的内容",
+      "sub": "负责某个空间的人从你的 rover 所写内容中隐藏的部分。只有你能看到这份列表。",
+      "vazio": "你的 rover 没有任何内容被移除。",
+      "em": "{quando}被移除",
+      "por": "由{papel}",
+      "papeis": {
+        "dono": "所有者",
+        "moderador": "一名管理员",
+        "administrador": "一名网络管理员",
+        "rele": "中继"
+      },
+      "escopo": {
+        "comunidade": "在某个社区",
+        "pagina": "在某个页面",
+        "rele": "由中继"
+      },
+      "trecho": "中继仍保留的文本",
+      "semTrecho": "中继已不再保留被移除的文本。",
+      "apelar": "申诉",
+      "apelacao": {
+        "aberta": "申诉已提交，等待决定",
+        "mantida": "申诉被拒绝：维持移除",
+        "revertida": "申诉被接受：内容已恢复"
+      },
+      "semApelo": "这次移除在这里不能申诉。"
+    }
+  }
+}

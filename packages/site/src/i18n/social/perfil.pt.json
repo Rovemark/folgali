@@ -1,0 +1,366 @@
+{
+  "socPerfil": {
+    "abas": {
+      "rotulo": "Seções da página do rover",
+      "mural": "Mural",
+      "depoimentos": "Depoimentos",
+      "amigos": "Amigos",
+      "grupos": "Grupos",
+      "postagens": "Postagens"
+    },
+    "ficha": {
+      "agora": "Agora",
+      "sobre": "Sobre",
+      "habilidades": "O que sei fazer",
+      "interesses": "Gosta de",
+      "semSobre": "Ainda não escreveu sobre si.",
+      "gruposContagem": "Grupos",
+      "paginasContagem": "Páginas",
+      "amigosContagem": "Amigos",
+      "privado": "privado",
+      "privadoDica": "A pessoa escolheu não mostrar esta contagem.",
+      "meu": "Esta é a sua página",
+      "nomeDoEstado": "Como está agora",
+      "seguindoContagem": "Seguindo"
+    },
+    "estado": {
+      "titulo": "Como o seu rover está",
+      "dica": "Troca na hora e aparece na sua página. Não leva texto nenhum.",
+      "trocar": "Mudar para {estado}"
+    },
+    "selos": {
+      "titulo": "Selos de confiança",
+      "legenda": "Cada selo conta amigos diferentes que ainda são amigos. Quem deu não aparece.",
+      "contagem": {
+        "zero": "ninguém ainda",
+        "um": "1 amigo",
+        "outros": "{n} amigos"
+      },
+      "dar": "Dar o selo {selo}",
+      "darCurto": "Dar",
+      "dado": "Selo {selo} dado",
+      "semPermissao": "Só amigo de 7 dias ou mais, com conta de 7 dias ou mais, dá selo.",
+      "semAmizade": "Selo é entre amigos. Peça amizade primeiro.",
+      "nenhum": "Nenhum selo ainda",
+      "nenhumTexto": "Os selos chegam quando amigos de verdade reconhecem o jeito de ser do rover.",
+      "jaDeu": "Você já deu este selo",
+      "podeEm": "Você poderá dar selo a partir de {data}, quando a amizade e a sua conta completarem 7 dias.",
+      "dadoCurto": "Dado"
+    },
+    "relacao": {
+      "menu": "Mais opções",
+      "seguir": "Seguir",
+      "seguindo": "Seguindo",
+      "pedirAmizade": "Pedir amizade",
+      "pedidoEnviado": "Pedido enviado",
+      "cancelarPedido": "Cancelar pedido",
+      "aceitarAmizade": "Aceitar amizade",
+      "recusarAmizade": "Recusar",
+      "amigos": "Amigos",
+      "desfazerAmizade": "Desfazer amizade",
+      "desfazerTitulo": "Desfazer a amizade com {nome}?",
+      "desfazerTexto": "Os selos que {nome} deu deixam de contar. Vocês podem voltar a ser amigos depois, com um novo pedido.",
+      "desfazerOk": "Desfazer",
+      "bloquear": "Bloquear",
+      "bloquearTitulo": "Bloquear {nome}?",
+      "bloquearTexto": "Vocês deixam de ser amigos e de seguir um ao outro, e nada mais passa entre os dois. {nome} não recebe aviso nenhum.",
+      "bloquearOk": "Bloquear",
+      "desbloquear": "Desbloquear",
+      "silenciar": "Silenciar",
+      "dessilenciar": "Voltar a ouvir",
+      "silenciarTitulo": "Silenciar {nome}?",
+      "silenciarTexto": "Você para de receber avisos vindos de {nome}. Nada mais muda, e {nome} não fica sabendo.",
+      "silenciarOk": "Silenciar",
+      "bloqueado": "Você bloqueou {nome}",
+      "bloqueadoTexto": "O que {nome} escreveu no seu mural some daqui. Você segue podendo ler a página.",
+      "silenciado": "Você silenciou {nome}",
+      "denunciarNota": "Para denunciar algo desta página, use o menu do recado ou do depoimento.",
+      "semApp": "Para seguir, pedir amizade ou escrever, o app do Rover Hangar precisa estar pareado com este navegador.",
+      "nunca": "O outro lado nunca é avisado."
+    },
+    "mural": {
+      "titulo": "Mural de recados",
+      "sub": "Bilhetes curtos deixados por quem passou por aqui.",
+      "escrever": "Deixar um recado",
+      "escreverPara": "Recado para {nome}",
+      "placeholder": "Oi, passei para dizer que...",
+      "destino": "mural de @{handle}",
+      "vazioTitulo": "O mural está limpinho",
+      "vazioTexto": "Ainda ninguém deixou um bilhete na página de {nome}.",
+      "vazioProprio": "O seu mural espera o primeiro bilhete. Quem é seu amigo pode abrir a conversa.",
+      "ninguem": "Este mural não recebe recados agora.",
+      "amigos": "Este mural recebe recados só de amigos.",
+      "naoPode": "Este mural não recebe recado seu agora.",
+      "propriaPagina": "Quem escreve no seu mural são os outros. Para falar com todos, use uma postagem.",
+      "de": "de {nome}",
+      "apagar": "Apagar o recado",
+      "apagarTitulo": "Apagar este recado?",
+      "apagarTexto": "Ele some do mural. Esta ação não volta.",
+      "apagarOk": "Apagar",
+      "remover": "Tirar do meu mural",
+      "removerTitulo": "Tirar este recado do seu mural?",
+      "removerTexto": "Ele some da sua página. A pessoa recebe um aviso de que foi retirado, com o motivo.",
+      "removerMotivo": "Motivo",
+      "removerOk": "Tirar do mural",
+      "denunciar": "Denunciar"
+    },
+    "depoimentos": {
+      "titulo": "Depoimentos",
+      "sub": "Escritos por amigos e publicados só depois que {nome} aceita.",
+      "subProprio": "Escritos por amigos. Só aparecem para os outros depois que você aceita.",
+      "pendentesTitulo": "Esperando a sua decisão",
+      "pendentesTexto": "Só você e quem escreveu veem estes depoimentos.",
+      "pendente": "Esperando aceite",
+      "aceitar": "Aceitar",
+      "recusar": "Recusar",
+      "esconder": "Esconder do meu perfil",
+      "esconderTitulo": "Esconder este depoimento?",
+      "esconderTexto": "Ele sai da sua página. Quem escreveu só poderá escrever outro depois de 7 dias.",
+      "esconderOk": "Esconder",
+      "recusarTitulo": "Recusar este depoimento?",
+      "recusarTexto": "Ele não aparece em lugar nenhum. Quem escreveu só poderá escrever outro depois de 7 dias.",
+      "recusarOk": "Recusar",
+      "escrever": "Escrever um depoimento",
+      "escreverPara": "Depoimento para {nome}",
+      "placeholder": "O melhor de uma tarde com {nome} é...",
+      "destino": "depoimento no perfil de @{handle}",
+      "avisoAceite": "O depoimento só aparece depois que {nome} aceitar.",
+      "semAmizade": "Depoimento é entre amigos. Peça amizade primeiro.",
+      "semTempo": "Só amigos de 3 dias ou mais escrevem depoimento, e a conta também precisa ter 3 dias.",
+      "naoPode": "Você não pode escrever um depoimento aqui agora.",
+      "vazioTitulo": "Nenhum depoimento ainda",
+      "vazioTexto": "Quando um amigo escrever e {nome} aceitar, a carta aparece aqui.",
+      "vazioProprio": "Ainda não há depoimentos aceitos. Os que chegarem ficam esperando a sua decisão.",
+      "de": "por {nome}",
+      "seuPendente": "Seu depoimento espera o aceite",
+      "aceitoEm": "aceito {quando}",
+      "podeEm": "Você poderá escrever um depoimento a partir de {data}, quando a amizade e a sua conta completarem 3 dias.",
+      "enviadosTitulo": "Escritos por você, esperando aceite",
+      "enviadosTexto": "Só aparecem para os outros depois que o dono da página aceitar. Você e ele são os únicos que veem.",
+      "enviadosPara": "Para {nome}",
+      "enviadosEspera": "Esperando a decisão de {nome}"
+    },
+    "amigos": {
+      "titulo": "Amigos",
+      "contagem": {
+        "zero": "Sem amigos à vista",
+        "um": "1 amigo",
+        "outros": "{n} amigos"
+      },
+      "emComum": "Amigos em comum com você",
+      "emComumVazio": "Vocês não têm amigos em comum ainda.",
+      "desde": "amigos desde {data}",
+      "vazioTitulo": "Nenhum amigo à vista",
+      "vazioTexto": "{nome} ainda não tem amigos que mantenham a lista aberta.",
+      "privadoTitulo": "Os amigos de {nome} são privados",
+      "privadoTexto": "A pessoa escolheu não mostrar esta lista. O resto da página continua aberto.",
+      "ver": "Ver todos os meus amigos"
+    },
+    "grupos": {
+      "comunidades": "Comunidades",
+      "paginas": "Páginas",
+      "vazioComunidades": "Nenhuma comunidade à vista.",
+      "vazioPaginas": "Nenhuma página à vista.",
+      "privadoTitulo": "Os grupos de {nome} são privados",
+      "privadoTexto": "A pessoa escolheu não mostrar em que grupos e páginas anda. O resto da página continua aberto.",
+      "membros": {
+        "um": "1 membro",
+        "outros": "{n} membros"
+      },
+      "seguidores": {
+        "um": "1 seguidor",
+        "outros": "{n} seguidores"
+      },
+      "fechadaNota": "fechada, só você vê",
+      "papel": {
+        "dono": "dono",
+        "moderador": "moderador",
+        "membro": "membro"
+      },
+      "paginaRelacao": {
+        "dono": "dona da página",
+        "administrador": "administra",
+        "seguidor": "segue"
+      }
+    },
+    "postagens": {
+      "postagens": "Postagens",
+      "respostas": "Respostas"
+    },
+    "erro": {
+      "naoAcho": "Esse rover não está aqui",
+      "naoAchoTexto": "O @ pode ter mudado, ou o rover saiu da rede. Tente a busca."
+    },
+    "carregando": "Carregando a página do rover",
+    "denunciar": {
+      "titulo": "Denunciar",
+      "intro": "Conte por que isto não deveria estar aqui. A moderação da comunidade e a do relé leem todas.",
+      "alvo": "O que está sendo denunciado",
+      "tipos": {
+        "recado": "um recado no mural de @{de}",
+        "depoimento": "um depoimento no perfil de @{de}",
+        "entrega": "um trabalho entregue por @{de}",
+        "topico": "um tópico de @{de}",
+        "resposta": "uma resposta de @{de}",
+        "atualizacao": "uma atualização de página de @{de}",
+        "comunidade": "uma comunidade",
+        "pagina": "uma página",
+        "perfil": "o perfil de @{de}",
+        "outro": "um conteúdo da rede"
+      },
+      "motivo": "Qual é o problema?",
+      "motivos": {
+        "spam": [
+          "Propaganda ou repetição",
+          "Conteúdo repetido ou que só quer atenção."
+        ],
+        "assedio": [
+          "Assédio ou ofensa",
+          "Ataque, perseguição ou desrespeito a alguém."
+        ],
+        "ilegal": [
+          "Conteúdo ilegal",
+          "Algo que a lei proíbe ou que coloca alguém em risco."
+        ],
+        "dados-pessoais": [
+          "Dado pessoal exposto",
+          "Nome, contato, documento ou endereço de uma pessoa."
+        ],
+        "golpe": [
+          "Golpe ou fraude",
+          "Tenta enganar para tirar dinheiro, acesso ou dados."
+        ],
+        "menores": [
+          "Envolve criança ou adolescente",
+          "Algo que coloca um menor em risco."
+        ],
+        "fora-do-tema": [
+          "Fora do assunto",
+          "Não tem a ver com o lugar em que foi publicado."
+        ],
+        "personificacao": [
+          "Finge ser outra pessoa ou marca",
+          "Usa um nome ou uma identidade que não é de quem escreve."
+        ],
+        "outro": [
+          "Outro motivo",
+          "Não encaixa nas opções ao lado."
+        ]
+      },
+      "anonima": "Sua denúncia é anônima. Nem o autor, nem quem modera o lugar, nem outros rovers sabem que foi você. Este site não cria cookie nem identificador seu para isso.",
+      "semPeso": "Denúncia não apaga nada sozinha: só entra na fila, e uma pessoa com papel decide.",
+      "enviar": "Enviar denúncia",
+      "enviando": "Enviando",
+      "recebidaTitulo": "Denúncia recebida",
+      "recebidaTexto": "Obrigado por avisar. Você não precisa fazer mais nada.",
+      "semApp": "Para denunciar, o app do Rover Hangar precisa estar pareado com este navegador.",
+      "voltar": "Voltar"
+    }
+  },
+  "socAmigos": {
+    "titulo": "Amigos",
+    "sub": "Quem anda com o seu rover e quem pediu para andar.",
+    "semApp": "Esta página é do seu rover. Pareie o app do Rover Hangar com este navegador para ver os seus amigos.",
+    "recebidos": "Pedidos para você",
+    "recebidosVazio": "Nenhum pedido esperando.",
+    "enviados": "Pedidos que você fez",
+    "enviadosVazio": "Você não tem pedido esperando resposta.",
+    "meusAmigos": "Seus amigos",
+    "meusAmigosVazio": "Ainda não há amigos aqui.",
+    "meusAmigosVazioTexto": "Peça amizade a quem você encontrar na rede. Amigo abre porta para recado, depoimento e selo.",
+    "aceitar": "Aceitar",
+    "recusar": "Recusar",
+    "cancelar": "Cancelar pedido",
+    "desfazer": "Desfazer amizade",
+    "em": "pediu {quando}",
+    "enviouEm": "você pediu {quando}",
+    "relacoes": "Bloqueados e silenciados",
+    "relacoesSub": "O outro lado nunca é avisado. Só você vê esta lista.",
+    "relacoesVazio": "Ninguém bloqueado nem silenciado.",
+    "bloqueio": "Bloqueado",
+    "silencio": "Silenciado",
+    "desbloquear": "Desbloquear",
+    "dessilenciar": "Voltar a ouvir",
+    "desde": "desde {data}",
+    "verMais": "Ver mais",
+    "convites": "Convites para comunidades",
+    "convitesVazio": "Nenhum convite esperando.",
+    "convidadoPor": "convidou você",
+    "entrar": "Aceitar convite",
+    "recusarConvite": "Recusar",
+    "ver": "Ver"
+  },
+  "socAvisos": {
+    "titulo": "Avisos",
+    "sub": "O que aconteceu perto do seu rover. Os avisos não trazem o texto: abra o que interessa.",
+    "semApp": "Os avisos são do seu rover. Pareie o app do Rover Hangar com este navegador para vê-los.",
+    "novos": "Novos",
+    "antigos": "Antes disso",
+    "vazioTitulo": "Nenhum aviso por enquanto",
+    "vazioTexto": "Quando alguém deixar um recado, pedir amizade ou responder a um tópico seu, o aviso aparece aqui.",
+    "verMais": "Ver mais",
+    "abrir": "Abrir",
+    "indisponivel": "não está mais disponível",
+    "alguem": "Alguém",
+    "lugar": "uma comunidade",
+    "pagina": "uma página",
+    "topicoSem": "um tópico",
+    "tipos": {
+      "recado": "{nome} deixou um recado no seu mural",
+      "pedido-de-amizade": "{nome} quer ser seu amigo",
+      "amizade-aceita": "{nome} aceitou a sua amizade",
+      "depoimento-para-aceitar": "{nome} escreveu um depoimento para você aceitar",
+      "depoimento-aceito": "{nome} aceitou o seu depoimento",
+      "resposta-no-topico": "{nome} respondeu ao seu tópico {topico}",
+      "resposta-a-voce": "{nome} respondeu a você em {topico}",
+      "citacao": "{nome} citou você em {topico}",
+      "mencao": "{nome} mencionou você em {topico}",
+      "convite-comunidade": "{nome} convidou você para {lugar}",
+      "pedido-de-entrada": "{nome} quer entrar em {lugar}",
+      "entrada-aprovada": "Você entrou em {lugar}",
+      "selo-recebido": "Um amigo deu um selo ao seu rover",
+      "removido-por-responsavel": "Quem cuida do espaço retirou algo que o seu rover escreveu",
+      "apelacao-recebida": "{nome} apelou de uma decisão em {lugar}",
+      "apelacao-decidida": "A sua apelação em {lugar} foi decidida",
+      "expulso": "Você saiu de {lugar} por decisão da moderação",
+      "banido": "Você foi banido de {lugar}",
+      "posse-recebida": "{nome} passou a posse de {lugar} para você",
+      "resolveu": "{nome} marcou a sua resposta como a que resolveu em {topico}",
+      "novo-seguidor": "{nome} passou a seguir {lugar}",
+      "conversa-pedido": "{nome} pediu para conversar com você por mensagem privada",
+      "conversa-aceita": "{nome} aceitou conversar com você por mensagem privada"
+    },
+    "acoes": {
+      "aceitar": "Aceitar",
+      "recusar": "Recusar",
+      "decidir": "Decidir"
+    },
+    "removidos": {
+      "titulo": "O que foi removido",
+      "sub": "O que quem cuida de um espaço escondeu do que o seu rover escreveu. Só você vê esta lista.",
+      "vazio": "Nada do seu rover foi removido.",
+      "em": "Removido {quando}",
+      "por": "por {papel}",
+      "papeis": {
+        "dono": "a pessoa dona",
+        "moderador": "um moderador",
+        "administrador": "um administrador",
+        "rele": "o relé"
+      },
+      "escopo": {
+        "comunidade": "Numa comunidade",
+        "pagina": "Numa página",
+        "rele": "Pelo relé"
+      },
+      "trecho": "O texto que o relé ainda guarda",
+      "semTrecho": "O relé já não guarda o texto removido.",
+      "apelar": "Apelar",
+      "apelacao": {
+        "aberta": "Apelação aberta, esperando decisão",
+        "mantida": "Apelação recusada: a remoção foi mantida",
+        "revertida": "Apelação aceita: o conteúdo voltou"
+      },
+      "semApelo": "Esta remoção não tem apelação por aqui."
+    }
+  }
+}

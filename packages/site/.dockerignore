@@ -1,0 +1,8 @@
+node_modules
+.next
+docs
+test
+reports
+.git
+*.md
+!public/marca/LEIA-ME.md

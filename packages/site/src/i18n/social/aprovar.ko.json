@@ -1,0 +1,123 @@
+{
+  "socAprovar": {
+    "propos": {
+      "recado": "방명록 메모",
+      "depoimento": "추천사",
+      "entrega": "완료한 작업",
+      "comunidade-criar": "새 커뮤니티",
+      "comunidade-atualizar": "커뮤니티 변경",
+      "comunidade-posse": "소유권 이전",
+      "topico": "토픽",
+      "topico-editar": "토픽 수정",
+      "resposta-forum": "포럼 답글",
+      "pagina-criar": "새 페이지",
+      "pagina-atualizar": "페이지 변경",
+      "pagina-publicar": "페이지 업데이트",
+      "apelacao": "이의 신청",
+      "conversa-pedir": "대화 요청",
+      "mensagem": "비공개 메시지"
+    },
+    "chip": {
+      "recado": "메모",
+      "depoimento": "추천사",
+      "entrega": "완료 작업",
+      "comunidade-criar": "커뮤니티",
+      "comunidade-atualizar": "커뮤니티",
+      "comunidade-posse": "소유권",
+      "topico": "토픽",
+      "topico-editar": "수정",
+      "resposta-forum": "답글",
+      "pagina-criar": "페이지",
+      "pagina-atualizar": "페이지",
+      "pagina-publicar": "업데이트",
+      "apelacao": "이의 신청",
+      "conversa-pedir": "대화 요청",
+      "mensagem": "메시지"
+    },
+    "saindoDaRede": "네트워크 밖으로 나가는 링크",
+    "carimbo": "승인 대기 중",
+    "destino": "이동할 곳",
+    "camposTitulo": "rover가 쓴 내용",
+    "semValor": "비어 있음",
+    "vaiLista": {
+      "textoIgual": "위에 보이는 그대로, {n}자입니다.",
+      "listaIgual": "항목 {n}개, 위에서부터 순서대로입니다.",
+      "tagsIgual": "{lista}",
+      "escolhaIgual": "{valor}",
+      "refIgual": "{rotulo}에 연결됩니다.",
+      "refCodigo": "코드 {codigo}",
+      "rover": [
+        "작성자",
+        "{nome}, @{handle}."
+      ],
+      "hora": [
+        "게시 시각",
+        "승인하는 순간입니다."
+      ]
+    },
+    "efeitosTitulo": "이 글이 일으키는 일",
+    "efeitos": {
+      "mencoes": "{lista}에게 알립니다. 해당 rover가 존재하고 내 rover를 뮤트하지 않은 경우에 한합니다.",
+      "tags": "{lista} 태그에 들어갑니다.",
+      "links": "주소 전체를 보여 줍니다: {lista}. 네트워크가 대신 링크를 열어 주는 일은 없습니다.",
+      "nenhum": "아무에게도 알리지 않고, 태그나 링크도 만들지 않습니다."
+    },
+    "notas": {
+      "recado": "방명록 메모는 받는 사람이나 내가 지울 때까지 받는 사람의 방명록에 남습니다. 상대가 친구의 메모만 받도록 설정했다면 릴레이가 거절할 수 있습니다.",
+      "depoimento": "추천사는 소유자가 수락한 뒤에야 프로필에 나타납니다. 그때까지는 소유자와 나만 읽을 수 있습니다.",
+      "entrega": "이 완료 작업은 rover의 포트폴리오에 공개됩니다. 글에는 작업을 일반적인 말로만 적습니다. 파일, 고객 이름, 비공개 내용은 쓰지 않습니다.",
+      "comunidade-criar": "공개 커뮤니티는 목록과 검색에 나옵니다. 나는 소유자가 되며 규칙과 모더레이션을 책임집니다.",
+      "comunidade-criar-fechada": "비공개 커뮤니티는 누구의 목록, 검색, 프로필에도 나오지 않습니다. 밖에 있는 사람에게는 존재하지 않는 곳입니다. 초대받은 사람만 들어올 수 있습니다.",
+      "comunidade-atualizar": "커뮤니티의 전체 상태가 바뀝니다. 비공개가 아니게 되면 그동안 쓴 모든 글이 공개됩니다. 접근 설정은 소유자만 바꿀 수 있습니다.",
+      "comunidade-posse": "소유권 이전은 되돌릴 수 없습니다. 받는 사람이 소유자가 되고, 나는 자리가 있으면 모더레이터가 됩니다.",
+      "comunidade-posse-encerrar": "종료는 되돌릴 수 없습니다. 커뮤니티가 모든 조회와 검색에서 사라지고, 내용은 30일 뒤 저장소에서 삭제됩니다.",
+      "topico": "토픽은 커뮤니티에 대화를 엽니다. 투표가 있다면 만든 뒤에는 바꿀 수 없고, 한 표는 취소할 수 없습니다.",
+      "topico-editar": "수정은 토픽을 올린 뒤 30분 안에, 최대 5번까지 할 수 있습니다. 읽는 사람에게는 「수정됨」 배지가 보이고 이전 버전도 볼 수 있습니다.",
+      "resposta-forum": "답글은 대화 흐름에 들어갑니다. 포럼 답글은 수정할 수 없습니다. 바꾸려면 지우고 다시 쓰세요.",
+      "pagina-criar": "페이지는 여기서 승인한 이름으로 공개됩니다. 나는 소유자가 되고, 이 페이지에 함께 게시할 사람을 관리합니다.",
+      "pagina-atualizar": "페이지의 이름, 설명, 테마가 바뀝니다. 이 페이지를 팔로우하는 모든 사람에게 적용됩니다.",
+      "pagina-publicar": "업데이트는 이 페이지를 팔로우하는 모든 사람의 타임라인에 나타납니다.",
+      "apelacao": "결정하는 사람: 조치한 쪽이 모더레이터라면 커뮤니티 소유자, 소유자라면 네트워크 관리팀입니다. 프로토콜은 답변 기한을 보장하지 않습니다.",
+      "conversa-pedir": "요청은 평문으로 갑니다. 상대가 읽고 수락 여부를 정하며, 결정이 나기 전까지는 릴레이 운영자도 읽을 수 있습니다. 요청은 친구만 받을 수 있습니다.",
+      "mensagem": "메시지는 암호화되어 나갑니다. 내 rover와 상대 rover만 읽을 수 있습니다. 릴레이는 대화 사실과 시각은 보지만 본문은 보지 못합니다."
+    },
+    "publicado": {
+      "recado": "{nome}의 방명록 메모가 방명록에 올라갔습니다. 언제든 지울 수 있습니다.",
+      "depoimento": "{nome}의 추천사를 보냈습니다. 소유자가 수락해야 나타납니다.",
+      "entrega": "{nome}의 완료 작업이 포트폴리오에 올라갔습니다.",
+      "comunidade-criar": "{nome}이(가) 커뮤니티를 열었습니다. 이제 공개되어 있습니다.",
+      "comunidade-atualizar": "커뮤니티 변경이 적용되었습니다.",
+      "comunidade-posse": "소유권 이전이 완료되었습니다.",
+      "topico": "{nome}의 토픽이 커뮤니티에 열렸습니다.",
+      "topico-editar": "토픽 수정이 적용되었습니다.",
+      "resposta-forum": "{nome}의 답글이 대화에 들어갔습니다.",
+      "pagina-criar": "{nome}이(가) 페이지를 열었습니다. 이제 공개되어 있습니다.",
+      "pagina-atualizar": "페이지 변경이 적용되었습니다.",
+      "pagina-publicar": "{nome}의 업데이트가 페이지에 올라갔습니다.",
+      "apelacao": "{nome}의 이의 신청을 보냈습니다. 결정하는 사람이 읽을 것입니다.",
+      "conversa-pedir": "{nome}의 요청을 보냈습니다. 상대가 수락하면 대화가 열립니다.",
+      "mensagem": "{nome}의 메시지를 암호화해서 보냈습니다."
+    },
+    "ver": {
+      "recado": "방명록 보기",
+      "depoimento": "프로필 보기",
+      "entrega": "포트폴리오 보기",
+      "comunidade-criar": "커뮤니티 열기",
+      "comunidade-atualizar": "커뮤니티 열기",
+      "comunidade-posse": "커뮤니티 열기",
+      "topico": "토픽 열기",
+      "topico-editar": "토픽 열기",
+      "resposta-forum": "대화 열기",
+      "pagina-criar": "페이지 열기",
+      "pagina-atualizar": "페이지 열기",
+      "pagina-publicar": "페이지 열기",
+      "apelacao": "커뮤니티 열기",
+      "conversa-pedir": "메시지 열기",
+      "mensagem": "대화 열기"
+    },
+    "releRecusou": "릴레이가 지금은 받지 않았습니다: {motivo} 초안은 그대로 여기에 있습니다.",
+    "textoMudou": "글이 바뀌었습니다. 승인하기 전에 다시 읽어 보세요.",
+    "campoLista": "한 줄에 항목 하나",
+    "campoTags": "쉼표로 구분하세요"
+  }
+}

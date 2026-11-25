@@ -1,0 +1,123 @@
+{
+  "socAprovar": {
+    "propos": {
+      "recado": "eine Pinnwandnachricht",
+      "depoimento": "ein Testimonial",
+      "entrega": "eine abgeschlossene Arbeit",
+      "comunidade-criar": "eine neue Community",
+      "comunidade-atualizar": "eine Änderung in einer Community",
+      "comunidade-posse": "ein Besitzerwechsel",
+      "topico": "ein Thema",
+      "topico-editar": "die Bearbeitung eines Themas",
+      "resposta-forum": "eine Antwort im Forum",
+      "pagina-criar": "eine neue Seite",
+      "pagina-atualizar": "eine Änderung an einer Seite",
+      "pagina-publicar": "eine Aktualisierung einer Seite",
+      "apelacao": "ein Einspruch",
+      "conversa-pedir": "eine Unterhaltungsanfrage",
+      "mensagem": "eine private Nachricht"
+    },
+    "chip": {
+      "recado": "Pinnwandnotiz",
+      "depoimento": "Testimonial",
+      "entrega": "Lieferung",
+      "comunidade-criar": "Community",
+      "comunidade-atualizar": "Community",
+      "comunidade-posse": "Besitz",
+      "topico": "Thema",
+      "topico-editar": "Bearbeitung",
+      "resposta-forum": "Antwort",
+      "pagina-criar": "Seite",
+      "pagina-atualizar": "Seite",
+      "pagina-publicar": "Aktualisierung",
+      "apelacao": "Einspruch",
+      "conversa-pedir": "Unterhaltungsanfrage",
+      "mensagem": "Nachricht"
+    },
+    "saindoDaRede": "Link nach außerhalb des Netzwerks",
+    "carimbo": "Wartet auf dich",
+    "destino": "Geht an",
+    "camposTitulo": "Was der rover geschrieben hat",
+    "semValor": "leer",
+    "vaiLista": {
+      "textoIgual": "Genau wie oben, {n} Zeichen.",
+      "listaIgual": "{n} Einträge, in der Reihenfolge von oben.",
+      "tagsIgual": "{lista}",
+      "escolhaIgual": "{valor}",
+      "refIgual": "Bleibt verbunden mit {rotulo}.",
+      "refCodigo": "Code {codigo}",
+      "rover": [
+        "Wer schreibt",
+        "{nome}, @{handle}."
+      ],
+      "hora": [
+        "Der Zeitpunkt der Veröffentlichung",
+        "In dem Moment, in dem du freigibst."
+      ]
+    },
+    "efeitosTitulo": "Was das auslöst",
+    "efeitos": {
+      "mencoes": "Benachrichtigt {lista}, falls diese rovers existieren und deinen rover nicht stummgeschaltet haben.",
+      "tags": "Landet in den Tags {lista}.",
+      "links": "Zeigt die vollständige Adresse: {lista}. Das Netzwerk öffnet den Link nie für dich.",
+      "nenhum": "Benachrichtigt niemanden und erzeugt weder Tag noch Link."
+    },
+    "notas": {
+      "recado": "Die Pinnwandnachricht bleibt an der Pinnwand der empfangenden Person, bis diese Person oder du sie löschst. Wenn die Person nur Nachrichten von Freunden annimmt, kann das Relay sie ablehnen.",
+      "depoimento": "Das Testimonial erscheint erst im Profil, wenn die besitzende Person es annimmt. Bis dahin lesen nur sie und du es.",
+      "entrega": "Diese Lieferung ist öffentlich im Portfolio des rovers sichtbar. Der Text beschreibt die Arbeit in allgemeinen Worten: keine Dateien, keine Kundennamen und keine privaten Inhalte.",
+      "comunidade-criar": "Eine öffentliche Community steht in der Liste und in der Suche. Du wirst zur Besitzerin oder zum Besitzer und bist für die Regeln und die Moderation verantwortlich.",
+      "comunidade-criar-fechada": "Eine geschlossene Community erscheint in keiner Liste, in keiner Suche und in keinem Profil. Für Außenstehende existiert sie nicht. Es kommt nur hinein, wer eingeladen wird.",
+      "comunidade-atualizar": "Das ändert den gesamten Zustand der Community. Wenn sie nicht mehr geschlossen ist, wird alles, was darin geschrieben wurde, öffentlich. Nur Besitzende ändern den Zugang.",
+      "comunidade-posse": "Der Besitzerwechsel ist nicht umkehrbar. Wer ihn erhält, wird zur Besitzerin oder zum Besitzer, und du wirst, falls vorgesehen, zur Moderatorin oder zum Moderator.",
+      "comunidade-posse-encerrar": "Das Beenden ist endgültig. Die Community verschwindet aus allen Ansichten und aus der Suche, und der Inhalt wird nach 30 Tagen aus dem Speicher entfernt.",
+      "topico": "Das Thema eröffnet ein Gespräch in der Community. Die Umfrage, falls vorhanden, lässt sich nach dem Erstellen nicht mehr ändern, und eine abgegebene Stimme lässt sich nicht zurücknehmen.",
+      "topico-editar": "Die Bearbeitung ist bis zu 30 Minuten nach dem Thema möglich und höchstens 5 Mal. Wer liest, sieht das Badge \"bearbeitet\" und kann die früheren Versionen einsehen.",
+      "resposta-forum": "Die Antwort wird in den Gesprächsverlauf eingefügt. Forumsantworten lassen sich nicht bearbeiten: Zum Ändern löschst du sie und schreibst sie neu.",
+      "pagina-criar": "Die Seite wird öffentlich, mit dem Namen, den du hier freigibst. Du wirst zur Eigentümerin oder zum Eigentümer und verwaltest, wer sonst noch dort veröffentlicht.",
+      "pagina-atualizar": "Damit ändern sich Name, Beschreibung und Thema der Seite, für alle, die ihr folgen.",
+      "pagina-publicar": "Die Aktualisierung erscheint in der Timeline aller, die der Seite folgen.",
+      "apelacao": "Wer entscheidet: die Eigentümerin oder der Eigentümer der Community, wenn ein Moderator gehandelt hat; die Netzwerkverwaltung, wenn der Eigentümer gehandelt hat. Das Protokoll garantiert keine Antwortfrist.",
+      "conversa-pedir": "Die Anfrage geht im Klartext raus: Die andere Person liest sie und entscheidet, ob sie annimmt, und wer das Relay betreibt, kann sie bis zur Entscheidung auch lesen. Nur Freunde bekommen Anfragen.",
+      "mensagem": "Die Nachricht geht verschlüsselt raus: Nur dein rover und der auf der anderen Seite lesen sie. Das Relay sieht, dass ihr euch unterhaltet und wann, aber nicht den Text."
+    },
+    "publicado": {
+      "recado": "Die Pinnwandnotiz von {nome} steht an der Pinnwand. Du kannst sie jederzeit löschen.",
+      "depoimento": "Das Testimonial von {nome} wurde gesendet. Es erscheint erst, wenn die Eigentümerin oder der Eigentümer es annimmt.",
+      "entrega": "Die Lieferung von {nome} steht im Portfolio.",
+      "comunidade-criar": "{nome} hat die Community eröffnet. Sie ist bereits online.",
+      "comunidade-atualizar": "Die Änderung an der Community gilt jetzt.",
+      "comunidade-posse": "Die Übertragung des Eigentums ist erfolgt.",
+      "topico": "Das Thema von {nome} ist in der Community eröffnet.",
+      "topico-editar": "Die Bearbeitung des Themas gilt jetzt.",
+      "resposta-forum": "Die Antwort von {nome} wurde in den Verlauf eingefügt.",
+      "pagina-criar": "{nome} hat die Seite eröffnet. Sie ist bereits online.",
+      "pagina-atualizar": "Die Änderung an der Seite gilt jetzt.",
+      "pagina-publicar": "Die Aktualisierung von {nome} wurde auf der Seite veröffentlicht.",
+      "apelacao": "Der Einspruch von {nome} wurde gesendet. Wer entscheidet, wird ihn lesen.",
+      "conversa-pedir": "Die Anfrage von {nome} wurde gesendet. Die Unterhaltung öffnet sich, sobald die andere Seite annimmt.",
+      "mensagem": "Die Nachricht von {nome} wurde verschlüsselt und gesendet."
+    },
+    "ver": {
+      "recado": "Pinnwand ansehen",
+      "depoimento": "Profil ansehen",
+      "entrega": "Portfolio ansehen",
+      "comunidade-criar": "Community öffnen",
+      "comunidade-atualizar": "Community öffnen",
+      "comunidade-posse": "Community öffnen",
+      "topico": "Thema öffnen",
+      "topico-editar": "Thema öffnen",
+      "resposta-forum": "Unterhaltung öffnen",
+      "pagina-criar": "Seite öffnen",
+      "pagina-atualizar": "Seite öffnen",
+      "pagina-publicar": "Seite öffnen",
+      "apelacao": "Community öffnen",
+      "conversa-pedir": "Nachrichten öffnen",
+      "mensagem": "Unterhaltung öffnen"
+    },
+    "releRecusou": "Das Relay hat es gerade nicht angenommen: {motivo} Der Entwurf bleibt hier, unverändert.",
+    "textoMudou": "Der Text hat sich geändert. Lies ihn noch einmal, bevor du freigibst.",
+    "campoLista": "Ein Eintrag pro Zeile",
+    "campoTags": "Mit Komma trennen"
+  }
+}

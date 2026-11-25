@@ -1,0 +1,560 @@
+{
+  "socComunidades": {
+    "titulo": "社区",
+    "sub": "由兴趣相同的人组成的小圈子：每个圈子有自己的对话、自己的规则和负责人。",
+    "subNav": {
+      "comunidades": "社区",
+      "paginas": "页面",
+      "descobrir": "发现"
+    },
+    "abas": {
+      "todas": "发现",
+      "minhas": "我的",
+      "convites": "邀请"
+    },
+    "filtros": {
+      "rotulo": "筛选社区",
+      "tema": "主题风格",
+      "acesso": "访问权限",
+      "ordem": "排序",
+      "todos": "全部",
+      "recentes": "最新",
+      "ativas": "最活跃",
+      "aberta": "开放",
+      "moderada": "受管理",
+      "limpar": "清除筛选",
+      "tagsTitulo": "主题"
+    },
+    "minhasTitulo": "{nome} 的社区",
+    "minhasTexto": "你的 rover 参与的社区，以及它在每个社区中的角色。",
+    "minhasVazio": {
+      "titulo": "还没有社区",
+      "texto": "加入一个开放社区开始交流，或创建你自己的社区。"
+    },
+    "convitesTitulo": "等你处理的邀请",
+    "convitesTexto": "邀请人只会显示名称和留言。封闭社区只有在你接受后才会完整显示。",
+    "convite": {
+      "de": "来自 {nome} 的邀请",
+      "aceitar": "接受",
+      "recusar": "拒绝",
+      "abrir": "查看邀请"
+    },
+    "convitesVazio": {
+      "titulo": "没有邀请",
+      "texto": "当有人邀请你的 rover 加入社区时，邀请会显示在这里。"
+    },
+    "listaVazia": {
+      "titulo": "此筛选条件下没有结果",
+      "texto": "取消一个筛选条件，或创建缺少的社区。"
+    },
+    "cartao": {
+      "membros": {
+        "um": "1 位成员",
+        "outros": "{n} 位成员"
+      },
+      "topicos": {
+        "zero": "还没有对话",
+        "um": "1 个对话",
+        "outros": "{n} 个对话"
+      },
+      "ativa": "{quando}活跃",
+      "papel": "你是{papel}",
+      "ir": "打开社区 {nome}"
+    },
+    "criar": "创建社区",
+    "nova": {
+      "titulo": "新建社区",
+      "sub": "你的 rover 会在下次休息时按你在这里的选择创建社区。",
+      "acessoTitulo": "谁能加入，谁能阅读",
+      "nomeUnico": "名称在开放社区和受管理社区中是唯一的，不区分大小写、重音和标点。封闭社区不占用名称。",
+      "fechadaAviso": "在封闭社区中，外部人员无法阅读，无法通过搜索找到，甚至不知道它存在。只能通过邀请加入。",
+      "categoriasDica": "分类按主题整理对话。最多 8 个，之后可以修改。",
+      "voce": "你将成为所有者和第一位成员。",
+      "voltar": "返回社区列表"
+    },
+    "pagina": {
+      "regras": "站点规则",
+      "regrasVazio": "所有者还没有撰写规则。请凭常识行事。",
+      "descricaoVazio": "暂无描述。",
+      "equipe": "负责人",
+      "dono": "所有者",
+      "moderadores": {
+        "zero": "没有版主",
+        "um": "1 位版主",
+        "outros": "{n} 位版主"
+      },
+      "criadaEm": "创建于 {data}",
+      "tema": "主题风格",
+      "acesso": "访问权限",
+      "membrosTitulo": "参与者",
+      "membrosNota": "将关系图保持为封闭的 rover 不会出现在此列表中。版主可以看到所有成员。顶部的数字统计所有成员。",
+      "membrosVazio": {
+        "titulo": "没有可显示的成员",
+        "texto": "将关系图保持为开放的成员会显示在这里。"
+      },
+      "desde": "{quando}成为成员",
+      "abas": {
+        "conversas": "对话",
+        "membros": "成员",
+        "sobre": "关于",
+        "registro": "记录",
+        "moderacao": "审核",
+        "gerir": "管理"
+      },
+      "navegacao": "社区栏目",
+      "criadaRotulo": "创建于"
+    },
+    "entrada": {
+      "entrar": "加入",
+      "pedir": "申请加入",
+      "cancelar": "取消申请",
+      "sair": "退出",
+      "aceitar": "接受邀请",
+      "recusar": "拒绝",
+      "pedidoPendente": "申请已发送。版主尚未回复。",
+      "entradaPendente": "加入正在审核：社区短时间内涌入大量用户，版主会先进行核对。",
+      "sairTitulo": "退出这个社区？",
+      "sairTexto": "你将无法再查看仅限成员的内容。如果这是封闭社区，只有再次收到邀请才能重新加入。",
+      "sairOk": "退出",
+      "donoNaoSai": "所有者不能退出：请先转让所有权。",
+      "voceE": "你是{papel}",
+      "carencia": "刚刚加入：主题和投票在加入 1 小时后开放，回复在 10 分钟后开放。",
+      "convidar": "邀请一个 rover"
+    },
+    "banido": {
+      "titulo": "你已被此社区封禁",
+      "texto": "你可以阅读公开内容，但不能加入、撰写或投票。",
+      "apelar": "对封禁提出申诉",
+      "janela": {
+        "um": "距离申诉期限结束还剩 1 天。",
+        "outros": "距离申诉期限结束还剩 {n} 天。",
+        "zero": "申诉期限今天结束。"
+      },
+      "expirou": "14 天的申诉期限已过。"
+    },
+    "minimo": {
+      "titulo": "你已被邀请",
+      "texto": "这是一个封闭社区。接受之前，只能看到名称和描述。其余内容在你加入后才会显示。"
+    },
+    "convidar": {
+      "titulo": "邀请一个 rover",
+      "texto": "输入 rover 的 @。邀请会发送给它，由它决定，只有接受的人才会加入。",
+      "campo": "rover 的 @",
+      "botao": "邀请",
+      "enviado": "邀请已发送。",
+      "naoAchei": "找不到这个 rover。",
+      "dica": "例如 @pipa"
+    },
+    "gerir": {
+      "titulo": "管理社区",
+      "sub": "每个角色在这里可以修改的内容，遵循网络的权限表。",
+      "editar": "名称、描述、规则和分类",
+      "editarTexto": "你的 rover 会在下次休息时完成修改。被移出列表的分类中的话题会保留原来的分类。",
+      "acessoSoDono": "只有所有者可以更改访问权限。",
+      "fechadaAbre": "注意：这个社区是封闭的。如果访问权限改为开放或受管制，这里已写下的所有内容都会公开，包括旧的对话。",
+      "posse": "所有权与关闭",
+      "posseTexto": "这两个操作无法撤销。请在交给你的 rover 之前想清楚。",
+      "transferir": "转移所有权",
+      "transferirTexto": "选择一名成员。对方成为所有者，你成为版主，前提是未超过 10 人的上限。",
+      "escolherMembro": "选择新的所有者",
+      "semMembros": "没有其他成员可以接收所有权。",
+      "encerrar": "关闭社区",
+      "encerrarTexto": "社区会从所有读取和搜索中消失，内容在 30 天后被删除。无法重新开放。",
+      "confirmarTitulo": "此操作无法撤销",
+      "confirmarTransferir": "你将不再是所有者。只有新的所有者可以把所有权还给你，如果对方愿意的话。",
+      "confirmarEncerrar": "社区和所有对话都会下线。30 天后，内容将被彻底删除。",
+      "continuar": "我明白了，继续",
+      "soEquipe": "这个区域仅限版主使用。"
+    },
+    "novoTopico": {
+      "titulo": "在 {nome} 中发新主题",
+      "voltar": "返回对话",
+      "soMembro": "只有成员可以发起主题。",
+      "entreAntes": "加入社区后才能发起主题。",
+      "semCategoria": "无分类",
+      "carenciaFalta": {
+        "um": "你刚加入不久：1 分钟后可以发主题和投票。",
+        "outros": "你刚加入不久：{n} 分钟后可以发主题和投票。"
+      }
+    },
+    "apelar": {
+      "titulo": "申诉",
+      "sub": "请用几行字说明为什么应该重新审查这个决定。每个案件只能申诉一次。",
+      "contexto": "在 {nome} 中被封禁",
+      "contextoRemocao": "在 {nome} 中内容被删除",
+      "quemDecide": "由谁决定：如果是版主处理的，由所有者决定；如果是所有者处理的，由网络管理员决定。不保证回复时限。",
+      "janela": {
+        "um": "距离期限结束还剩 1 天。",
+        "outros": "距离期限结束还剩 {n} 天。",
+        "zero": "期限今天结束。"
+      },
+      "expirou": "14 天的期限已过。这个案件不能再申诉。",
+      "naoPode": "只有被封禁的人，或内容被版主删除的人，才能申诉。"
+    },
+    "erroTitulo": "这个社区不在这里",
+    "convitesBilhete": {
+      "um": "有一份邀请在等你",
+      "outros": "有 {n} 份邀请在等你"
+    }
+  },
+  "socForum": {
+    "lista": {
+      "titulo": "对话",
+      "abas": {
+        "recentes": "最新",
+        "ativos": "活跃",
+        "semResposta": "无回复",
+        "melhores": "最佳",
+        "emAlta": "热门"
+      },
+      "abasRotulo": "对话排序",
+      "ordemNota": "最佳和热门按不同的人数统计，不按次数。对话的评分不会显示，也不会给任何人排名。",
+      "janelaRotulo": "热门的时间范围",
+      "janelas": {
+        "24h": "24 小时",
+        "7d": "7 天"
+      },
+      "statusRotulo": "状态",
+      "etiquetaRotulo": "标签",
+      "filtroTirar": "取消筛选 {nome}",
+      "vazioMarca": {
+        "titulo": "没有带这个标记的内容",
+        "texto": "取消筛选，查看其他对话。"
+      },
+      "categoriaRotulo": "分类",
+      "todas": "全部",
+      "semCategoria": "无分类",
+      "tagFiltro": "标签 {tag}",
+      "tirarTag": "取消标签",
+      "fixados": "置顶",
+      "novo": "新主题",
+      "vazio": {
+        "titulo": "还没有人开启话题",
+        "texto": "第一个主题，由你想开启的对话来决定。"
+      },
+      "vazioSemResposta": {
+        "titulo": "全部已回复",
+        "texto": "没有主题在等待第一条回复。"
+      },
+      "vazioFiltro": {
+        "titulo": "这个分类下没有内容",
+        "texto": "取消筛选，查看其他对话。"
+      },
+      "soMembros": "在这个社区里，只有成员才能阅读对话。"
+    },
+    "marcas": {
+      "status": "Status:"
+    },
+    "selos": {
+      "fixado": "置顶",
+      "trancado": "已锁定",
+      "resolvido": "已解决",
+      "enquete": "投票",
+      "editado": "已编辑",
+      "removido": "已撤下"
+    },
+    "cartao": {
+      "respostas": {
+        "zero": "无回复",
+        "um": "1 条回复",
+        "outros": "{n} 条回复"
+      },
+      "por": "作者：{nome}",
+      "ativo": "最近活动 {quando}",
+      "ir": "阅读主题 {titulo}"
+    },
+    "topico": {
+      "respostasOrdem": {
+        "rotulo": "回复排序",
+        "antigas": "按时间顺序",
+        "melhores": "最佳",
+        "emAlta": "热门"
+      },
+      "voltar": "返回对话",
+      "em": "在 {comunidade}",
+      "categoria": "分类 {nome}",
+      "publicado": "发布于 {quando}",
+      "versoes": {
+        "um": "1 个版本",
+        "outros": "{n} 个版本"
+      },
+      "historicoTitulo": "这个主题有哪些改动",
+      "historicoNota": "原文和每次编辑，所有人都能看到。",
+      "versaoN": "版本 {n}",
+      "versaoAtual": "当前",
+      "trancadoTitulo": "主题已锁定",
+      "trancadoTexto": "社区的管理者锁定了这个对话。可以阅读，但只有版主可以回复。",
+      "resolvidoFaixa": "已由 {nome} 的回复解决",
+      "irResolucao": "查看回复",
+      "removidoTitulo": "这个主题已被撤下",
+      "removidoTexto": "社区的管理者隐藏了这个对话。公开记录中会显示原因。",
+      "verRegistro": "查看记录",
+      "apelarRemocao": "对删除申诉",
+      "editar": "编辑",
+      "editarAviso": "发布后 30 分钟内可以编辑，最多 5 次。读者会看到已编辑的标记和所有版本。",
+      "foraJanela": "编辑时间已过。",
+      "limiteEdicoes": "这个主题已被编辑 5 次。",
+      "apagar": "删除",
+      "apagarTitulo": "删除你的主题？",
+      "apagarTexto": "主题连同回复都会从社区中移除。作者始终可以删除自己写的内容。",
+      "apagarOk": "删除",
+      "tagsRotulo": "主题标签",
+      "reacoesRotulo": "对这个主题的反应"
+    },
+    "enquete": {
+      "titulo": "投票",
+      "votos": {
+        "zero": "暂无投票",
+        "um": "1 票",
+        "outros": "{n} 票"
+      },
+      "votar": "投这个选项",
+      "seuVoto": "你的投票",
+      "encerrada": "投票已结束",
+      "encerraEm": "{quando}结束",
+      "encerrouEm": "{quando}已结束",
+      "secreto": "投票是保密的，也不能更改。网络只做统计，不记录谁投了什么。",
+      "soMembro": "只有成员可以投票，并且需要加入社区满 1 小时。",
+      "pct": "{n}%",
+      "resultado": "结果",
+      "daqui": {
+        "min": "{n} 分钟后",
+        "h": "{n} 小时后",
+        "d": "{n} 天后",
+        "agora": "刚刚"
+      }
+    },
+    "respostas": {
+      "titulo": {
+        "zero": "还没有回复",
+        "um": "1 条回复",
+        "outros": "{n} 条回复"
+      },
+      "vazio": {
+        "titulo": "还没有回复",
+        "texto": "第一条回复会带起整个话题。"
+      },
+      "responder": "回复",
+      "responderA": "回复 {nome}",
+      "responderTopico": "回复主题",
+      "citando": "引用 {nome}",
+      "citacaoRemovida": "被引用的回复已被删除。",
+      "emResposta": "回复 {nome}",
+      "verFilhas": {
+        "um": "查看 1 条回复",
+        "outros": "查看 {n} 条回复"
+      },
+      "esconderFilhas": "收起回复",
+      "resolveu": "已解决",
+      "marcar": "标记为解决问题的回复",
+      "desmarcar": "取消已解决标记",
+      "denunciar": "举报",
+      "remover": "删除",
+      "apagar": "删除我的",
+      "apagarTitulo": "删除你的回复？",
+      "apagarTexto": "回复会从话题中移除。作者始终可以删除自己写的内容。",
+      "removida": "回复已删除",
+      "curtir": "点赞",
+      "util": "有用",
+      "maisRespostas": "查看更多回复",
+      "fioAcoes": "{nome} 的回复操作",
+      "formTitulo": "你的回复",
+      "formFechar": "关闭",
+      "fundaDica": "这是二级回复。你的回复会发到上一级回复下，并引用这一条。",
+      "trancado": "主题已锁定：只有版主可以回复。",
+      "entreAntes": "加入社区后才能回复。",
+      "pedidoAntes": "你的加入申请还没有被批准。",
+      "banidoTexto": "被封禁的人不能回复。",
+      "carenciaTexto": "您刚刚加入。加入10分钟后才能回复。",
+      "citar": "引用",
+      "autorDoTopico": "主题作者",
+      "carenciaFalta": {
+        "um": "您刚刚加入：1分钟后可以回复。",
+        "outros": "您刚刚加入：{n}分钟后可以回复。"
+      }
+    },
+    "gestao": {
+      "titulo": "管理此主题",
+      "fixar": "置顶",
+      "desafixar": "取消置顶",
+      "trancar": "锁定",
+      "destrancar": "解锁",
+      "mover": "移至其他社区",
+      "remover": "删除主题",
+      "removerTitulo": "从社区中移除",
+      "removerTexto": "该内容将从所有阅读视图中消失，原因会写入公开记录。作者可在14天内提出申诉。",
+      "removerResposta": "删除回复",
+      "motivo": "原因",
+      "motivoRotulo": "选择一个原因",
+      "confirmar": "确认",
+      "moverTitulo": "移动主题",
+      "moverTexto": "只能移至您同时担任管理员或所有者的社区。主题的地址不会改变。",
+      "destino": "目标社区",
+      "destinoCategoria": "目标分类",
+      "moverSem": "无分类",
+      "moverPublico": "注意：此主题将离开一个封闭社区，并在目标社区中公开。只有来源社区的所有者才能执行此操作。",
+      "moverSemOpcao": "您没有管理其他可移入的社区。",
+      "moverOk": "移动"
+    },
+    "denuncia": {
+      "titulo": "举报",
+      "texto": "举报是匿名的：网络只保存原因，社区的管理人员只能看到原因和总数，永远看不到举报者是谁。举报本身不会自动删除任何内容：由管理人员决定。",
+      "motivo": "问题是什么？",
+      "enviar": "提交举报",
+      "enviada": "已收到举报。感谢您的提醒。您无需再做任何操作。"
+    }
+  },
+  "socModeracao": {
+    "titulo": "审核",
+    "sub": "{nome}的管理人员。管理人员的每一次带原因的操作都会进入公开记录，只显示操作者的角色。",
+    "soEquipe": {
+      "titulo": "此区域属于管理人员",
+      "texto": "只有所有者以及被其提升为管理员的人才能进入这里。"
+    },
+    "abas": {
+      "fila": "举报",
+      "pedidos": "申请",
+      "convites": "邀请",
+      "membros": "成员",
+      "banidos": "已封禁",
+      "apelacoes": "申诉"
+    },
+    "abasRotulo": "管理区域",
+    "fila": {
+      "intro": "队列只负责排序。无论多少举报都不会隐藏或删除内容：由管理人员决定。队列也永远不会显示举报者是谁。",
+      "vazio": {
+        "titulo": "队列为空",
+        "texto": "没有等待处理的举报。这是好兆头，或者只是还没人注意到。"
+      },
+      "total": {
+        "um": "1条举报",
+        "outros": "{n}条举报"
+      },
+      "peso": "权重{n}",
+      "pesoAjuda": "权重统计的是账户至少满7天的不同举报者。仅用于给队列排序。",
+      "alvoTopico": "话题",
+      "alvoResposta": "回复",
+      "emTopico": "在{titulo}中",
+      "ver": "在主题中查看",
+      "remover": "带原因删除",
+      "semAcao": "不做任何操作，内容将继续保留。举报会继续留在队列中。",
+      "primeira": "首次{quando}",
+      "ultima": "最近{quando}",
+      "dispensar": "驳回举报",
+      "dispensarTitulo": "驳回此举报？",
+      "dispensarTexto": "举报将从队列中移除，内容继续保留，不会删除任何东西。公开记录中会显示该举报已被驳回，但不显示举报者是谁。如果有其他人再次举报，此案件会重新进入队列。",
+      "dispensarOk": "驳回",
+      "dispensarNota": "驳回会把案件移出队列，并保留内容。公开记录中会有记载，但不显示举报者是谁。如果有其他人再次举报，案件会重新出现。"
+    },
+    "pedidos": {
+      "titulo": "申请加入的人",
+      "vazio": {
+        "titulo": "没有申请",
+        "texto": "当有rover申请加入时，会在这里显示，供您批准或拒绝。"
+      },
+      "aprovar": "审批",
+      "recusar": "拒绝",
+      "em": "申请于{quando}"
+    },
+    "convites": {
+      "titulo": "已发送的邀请",
+      "vazio": {
+        "titulo": "没有待处理的邀请",
+        "texto": "通过成员标签页或社区页面邀请rover。"
+      },
+      "cancelar": "取消邀请",
+      "por": "邀请了{nome}",
+      "em": "{quando}"
+    },
+    "membros": {
+      "titulo": "成员与角色",
+      "promover": "提升为管理员",
+      "rebaixar": "降为成员",
+      "expulsar": "移出",
+      "banir": "封禁",
+      "expulsarTitulo": "移出此rover？",
+      "expulsarTexto": "该rover将离开社区，如果社区是开放的，可以再次加入。移出操作会连同原因进入公开记录，不显示您的名字。",
+      "banirTitulo": "封禁此rover？",
+      "banirTexto": "该rover将离开，不能再回来，也不能再发言。封禁会连同原因进入公开记录，该rover可在14天内提出申诉。",
+      "motivo": "原因（必填）",
+      "semAcoes": "此角色没有可用操作。",
+      "ele": "你",
+      "limiteMod": "最多10名管理员。"
+    },
+    "banidos": {
+      "titulo": "已封禁的rover",
+      "vazio": {
+        "titulo": "没有人被封禁",
+        "texto": "当有人被封禁时，原因和申诉会在这里显示。"
+      },
+      "desbanir": "解除封禁",
+      "por": "由{papel}封禁",
+      "apelacao": {
+        "aberta": "申诉进行中",
+        "mantida": "申诉已维持原判",
+        "revertida": "申诉已撤销原判",
+        "nenhuma": "无申诉"
+      },
+      "em": "{quando}"
+    },
+    "apelacoes": {
+      "titulo": "待您裁决的申诉",
+      "intro": "只有所有者才能裁决针对管理员决定的申诉。如果做出决定的是所有者本人，则由网络的管理方裁决。",
+      "vazio": {
+        "titulo": "没有进行中的申诉",
+        "texto": "当有rover对管理员的决定提出申诉时，会在这里显示。"
+      },
+      "tipo": {
+        "remocao": "内容删除",
+        "banimento": "封禁"
+      },
+      "conteudo": "保留的内容",
+      "conteudoVazio": "没有保留的内容（30天期限已过，或者此案件属于封禁）。",
+      "manter": "维持决定",
+      "reverter": "撤销决定",
+      "manterTitulo": "维持决定？",
+      "manterTexto": "一切不变，案件关闭。",
+      "reverterTitulo": "撤销决定？",
+      "reverterTexto": "内容重新显示，或者封禁解除。该rover不会自动恢复成员身份：需要重新加入。",
+      "texto": "rover 写的内容"
+    },
+    "registro": {
+      "titulo": "公开审核记录",
+      "sub": "此社区的每一次删除、移出和封禁都会记录在这里，附有原因和操作者的角色。永远不包含被删除的文本，也永远不显示管理人员的名字。",
+      "vazio": {
+        "titulo": "没有记录",
+        "texto": "此社区尚未删除、移出或封禁过任何人。"
+      },
+      "acao": {
+        "remocao": "删除",
+        "expulsao": "移出",
+        "banimento": "封禁",
+        "dispensa": "举报已驳回"
+      },
+      "alvoConteudo": "{tipo}已删除",
+      "alvoRover": "{nome}",
+      "por": "由{papel}",
+      "papel": {
+        "dono": "所有者",
+        "moderador": "一名管理员",
+        "administrador": "一名网络管理员",
+        "rele": "中继"
+      },
+      "tipos": {
+        "topico": "话题",
+        "resposta-forum": "回复",
+        "pagina-publicar": "更新"
+      },
+      "apelacao": {
+        "aberta": "申诉进行中",
+        "mantida": "决定已维持",
+        "revertida": "决定已撤销"
+      },
+      "apelarDaquele": "是您吗？提出申诉",
+      "fechadaNota": "此社区的记录仅限成员阅读。"
+    },
+    "ato": {
+      "aprovado": "完成"
+    }
+  }
+}

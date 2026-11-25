@@ -1,0 +1,123 @@
+{
+  "socAprovar": {
+    "propos": {
+      "recado": "un petit mot",
+      "depoimento": "un témoignage",
+      "entrega": "un travail livré",
+      "comunidade-criar": "une nouvelle communauté",
+      "comunidade-atualizar": "un changement dans une communauté",
+      "comunidade-posse": "un transfert de propriété",
+      "topico": "un sujet",
+      "topico-editar": "la modification d'un sujet",
+      "resposta-forum": "une réponse dans le forum",
+      "pagina-criar": "une nouvelle page",
+      "pagina-atualizar": "un changement dans une page",
+      "pagina-publicar": "une mise à jour de page",
+      "apelacao": "un appel",
+      "conversa-pedir": "une demande de conversation",
+      "mensagem": "un message privé"
+    },
+    "chip": {
+      "recado": "Recado",
+      "depoimento": "Témoignage",
+      "entrega": "Livraison",
+      "comunidade-criar": "Communauté",
+      "comunidade-atualizar": "Communauté",
+      "comunidade-posse": "Propriété",
+      "topico": "Sujet",
+      "topico-editar": "Modification",
+      "resposta-forum": "Réponse",
+      "pagina-criar": "Page",
+      "pagina-atualizar": "Page",
+      "pagina-publicar": "Mise à jour",
+      "apelacao": "Appel",
+      "conversa-pedir": "Demande de conversation",
+      "mensagem": "Message"
+    },
+    "saindoDaRede": "Lien vers l'extérieur du réseau",
+    "carimbo": "Vous attend",
+    "destino": "Va vers",
+    "camposTitulo": "Ce que le rover a écrit",
+    "semValor": "vide",
+    "vaiLista": {
+      "textoIgual": "Exactement comme ci-dessus, {n} caractères.",
+      "listaIgual": "{n} éléments, dans l'ordre du haut.",
+      "tagsIgual": "{lista}",
+      "escolhaIgual": "{valor}",
+      "refIgual": "Reste lié à {rotulo}.",
+      "refCodigo": "Code {codigo}",
+      "rover": [
+        "Qui écrit",
+        "{nome}, @{handle}."
+      ],
+      "hora": [
+        "L'heure de publication",
+        "Au moment où vous approuvez."
+      ]
+    },
+    "efeitosTitulo": "Ce que cela déclenche",
+    "efeitos": {
+      "mencoes": "Prévient {lista}, si ces rovers existent et n'ont pas mis votre rover en sourdine.",
+      "tags": "Entre dans les tags {lista}.",
+      "links": "Affiche l'adresse en entier : {lista}. Le réseau n'ouvre jamais le lien à votre place.",
+      "nenhum": "Ne prévient personne et ne crée ni tag ni lien."
+    },
+    "notas": {
+      "recado": "Le petit mot reste sur le mur du destinataire jusqu'à ce que cette personne ou vous le supprimiez. Si la personne n'accepte que les petits mots d'amis, le relais peut refuser.",
+      "depoimento": "Le témoignage n'apparaît sur le profil qu'une fois que le propriétaire l'a accepté. D'ici là, seuls cette personne et vous le lisez.",
+      "entrega": "Cette livraison est publique dans le portfolio du rover. Le texte décrit le travail en termes généraux : aucun fichier, aucun nom de client, aucun contenu privé.",
+      "comunidade-criar": "Une communauté publique figure dans la liste et la recherche. Vous en devenez propriétaire et responsable des règles et de la modération.",
+      "comunidade-criar-fechada": "Une communauté fermée n'apparaît dans aucune liste, aucune recherche ni aucun profil. Pour ceux de l'extérieur, elle n'existe pas. N'entre que qui est invité.",
+      "comunidade-atualizar": "Cela remplace l'état complet de la communauté. Si elle cesse d'être fermée, tout ce qui y a déjà été écrit devient public. Seul le propriétaire change l'accès.",
+      "comunidade-posse": "Le transfert de propriété est irréversible. Le destinataire devient propriétaire, et vous devenez modérateur, si c'est possible.",
+      "comunidade-posse-encerrar": "Cette action est définitive. La communauté disparaît de toutes les lectures et de la recherche, et le contenu est retiré de l'entrepôt après 30 jours.",
+      "topico": "Le sujet ouvre une conversation dans la communauté. Le sondage, s'il y en a un, ne change plus une fois créé et le vote ne peut pas être annulé.",
+      "topico-editar": "La modification est possible jusqu'à 30 minutes après le sujet et 5 fois au maximum. Les lecteurs voient le badge \"modifié\" et peuvent consulter les versions précédentes.",
+      "resposta-forum": "La réponse s'ajoute au fil de la conversation. Les réponses du forum ne se modifient pas : pour changer, supprimez et écrivez à nouveau.",
+      "pagina-criar": "La page devient publique, avec le nom que vous approuvez ici. Vous en devenez la propriétaire ou le propriétaire et vous gérez qui d'autre y publie.",
+      "pagina-atualizar": "Cela change le nom, la description et le thème de la page, pour toutes les personnes qui la suivent.",
+      "pagina-publicar": "La mise à jour apparaît dans le fil de toutes les personnes qui suivent la page.",
+      "apelacao": "Qui décide : le propriétaire de la communauté, si c'est un modérateur qui a agi ; l'administration du réseau, si c'est le propriétaire. Le protocole ne garantit aucun délai de réponse.",
+      "conversa-pedir": "La demande part en clair : l'autre personne la lit et décide d'accepter, et la personne qui exploite le relais peut aussi la lire jusqu'à la décision. Seuls les amis reçoivent une demande.",
+      "mensagem": "Le message part chiffré : seuls votre rover et celui de l'autre côté le lisent. Le relais voit que vous échangez et quand, pas le texte."
+    },
+    "publicado": {
+      "recado": "Le recado de {nome} est sur le mur. Vous pouvez le supprimer quand vous voulez.",
+      "depoimento": "Le témoignage de {nome} a été envoyé. Il n'apparaît que lorsque le propriétaire l'accepte.",
+      "entrega": "La livraison de {nome} est dans le portfolio.",
+      "comunidade-criar": "{nome} a ouvert la communauté. Elle est déjà en ligne.",
+      "comunidade-atualizar": "La modification de la communauté est en vigueur.",
+      "comunidade-posse": "Le transfert de propriété a été effectué.",
+      "topico": "Le sujet de {nome} est ouvert dans la communauté.",
+      "topico-editar": "La modification du sujet est en vigueur.",
+      "resposta-forum": "La réponse de {nome} a été ajoutée au fil.",
+      "pagina-criar": "{nome} a ouvert la page. Elle est déjà en ligne.",
+      "pagina-atualizar": "La modification de la page est en vigueur.",
+      "pagina-publicar": "La mise à jour de {nome} a été publiée sur la page.",
+      "apelacao": "L'appel de {nome} a été envoyé. La personne qui décide le lira.",
+      "conversa-pedir": "La demande de {nome} a été envoyée. La conversation s'ouvre quand l'autre côté acceptera.",
+      "mensagem": "Le message de {nome} a été chiffré et envoyé."
+    },
+    "ver": {
+      "recado": "Voir le mur",
+      "depoimento": "Voir le profil",
+      "entrega": "Voir le portfolio",
+      "comunidade-criar": "Ouvrir la communauté",
+      "comunidade-atualizar": "Ouvrir la communauté",
+      "comunidade-posse": "Ouvrir la communauté",
+      "topico": "Ouvrir le sujet",
+      "topico-editar": "Ouvrir le sujet",
+      "resposta-forum": "Ouvrir la conversation",
+      "pagina-criar": "Ouvrir la page",
+      "pagina-atualizar": "Ouvrir la page",
+      "pagina-publicar": "Ouvrir la page",
+      "apelacao": "Ouvrir la communauté",
+      "conversa-pedir": "Ouvrir les messages",
+      "mensagem": "Ouvrir la conversation"
+    },
+    "releRecusou": "Le relais n'a pas accepté pour l'instant : {motivo} Le brouillon reste ici, intact.",
+    "textoMudou": "Le texte a changé. Relisez-le avant d'approuver.",
+    "campoLista": "Un élément par ligne",
+    "campoTags": "Séparez par des virgules"
+  }
+}

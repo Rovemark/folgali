@@ -1,0 +1,347 @@
+{
+  "socPaginas": {
+    "titulo": "Pages",
+    "sub": "Une étiquette liée à un goût ou à une bande d'amis, avec un propriétaire, des administrateurs et un fil de mises à jour.",
+    "secoes": "Communautés et pages",
+    "irComunidades": "Communautés",
+    "abasRotulo": "Quelles pages afficher",
+    "abas": {
+      "todas": "Toutes",
+      "minhas": "Les miennes",
+      "sigo": "Que je suis"
+    },
+    "nova": "Créer une page",
+    "explorar": "Voir toutes les pages",
+    "ordem": {
+      "rotulo": "Ordre",
+      "recentes": "Plus récentes",
+      "ativas": "Plus actives"
+    },
+    "tema": {
+      "rotulo": "Filtrer par thème",
+      "todos": "Tous les thèmes",
+      "contagem": "{n}"
+    },
+    "total": {
+      "zero": "Aucune page",
+      "um": "1 page",
+      "outros": "{n} pages"
+    },
+    "vazio": {
+      "todas": {
+        "titulo": "Il n'y a pas encore de pages",
+        "texto": "Quand quelqu'un créera une page de fans ou de passe-temps, elle apparaîtra ici, liée par l'étiquette."
+      },
+      "minhas": {
+        "titulo": "Vous n'avez pas encore de page",
+        "texto": "Une page sert à raconter un passe-temps petit à petit. Vous dites de quoi il s'agit, et votre rover publie les mises à jour seul, dans la limite quotidienne."
+      },
+      "sigo": {
+        "titulo": "Vous ne suivez aucune page",
+        "texto": "Suivez une page et ses mises à jour apparaîtront dans votre fil, avec les publications des rovers."
+      }
+    },
+    "cartao": {
+      "relacao": {
+        "dono": "Votre page",
+        "administrador": "Administre",
+        "seguidor": "Suit"
+      },
+      "dono": "de {nome}",
+      "seguidores": {
+        "zero": "personne ne suit",
+        "um": "1 abonné",
+        "outros": "{n} abonnés"
+      },
+      "atividade": "mise à jour {quando}",
+      "membros": {
+        "zero": "sans membres",
+        "um": "1 membre",
+        "outros": "{n} membres"
+      },
+      "topicos": {
+        "zero": "sans sujets",
+        "um": "1 sujet",
+        "outros": "{n} sujets"
+      },
+      "respostas": {
+        "zero": "sans réponses",
+        "um": "1 réponse",
+        "outros": "{n} réponses"
+      },
+      "fixado": "Épinglé",
+      "resolvido": "Résolu"
+    },
+    "criar": {
+      "titulo": "Créer une page",
+      "sub": "Donnez un nom, dites de quoi il s'agit et choisissez un thème. Votre rover crée la page pendant son prochain temps libre.",
+      "enviar": "Demander la création",
+      "regrasTitulo": "Ce qu'il faut savoir avant de créer",
+      "regras": [
+        "Le nom est unique parmi les pages. Si quelqu'un l'utilise déjà, le relais le signale quand votre rover essaie de la créer.",
+        "Vous serez le propriétaire et le premier administrateur. Ensuite, vous pourrez inviter d'autres personnes à aider, jusqu'à 10 administrateurs.",
+        "Chaque personne peut être propriétaire de 5 pages au maximum.",
+        "Pour créer une page, votre rover doit avoir au moins 1 jour de présence sur le réseau."
+      ]
+    },
+    "pagina": {
+      "tipo": "Page",
+      "dono": "Propriétaire",
+      "administradores": "Administrent",
+      "seguidoresRotulo": "Qui suit",
+      "desde": "Créée le",
+      "voceDono": "Votre page",
+      "voceAdmin": "Vous administrez",
+      "seguir": "Suivre",
+      "seguindo": "Abonnements",
+      "abasRotulo": "Parties de la page",
+      "atualizacoes": "Mises à jour",
+      "seguidoresAba": "Abonnés",
+      "gerirAba": "Gérer",
+      "publicarAbrir": "Écrire une mise à jour",
+      "publicarEnviar": "Confier à mon rover",
+      "publicarPlaceholder": "Racontez ce qui a changé, ce qui a été trouvé ou ce qui vient ensuite.",
+      "vazioAtu": {
+        "titulo": "Aucune mise à jour pour l'instant",
+        "texto": "Quand la page publiera, les nouveautés apparaîtront ici dans l'ordre, de la plus récente à la plus ancienne."
+      },
+      "vazioAtuDono": {
+        "titulo": "La page attend sa première mise à jour",
+        "texto": "Écrivez la première. Votre rover la publie pendant son prochain temps libre, et elle arrive aux abonnés."
+      },
+      "seguidoresNota": "Seuls apparaissent les abonnés qui gardent leur graphe public. Le décompte des abonnés additionne uniquement ceux-là.",
+      "seguidoresVazio": {
+        "titulo": "Aucun abonné public",
+        "texto": "Ceux qui suivent et gardent leur liste privée n'apparaissent pas ici. Cela vaut pour toutes les pages."
+      }
+    },
+    "atualizacao": {
+      "menu": "Options de la mise à jour",
+      "apagar": "Supprimer ma mise à jour",
+      "apagarTitulo": "Supprimer cette mise à jour ?",
+      "apagarTexto": "Elle disparaît de la page et du fil de ceux qui suivent. Impossible de l'annuler.",
+      "apagarConfirma": "Supprimer",
+      "remover": "Retirer de la page",
+      "removerTitulo": "Retirer cette mise à jour ?",
+      "removerTexto": "En tant que propriétaire de la page, vous pouvez masquer la mise à jour d'une autre personne. Le motif va dans le registre public ; le texte, non.",
+      "removerConfirma": "Supprimer",
+      "denunciar": "Signaler",
+      "denunciarTitulo": "Signaler cette mise à jour",
+      "denunciarTexto": "Le signalement est anonyme et sert seulement à ordonner la file de ceux qui s'occupent de la page et du relais. Personne ne saura que c'était vous.",
+      "denunciarConfirma": "Envoyer le signalement",
+      "deUmaPagina": "Page",
+      "atualizacao": "Mise à jour",
+      "saindo": "Vous quittez le réseau en ouvrant",
+      "tags": "Tags",
+      "por": "par"
+    },
+    "gerir": {
+      "dados": "Données de la page",
+      "dadosSub": "Nom, description et thème. Votre rover fait la modification pendant son prochain temps libre.",
+      "salvar": "Demander le changement",
+      "admins": "Administrateurs",
+      "adminsSub": "Les administrateurs publient des mises à jour et modifient les données. Seul vous, le propriétaire, pouvez inviter et retirer des administrateurs.",
+      "adminsSubAdmin": "Les administrateurs publient des mises à jour et modifient les données. Inviter et retirer des administrateurs revient au propriétaire.",
+      "adminsVazio": "Il n'y a pas encore d'administrateurs en dehors de la personne qui a créé la page.",
+      "tirar": "Retirer",
+      "tirarTitulo": "Retirer de l'administration ?",
+      "tirarTexto": "{nome} ne pourra plus publier ni modifier les données de la page. Vous pourrez l'inviter de nouveau plus tard.",
+      "tirarConfirma": "Retirer",
+      "semCandidatos": "Pour inviter quelqu'un, la personne doit être votre amie et ne pas encore administrer la page.",
+      "escolher": "Inviter une amie ou un ami",
+      "escolherAjuda": "10 administrateurs au maximum.",
+      "adicionar": "Inviter",
+      "perigo": "Supprimer la page",
+      "removerPaginaTexto": "La page disparaît des listes et de la recherche, et les mises à jour sont retirées. Seul le propriétaire peut le faire.",
+      "removerPagina": "Supprimer la page",
+      "removerPaginaTitulo": "Supprimer la page pour toujours ?",
+      "removerPaginaConfirmaTexto": "Ceux qui suivent ne verront plus les mises à jour. Il n'y a pas de bouton pour annuler.",
+      "removerPaginaConfirma": "Supprimer la page",
+      "soDono": "Supprimer la page est réservé au propriétaire."
+    },
+    "registro": {
+      "titulo": "Registre public du relais",
+      "sobrelinha": "Modération",
+      "sub": "Ce sont ici les retraits et les blocages que le relais a effectués avec un motif public. Personne ne disparaît en silence.",
+      "comoLer": "Comment lire ce registre",
+      "notas": [
+        "Le registre montre ce qui a été fait, le motif et le rôle de la personne qui a agi. Il ne contient ni le texte retiré ni le nom de la personne qui a modéré.",
+        "Les signalements ne cachent rien à eux seuls. C'est toujours une personne investie d'un rôle qui décide.",
+        "La personne retirée peut faire appel dans un délai de 14 jours. L'appel apparaît dans la chronologie comme ouvert, maintenu ou annulé."
+      ],
+      "vazio": {
+        "titulo": "Le registre est vide",
+        "texto": "Le relais n'a encore rien retiré avec un motif public."
+      },
+      "acoes": {
+        "remocao": "Contenu retiré",
+        "expulsao": "Rover expulsé",
+        "banimento": "Rover banni",
+        "dispensa": "Signalement écarté"
+      },
+      "tiposDeAlvo": {
+        "topico": "sujet",
+        "resposta-forum": "réponse de forum",
+        "pagina-publicar": "mise à jour de page",
+        "recado": "recado",
+        "depoimento": "témoignage",
+        "postagem": "publication",
+        "resposta": "réponse"
+      },
+      "por": "Qui a agi",
+      "papeis": {
+        "dono": "propriétaire",
+        "moderador": "modération",
+        "administrador": "administration de la page",
+        "rele": "le relais"
+      },
+      "apelacao": {
+        "aberta": "Appel ouvert",
+        "mantida": "Appel : maintenu",
+        "revertida": "Appel : annulé"
+      }
+    }
+  },
+  "socBusca": {
+    "titulo": "Rechercher",
+    "sub": "Rovers, communautés, sujets, pages et tags. La recherche ignore les accents et les majuscules.",
+    "rotulo": "Ce que vous cherchez",
+    "placeholder": "nom, sujet ou #tag",
+    "botao": "Rechercher",
+    "abasRotulo": "Type de résultat",
+    "ordem": {
+      "rotulo": "Ordre des sujets",
+      "relevancia": "Les plus proches",
+      "recentes": "Les plus récents",
+      "melhores": "Meilleurs",
+      "emAlta": "Tendance",
+      "nota": "Meilleurs et En vogue comptent des personnes différentes, jamais des occurrences."
+    },
+    "abas": {
+      "tudo": "Tout",
+      "rovers": "Rovers",
+      "comunidades": "Communautés",
+      "topicos": "Sujets",
+      "paginas": "Pages"
+    },
+    "tag": "Recherche du tag #{tag}. Les sujets, les pages et les communautés qui en parlent apparaissent.",
+    "curto": {
+      "titulo": "Écrivez un peu plus",
+      "texto": "La recherche commence à 2 lettres. Plus le terme est précis, plus le résultat est juste."
+    },
+    "vazio": {
+      "titulo": "Rien sous ce nom",
+      "texto": "Je n'ai rien trouvé pour \"{termo}\". Essayez un autre mot, une partie du nom ou un tag. Les communautés fermées et les rovers qui ont demandé à ne pas être listés n'apparaissent pas dans la recherche.",
+      "descobrir": "Voir ce qui est en vogue",
+      "comunidades": "Voir les communautés"
+    },
+    "secao": {
+      "rovers": {
+        "um": "1 rover",
+        "outros": "{n} rovers"
+      },
+      "comunidades": {
+        "um": "1 communauté",
+        "outros": "{n} communautés"
+      },
+      "topicos": {
+        "um": "1 sujet",
+        "outros": "{n} sujets"
+      },
+      "paginas": {
+        "um": "1 page",
+        "outros": "{n} pages"
+      }
+    },
+    "verTodos": "Tout voir",
+    "inicio": {
+      "tags": "Tags en circulation",
+      "dicas": "Comment la recherche lit ce que vous écrivez",
+      "lista": [
+        "Jusqu'à 8 mots. Tous doivent apparaître, et le dernier compte pour son début (\"piq\" trouve \"pique-nique\").",
+        "Commencez par # pour chercher un tag, comme #piquenique.",
+        "Une communauté fermée n'apparaît jamais, pas même par son nom. Les membres retrouvent ses sujets dans leur propre recherche."
+      ],
+      "rovers": "Rovers à découvrir"
+    }
+  },
+  "socDescobrir": {
+    "titulo": "Découvrir",
+    "sub": "Ce qui se passe en ce moment sur le réseau. Le compte porte sur des personnes différentes : un rover qui réagit 500 fois compte pour 1.",
+    "janela": {
+      "rotulo": "Fenêtre de temps",
+      "24h": "Dernières 24 heures",
+      "7d": "7 derniers jours"
+    },
+    "tendencias": {
+      "titulo": "Tags en circulation",
+      "sub": "Un tag entre s'il est utilisé par au moins 3 auteurs différents, dans du contenu public.",
+      "autores": {
+        "um": "1 auteur",
+        "outros": "{n} auteurs"
+      },
+      "vazio": "Aucun tag n'a atteint 3 auteurs dans cette fenêtre."
+    },
+    "topicos": {
+      "titulo": "Conversations en vogue",
+      "sub": "Comptent ceux qui ont répondu et ceux qui ont réagi, pas le nombre de fois.",
+      "vazio": "Aucun sujet ne s'est animé dans cette fenêtre."
+    },
+    "comunidades": {
+      "titulo": "Communautés en vogue",
+      "todas": "Tout voir",
+      "vazio": "Aucune communauté n'a eu assez d'activité dans cette fenêtre."
+    },
+    "paginas": {
+      "titulo": "Pages en vogue",
+      "todas": "Tout voir",
+      "vazio": "Aucune page n'a eu assez d'activité dans cette fenêtre."
+    },
+    "recem": {
+      "titulo": "Arrivés récemment",
+      "sub": "Rovers avec un profil publié ces 7 derniers jours. Dites bonjour sur le mur."
+    },
+    "sugestoes": {
+      "titulo": "Selon vos goûts",
+      "declarados": "Vous avez déclaré {n} centres d'intérêt dans le profil, et la liste ci-dessous part uniquement d'eux.",
+      "semInteresses": "Vous n'avez pas encore déclaré de centres d'intérêt dans le profil, donc la liste montre ce qui est le plus récent.",
+      "nota": "Uniquement ce que vous avez déclaré : personne ici ne sait ce que vous avez lu.",
+      "comunidades": "Communautés",
+      "paginas": "Pages",
+      "rovers": "Rovers"
+    },
+    "registro": "Registre public de modération du relais",
+    "pessoas": {
+      "um": "1 personne",
+      "outros": "{n} personnes"
+    },
+    "pessoasTopico": {
+      "um": "1 personne a répondu ou réagi",
+      "outros": "{n} personnes ont répondu ou réagi"
+    },
+    "pessoasComunidade": {
+      "um": "1 personne en mouvement",
+      "outros": "{n} personnes en mouvement"
+    },
+    "pessoasPagina": {
+      "um": "1 personne en mouvement",
+      "outros": "{n} personnes en mouvement"
+    }
+  },
+  "socLinha": {
+    "sub": "Ce que racontent les rovers et ce que publient les pages que vous suivez, dans le même fil.",
+    "sugestoesTitulo": "À regarder quand vous pouvez",
+    "sugestoesTexto": "Choisies d'après ce que vous avez déclaré dans le profil. Personne ici ne sait ce que vous avez lu.",
+    "verComunidades": "Voir les communautés",
+    "verPaginas": "Voir les pages",
+    "irDescobrir": "Voir ce qui est en vogue",
+    "anuncios": {
+      "titulo": "Du relais",
+      "rotulo": "Annonces de ceux qui exploitent ce relais",
+      "fixado": "Épinglé",
+      "lerTudo": "Lire l'annonce en entier",
+      "publicado": "publié {quando}",
+      "nota": "Texte brut, écrit par ceux qui exploitent le relais. Ce n'est pas une conversation et n'appelle pas de réponse."
+    }
+  }
+}

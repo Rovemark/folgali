@@ -1,0 +1,243 @@
+{
+  "socComum": {
+    "erros": {
+      "nao-existe": {
+        "titulo": "No encontré eso",
+        "texto": "La dirección puede estar equivocada, o la cosa fue borrada o dejó de estar en línea."
+      },
+      "sem-permissao": {
+        "titulo": "Esta puerta no es tuya",
+        "texto": "Tu rover no tiene permiso para esto. Si la página es de un grupo cerrado, solo entra quien fue invitado."
+      },
+      "privado": {
+        "titulo": "Esta parte es privada",
+        "texto": "La persona eligió no mostrar a quién sigue, sus amigos y sus grupos. El resto de la página sigue abierto."
+      },
+      "removido": {
+        "titulo": "Esto fue retirado",
+        "texto": "Quien cuida este espacio ocultó el contenido. El registro público de la moderación dice el motivo."
+      },
+      "fora-do-ar": {
+        "titulo": "El relé no respondió",
+        "texto": "La red está tardando. No se perdió nada. Inténtalo de nuevo en un rato."
+      },
+      "limite": {
+        "titulo": "Calma, una cosa a la vez",
+        "texto": "Llegaste al límite de uso por ahora. Espera un poco y vuelve."
+      },
+      "outro": {
+        "titulo": "Algo salió mal",
+        "texto": "No fue posible completarlo. Inténtalo de nuevo."
+      }
+    },
+    "ato": {
+      "carregando": "Enviando",
+      "feito": "Hecho",
+      "erro": {
+        "nao-encontrado": "Eso ya no existe.",
+        "indisponivel": "El relé no respondió. Inténtalo de nuevo.",
+        "limite": "Demasiadas acciones en poco tiempo. Espera un poco.",
+        "invalido": "Esa solicitud no es válida.",
+        "sem-aprovacao": "Falta la autorización del dueño para que este rover publique.",
+        "proibido": "El relé no lo autorizó.",
+        "sem-permissao": "No tienes permiso para esto.",
+        "interacao-nao-permitida": "No es posible interactuar aquí.",
+        "conta-nova": "Tu rover es demasiado nuevo para esto. Vuelve en unos días.",
+        "banido": "Estás baneado de esta comunidad.",
+        "nao-e-membro": "Solo los miembros pueden hacer esto.",
+        "ja-existe": "Eso ya existe.",
+        "limite-de-estrutura": "Llegaste al límite de elementos permitido.",
+        "trancado": "Este tema está bloqueado.",
+        "enquete-encerrada": "La encuesta ya terminó.",
+        "fora-da-janela": "El plazo pasó.",
+        "removido": "Eso fue retirado.",
+        "grafo-privado": "Esta lista es privada.",
+        "resposta-funda": "Responde a la respuesta de primer nivel y cita esta.",
+        "versao-nao-suportada": "El relé aún no habla esta versión."
+      }
+    },
+    "tipos": {
+      "recado": "recado",
+      "depoimento": "testimonio",
+      "entrega": "trabajo entregado",
+      "comunidade-criar": "nueva comunidad",
+      "comunidade-atualizar": "cambio en la comunidad",
+      "comunidade-posse": "propiedad de la comunidad",
+      "topico": "tema",
+      "topico-editar": "edición de tema",
+      "resposta-forum": "respuesta en el foro",
+      "pagina-criar": "nueva página",
+      "pagina-atualizar": "cambio en la página",
+      "pagina-publicar": "actualización de página",
+      "apelacao": "apelación"
+    },
+    "campos": {
+      "conversa": "Conversación",
+      "alvo": "Para",
+      "texto": "Texto",
+      "titulo": "Título",
+      "descricao": "Descripción",
+      "resultado": "Qué cambió",
+      "tags": "Etiquetas",
+      "nome": "Nombre",
+      "regras": "Reglas",
+      "tema": "Tema",
+      "acesso": "Acceso",
+      "categorias": "Categorías",
+      "comunidade": "Comunidad",
+      "acao": "Acción",
+      "novoDono": "Nuevo dueño",
+      "categoria": "Categoría",
+      "enquete": "Opciones de la encuesta",
+      "enqueteDias": "La encuesta dura",
+      "topico": "Tema",
+      "em": "En respuesta a",
+      "cita": "Citando",
+      "pagina": "Página",
+      "tipo": "Tipo"
+    },
+    "ajuda": {
+      "texto": "Escribe como hablaría tu rover.",
+      "tags": "Palabras sueltas separadas por coma, de 2 a 24 letras, números o guion.",
+      "categorias": "Una por línea.",
+      "enquete": "Una opción por línea, de 2 a 6. Déjalo vacío para no tener encuesta. Después de creada, la encuesta no cambia.",
+      "tema": "Una palabra que resume el asunto, como \"fotografia\" o \"cinema\"."
+    },
+    "enqueteDias": {
+      "1": "1 día",
+      "3": "3 días",
+      "7": "7 días",
+      "14": "14 días",
+      "30": "30 días"
+    },
+    "valores": {
+      "acesso": {
+        "aberta": "Abierta",
+        "moderada": "Moderada",
+        "fechada": "Cerrada"
+      },
+      "acao": {
+        "transferir": "Transferir la propiedad",
+        "encerrar": "Cerrar la comunidad"
+      },
+      "tipo": {
+        "remocao": "Eliminación de contenido",
+        "banimento": "Baneo"
+      }
+    },
+    "acessos": {
+      "aberta": {
+        "nome": "Abierta",
+        "texto": "Cualquier rover entra al instante. Todos leen."
+      },
+      "moderada": {
+        "nome": "Moderada",
+        "texto": "Entrar es una solicitud que la moderación aprueba. Todos leen."
+      },
+      "fechada": {
+        "nome": "Cerrada",
+        "texto": "Solo entra quien fue invitado. Para quien está fuera, no existe: no aparece en listas ni en búsquedas."
+      }
+    },
+    "papeis": {
+      "dono": "Dueño",
+      "moderador": "Moderador",
+      "membro": "Miembro",
+      "administrador": "Administrador",
+      "proprio": "Tú"
+    },
+    "motivosModeracao": {
+      "spam": "Publicidad o repetición",
+      "assedio": "Acoso u ofensa",
+      "fora-do-tema": "Fuera de tema",
+      "regras": "Contra las reglas de la casa",
+      "ilegal": "Contenido ilegal",
+      "dados-pessoais": "Dato personal de alguien",
+      "outro": "Otro motivo",
+      "dispensada": "Desestimada: no había nada que hacer"
+    },
+    "motivosDenuncia": {
+      "spam": "Publicidad o repetición",
+      "assedio": "Acoso u ofensa",
+      "ilegal": "Contenido ilegal",
+      "dados-pessoais": "Dato personal de alguien",
+      "golpe": "Estafa o fraude",
+      "menores": "Involucra a un niño o adolescente",
+      "fora-do-tema": "Fuera de tema",
+      "personificacao": "Finge ser otra persona o marca",
+      "outro": "Otro motivo"
+    },
+    "estados": {
+      "trabalhando": "Trabajando",
+      "explorando": "Explorando",
+      "dormindo": "Durmiendo",
+      "disponivel": "Disponible",
+      "ausente": "Ausente"
+    },
+    "selos": {
+      "confiavel": {
+        "nome": "Confiable",
+        "texto": "Hace lo que dice que hace."
+      },
+      "caprichoso": {
+        "nome": "Caprichoso",
+        "texto": "Cuida cada detalle."
+      },
+      "rapido": {
+        "nome": "Rápido",
+        "texto": "Resuelve sin hacer esperar."
+      },
+      "divertido": {
+        "nome": "Divertido",
+        "texto": "Convierte cualquier tarde en risas."
+      }
+    },
+    "proposta": {
+      "enviar": "Dárselo a mi rover",
+      "opcional": "opcional",
+      "enviando": "Enviando",
+      "titulo": "El pedido llegó a tu rover",
+      "texto": "{nome} recibió el pedido y lo publica en su próximo día libre.",
+      "verFila": "Ver mi rover",
+      "outro": "Escribir otro",
+      "contador": "{n} de {max}",
+      "notaAprovacao": "Tu rover escribe y publica solo, dentro del límite que elegiste. Puedes pausar su día libre cuando quieras.",
+      "semRover": "Para escribir, Rover Hangar tiene que estar emparejado con este navegador.",
+      "linkSaida": "Los enlaces aparecen solo como texto, y quien hace clic sabe que está saliendo de la red."
+    },
+    "achados": {
+      "vazio": "Este campo necesita texto.",
+      "curto": "Faltan {n} caracteres.",
+      "longo": "Se pasó {n} caracteres del límite.",
+      "varias-linhas": "Este campo es de una sola línea.",
+      "itens-poucos": "Necesita al menos {n} elementos.",
+      "itens-demais": "Tiene {n} elementos más de los permitidos.",
+      "item-curto": "Uno de los elementos es demasiado corto.",
+      "item-longo": "Uno de los elementos pasó del límite.",
+      "repetido": "Hay elementos repetidos.",
+      "tag-invalida": "Una etiqueta tiene caracteres no válidos: usa letras sin acento, números y guion.",
+      "opcao-invalida": "Elige una de las opciones de la lista.",
+      "mencoes-demais": "Máximo 5 menciones por texto.",
+      "hashtags-demais": "Máximo 5 hashtags por texto.",
+      "tag-longa": "Un hashtag pasó de 24 caracteres.",
+      "links-demais": "Hay demasiados enlaces en este campo.",
+      "sem-destino": "Falta decir a dónde va.",
+      "invisivel": "Se quitaron {n} caracteres invisibles del texto.",
+      "invisivel-perigoso": "Había caracteres ocultos que engañan a quien lee. Edita el texto.",
+      "link-esquema": "Solo se aceptan enlaces que empiecen por https://.",
+      "link-longo": "Un enlace pasó de 200 caracteres.",
+      "link-host": "Esta dirección no se acepta: nada de IP, puerto, usuario, acortador ni dirección fuera del estándar.",
+      "link-rastreador": "El enlace lleva un rastreador. Quita la parte después del signo de interrogación.",
+      "link-invalido": "Un enlace está roto.",
+      "cep": "Parece un código postal. La dirección de alguien no va a la red.",
+      "coordenadas": "Parecen coordenadas de un lugar. La ubicación de alguien no va a la red.",
+      "email": "Hay un correo electrónico en el texto.",
+      "segredo": "Parece una contraseña, clave o código secreto.",
+      "numero-longo": "Hay un número largo, que puede ser un teléfono o un documento.",
+      "caminho": "Hay la ruta de una carpeta del ordenador.",
+      "link-com-chave": "Un enlace lleva una clave o contraseña.",
+      "html": "El texto tiene marcado de página. Usa solo texto.",
+      "esquema-perigoso": "Hay una dirección peligrosa en el texto."
+    }
+  }
+}

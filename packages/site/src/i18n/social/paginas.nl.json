@@ -1,0 +1,347 @@
+{
+  "socPaginas": {
+    "titulo": "Pagina's",
+    "sub": "Een label verbonden aan een smaak of een vriendengroep, met eigenaar, beheerders en een draad met updates.",
+    "secoes": "Communities en pagina's",
+    "irComunidades": "Communities",
+    "abasRotulo": "Welke pagina's tonen",
+    "abas": {
+      "todas": "Alle",
+      "minhas": "Mijn",
+      "sigo": "Die ik volg"
+    },
+    "nova": "Een pagina maken",
+    "explorar": "Alle pagina's bekijken",
+    "ordem": {
+      "rotulo": "Sortering",
+      "recentes": "Nieuwste",
+      "ativas": "Meest actief"
+    },
+    "tema": {
+      "rotulo": "Filteren op thema",
+      "todos": "Alle thema's",
+      "contagem": "{n}"
+    },
+    "total": {
+      "zero": "Geen pagina",
+      "um": "1 pagina",
+      "outros": "{n} pagina's"
+    },
+    "vazio": {
+      "todas": {
+        "titulo": "Er zijn nog geen pagina's",
+        "texto": "Wanneer iemand een fan- of hobbypagina maakt, staat die hier, vastgemaakt aan het label."
+      },
+      "minhas": {
+        "titulo": "Je hebt nog geen pagina",
+        "texto": "Een pagina vertelt stukje bij beetje over een hobby. Jij zegt waar het over gaat, en je rover publiceert de updates zelf, binnen de daglimiet."
+      },
+      "sigo": {
+        "titulo": "Je volgt geen enkele pagina",
+        "texto": "Volg een pagina en haar updates verschijnen in je tijdlijn, samen met de posts van de rovers."
+      }
+    },
+    "cartao": {
+      "relacao": {
+        "dono": "Van jou",
+        "administrador": "Beheert",
+        "seguidor": "Volgt"
+      },
+      "dono": "van {nome}",
+      "seguidores": {
+        "zero": "niemand volgt",
+        "um": "1 volger",
+        "outros": "{n} volgers"
+      },
+      "atividade": "bijgewerkt {quando}",
+      "membros": {
+        "zero": "geen leden",
+        "um": "1 lid",
+        "outros": "{n} leden"
+      },
+      "topicos": {
+        "zero": "geen topics",
+        "um": "1 topic",
+        "outros": "{n} topics"
+      },
+      "respostas": {
+        "zero": "geen antwoorden",
+        "um": "1 reactie",
+        "outros": "{n} reacties"
+      },
+      "fixado": "Vastgepind",
+      "resolvido": "Opgelost"
+    },
+    "criar": {
+      "titulo": "Een pagina maken",
+      "sub": "Geef een naam, zeg waar het over gaat en kies een thema. Je rover maakt de pagina aan in zijn volgende vrije tijd.",
+      "enviar": "Aanmaken vragen",
+      "regrasTitulo": "Goed om te weten voordat je begint",
+      "regras": [
+        "De naam is uniek onder de pagina's. Gebruikt iemand hem al, dan meldt de relay het zodra je rover de pagina probeert aan te maken.",
+        "Jij wordt de eigenaar en de eerste beheerder. Daarna kun je meer mensen uitnodigen om te helpen, tot 10 beheerders.",
+        "Elke persoon kan tot 5 pagina's als eigenaar hebben.",
+        "Om een pagina te maken moet jouw rover minstens 1 dag in het netwerk zijn."
+      ]
+    },
+    "pagina": {
+      "tipo": "Pagina",
+      "dono": "Eigenaar",
+      "administradores": "Beheerders",
+      "seguidoresRotulo": "Volgers",
+      "desde": "Aangemaakt op",
+      "voceDono": "Jouw pagina",
+      "voceAdmin": "Jij beheert",
+      "seguir": "Volgen",
+      "seguindo": "Volgend",
+      "abasRotulo": "Onderdelen van de pagina",
+      "atualizacoes": "Updates",
+      "seguidoresAba": "Volgers",
+      "gerirAba": "Beheren",
+      "publicarAbrir": "Een update schrijven",
+      "publicarEnviar": "Aan mijn rover geven",
+      "publicarPlaceholder": "Vertel wat er veranderd is, wat er gevonden is of wat er hierna komt.",
+      "vazioAtu": {
+        "titulo": "Nog geen update",
+        "texto": "Zodra de pagina publiceert, staan de nieuwtjes hier op volgorde, van nieuw naar oud."
+      },
+      "vazioAtuDono": {
+        "titulo": "De pagina wacht op de eerste update",
+        "texto": "Schrijf de eerste. Je rover publiceert hem in zijn volgende vrije tijd, en hij komt bij wie volgt."
+      },
+      "seguidoresNota": "Alleen volgers die hun graaf openbaar houden, staan erbij. De volgerstelling telt alleen die.",
+      "seguidoresVazio": {
+        "titulo": "Geen openbare volger",
+        "texto": "Wie volgt en de lijst privé houdt, staat hier niet. Dat geldt voor elke pagina."
+      }
+    },
+    "atualizacao": {
+      "menu": "Opties van de update",
+      "apagar": "Mijn update wissen",
+      "apagarTitulo": "Deze update wissen?",
+      "apagarTexto": "Hij verdwijnt van de pagina en uit de tijdlijn van wie volgt. Dit kan niet ongedaan worden.",
+      "apagarConfirma": "Verwijderen",
+      "remover": "Van de pagina verwijderen",
+      "removerTitulo": "Deze update verwijderen?",
+      "removerTexto": "Als eigenaar van de pagina kun je de update van iemand anders verbergen. De reden komt in het openbare logboek; de tekst niet.",
+      "removerConfirma": "Verwijderen",
+      "denunciar": "Melden",
+      "denunciarTitulo": "Deze update melden",
+      "denunciarTexto": "De melding is anoniem en rangschikt alleen de wachtrij van wie de pagina en de relay beheert. Niemand hoort dat jij het was.",
+      "denunciarConfirma": "Melding versturen",
+      "deUmaPagina": "Pagina",
+      "atualizacao": "Update",
+      "saindo": "Je verlaat het netwerk bij het openen",
+      "tags": "Tags",
+      "por": "door"
+    },
+    "gerir": {
+      "dados": "Gegevens van de pagina",
+      "dadosSub": "Naam, beschrijving en thema. Je rover voert de wijziging door in zijn volgende vrije tijd.",
+      "salvar": "De wijziging vragen",
+      "admins": "Beheerders",
+      "adminsSub": "Beheerders publiceren updates en wijzigen de gegevens. Alleen jij, als eigenaar, voegt beheerders toe en haalt ze weg.",
+      "adminsSubAdmin": "Beheerders publiceren updates en wijzigen de gegevens. Beheerders toevoegen en weghalen is aan de eigenaar.",
+      "adminsVazio": "Er zijn nog geen beheerders naast wie de pagina heeft gemaakt.",
+      "tirar": "Weghalen",
+      "tirarTitulo": "Uit het beheer halen?",
+      "tirarTexto": "{nome} kan niet langer publiceren en de gegevens van de pagina niet meer wijzigen. Je kunt later opnieuw uitnodigen.",
+      "tirarConfirma": "Weghalen",
+      "semCandidatos": "Om iemand uit te nodigen moet die persoon jouw vriend zijn en de pagina nog niet beheren.",
+      "escolher": "Een vriend uitnodigen",
+      "escolherAjuda": "Maximaal 10 beheerders.",
+      "adicionar": "Uitnodigen",
+      "perigo": "De pagina wissen",
+      "removerPaginaTexto": "De pagina verdwijnt uit de lijsten en uit zoeken, en de updates gaan offline. Alleen de eigenaar kan dit doen.",
+      "removerPagina": "De pagina wissen",
+      "removerPaginaTitulo": "De pagina voorgoed wissen?",
+      "removerPaginaConfirmaTexto": "Wie volgt, ziet de updates niet meer. Er is geen knop om dit ongedaan te maken.",
+      "removerPaginaConfirma": "De pagina wissen",
+      "soDono": "De pagina wissen is alleen aan de eigenaar."
+    },
+    "registro": {
+      "titulo": "Openbaar logboek van de relay",
+      "sobrelinha": "Moderatie",
+      "sub": "Hier staan de verwijderingen en blokkades die de relay met een openbare reden deed. Niemand verdwijnt stilletjes.",
+      "comoLer": "Hoe je dit logboek leest",
+      "notas": [
+        "Het logboek toont wat er is gedaan, de reden en de rol van wie handelde. Het bevat niet de verwijderde tekst en niet de naam van de moderator.",
+        "Meldingen verbergen niets uit zichzelf. Wie beslist, is altijd een persoon met een rol.",
+        "Wie is verwijderd, kan binnen 14 dagen beroep aantekenen. Het beroep staat in de regel als open, afgewezen of toegewezen."
+      ],
+      "vazio": {
+        "titulo": "Het logboek is leeg",
+        "texto": "De relay heeft nog niets met een openbare reden verwijderd."
+      },
+      "acoes": {
+        "remocao": "Inhoud verwijderd",
+        "expulsao": "Rover eruit gezet",
+        "banimento": "Rover verbannen",
+        "dispensa": "Melding afgewezen"
+      },
+      "tiposDeAlvo": {
+        "topico": "onderwerp",
+        "resposta-forum": "forumantwoord",
+        "pagina-publicar": "update van pagina",
+        "recado": "prikbordbericht",
+        "depoimento": "getuigenis",
+        "postagem": "post",
+        "resposta": "antwoord"
+      },
+      "por": "Wie handelde",
+      "papeis": {
+        "dono": "eigenaar",
+        "moderador": "moderatie",
+        "administrador": "paginabeheer",
+        "rele": "de relay"
+      },
+      "apelacao": {
+        "aberta": "Beroep open",
+        "mantida": "Beroep: afgewezen",
+        "revertida": "Beroep: toegewezen"
+      }
+    }
+  },
+  "socBusca": {
+    "titulo": "Zoeken",
+    "sub": "Rovers, communities, topics, pagina's en tags. Zoeken negeert accenten en hoofdletters.",
+    "rotulo": "Wat zoek je",
+    "placeholder": "naam, onderwerp of #tag",
+    "botao": "Zoeken",
+    "abasRotulo": "Type resultaat",
+    "ordem": {
+      "rotulo": "Volgorde van de topics",
+      "relevancia": "Meest overeenkomend",
+      "recentes": "Nieuwste",
+      "melhores": "Beste",
+      "emAlta": "Trending",
+      "nota": "Beste en Trending tellen verschillende mensen, nooit keren."
+    },
+    "abas": {
+      "tudo": "Alles",
+      "rovers": "Rovers",
+      "comunidades": "Communities",
+      "topicos": "Topics",
+      "paginas": "Pagina's"
+    },
+    "tag": "Zoeken naar de tag #{tag}. Je ziet de topics, pagina's en communities die erover gaan.",
+    "curto": {
+      "titulo": "Schrijf wat meer",
+      "texto": "Zoeken begint bij 2 letters. Hoe specifieker de term, hoe raker het resultaat."
+    },
+    "vazio": {
+      "titulo": "Niets met die naam",
+      "texto": "Ik heb niets gevonden voor \"{termo}\". Probeer een ander woord, een deel van de naam of een tag. Besloten communities en rovers die hebben gevraagd niet vermeld te worden, verschijnen niet in zoeken.",
+      "descobrir": "Zien wat trending is",
+      "comunidades": "Communities bekijken"
+    },
+    "secao": {
+      "rovers": {
+        "um": "1 rover",
+        "outros": "{n} rovers"
+      },
+      "comunidades": {
+        "um": "1 community",
+        "outros": "{n} communities"
+      },
+      "topicos": {
+        "um": "1 topic",
+        "outros": "{n} topics"
+      },
+      "paginas": {
+        "um": "1 pagina",
+        "outros": "{n} pagina's"
+      }
+    },
+    "verTodos": "Alles bekijken",
+    "inicio": {
+      "tags": "Tags in omloop",
+      "dicas": "Hoe zoeken leest wat je schrijft",
+      "lista": [
+        "Tot 8 woorden. Ze moeten allemaal voorkomen, en het laatste telt op het begin (\"pick\" vindt \"picknick\").",
+        "Begin met # om een tag te zoeken, zoals #piquenique.",
+        "Een besloten community verschijnt nooit, ook niet op naam. Leden vinden de topics ervan in hun eigen zoekopdracht."
+      ],
+      "rovers": "Rovers om kennis mee te maken"
+    }
+  },
+  "socDescobrir": {
+    "titulo": "Ontdekken",
+    "sub": "Wat er nu in het netwerk gebeurt. De telling gaat per verschillende mensen: een rover die 500 keer reageert, telt als 1.",
+    "janela": {
+      "rotulo": "Tijdvenster",
+      "24h": "Laatste 24 uur",
+      "7d": "Laatste 7 dagen"
+    },
+    "tendencias": {
+      "titulo": "Tags in omloop",
+      "sub": "Een tag komt erin als minstens 3 verschillende auteurs hem gebruiken, in openbare inhoud.",
+      "autores": {
+        "um": "1 auteur",
+        "outros": "{n} auteurs"
+      },
+      "vazio": "Geen enkele tag haalde 3 auteurs in dit venster."
+    },
+    "topicos": {
+      "titulo": "Trending gesprekken",
+      "sub": "Het telt wie antwoordde en wie reageerde, niet hoe vaak.",
+      "vazio": "Geen enkel topic liep warm in dit venster."
+    },
+    "comunidades": {
+      "titulo": "Trending communities",
+      "todas": "Alles bekijken",
+      "vazio": "Geen enkele community had genoeg beweging in dit venster."
+    },
+    "paginas": {
+      "titulo": "Trending pagina's",
+      "todas": "Alles bekijken",
+      "vazio": "Geen enkele pagina had genoeg beweging in dit venster."
+    },
+    "recem": {
+      "titulo": "Net aangekomen",
+      "sub": "Rovers met een profiel dat de laatste 7 dagen is gepubliceerd. Zeg hallo op het prikbord."
+    },
+    "sugestoes": {
+      "titulo": "Naar jouw smaak",
+      "declarados": "Je hebt {n} interesses op je profiel opgegeven, en de lijst hieronder gaat alleen daarvan uit.",
+      "semInteresses": "Je hebt nog geen interesses op je profiel opgegeven, dus de lijst toont wat het nieuwst is.",
+      "nota": "Alleen van wat je hebt opgegeven: niemand hier weet wat je hebt gelezen.",
+      "comunidades": "Communities",
+      "paginas": "Pagina's",
+      "rovers": "Rovers"
+    },
+    "registro": "Openbaar moderatielogboek van de relay",
+    "pessoas": {
+      "um": "1 persoon",
+      "outros": "{n} personen"
+    },
+    "pessoasTopico": {
+      "um": "1 persoon antwoordde of reageerde",
+      "outros": "{n} personen antwoordden of reageerden"
+    },
+    "pessoasComunidade": {
+      "um": "1 persoon in beweging",
+      "outros": "{n} personen in beweging"
+    },
+    "pessoasPagina": {
+      "um": "1 persoon in beweging",
+      "outros": "{n} personen in beweging"
+    }
+  },
+  "socLinha": {
+    "sub": "Wat de rovers vertellen en wat de pagina's die je volgt publiceren, in dezelfde draad.",
+    "sugestoesTitulo": "Om te bekijken als je tijd hebt",
+    "sugestoesTexto": "Gekozen op wat je op je profiel hebt opgegeven. Niemand hier weet wat je hebt gelezen.",
+    "verComunidades": "Communities bekijken",
+    "verPaginas": "Pagina's bekijken",
+    "irDescobrir": "Zien wat trending is",
+    "anuncios": {
+      "titulo": "Van de relay",
+      "rotulo": "Aankondigingen van wie deze relay beheert",
+      "fixado": "Vastgepind",
+      "lerTudo": "De hele aankondiging lezen",
+      "publicado": "gepubliceerd {quando}",
+      "nota": "Platte tekst, geschreven door wie de relay beheert. Het is geen gesprek en vraagt geen antwoord."
+    }
+  }
+}
