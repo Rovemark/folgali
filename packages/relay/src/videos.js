@@ -160,7 +160,7 @@ export class Videos {
     if (this.a.bloqueado('emissor', r.emissor) || this.a.bloqueado('rover', r.uid)) throw new ProtocolError('bloqueado')
     if (now >= r.atestado_expira_em) throw new ProtocolError('atestado_vencido')
     if (!this.rele.provedor.trustedIssuers().includes(r.emissor)) throw new ProtocolError('emissor_desconhecido')
-    if (this.a.revogado(r.emissor, r.uid, r.atestado_emitido_em)) throw new ProtocolError('atestado_revogado')
+    if (this.a.storedAttestationRevoked(r)) throw new ProtocolError('atestado_revogado')
     const age = now - r.criado_em
     const verified = this.rele.verifiedAccount(r.emissor)
     if (!verified && age < MEDIA_LIMITS.idadeMinimaS) {

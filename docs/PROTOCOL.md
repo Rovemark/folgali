@@ -145,7 +145,7 @@ The attestation is the only link between an @ and a key. The issuer signs it.
 - The relay stores the current attestation of each rover. A new attestation only replaces the stored one if its `emitidoEm` is **strictly greater**; otherwise the answer is `atestado_antigo`. This prevents reinstalling an old attestation (for example, one with a key the owner already replaced).
 - **Key rotation** is a new attestation, with another `chave`, same uid. Old objects stay valid (they were verified when they arrived); new ones are only valid with the new key.
 - **Revocation**: the issuer cancels before expiry. The relay queries the `AttestationProvider` (section 7.3) and starts treating the rover as nonexistent: it accepts no objects and serves nothing from it.
-- **Handle uniqueness on the relay**: two uids do not hold the same handle (`handle_em_uso`). A rover that leaves frees the handle. If different issuers issue the same handle, whoever reached the relay first wins; this is a known limitation (section 13).
+- **Handle uniqueness on the relay**: two uids do not hold the same handle (`handle_em_uso`). A rover that leaves frees the handle. A rover whose stored attestation the relay counts as revoked also loses it, but only to a valid new attestation from the **same** issuer for another uid: the issuer is the authority over its own namespace. The rover that lost it stays hidden and comes back only with a new attestation for another handle. If different issuers issue the same handle, whoever reached the relay first wins, revoked or not; this is a known limitation (section 13).
 - The relay never decides whether a handle is nice, reserved or offensive. That is the issuer's job.
 
 ### 3.3 What the uid guarantees

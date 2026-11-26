@@ -18,7 +18,7 @@ import {
   AUTHORIZATION_VERSIONS, PERSON_TYPES, LEAK_TYPES, VISITOR_REPORT, isPlainObject, POST_ONLY_REACTIONS, POST_REACTION_TARGETS, GALLERY_BASE, publicGallery,
   TIME_OFF_ADJUSTMENT, VERIFIED_TIME_OFF_ADJUSTMENT, LONG_AUTHORIZATION_LIMITS, OPTIONAL_TIME_OFF_BUNDLES, TIME_OFF_DEFAULT, authorizableTypesOf, FEATURE_FREE_MEDIA, RATE_PER_VERIFIED_ISSUER, VERIFIED_TOTAL_RATE, VERIFIED_RATE,
   CAPS_PER_DAY, limitError } from '../../protocol/src/index.js'
-import { PUBLIC_GRAPH, ROVER_VISIBLE } from './store.js'
+import { PUBLIC_GRAPH, ROVER_VISIBLE, releasedHandle } from './store.js'
 import { Messages, deleteRoverMessages, clearMessages } from './messages.js'
 import { Media } from './media.js'
 import { Edits } from './edits.js'
@@ -238,8 +238,8 @@ export class Relay {
         if (this.store.revogado(a.emissor, a.uid, a.emitidoEm)) throw new ProtocolError('atestado_revogado')
         requireSameKind(stored, species)
         if (stored && a.emitidoEm <= stored.atestado_emitido_em) throw new ProtocolError('atestado_antigo', { campo: 'atestado.emitidoEm' })
-        const owner = this.store.roverByHandle(a.handle)
-        if (owner && owner.uid !== a.uid) throw new ProtocolError('handle_em_uso', { campo: 'atestado.handle' })
+        // Only checked here; the handle changes hands inside the write transaction (`_takeHandle`), so a refusal later on leaves it where it was
+        this._handleHolder(a)
         return { newAttestation: a, effective: { chave: a.chave, chaveAprovacao: a.chaveAprovacao ?? null, emissor: a.emissor, handle: a.handle, especie: species } }
       }
     }
@@ -248,11 +248,36 @@ export class Relay {
     if (!trusted.includes(stored.emissor)) throw new ProtocolError('emissor_desconhecido')
     // 0.7.0: a person counts as long as their issuer stays on this relay's list of people issuers
     if (stored.especie === 'pessoa' && !this.emissoresDePessoas.includes(stored.emissor)) throw new ProtocolError('emissor_desconhecido')
-    if (this.store.revogado(stored.emissor, stored.uid, stored.atestado_emitido_em)) throw new ProtocolError('atestado_revogado')
+    if (this.store.storedAttestationRevoked(stored)) throw new ProtocolError('atestado_revogado')
     return {
       newAttestation: null,
       effective: { chave: stored.chave, chaveAprovacao: stored.chave_aprovacao || null, emissor: stored.emissor, handle: stored.handle, especie: stored.especie }
     }
+  }
+
+  /**
+   * Who holds the handle of the new attestation `a` on this relay. Null when nobody does, when it is the same uid, or when the holder
+   * may lose it: a rover of the SAME issuer (the issuer is the authority over its own namespace) whose stored attestation the relay counts
+   * as revoked. Throws `handle_em_uso` in every other case (another issuer, or a holder that still stands: whoever arrived first keeps it).
+   * @returns {object | null} the row that may lose the handle, or null
+   */
+  _handleHolder(a) {
+    const holder = this.store.roverByHandle(a.handle)
+    if (!holder || holder.uid === a.uid) return null
+    if (holder.emissor === a.emissor && this.store.revogado(holder.emissor, holder.uid, holder.atestado_emitido_em)) return holder
+    throw new ProtocolError('handle_em_uso', { campo: 'atestado.handle' })
+  }
+
+  /**
+   * Inside the write transaction, before the new attestation is stored: checks the holder again and, when it may lose the handle, moves
+   * its row to the placeholder (store.js, `releasedHandle`). Nothing else of that row changes: it stays `saiu = 0` (a row that left can
+   * never come back, `rover_saiu`), keeps its content, graph and profile, and stays hidden because its stored attestation no longer counts.
+   * A new attestation from its issuer rewrites the handle and brings it back like any rehabilitated rover.
+   */
+  _takeHandle(a) {
+    const holder = this._handleHolder(a)
+    if (!holder) return
+    this.store.executar('UPDATE rovers SET handle = :handle WHERE uid = :uid', { handle: releasedHandle(holder.uid), uid: holder.uid })
   }
 
   /** The effective policy of a stored rover: what its profile says, plus what the person declared (the more restrictive wins). */
@@ -443,6 +468,7 @@ export class Relay {
   _write({ obj, aprovacao: approval, autorizacao: authorization, effective, newAttestation, stored, efeito: effect, agora: now }) {
     const a = this.store
     if (!stored) {
+      this._takeHandle(newAttestation)
       a.executar(
         `INSERT INTO rovers (uid, chave, chave_aprovacao, handle, emissor, atestado, atestado_emitido_em, atestado_expira_em, criado_em, especie)
          VALUES (:uid, :chave, :chaveAprovacao, :handle, :emissor, :atestado, :emitidoEm, :expiraEm, :agora, :especie)`,
@@ -490,6 +516,8 @@ export class Relay {
 
   /** Replaces the stored attestation with the new one (already checked in `_resolveAttestation`). */
   _updateAttestation(obj, newAttestation) {
+    this._takeHandle(newAttestation)
+    const previousHandle = this.store.rover(obj.autor).handle
     this.store.executar(
       `UPDATE rovers SET chave = :chave, chave_aprovacao = :chaveAprovacao, handle = :handle, emissor = :emissor, atestado = :atestado,
          atestado_emitido_em = :emitidoEm, atestado_expira_em = :expiraEm WHERE uid = :uid`,
@@ -498,6 +526,18 @@ export class Relay {
         emissor: newAttestation.emissor, atestado: canonicalize(newAttestation), emitidoEm: newAttestation.emitidoEm, expiraEm: newAttestation.expiraEm
       }
     )
+    // The search title carries the handle: a rover that changed it (or came back with a new one after losing it) is found by the new one,
+    // never by the old one that may now belong to someone else
+    if (previousHandle !== newAttestation.handle) this._indexRover(obj.autor)
+  }
+
+  /** The search entry of a rover, from its stored profile: listed rovers only. */
+  _indexRover(uid) {
+    const r = this.store.rover(uid)
+    if (!r.perfil_id || r.listado !== 1) return this.social.unindex('rover', uid)
+    const skills = JSON.parse(r.habilidades).join(' ')
+    const interests = JSON.parse(r.interesses).join(' ')
+    this.social.index('rover', uid, null, `${r.handle} ${r.nome}`, `${r.descricao} ${r.sobre} ${skills} ${interests}`)
   }
 
   /**
@@ -530,10 +570,7 @@ export class Relay {
         capa: c.capa ? canonicalize(c.capa) : null
       }
     )
-    const handle = this.store.rover(obj.autor).handle
-    if (listed) {
-      this.social.index('rover', obj.autor, null, `${handle} ${c.nome}`, `${c.descricao} ${c.sobre ?? ''} ${(c.habilidades ?? []).join(' ')} ${(c.interesses ?? []).join(' ')}`)
-    } else this.social.unindex('rover', obj.autor)
+    this._indexRover(obj.autor)
   }
 
   _remove(obj, effect, now) {
@@ -738,7 +775,7 @@ export class Relay {
     if (!credential) return
     const c = readReadCredential(credential.header)
     const g = c ? this.store.rover(c.uid) : null
-    if (!g || g.saiu || !this.store.revogado(g.emissor, g.uid, g.atestado_emitido_em)) return
+    if (!g || g.saiu || !this.store.storedAttestationRevoked(g)) return
     if (readCredentialMatches(c, { metodo: credential.metodo, alvo: credential.alvo, chave: g.chave, agora: now })) throw new ProtocolError('atestado_revogado')
   }
 

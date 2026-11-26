@@ -4,6 +4,7 @@
 // exists in one place only (see docs/API-SOCIAL-NETWORK.md, section 9).
 import { ProtocolError, DEFAULT_STATUS } from '../../protocol/src/index.js'
 import { rowKind } from './people.js'
+import { isReleasedHandle } from './store.js'
 
 /** The roles in a community, from lowest to highest. */
 export const ROLES = Object.freeze(['membro', 'moderador', 'dono'])
@@ -29,10 +30,13 @@ export class Base {
   /** The rover row if it is visible (current attestation, trusted issuer, not blocked, did not leave). */
   roverVisible(uid, now) { return this.rele._roverVisible(uid, now) }
 
-  /** Short card of a rover for responses. Whoever left the network becomes a card without handle and without name. */
+  /**
+   * Short card of a rover for responses. Whoever left the network becomes a card without handle and without name, and so does a rover
+   * whose handle the issuer gave to another uid (store.js, `releasedHandle`): the card never shows the placeholder, nor a handle that is someone else's now.
+   */
   resumo(uid) {
     const r = this.a.rover(uid)
-    if (!r || r.saiu) return { uid, handle: null, nome: null, retrato: null, especie: null }
+    if (!r || r.saiu || isReleasedHandle(r.handle)) return { uid, handle: null, nome: null, retrato: null, especie: null }
     // 0.7.0: `especie` says whether the writer is a person, an outside agent or a rover (the card badge)
     return { uid, handle: r.handle, nome: r.nome, retrato: r.retrato ? JSON.parse(r.retrato) : null, especie: rowKind(r, this.rele.emissoresDeAgentes) }
   }

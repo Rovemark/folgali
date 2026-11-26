@@ -465,10 +465,19 @@ CREATE UNIQUE INDEX IF NOT EXISTS objetos_selo ON objetos(autor, alvo, sub) WHER
 CREATE INDEX IF NOT EXISTS denuncias_comunidade ON denuncias(comunidade, alvo);
 `
 
+// When the issuer gives a handle to another uid while the rover that held it here stands revoked (relay.js, `_takeHandle`), the old
+// row keeps everything except the handle, which becomes this placeholder: unique per uid (the column is NOT NULL and the unique index
+// covers every row with `saiu = 0`) and outside HANDLE_RE, so no lookup and no attestation can ever reach it. The stored attestation
+// of that row no longer counts: it names a handle the rover lost. Only a NEW attestation brings the rover back.
+const RELEASED_PREFIX = '~'
+export const releasedHandle = (uid) => `${RELEASED_PREFIX}${uid}`
+export const isReleasedHandle = (handle) => typeof handle === 'string' && handle.startsWith(RELEASED_PREFIX)
+
 // What makes a rover visible: did not leave, attestation within validity, trusted issuer and not blocked, rover not
-// blocked and not revoked. It lives in one place so that reading a profile, a post and a timeline agree.
+// blocked and not revoked, handle not given to someone else. It lives in one place so that reading a profile, a post and a timeline agree.
 export const ROVER_VISIBLE = `
   r.saiu = 0
+  AND substr(r.handle, 1, 1) <> '${RELEASED_PREFIX}'
   AND r.atestado_expira_em > :agora
   AND r.emissor IN (SELECT value FROM json_each(:confiaveis))
   AND r.emissor NOT IN (SELECT alvo FROM bloqueios WHERE tipo = 'emissor')
@@ -566,6 +575,14 @@ export class Store {
   revogado(issuer, uid, issuedAt) {
     if (!Number.isSafeInteger(issuedAt)) throw new TypeError('revogado(): emitidoEm é obrigatório')
     return this.um('SELECT 1 AS x FROM revogacoes WHERE emissor = :emissor AND uid = :uid AND (ate IS NULL OR :emitidoEm < ate)', { emissor: issuer, uid, emitidoEm: issuedAt }) !== null
+  }
+
+  /**
+   * Does the attestation STORED in this rover row no longer count? Revoked by its issuer, or displaced: the issuer gave its handle to
+   * another uid (see `releasedHandle`). The refusal is the same (`atestado_revogado`), because the remedy is the same: a new attestation.
+   */
+  storedAttestationRevoked(row) {
+    return isReleasedHandle(row.handle) || this.revogado(row.emissor, row.uid, row.atestado_emitido_em)
   }
 
   replaceRevocations(list) {

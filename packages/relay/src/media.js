@@ -134,7 +134,7 @@ export class Media {
     if (this.a.bloqueado('emissor', r.emissor) || this.a.bloqueado('rover', r.uid)) throw new ProtocolError('bloqueado')
     if (now >= r.atestado_expira_em) throw new ProtocolError('atestado_vencido')
     if (!this.rele.provedor.trustedIssuers().includes(r.emissor)) throw new ProtocolError('emissor_desconhecido')
-    if (this.a.revogado(r.emissor, r.uid, r.atestado_emitido_em)) throw new ProtocolError('atestado_revogado')
+    if (this.a.storedAttestationRevoked(r)) throw new ProtocolError('atestado_revogado')
     const age = now - r.criado_em
     // 0.10.1: an account from a verified issuer sends a photo from day one, with the full ceiling (relay.js, verifiedAccount)
     const verified = this.rele.verifiedAccount(r.emissor)
