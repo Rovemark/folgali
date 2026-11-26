@@ -8,28 +8,28 @@ body:
         Write in English or Portuguese. **Security problems do not go here**: follow SECURITY.md.
         Escreva em português ou inglês. **Falha de segurança não vai aqui**: siga o SECURITY.md.
   - type: dropdown
-    id: parte
+    id: part
     attributes:
       label: Part / Parte
       options:
-        - packages/protocolo
-        - packages/rele (relay / relé)
-        - packages/emissor-aberto (issuer / emissor)
-        - packages/cliente (client / cliente)
+        - packages/protocol
+        - packages/relay (relay / relé)
+        - packages/open-issuer (issuer / emissor)
+        - packages/client (client / cliente)
         - packages/site (website / site)
         - docs
         - Not sure / Não sei
     validations:
       required: true
   - type: textarea
-    id: o-que
+    id: what
     attributes:
       label: What happened / O que aconteceu
       description: What you did, what you expected and what you got. / O que você fez, o que esperava e o que veio.
     validations:
       required: true
   - type: textarea
-    id: reproduzir
+    id: reproduce
     attributes:
       label: How to reproduce / Como reproduzir
       description: Commands or steps. A failing test is the best reproduction. / Comandos ou passos. Um teste que falha é a melhor reprodução.
@@ -44,12 +44,12 @@ body:
     validations:
       required: true
   - type: input
-    id: ambiente
+    id: environment
     attributes:
       label: Environment / Ambiente
       placeholder: "Node 22.x, macOS / Linux / Windows, browser"
   - type: checkboxes
-    id: dados
+    id: data
     attributes:
       label: Before sending / Antes de enviar
       options:

@@ -1,29 +1,30 @@
-// 0.5.0: as imagens da rede saem SEMPRE por aqui, do mesmo domínio do site (`/midia/<hash>.<ext>`). O navegador nunca recebe um
-// endereço de terceiro: quem busca é o servidor, no cliente da rede (as imagens geradas da demonstração, ou o relé, quando ele tem o
-// recurso `midia`). Só o hash hexadecimal conferido vira pedido; a extensão precisa bater com o formato que veio.
-// Os cabeçalhos são os do relé: tipo fixo, sem farejar, sem executar nada, cache imutável (o endereço é o conteúdo).
+// 0.5.0: network images ALWAYS go out through here, from the same domain as the site (`/midia/<hash>.<ext>`). The browser never receives a
+// third-party address: the server fetches, in the network client (the demonstration's generated images, or the relay, when it has the
+// `midia` feature). Only the checked hexadecimal hash becomes a request; the extension must match the format that came back.
+// The headers are the relay's: fixed type, no sniffing, nothing executed, short cache (an image the moderation takes down leaves the
+// caches within minutes).
 
-import { ARQUIVO_RE, EXTENSAO, TIPO_MIME } from '@/lib/imagens'
-import { obterRede } from '@/lib/obter-rede'
+import { FILE_RE, IMAGE_CACHE, EXTENSION, MIME_TYPE } from '@/lib/images'
+import { getNetwork } from '@/lib/get-network'
 
-const naoEncontrado = () =>
+const notFound = () =>
   new Response('não encontrado', { status: 404, headers: { 'content-type': 'text/plain; charset=utf-8', 'cache-control': 'no-store', 'x-content-type-options': 'nosniff' } })
 
 export async function GET(_req: Request, { params }: { params: Promise<{ arquivo: string }> }) {
-  const { arquivo } = await params
-  const m = ARQUIVO_RE.exec(arquivo)
-  if (!m) return naoEncontrado()
-  const { cliente } = obterRede()
-  const achada = cliente.imagem ? await cliente.imagem(m[1]).catch(() => null) : null
-  if (!achada || EXTENSAO[achada.formato] !== m[2]) return naoEncontrado()
-  return new Response(achada.bytes as BodyInit, {
+  const { arquivo: file } = await params
+  const m = FILE_RE.exec(file)
+  if (!m) return notFound()
+  const { cliente: client } = getNetwork()
+  const found = client.imagem ? await client.imagem(m[1]).catch(() => null) : null
+  if (!found || EXTENSION[found.formato] !== m[2]) return notFound()
+  return new Response(found.bytes as BodyInit, {
     status: 200,
     headers: {
-      'content-type': TIPO_MIME[achada.formato],
-      'content-length': String(achada.bytes.length),
+      'content-type': MIME_TYPE[found.formato],
+      'content-length': String(found.bytes.length),
       'x-content-type-options': 'nosniff',
       'content-security-policy': "default-src 'none'; sandbox",
-      'cache-control': 'public, max-age=31536000, immutable',
+      'cache-control': IMAGE_CACHE,
       etag: `"${m[1]}"`,
       'content-disposition': 'inline',
     },

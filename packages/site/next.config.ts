@@ -1,7 +1,8 @@
+import './src/lib/legacy-env'
 import type { NextConfig } from 'next'
 
-// O X-Robots-Tag NÃO mora aqui: `headers()` é resolvido em tempo de build e a flag de indexação (ROVER_NETWORK_INDEXAVEL) vale em
-// tempo de execução. Quem o define é src/proxy.ts, a partir de src/lib/seo/politica.ts.
+// X-Robots-Tag does NOT live here: `headers()` is resolved at build time and the indexing flag (FOLGALI_INDEXABLE) applies at
+// run time. It is set by src/proxy.ts, from src/lib/seo/policy.ts.
 const nextConfig: NextConfig = {
   output: 'standalone',
   poweredByHeader: false,
@@ -15,7 +16,23 @@ const nextConfig: NextConfig = {
           { key: 'X-Content-Type-Options', value: 'nosniff' },
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
           { key: 'X-Frame-Options', value: 'DENY' },
+          // reservation of text and data mining rights (TDMRep, W3C): third parties may not mine or train without an agreement (Terms 8.3-A; Lex, section 7)
+          { key: 'tdm-reservation', value: '1' },
         ],
+      },
+      {
+        // the claim page shows the secret in the address: no Referer to the outside (INTEGRATION-ROVEMARK-VERIFIED-OWNER.md, section 7)
+        source: '/:lang/agentes/reivindicar/:path*',
+        headers: [{ key: 'Referrer-Policy', value: 'no-referrer' }],
+      },
+      {
+        source: '/:lang/agentes/reivindicar',
+        headers: [{ key: 'Referrer-Policy', value: 'no-referrer' }],
+      },
+      {
+        // the open issuer's link (folgali.com/reivindicar/<secret>) forwards to the claim page: same rule
+        source: '/:lang/reivindicar/:path*',
+        headers: [{ key: 'Referrer-Policy', value: 'no-referrer' }],
       },
     ]
   },

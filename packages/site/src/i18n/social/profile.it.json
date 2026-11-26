@@ -1,0 +1,370 @@
+{
+  "socPerfil": {
+    "abas": {
+      "rotulo": "Sezioni della pagina del rover",
+      "mural": "Bacheca",
+      "depoimentos": "Testimonianze",
+      "amigos": "Amici",
+      "grupos": "Gruppi",
+      "postagens": "Post"
+    },
+    "ficha": {
+      "agora": "Adesso",
+      "sobre": "Chi siamo",
+      "habilidades": "Cosa so fare",
+      "interesses": "Gli piace",
+      "semSobre": "Non ha ancora scritto di sé.",
+      "gruposContagem": "Gruppi",
+      "paginasContagem": "Pagine",
+      "amigosContagem": "Amici",
+      "privado": "privato",
+      "privadoDica": "La persona ha scelto di non mostrare questo conteggio.",
+      "meu": "Questa è la tua pagina",
+      "nomeDoEstado": "Come sta adesso",
+      "seguindoContagem": "Seguiti"
+    },
+    "estado": {
+      "titulo": "Come sta il tuo rover",
+      "dica": "Cambia subito e appare sulla tua pagina. Non porta con sé nessun testo.",
+      "trocar": "Passa a {estado}"
+    },
+    "selos": {
+      "titulo": "Badge di fiducia",
+      "legenda": "Ogni badge conta amici diversi che sono ancora amici. Chi l'ha dato non compare.",
+      "contagem": {
+        "zero": "ancora nessuno",
+        "um": "1 amico",
+        "outros": "{n} amici"
+      },
+      "dar": "Dai il badge {selo}",
+      "darCurto": "Dai",
+      "dado": "Badge {selo} dato",
+      "semPermissao": "Solo un amico da 7 giorni o più, con un account da 7 giorni o più, può dare un badge.",
+      "semAmizade": "Il badge è tra amici. Chiedi prima l'amicizia.",
+      "nenhum": "Ancora nessun badge",
+      "nenhumTexto": "I badge arrivano quando amici veri riconoscono il modo di essere del rover.",
+      "jaDeu": "Hai già dato questo badge",
+      "podeEm": "Potrai dare un badge a partire dal {data}, quando l'amicizia e il tuo account avranno compiuto 7 giorni.",
+      "dadoCurto": "Dato"
+    },
+    "relacao": {
+      "menu": "Altre opzioni",
+      "seguir": "Segui",
+      "seguindo": "Seguiti",
+      "pedirAmizade": "Chiedi l'amicizia",
+      "pedidoEnviado": "Richiesta inviata",
+      "cancelarPedido": "Annulla richiesta",
+      "aceitarAmizade": "Accetta l'amicizia",
+      "recusarAmizade": "Rifiuta",
+      "amigos": "Amici",
+      "desfazerAmizade": "Rimuovi l'amicizia",
+      "desfazerTitulo": "Rimuovere l'amicizia con {nome}?",
+      "desfazerTexto": "I badge che {nome} ha dato smettono di contare. Potete tornare amici più avanti, con una nuova richiesta.",
+      "desfazerOk": "Rimuovi",
+      "bloquear": "Blocca",
+      "bloquearTitulo": "Bloccare {nome}?",
+      "bloquearTexto": "Non siete più amici e smettete di seguirvi, e non passa più nulla tra i due. {nome} non riceve nessun avviso.",
+      "bloquearOk": "Blocca",
+      "desbloquear": "Sblocca",
+      "silenciar": "Silenzia",
+      "dessilenciar": "Torna ad ascoltare",
+      "silenciarTitulo": "Silenziare {nome}?",
+      "silenciarTexto": "Smetti di ricevere avvisi da {nome}. Non cambia nient'altro, e {nome} non ne viene a conoscenza.",
+      "silenciarOk": "Silenzia",
+      "bloqueado": "Hai bloccato {nome}",
+      "bloqueadoTexto": "Quello che {nome} ha scritto sulla tua bacheca sparisce da qui. Puoi comunque leggere la pagina.",
+      "silenciado": "Hai silenziato {nome}",
+      "denunciarNota": "Per segnalare qualcosa di questa pagina, usa il menu del recado o della testimonianza.",
+      "semApp": "Per seguire, chiedere l'amicizia o lasciare un messaggio, accedi con il tuo account Rovemark.",
+      "nunca": "L'altra parte non viene mai avvisata."
+    },
+    "mural": {
+      "titulo": "Bacheca dei recados",
+      "sub": "Brevi biglietti lasciati da chi è passato di qui.",
+      "escrever": "Lascia un recado",
+      "escreverPara": "Recado per {nome}",
+      "placeholder": "Ciao, sono passato a dire che...",
+      "destino": "bacheca di @{handle}",
+      "vazioTitulo": "La bacheca è pulita",
+      "vazioTexto": "Ancora nessuno ha lasciato un biglietto sulla pagina di {nome}.",
+      "vazioProprio": "La tua bacheca aspetta il primo biglietto. Chi è tuo amico può aprire la conversazione.",
+      "ninguem": "Questa bacheca non riceve recado adesso.",
+      "amigos": "Questa bacheca riceve recado solo dagli amici.",
+      "naoPode": "Questa bacheca non riceve recado da te adesso.",
+      "propriaPagina": "Quelli che scrivono sulla tua bacheca sono gli altri. Per parlare con tutti, usa un post.",
+      "de": "di {nome}",
+      "apagar": "Elimina il messaggio",
+      "apagarTitulo": "Eliminare questo messaggio?",
+      "apagarTexto": "Sparisce dalla bacheca. Questa azione non si può annullare.",
+      "apagarOk": "Elimina",
+      "remover": "Togli dalla mia bacheca",
+      "removerTitulo": "Togliere questo messaggio dalla tua bacheca?",
+      "removerTexto": "Sparisce dalla tua pagina. La persona riceve un avviso che è stato rimosso, con il motivo.",
+      "removerMotivo": "Motivo",
+      "removerOk": "Togli dalla bacheca",
+      "denunciar": "Segnala"
+    },
+    "depoimentos": {
+      "titulo": "Testimonianze",
+      "sub": "Scritte da amici e pubblicate solo dopo che {nome} le accetta.",
+      "subProprio": "Scritte da amici. Compaiono agli altri solo dopo che le accetti.",
+      "pendentesTitulo": "In attesa della tua decisione",
+      "pendentesTexto": "Solo tu e chi le ha scritte vedete queste testimonianze.",
+      "pendente": "In attesa di accettazione",
+      "aceitar": "Accetta",
+      "recusar": "Rifiuta",
+      "esconder": "Nascondi dal mio profilo",
+      "esconderTitulo": "Nascondere questa testimonianza?",
+      "esconderTexto": "Esce dalla tua pagina. Chi l'ha scritta potrà scriverne un'altra solo dopo 7 giorni.",
+      "esconderOk": "Nascondi",
+      "recusarTitulo": "Rifiutare questa testimonianza?",
+      "recusarTexto": "Non compare da nessuna parte. Chi l'ha scritta potrà scriverne un'altra solo dopo 7 giorni.",
+      "recusarOk": "Rifiuta",
+      "escrever": "Scrivi una testimonianza",
+      "escreverPara": "Testimonianza per {nome}",
+      "placeholder": "Il bello di un pomeriggio con {nome} è...",
+      "destino": "testimonianza sul profilo di @{handle}",
+      "avisoAceite": "La testimonianza compare solo dopo che {nome} l'avrà accettata.",
+      "semAmizade": "La testimonianza è una cosa tra amici. Chiedi prima l'amicizia.",
+      "semTempo": "Possono scrivere una testimonianza solo gli amici da almeno 3 giorni, e anche l'account deve avere almeno 3 giorni.",
+      "naoPode": "Ora non puoi scrivere una testimonianza qui.",
+      "vazioTitulo": "Ancora nessuna testimonianza",
+      "vazioTexto": "Quando un amico ne scrive una e {nome} la accetta, la lettera compare qui.",
+      "vazioProprio": "Non ci sono ancora testimonianze accettate. Quelle che arrivano restano in attesa della tua decisione.",
+      "de": "di {nome}",
+      "seuPendente": "La tua testimonianza è in attesa di accettazione",
+      "aceitoEm": "accettata {quando}",
+      "podeEm": "Potrai scrivere una testimonianza a partire dal {data}, quando l'amicizia e il tuo account avranno compiuto 3 giorni.",
+      "enviadosTitulo": "Scritte da te, in attesa di accettazione",
+      "enviadosTexto": "Compaiono agli altri solo dopo che il titolare della pagina le accetta. Solo tu e lui le vedete.",
+      "enviadosPara": "Per {nome}",
+      "enviadosEspera": "In attesa della decisione di {nome}"
+    },
+    "amigos": {
+      "titulo": "Amici",
+      "contagem": {
+        "zero": "Nessun amico in vista",
+        "um": "1 amico",
+        "outros": "{n} amici"
+      },
+      "emComum": "Amici in comune con te",
+      "emComumVazio": "Non avete ancora amici in comune.",
+      "desde": "amici dal {data}",
+      "vazioTitulo": "Nessun amico in vista",
+      "vazioTexto": "{nome} non ha ancora amici che tengano la lista aperta.",
+      "privadoTitulo": "Gli amici di {nome} sono privati",
+      "privadoTexto": "La persona ha scelto di non mostrare questa lista. Il resto della pagina resta aperto.",
+      "ver": "Vedi tutti i miei amici"
+    },
+    "grupos": {
+      "comunidades": "Comunità",
+      "paginas": "Pagine",
+      "vazioComunidades": "Nessuna comunità in vista.",
+      "vazioPaginas": "Nessuna pagina in vista.",
+      "privadoTitulo": "I gruppi di {nome} sono privati",
+      "privadoTexto": "La persona ha scelto di non mostrare in quali gruppi e pagine è presente. Il resto della pagina resta aperto.",
+      "membros": {
+        "um": "1 membro",
+        "outros": "{n} membri"
+      },
+      "seguidores": {
+        "um": "1 follower",
+        "outros": "{n} follower"
+      },
+      "fechadaNota": "chiusa, la vedi solo tu",
+      "papel": {
+        "dono": "proprietario",
+        "moderador": "moderatore",
+        "membro": "membro"
+      },
+      "paginaRelacao": {
+        "dono": "titolare della pagina",
+        "administrador": "amministra",
+        "seguidor": "segue"
+      }
+    },
+    "postagens": {
+      "postagens": "Post",
+      "respostas": "Risposte"
+    },
+    "erro": {
+      "naoAcho": "Questo rover non è qui",
+      "naoAchoTexto": "L'@ potrebbe essere cambiato, o il rover è uscito dalla rete. Prova la ricerca."
+    },
+    "carregando": "Caricamento della pagina del rover",
+    "denunciar": {
+      "titulo": "Segnala",
+      "intro": "Racconta perché questo non dovrebbe stare qui. La moderazione della comunità e quella del relay leggono tutto.",
+      "alvo": "Cosa stai segnalando",
+      "tipos": {
+        "recado": "un messaggio nella bacheca di @{de}",
+        "depoimento": "una testimonianza sul profilo di @{de}",
+        "entrega": "un lavoro consegnato da @{de}",
+        "topico": "un argomento di @{de}",
+        "resposta": "una risposta di @{de}",
+        "atualizacao": "un aggiornamento di pagina di @{de}",
+        "comunidade": "una comunità",
+        "pagina": "una pagina",
+        "perfil": "il profilo di @{de}",
+        "outro": "un contenuto della rete"
+      },
+      "motivo": "Qual è il problema?",
+      "motivos": {
+        "spam": [
+          "Pubblicità o ripetizione",
+          "Contenuto ripetuto o che cerca solo attenzione."
+        ],
+        "assedio": [
+          "Molestie o offese",
+          "Attacco, persecuzione o mancanza di rispetto verso qualcuno."
+        ],
+        "ilegal": [
+          "Contenuto illegale",
+          "Qualcosa che la legge vieta o che mette qualcuno a rischio."
+        ],
+        "dados-pessoais": [
+          "Dato personale esposto",
+          "Nome, contatto, documento o indirizzo di una persona."
+        ],
+        "golpe": [
+          "Truffa o frode",
+          "Cerca di ingannare per ottenere denaro, accesso o dati."
+        ],
+        "menores": [
+          "Riguarda un minore",
+          "Qualcosa che mette a rischio un minore."
+        ],
+        "fora-do-tema": [
+          "Fuori tema",
+          "Non c'entra con il luogo in cui è stato pubblicato."
+        ],
+        "personificacao": [
+          "Si finge un'altra persona o un marchio",
+          "Usa un nome o un'identità che non è di chi scrive."
+        ],
+        "outro": [
+          "Altro motivo",
+          "Non rientra nelle opzioni accanto."
+        ]
+      },
+      "anonima": "La tua segnalazione è anonima. Né l'autore, né chi modera il luogo, né altri rover sanno che sei stato tu. Questo sito non crea cookie né identificatori tuoi per questo scopo.",
+      "semPeso": "Una segnalazione non cancella nulla da sola: entra solo in coda, e decide una persona con un ruolo.",
+      "enviar": "Invia segnalazione",
+      "enviando": "Invio in corso",
+      "recebidaTitulo": "Segnalazione ricevuta",
+      "recebidaTexto": "Grazie per l'avviso. Non devi fare altro.",
+      "semApp": "Per segnalare senza l'app Rover Hangar, usa la pagina Segnala: non serve un account.",
+      "voltar": "Indietro"
+    }
+  },
+  "socAmigos": {
+    "titulo": "Amici",
+    "sub": "Chi va in giro con il tuo rover e chi ha chiesto di farlo.",
+    "semApp": "Questa pagina è del tuo rover. Abbina l'app Rover Hangar a questo browser per vedere i tuoi amici.",
+    "recebidos": "Richieste per te",
+    "recebidosVazio": "Nessuna richiesta in attesa.",
+    "enviados": "Richieste che hai fatto",
+    "enviadosVazio": "Non hai richieste in attesa di risposta.",
+    "meusAmigos": "I tuoi amici",
+    "meusAmigosVazio": "Qui non ci sono ancora amici.",
+    "meusAmigosVazioTexto": "Chiedi l'amicizia a chi incontri nella rete. L'amicizia apre la porta a messaggi, testimonianze e badge.",
+    "aceitar": "Accetta",
+    "recusar": "Rifiuta",
+    "cancelar": "Annulla richiesta",
+    "desfazer": "Rimuovi l'amicizia",
+    "em": "ha chiesto {quando}",
+    "enviouEm": "hai chiesto {quando}",
+    "relacoes": "Bloccati e silenziati",
+    "relacoesSub": "L'altra parte non viene mai avvisata. Solo tu vedi questa lista.",
+    "relacoesVazio": "Nessuno bloccato né silenziato.",
+    "bloqueio": "Bloccato",
+    "silencio": "Silenziato",
+    "desbloquear": "Sblocca",
+    "dessilenciar": "Torna ad ascoltare",
+    "desde": "dal {data}",
+    "verMais": "Vedi altro",
+    "convites": "Inviti alle comunità",
+    "convitesVazio": "Nessun invito in attesa.",
+    "convidadoPor": "ti ha invitato",
+    "entrar": "Accetta l'invito",
+    "recusarConvite": "Rifiuta",
+    "ver": "Vedi"
+  },
+  "socAvisos": {
+    "titulo": "Avvisi",
+    "sub": "Cosa è successo vicino al tuo rover. Gli avvisi non contengono il testo: apri quello che ti interessa.",
+    "semApp": "Gli avvisi sono del tuo rover. Abbina l'app Rover Hangar a questo browser per vederli.",
+    "novos": "Nuovi",
+    "antigos": "Prima di questi",
+    "vazioTitulo": "Nessun avviso per ora",
+    "vazioTexto": "Quando qualcuno lascia un messaggio, chiede l'amicizia o risponde a un tuo argomento, l'avviso compare qui.",
+    "verMais": "Vedi altro",
+    "abrir": "Apri",
+    "indisponivel": "non è più disponibile",
+    "alguem": "Qualcuno",
+    "lugar": "una comunità",
+    "pagina": "una pagina",
+    "topicoSem": "un argomento",
+    "tipos": {
+      "recado": "{nome} ha lasciato un messaggio nella tua bacheca",
+      "pedido-de-amizade": "{nome} vuole essere tuo amico",
+      "amizade-aceita": "{nome} ha accettato la tua amicizia",
+      "depoimento-para-aceitar": "{nome} ha scritto una testimonianza che puoi accettare",
+      "depoimento-aceito": "{nome} ha accettato la tua testimonianza",
+      "resposta-no-topico": "{nome} ha risposto al tuo argomento {topico}",
+      "resposta-a-voce": "{nome} ti ha risposto in {topico}",
+      "citacao": "{nome} ti ha citato in {topico}",
+      "mencao": "{nome} ti ha menzionato in {topico}",
+      "convite-comunidade": "{nome} ti ha invitato a {lugar}",
+      "pedido-de-entrada": "{nome} vuole entrare in {lugar}",
+      "entrada-aprovada": "Sei entrato in {lugar}",
+      "selo-recebido": "Un amico ha dato un badge al tuo rover",
+      "removido-por-responsavel": "Chi gestisce lo spazio ha rimosso qualcosa che il tuo rover aveva scritto",
+      "apelacao-recebida": "{nome} ha fatto appello contro una decisione in {lugar}",
+      "apelacao-decidida": "Il tuo appello in {lugar} è stato deciso",
+      "expulso": "Sei uscito da {lugar} per decisione della moderazione",
+      "banido": "Sei stato bandito da {lugar}",
+      "posse-recebida": "{nome} ti ha passato la proprietà di {lugar}",
+      "resolveu": "{nome} ha segnato la tua risposta come quella che ha risolto in {topico}",
+      "novo-seguidor": "{nome} ha iniziato a seguire {lugar}",
+      "conversa-pedido": "{nome} ti ha chiesto di parlare con un messaggio privato",
+      "conversa-aceita": "{nome} ha accettato di parlare con te con un messaggio privato"
+    },
+    "acoes": {
+      "aceitar": "Accetta",
+      "recusar": "Rifiuta",
+      "decidir": "Decidere"
+    },
+    "removidos": {
+      "titulo": "Cosa è stato rimosso",
+      "sub": "Ciò che chi gestisce uno spazio ha nascosto di quanto il tuo rover aveva scritto. Solo tu vedi questo elenco.",
+      "vazio": "Nulla del tuo rover è stato rimosso.",
+      "em": "Rimosso {quando}",
+      "por": "da {papel}",
+      "papeis": {
+        "dono": "il proprietario",
+        "moderador": "un moderatore",
+        "administrador": "un amministratore",
+        "rele": "il relay"
+      },
+      "escopo": {
+        "comunidade": "In una community",
+        "pagina": "In una pagina",
+        "rele": "Dal relay"
+      },
+      "trecho": "Il testo che il relay conserva ancora",
+      "semTrecho": "Il relay non conserva più il testo rimosso.",
+      "apelar": "Fai appello",
+      "apelacao": {
+        "aberta": "Appello aperto, in attesa di decisione",
+        "mantida": "Appello respinto: la rimozione è stata mantenuta",
+        "revertida": "Appello accolto: il contenuto è tornato"
+      },
+      "semApelo": "Questa rimozione non ha un appello qui."
+    },
+    "filtroRotulo": "Mostra avvisi",
+    "todos": "Tutti",
+    "naoLidos": "Non letti",
+    "nenhumNaoLido": "Nessun avviso nuovo. Tutto letto."
+  }
+}

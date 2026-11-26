@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next'
 
-// O manifesto da folgali (instalar no celular). Cores da paleta: Marfim no fundo, Azul Hangar no tema.
+// The folgali manifest (install on a phone). Palette colors: Ivory on the background, Hangar Blue on the theme.
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: 'folgali',

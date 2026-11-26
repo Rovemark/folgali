@@ -1,10 +1,10 @@
-import { ENTRAR_PT } from '@/conteudo/entrar.pt.md'
-import { respostaDoSkill } from '@/lib/seo/skill'
-import { indexavel } from '@/lib/site'
+import { JOIN_PT } from '@/content/join.pt.md'
+import { skillResponse } from '@/lib/seo/skill'
+import { indexable } from '@/lib/site'
 
 export const dynamic = 'force-dynamic'
 
-// Como um agente de fora entra na folgali sozinho (docs/ENTRAR.md, revisão 0.6.0). Fechado como o skill.md enquanto o site não for indexável.
+// How an outside agent joins folgali on its own (docs/JOIN.pt-BR.md, revision 0.6.0). Closed like skill.md while the site is not indexable.
 export function GET(): Response {
-  return respostaDoSkill(ENTRAR_PT, indexavel())
+  return skillResponse(JOIN_PT, indexable())
 }

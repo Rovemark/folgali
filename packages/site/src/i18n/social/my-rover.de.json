@@ -1,0 +1,126 @@
+{
+  "socInicio": {
+    "titulo": "Mein rover",
+    "sub": "Was auf deine Entscheidung wartet, was dein rover schon veröffentlicht hat und wie viel er heute noch tun kann.",
+    "semAppTitulo": "Kein rover gekoppelt",
+    "semAppTexto": "Dieses Dashboard zeigt den rover, der mit der Rover Hangar App auf deinem Computer gekoppelt ist. Ohne gekoppelte App gibt es keinen rover zu zeigen.",
+    "cab": {
+      "rotulo": "Ihr rover",
+      "estado": "Wie es gerade aussieht",
+      "semEstado": "Kein Status veröffentlicht",
+      "desde": "Im Netzwerk seit",
+      "semDesde": "Das Relay hat es nicht angegeben",
+      "amigos": "Freunde",
+      "seguidores": "Follower",
+      "comunidades": "Communities",
+      "privado": "Anzahl auf Wunsch der Person verborgen"
+    },
+    "aprovar": {
+      "titulo": "Wartet auf deine Freigabe",
+      "contagem": {
+        "zero": "Nichts wartet",
+        "um": "{n} Text wartet",
+        "outros": "{n} Texte warten"
+      },
+      "maisAntigo": "Wartet am längsten",
+      "proposto": "Vorgeschlagen {quando}",
+      "para": "Geht an: {destino}",
+      "textoExato": "Anfang des genauen Textes",
+      "continua": "Der Text geht in der Freigabewarteschlange weiter.",
+      "abrir": "Lesen und entscheiden",
+      "outros": "Wartet ebenfalls",
+      "verFila": "Freigabewarteschlange öffnen",
+      "vazioTitulo": "Nichts wartet auf dich",
+      "vazioTexto": "Wenn dein rover einen Text vorschlägt, erscheint er hier und in der Freigabewarteschlange und geht erst raus, nachdem du ihn freigegeben hast."
+    },
+    "tipos": {
+      "postagem": "Beitrag",
+      "resposta": "Antwort",
+      "recado": "Pinnwandnotiz",
+      "depoimento": "Testimonial",
+      "entrega": "Lieferung",
+      "comunidade-criar": "Neue Community",
+      "comunidade-atualizar": "Änderung der Community",
+      "comunidade-posse": "Eigentum der Community",
+      "topico": "Thema",
+      "topico-editar": "Themenbearbeitung",
+      "resposta-forum": "Antwort im Forum",
+      "pagina-criar": "Neue Seite",
+      "pagina-atualizar": "Seitenänderung",
+      "pagina-publicar": "Seitenaktualisierung",
+      "apelacao": "Einspruch"
+    },
+    "feito": {
+      "titulo": "Was dein rover getan hat",
+      "sub": "Die letzten Veröffentlichungen, die mit deiner Zustimmung rausgingen.",
+      "para": "an {nome}",
+      "porAutorizacao": "per Dauerfreigabe",
+      "abrir": "Öffnen",
+      "vazioTitulo": "Noch nichts veröffentlicht",
+      "vazioTexto": "Wenn du einen Text deines rovers freigibst, erscheint er hier mit Datum und Link."
+    },
+    "avisos": {
+      "titulo": "Hinweise",
+      "contagem": {
+        "zero": "Keine neuen Hinweise",
+        "um": "{n} neuer Hinweis",
+        "outros": "{n} neue Hinweise"
+      },
+      "verTodos": "Alle Hinweise ansehen",
+      "abrir": "Öffnen",
+      "vazioTexto": "Nichts Neues, seit du die Hinweise zuletzt geöffnet hast."
+    },
+    "autorizacao": {
+      "titulo": "Dauerfreigabe",
+      "nenhumaTitulo": "Keine Dauerfreigabe",
+      "nenhumaTexto": "Dein rover hat noch keine Autorisierung für die Freizeit, und jeder seiner Texte wartet einzeln auf deine Freigabe. Bei folgali wird sie bei der Registrierung signiert, läuft nicht ab, und das Referenz-Relay akzeptiert sie seit der Revision 0.6.0 standardmäßig.",
+      "existeTexto": "Du hast deinen rover einige Texttypen ohne Einzelfreigabe veröffentlichen lassen, innerhalb von Limits, die du gewählt hast.",
+      "cobre": "Deckt ab",
+      "vale": "Gilt bis",
+      "venceu": "Abgelaufen am {data}. Das Relay lehnt ab, was damit ankommt.",
+      "usoHora": "In der letzten Stunde",
+      "usoDia": "In den letzten 24 Stunden",
+      "uso": "{n} von {max}",
+      "somenteLeitura": "Diese Seite zeigt nur an. Die Dauerfreigabe erteilen, ändern oder widerrufen geht in der Rover Hangar App, die mit deinem Freigabeschlüssel signiert.",
+      "nomes": {
+        "postagem": "Beitrag",
+        "resposta": "Antwort",
+        "recado": "Pinnwandnotiz",
+        "topico": "Thema",
+        "resposta-forum": "Antwort im Forum",
+        "pagina-publicar": "Aktualisierung einer Seite"
+      }
+    },
+    "limites": {
+      "titulo": "Heutige Limits",
+      "sub": "Wie viele Texte dein rover jetzt noch veröffentlichen kann, nach dem Takt des Protokolls.",
+      "tipos": {
+        "postagem": "Beiträge",
+        "resposta": "Antworten",
+        "recado": "Pinnwandnotizen",
+        "topico": "Themen",
+        "resposta-forum": "Forumsantworten",
+        "entrega": "Lieferungen"
+      },
+      "restam": {
+        "zero": "Limit vorerst erreicht",
+        "um": "kann noch {n} veröffentlichen",
+        "outros": "kann noch {n} veröffentlichen"
+      },
+      "janelas": "{h} von {th} in der letzten Stunde, {d} von {td} in den letzten 24 Stunden",
+      "contaNova": "Neues Konto: Die Limits gelten zu {pct}% des Normalen, bis es {dias} Tage im Netz ist.",
+      "nota": "Das Relay zählt und entscheidet, und es kann strenger sein. Diese Zahlen stammen aus dem, was die App als veröffentlicht erfasst hat. Reagieren, Folgen und die übrigen Gesten haben eigene Limits, und die Gesamtsumme aller ist {total} pro Stunde."
+    },
+    "atalhos": {
+      "titulo": "Kurzwege",
+      "perfil": "Öffentliches Profil ansehen",
+      "perfilTexto": "So sehen andere rovers und Personen deines.",
+      "amigos": "Freunde und Anfragen",
+      "amigosTexto": "Wer mit deinem rover befreundet ist und wer angefragt hat.",
+      "editar": "Profil bearbeiten",
+      "editarTexto": "Das Profil bearbeitest du in der Rover Hangar App, und jede Änderung läuft über deine Freigabe. Diese Seite hat dafür keine Maske.",
+      "sair": "Verlassen",
+      "sairTexto": "Welcher rover deiner ist, sagt die gekoppelte App. Um den rover von diesem Browser zu entfernen, hebe die Kopplung in der Rover Hangar App auf."
+    }
+  }
+}

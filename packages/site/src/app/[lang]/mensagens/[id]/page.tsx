@@ -1,183 +1,195 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import EstadoVazio from '@/components/EstadoVazio'
-import AcoesDaMensagem from '@/components/mensagens/AcoesDaMensagem'
-import AvisosDeMensagens from '@/components/mensagens/AvisosDeMensagens'
-import BotoesDoPedido from '@/components/mensagens/BotoesDoPedido'
-import BotaoAto from '@/components/social/BotaoAto'
-import CartaoRover from '@/components/social/CartaoRover'
-import EstadoDeErro from '@/components/social/EstadoDeErro'
-import FormProposta from '@/components/social/FormProposta'
-import { rostoPorUid } from '@/lib/dominio/expressao'
-import { ehIdObjeto } from '@/lib/dominio/ids'
-import { dict, ehPronto, fmt, tempoRelativo } from '@/lib/i18n'
-import { obterRede } from '@/lib/obter-rede'
-import { carregar } from '@/lib/social/carregar'
-import { acoesDaConversa } from '@/lib/social/mensagens'
-import { metaTela } from '@/lib/seo/meta-telas'
+import EmptyState from '@/components/EmptyState'
+import MessageActions from '@/components/messages/MessageActions'
+import MessageNotices from '@/components/messages/MessageNotices'
+import RequestButtons from '@/components/messages/RequestButtons'
+import ActionButton from '@/components/social/ActButton'
+import RoverCard from '@/components/social/RoverCard'
+import ErrorState from '@/components/social/ErrorState'
+import ProposalForm from '@/components/social/ProposalForm'
+import Typing from '@/components/life/Typing'
+import { lifeTexts } from '@/components/life/texts'
+import { faceByUid } from '@/lib/domain/expression'
+import { isObjectId } from '@/lib/domain/ids'
+import { dict, isReady, fmt, relativeTime } from '@/lib/i18n'
+import { getNetwork } from '@/lib/get-network'
+import { load } from '@/lib/social/load'
+import { conversationActions } from '@/lib/social/messages'
+import { screenMeta } from '@/lib/seo/meta-screens'
+import PersonMessagesPage from '@/components/messages/PersonMessagesPage'
+import { issuersReady } from '@/lib/folgali/issuers'
+import { isDemo } from '@/lib/site'
 
 type P = { params: Promise<{ lang: string; id: string }> }
 
 export async function generateMetadata({ params }: P): Promise<Metadata> {
   const { lang, id } = await params
-  // o título não leva o nome de ninguém: a tela é privada e o título vai para a aba, o histórico e o compartilhamento
-  return metaTela(lang, `/mensagens/${id}`, dict(ehPronto(lang) ? lang : 'pt').socMensagens.titulo)
+  // the title carries nobody's name: the screen is private and the title goes to the tab, the history and sharing
+  return screenMeta(lang, `/mensagens/${id}`, dict(isReady(lang) ? lang : 'pt').socMensagens.titulo)
 }
 
-/** Uma conversa aberta: o pedido (em claro), as mensagens que o app decifrou, e o que a pessoa pode fazer agora. Tela PRÓPRIA. */
-export default async function ConversaAberta({ params }: P) {
+/** An open conversation: the request (in clear), the messages the app decrypted, and what the person can do now. OWN screen. */
+export default async function OpenConversation({ params }: P) {
   const { lang, id } = await params
-  if (!ehPronto(lang)) notFound()
+  if (!isReady(lang)) notFound()
   const d = dict(lang)
   const t = d.socMensagens
-  const { cliente, ponte } = obterRede()
-  const eu = await ponte.quemSou()
-  const voltar = (
-    <p className="msg-voltar">
+  const { cliente: client, ponte: bridge } = getNetwork()
+  // 0.4.0 for a PERSON in the real mode: the same three-column screen, opened on this conversation
+  if (!isDemo(client.modo) && issuersReady() !== null) {
+    if (!isObjectId(id)) notFound()
+    return <PersonMessagesPage lang={lang} initial={id} />
+  }
+  const me = await bridge.whoAmI()
+  const back = (
+    <p className="msg-back">
       <Link href={`/${lang}/mensagens`}>{t.voltar}</Link>
     </p>
   )
-  if (!eu) {
+  if (!me) {
     return (
       <>
-        {voltar}
-        <EstadoVazio titulo={t.titulo} texto={t.semApp} ficha={rostoPorUid('rvr_mensagens_sem_app_00')} estado="parado" />
+        {back}
+        <EmptyState titulo={t.titulo} texto={t.semApp} ficha={faceByUid('rvr_mensagens_sem_app_00')} estado="parado" />
       </>
     )
   }
-  if (!(await cliente.suporta('mensagens').catch(() => false))) {
+  if (!(await client.suporta('mensagens').catch(() => false))) {
     return (
       <>
-        {voltar}
-        <EstadoVazio titulo={t.titulo} texto={t.semRecurso} ficha={eu.rosto} estado="parado" />
+        {back}
+        <EmptyState titulo={t.titulo} texto={t.semRecurso} ficha={me.rosto} estado="parado" />
       </>
     )
   }
-  if (!ehIdObjeto(id)) notFound()
-  const conversa = await carregar(() => cliente.conversa(eu.uid, id))
-  if (!conversa.ok) return <>{voltar}<EstadoDeErro codigo={conversa.codigo} d={d} lang={lang} /></>
-  const c = conversa.valor
-  const mensagens = await carregar(() => cliente.mensagensDaConversa(eu.uid, id))
-  const pode = acoesDaConversa(c, eu.uid)
-  const agora = new Date()
-  const quando = (iso: string) => tempoRelativo(iso, d, agora)
+  if (!isObjectId(id)) notFound()
+  const conversation = await load(() => client.conversa(me.uid, id))
+  if (!conversation.ok) return <>{back}<ErrorState codigo={conversation.codigo} d={d} lang={lang} /></>
+  const c = conversation.valor
+  const messages = await load(() => client.mensagensDaConversa(me.uid, id))
+  const can = conversationActions(c, me.uid)
+  const now = new Date()
+  const when = (iso: string) => relativeTime(iso, d, now)
   const handle = c.com.handle
 
   return (
     <>
-      {voltar}
-      <div className="titulo-pag">
+      {back}
+      <div className="page-title">
         <h1>{fmt(t.conversaCom, { nome: c.com.nome })}</h1>
         <p>
           <bdi dir="ltr">@{handle}</bdi> ·{' '}
-          <span className="msg-estado" data-estado={c.estado}>
+          <span className="msg-state" data-estado={c.estado}>
             {t.estados[c.estado]}
           </span>
         </p>
       </div>
-      <div className="pilha-g">
-        <AvisosDeMensagens demo={cliente.modo === 'falso'} d={d} />
+      <div className="stack-large">
+        <MessageNotices demo={client.modo === 'falso'} d={d} />
 
-        <section className="pf-bloco msg-pedido" aria-labelledby="msg-pedido">
+        <section className="pf-block msg-pedido" aria-labelledby="msg-pedido">
           <h2 id="msg-pedido">{t.pedidoTitulo}</h2>
-          <CartaoRover rover={c.iniciadaPor === eu.uid ? eu : c.com} lang={lang} sub={c.pedido ? quando(c.pedido.em) : undefined} />
+          <RoverCard rover={c.iniciadaPor === me.uid ? me : c.com} lang={lang} sub={c.pedido ? when(c.pedido.em) : undefined} />
           {c.pedido ? (
             <>
-              <p className="msg-texto" dir="auto">{c.pedido.texto}</p>
-              {c.estado === 'pendente' && <p className="suave">{t.pedidoEmClaro}</p>}
+              <p className="msg-text" dir="auto">{c.pedido.texto}</p>
+              {c.estado === 'pendente' && <p className="soft">{t.pedidoEmClaro}</p>}
             </>
           ) : (
-            <p className="suave">{t.pedidoApagado}</p>
+            <p className="soft">{t.pedidoApagado}</p>
           )}
-          {pode.aceitar && (
+          {can.aceitar && (
             <>
               <p>{t.decidir}</p>
-              <BotoesDoPedido conversa={c.id} handle={handle} d={d} />
+              <RequestButtons conversa={c.id} handle={handle} d={d} />
             </>
           )}
-          {pode.cancelar && (
+          {can.cancelar && (
             <>
-              <p className="suave">{fmt(t.aguardando, { handle })}</p>
-              <div className="msg-decidir">
-                <BotaoAto
+              <p className="soft">{fmt(t.aguardando, { handle })}</p>
+              <div className="msg-decide">
+                <ActionButton
                   ato={{ tipo: 'conversa-decidir', conversa: c.id, decisao: 'encerrar' }}
                   d={d}
-                  className="btn btn-calmo btn-peq"
+                  className="btn btn-calm btn-small"
                   confirmar={{ titulo: fmt(t.confirmar.cancelarTitulo, { handle }), texto: t.confirmar.cancelarTexto, ok: t.confirmar.cancelarOk }}
                 >
                   {t.cancelar}
-                </BotaoAto>
+                </ActionButton>
               </div>
             </>
           )}
         </section>
 
-        <section className="pf-bloco" aria-labelledby="msg-hist">
+        <section className="pf-block" aria-labelledby="msg-hist">
           <h2 id="msg-hist">
-            {t.historicoTitulo} <span className="pf-n">{mensagens.ok ? mensagens.valor.itens.length : 0}</span>
+            {t.historicoTitulo} <span className="pf-n">{messages.ok ? messages.valor.itens.length : 0}</span>
           </h2>
-          {!mensagens.ok ? (
-            <EstadoDeErro codigo={mensagens.codigo} d={d} lang={lang} semVoltar />
-          ) : mensagens.valor.itens.length === 0 ? (
-            <p className="suave">{c.estado === 'ativa' ? t.semMensagens : t.fechada[c.estado === 'pendente' ? 'pendente' : c.estado === 'recusada' ? 'recusada' : 'encerrada']}</p>
+          {!messages.ok ? (
+            <ErrorState codigo={messages.codigo} d={d} lang={lang} noBack />
+          ) : messages.valor.itens.length === 0 ? (
+            <p className="soft">{c.estado === 'ativa' ? t.semMensagens : t.fechada[c.estado === 'pendente' ? 'pendente' : c.estado === 'recusada' ? 'recusada' : 'encerrada']}</p>
           ) : (
-            <ol className="msg-historico">
-              {mensagens.valor.itens.map((m) => (
+            <ol className="msg-history">
+              {messages.valor.itens.map((m) => (
                 <li key={m.id} className="msg" data-minha={m.minha} data-ilegivel={m.texto === null}>
-                  <p className="msg-quem">
-                    <strong>{m.minha ? t.voce : m.de.nome}</strong> <small>{quando(m.em)}</small>
+                  <p className="msg-who">
+                    <strong>{m.minha ? t.voce : m.de.nome}</strong> <small>{when(m.em)}</small>
                   </p>
-                  {m.texto === null ? <p className="msg-texto msg-ilegivel">{t.ilegivel}</p> : <p className="msg-texto" dir="auto">{m.texto}</p>}
-                  <AcoesDaMensagem conversa={c.id} mensagem={m.id} handle={m.de.handle} podeDenunciar={!m.minha && m.texto !== null} podeAgir d={d} />
+                  {m.texto === null ? <p className="msg-text msg-unreadable">{t.ilegivel}</p> : <p className="msg-text" dir="auto">{m.texto}</p>}
+                  <MessageActions conversa={c.id} mensagem={m.id} handle={m.de.handle} canReport={!m.minha && m.texto !== null} canAct d={d} />
                 </li>
               ))}
             </ol>
           )}
-          {mensagens.ok && mensagens.valor.itens.length > 0 && (
-            <div className="msg-decidir">
-              <BotaoAto
+          {/* demonstration: the other rover appears typing (the protocol has no typing signal yet) */}
+          {client.modo === 'falso' && c.estado === 'ativa' && messages.ok && messages.valor.itens.length > 0 && <Typing nome={c.com.nome} texto={lifeTexts(lang).digitando} />}
+          {messages.ok && messages.valor.itens.length > 0 && (
+            <div className="msg-decide">
+              <ActionButton
                 ato={{ tipo: 'conversa-apagar', conversa: c.id, mensagem: null }}
                 d={d}
-                className="btn btn-calmo btn-peq"
+                className="btn btn-calm btn-small"
                 confirmar={{ titulo: t.apagarTudoTitulo, texto: t.apagarTexto, ok: t.apagarOk }}
               >
                 {t.apagarTudo}
-              </BotaoAto>
+              </ActionButton>
             </div>
           )}
-          <p className="suave">{t.retencao}</p>
+          <p className="soft">{t.retencao}</p>
         </section>
 
-        {pode.escrever ? (
-          <section className="pf-bloco" aria-labelledby="msg-escrever">
+        {can.escrever ? (
+          <section className="pf-block" aria-labelledby="msg-escrever">
             <h2 id="msg-escrever">{t.escreverTitulo}</h2>
-            <p className="suave">{t.escreverNota}</p>
-            <FormProposta
+            <p className="soft">{t.escreverNota}</p>
+            <ProposalForm
               tipo="mensagem"
               d={d}
               lang={lang}
               campos={{ conversa: c.id, texto: '' }}
               destino={{ rotulo: fmt(t.destinoMensagem, { handle }), href: `/${lang}/mensagens/${c.id}` }}
-              podeEscrever
-              nomeDoRover={eu.nome}
+              canWrite
+              roverName={me.nome}
               enviar={t.enviarMensagem}
               placeholder={t.placeholderMensagem}
-              compacto
+              compact
             />
-            <div className="msg-decidir">
-              <BotaoAto
+            <div className="msg-decide">
+              <ActionButton
                 ato={{ tipo: 'conversa-decidir', conversa: c.id, decisao: 'encerrar' }}
                 d={d}
-                className="btn btn-calmo btn-peq"
+                className="btn btn-calm btn-small"
                 confirmar={{ titulo: fmt(t.confirmar.encerrarTitulo, { handle }), texto: t.confirmar.encerrarTexto, ok: t.confirmar.encerrarOk }}
               >
                 {t.encerrar}
-              </BotaoAto>
+              </ActionButton>
             </div>
           </section>
         ) : (
-          c.estado !== 'pendente' && <p className="pf-nota">{t.fechada[c.estado === 'recusada' ? 'recusada' : 'encerrada']}</p>
+          c.estado !== 'pendente' && <p className="pf-note">{t.fechada[c.estado === 'recusada' ? 'recusada' : 'encerrada']}</p>
         )}
       </div>
     </>

@@ -9,18 +9,18 @@ segredo-*
 *.log
 .DS_Store
 
-# fotos de prova do QA visual: pesadas, ficam fora do git
+# visual QA proof photos: heavy, kept out of git
 packages/site/docs/fotos-social/
 packages/site/docs/fotos-relay-real/
 packages/site/docs/fotos-entrar/
 packages/site/docs/fotos-painel/
 
-# folgali: originais em PNG e telas de referência ficam fora do git (só o LEIA.md entra)
+# folgali: PNG originals and reference screens are kept out of git (only LEIA.md goes in)
 docs/folgali/originais/
 docs/folgali/telas/*.png
 packages/site/docs/fotos/
 
-# provas e relatórios gerados a cada rodada: ficam na máquina de quem roda
+# proofs and reports generated on each round: they stay on the machine of whoever runs it
 .stryker-tmp*/
 **/.stryker-tmp*/
 reports/

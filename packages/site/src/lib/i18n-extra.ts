@@ -1,43 +1,45 @@
-// Textos do rodapé e das páginas institucionais. Moram em arquivos próprios (rodape.*.json e institucional.*.json) para não
-// disputar linha com os dicionários grandes (pt.json, en.json, casa.*.json), que outras frentes editam ao mesmo tempo.
-import { PACOTES, type Inst, type Rodape } from '@/i18n/pacotes'
-import type { SecaoDeGuia } from '@/conteudo/tipos'
-import { LOCALES, type Locale, type Pronto } from '@/lib/i18n'
+// Footer and institutional page texts. They live in their own files (footer.*.json and institutional.*.json) so as not to
+// compete for lines with the big dictionaries (pt.json, en.json, house.*.json), which other fronts edit at the same time.
+import { PACKS, type Institutional, type Footer } from '@/i18n/packages'
+import type { GuideSection } from '@/content/types'
+import { LOCALES, type Locale, type Ready } from '@/lib/i18n'
+import { showcaseMeta } from '@/i18n/showcase'
 
-export type RodapeTextos = Rodape
-export type InstTextos = Inst
+export type FooterTexts = Footer
+export type InstitutionalTexts = Institutional
 
-const RODAPE = Object.fromEntries(LOCALES.map((l: Locale) => [l, PACOTES[l].rodape])) as Record<Pronto, RodapeTextos>
-const INST = Object.fromEntries(LOCALES.map((l: Locale) => [l, PACOTES[l].inst])) as Record<Pronto, InstTextos>
+const FOOTER = Object.fromEntries(LOCALES.map((l: Locale) => [l, PACKS[l].rodape])) as Record<Ready, FooterTexts>
+const INSTITUTIONAL = Object.fromEntries(LOCALES.map((l: Locale) => [l, PACKS[l].inst])) as Record<Ready, InstitutionalTexts>
 
-export const rodapeDict = (lang: Pronto): RodapeTextos => RODAPE[lang]
-export const instDict = (lang: Pronto): InstTextos => INST[lang]
+export const footerDict = (lang: Ready): FooterTexts => FOOTER[lang]
+export const instDict = (lang: Ready): InstitutionalTexts => INSTITUTIONAL[lang]
 
-/** Título e descrição únicos de uma rota do registro. Rota sem texto é erro de programação e o teste de cobertura acusa. */
-export function metaDe(lang: Pronto, id: string): { titulo: string; descricao: string } {
-  const m = (INST[lang].meta as Record<string, { titulo: string; descricao: string }>)[id]
-  if (!m) throw new Error(`rota sem título e descrição em institucional.${lang}.json: ${id}`)
+/** Unique title and description of a registry route. A route without text is a programming error and the coverage test flags it. */
+export function metaOf(lang: Ready, id: string): { titulo: string; descricao: string } {
+  // the showcase routes (/rover-hangar) keep their own title in showcase.<language>.json, outside the institutional dictionaries
+  const m = (INSTITUTIONAL[lang].meta as Record<string, { titulo: string; descricao: string }>)[id] ?? showcaseMeta(lang, id)
+  if (!m) throw new Error(`rota sem título e descrição em institutional.${lang}.json: ${id}`)
   return m
 }
 
-/** Um bloco de texto de página institucional, no mesmo formato do guia. */
-export type PaginaDeTexto = {
+/** A block of institutional page text, in the same format as the guide. */
+export type TextPage = {
   respostaCurta: string
   atualizadoEm: string
-  secoes: SecaoDeGuia[]
+  secoes: GuideSection[]
   ver: string[]
   rascunho?: boolean
-  regrasDaCasa?: boolean
+  houseRules?: boolean
 }
 
-export function paginaDe(lang: Pronto, id: string): PaginaDeTexto {
-  const p = (INST[lang].paginas as unknown as Record<string, Partial<PaginaDeTexto>>)[id]
-  if (!p || p.respostaCurta === undefined || p.atualizadoEm === undefined) throw new Error(`página sem texto em institucional.${lang}.json: ${id}`)
+export function pageOf(lang: Ready, id: string): TextPage {
+  const p = (INSTITUTIONAL[lang].paginas as unknown as Record<string, Partial<TextPage>>)[id]
+  if (!p || p.respostaCurta === undefined || p.atualizadoEm === undefined) throw new Error(`página sem texto em institutional.${lang}.json: ${id}`)
   return { ...p, respostaCurta: p.respostaCurta, atualizadoEm: p.atualizadoEm, secoes: p.secoes ?? [], ver: p.ver ?? [] }
 }
 
-export const rotuloDe = (lang: Pronto, id: string): string => {
-  const r = (RODAPE[lang].rotulos as Record<string, string>)[id]
-  if (!r) throw new Error(`rota sem rótulo em rodape.${lang}.json: ${id}`)
+export const labelOf = (lang: Ready, id: string): string => {
+  const r = (FOOTER[lang].rotulos as Record<string, string>)[id]
+  if (!r) throw new Error(`rota sem rótulo em footer.${lang}.json: ${id}`)
   return r
 }

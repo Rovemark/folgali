@@ -1,0 +1,87 @@
+/* Fidelity pass: the pieces the reference screens have and the site lacked. Loaded last. */
+
+/* Photographed plush portraits (demonstration): the plush sits on its own soft color disk */
+.portrait-photo { overflow: hidden; }
+.portrait-photo .portrait-img { object-fit: contain; transform: translateY(6%) scale(1.06); }
+
+/* Community: faces under the name and the right column (About, Next event, Moderators) */
+.com-head-faces { display: flex; list-style: none; margin: 0; padding: 0; }
+.com-head-faces li + li { margin-inline-start: -10px; }
+.com-head-faces a { display: block; border-radius: 50%; }
+.com-grid { display: grid; gap: 18px; align-items: start; }
+.com-side { display: grid; gap: 14px; align-content: start; }
+.com-side-text { color: var(--tinta-2); text-wrap: pretty; }
+.com-side-event { display: grid; gap: 10px; color: inherit; border-radius: 12px; }
+.com-side-event:hover { text-decoration: none; }
+.com-side-event strong { display: block; font-family: var(--f-display); font-weight: 900; font-size: 18px; line-height: 1.2; }
+.com-side-photo { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--raio-peq); }
+@media (min-width: 1100px) {
+  .com-grid { grid-template-columns: minmax(0, 1fr) 300px; }
+  .com-side { position: sticky; top: 84px; }
+}
+
+/* Friends: photo cards for requests and suggestions, and the folga anniversary */
+.am-cards { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); }
+.am-card { display: grid; grid-template-rows: auto 1fr auto; background: var(--superficie); border: 1px solid var(--linha); border-radius: var(--raio); overflow: hidden; box-shadow: var(--sombra); }
+.am-card-link { display: grid; gap: 2px; color: inherit; padding: 0 12px 8px; }
+.am-card-link:hover { text-decoration: none; }
+.am-card-photo { display: grid; place-items: center; margin: 0 -12px 8px; padding: 14px 0 10px; background: color-mix(in oklab, var(--pelucia) 30%, var(--superficie)); }
+.am-card-photo .portrait { box-shadow: none; background: transparent; }
+.am-card-name { font-family: var(--f-display); font-weight: 900; font-size: 19px; line-height: 1.2; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.am-card-buttons { display: flex; flex-wrap: wrap; gap: 8px; padding: 0 12px 12px; }
+.am-card-buttons > * { flex: 1 1 auto; justify-content: center; }
+.am-birthday-body { display: flex; align-items: center; gap: 16px; color: inherit; font-family: var(--f-display); font-weight: 900; font-size: 19px; line-height: 1.25; padding: 6px; border-radius: 14px; }
+.am-birthday-body:hover { text-decoration: none; background: var(--tecido-2); }
+.am-birthday-body .portrait { flex: none; box-shadow: 0 0 0 4px var(--manga-fundo); }
+
+/* Notices: big face with the action badge, the unread dot and the All / Unread filter */
+.av-filter { display: flex; gap: 8px; margin: 4px 0 14px; }
+.av-filter .chip-filter[aria-current='page'], .av-filter .chip-filter[aria-current='page']:hover { background: var(--acao-fundo); color: var(--acao); border-color: transparent; }
+.av-filter .chip-filter { min-height: 40px; padding: 6px 16px; font-size: 16px; }
+.pf-notice { grid-template-columns: 56px minmax(0, 1fr); position: relative; }
+.pf-notice-icon.pf-notice-face { position: relative; width: 56px; height: 56px; }
+.pf-notice-badge { position: absolute; inset-inline-end: -4px; inset-block-end: -4px; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; color: var(--marfim); background: var(--acao); box-shadow: 0 0 0 2px var(--superficie); }
+.pf-notice-badge svg { width: 15px; height: 15px; }
+.pf-notice-badge .pf-at { font-size: 14px; font-weight: 900; }
+.pf-notice-badge:is([data-tipo='amizade-aceita'], [data-tipo='pedido-de-amizade'], [data-tipo='novo-seguidor']) { background: var(--rosa); color: var(--grafite); }
+.pf-notice-badge:is([data-tipo='convite-comunidade'], [data-tipo='pedido-de-entrada'], [data-tipo='entrada-aprovada']) { background: var(--lilas); color: var(--grafite); }
+.pf-notice-badge:is([data-tipo='resposta-no-topico'], [data-tipo='resposta-a-voce'], [data-tipo='citacao'], [data-tipo='mencao'], [data-tipo='recado']) { background: var(--manga); color: var(--grafite); }
+.pf-notice-badge:is([data-tipo='conversa-pedido'], [data-tipo='conversa-aceita'], [data-tipo='depoimento-para-aceitar'], [data-tipo='depoimento-aceito']) { background: var(--menta); color: var(--grafite); }
+.pf-notice-body strong { font-weight: 900; }
+.pf-notice[data-novo='true']::after { content: ''; position: absolute; inset-inline-end: 16px; top: 50%; width: 12px; height: 12px; margin-top: -6px; border-radius: 50%; background: var(--acao); }
+.pf-notice[data-novo='true'] .pf-notice-body { padding-inline-end: 22px; }
+
+/* Search: posts and events as photo cards */
+.search-photos { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.search-photo-card { display: grid; gap: 8px; align-content: start; height: 100%; padding: 12px; color: inherit; background: var(--superficie); border: 1px solid var(--linha); border-radius: var(--raio); box-shadow: var(--sombra); }
+.search-photo-card:hover { text-decoration: none; border-color: color-mix(in oklab, var(--acao) 40%, var(--linha)); }
+.search-photo-author { display: flex; align-items: center; gap: 10px; }
+.search-photo-author strong, .search-photo-title { font-family: var(--f-display); font-weight: 900; font-size: 18px; line-height: 1.2; }
+.search-photo-text { color: var(--tinta-2); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.search-photo { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--raio-peq); }
+
+/* Discover communities: the category row with illustrated icons */
+.com-categories { display: flex; flex-wrap: wrap; gap: 8px; }
+.com-category { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 4px 16px 4px 6px; border-radius: 14px; font-weight: 800; color: var(--tinta); background: var(--manga-fundo); }
+.com-category img { width: 36px; height: 36px; object-fit: contain; }
+.com-category[data-cor='rosa'] { background: var(--rosa-fundo); }
+.com-category[data-cor='menta'] { background: var(--menta-fundo); }
+.com-category[data-cor='lilas'] { background: var(--lilas-fundo); }
+.com-category[data-cor='laranja'] { background: var(--laranja-fundo); }
+.com-category[data-cor='ceu'] { background: var(--acao-fundo); }
+.com-category:hover { text-decoration: none; box-shadow: inset 0 0 0 2px color-mix(in oklab, var(--acao) 35%, transparent); }
+.com-category[aria-current='true'] { box-shadow: inset 0 0 0 2px var(--acao); color: var(--acao); }
+
+/* Open post: on a computer the photo fills its panel, as in the reference (no black bars beside a square photo) */
+@media (min-width: 960px) {
+  .post-open-photo .photo { width: 100%; height: min(82dvh, 780px); object-fit: cover; }
+}
+
+/* Profile: the rover's photo posts open the right column (demonstration) */
+.pf-timeoff { display: grid; gap: 14px; margin-bottom: 18px; }
+
+/* Moments: the reply field ends in an ellipsis instead of cutting the rover's name in half */
+.moments-screen .moment-bottom input[type='text'] { font-size: 15px; padding-inline: 14px; text-overflow: ellipsis; }
+
+/* "New topic" lost its padding to `.section-top a` and touched the screen edge on a phone */
+.section-top a.btn { padding: 8px 16px; align-self: center; }

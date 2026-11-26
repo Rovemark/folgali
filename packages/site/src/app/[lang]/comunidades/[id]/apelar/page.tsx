@@ -1,71 +1,71 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import CabecalhoComunidade from '@/components/comunidades/CabecalhoComunidade'
-import EstadoDeErro from '@/components/social/EstadoDeErro'
-import FormProposta from '@/components/social/FormProposta'
-import { ehCompleta, ID_OK, lerComunidade, quemSou } from '@/lib/comunidades/dados'
-import { diasRestantesParaApelar, podeApelar } from '@/lib/dominio/moderacao'
-import { dict, ehPronto, fmt, plural } from '@/lib/i18n'
-import { obterRede } from '@/lib/obter-rede'
-import { carregar } from '@/lib/social/carregar'
-import { metaTela } from '@/lib/seo/meta-telas'
+import CommunityHeader from '@/components/communities/CommunityHeader'
+import ErrorState from '@/components/social/ErrorState'
+import ProposalForm from '@/components/social/ProposalForm'
+import { isComplete, ID_OK, readCommunity, whoAmI } from '@/lib/communities/data'
+import { daysLeftToAppeal, canAppeal } from '@/lib/domain/moderation'
+import { dict, isReady, fmt, plural } from '@/lib/i18n'
+import { getNetwork } from '@/lib/get-network'
+import { load } from '@/lib/social/load'
+import { screenMeta } from '@/lib/seo/meta-screens'
 
 type P = { params: Promise<{ lang: string; id: string }>; searchParams: Promise<{ alvo?: string }> }
 
 export async function generateMetadata({ params }: P): Promise<Metadata> {
   const { lang, id } = await params
-  return metaTela(lang, `/comunidades/${id}/apelar`, dict(ehPronto(lang) ? lang : 'pt').socComunidades.apelar.titulo)
+  return screenMeta(lang, `/comunidades/${id}/apelar`, dict(isReady(lang) ? lang : 'pt').socComunidades.apelar.titulo)
 }
 
-export default async function Apelar({ params, searchParams }: P) {
+export default async function Appeal({ params, searchParams }: P) {
   const { lang, id } = await params
-  if (!ehPronto(lang)) notFound()
-  const { alvo } = await searchParams
+  if (!isReady(lang)) notFound()
+  const { alvo: target } = await searchParams
   const d = dict(lang)
   const t = d.socComunidades.apelar
-  const c = ID_OK.test(id) ? await lerComunidade(id) : ({ ok: false, codigo: 'nao-encontrado' } as const)
-  if (!c.ok) return <EstadoDeErro codigo={c.codigo} d={d} lang={lang} />
-  const com = c.valor
-  if (!ehCompleta(com)) return <CabecalhoComunidade c={com} d={d} lang={lang} />
-  const eu = await quemSou()
-  const ehRemocao = !!alvo && ID_OK.test(alvo)
-  const banido = com.voce?.banido ?? false
-  if (!banido && !ehRemocao) return <EstadoDeErro codigo="sem-permissao" d={d} lang={lang} />
+  const c = ID_OK.test(id) ? await readCommunity(id) : ({ ok: false, codigo: 'nao-encontrado' } as const)
+  if (!c.ok) return <ErrorState codigo={c.codigo} d={d} lang={lang} />
+  const using = c.valor
+  if (!isComplete(using)) return <CommunityHeader c={using} d={d} lang={lang} />
+  const me = await whoAmI()
+  const isRemoval = !!target && ID_OK.test(target)
+  const banned = using.voce?.banido ?? false
+  if (!banned && !isRemoval) return <ErrorState codigo="sem-permissao" d={d} lang={lang} />
 
-  // a data do banimento sai do registro público (o banido o lê, a comunidade sendo aberta)
-  // (relé 0.3.1 manda a data em `voce.banidoEm`; só sem ela se olha o registro)
-  const registro = banido && eu && !com.voce?.banidoEm ? await carregar(() => obterRede().cliente.registroDaComunidade(id)) : null
-  const quando = com.voce?.banidoEm ?? (registro?.ok ? (registro.valor.itens.find((r) => r.acao === 'banimento' && typeof r.alvo === 'object' && r.alvo.uid === eu?.uid)?.em ?? null) : null)
-  const agora = new Date()
-  const dentro = quando ? podeApelar(quando, agora) : true
+  // the ban date comes from the public record (the banned person reads it, the community being open)
+  // (relay 0.3.1 sends the date in `voce.banidoEm`; the record is only checked without it)
+  const record = banned && me && !using.voce?.banidoEm ? await load(() => getNetwork().cliente.registroDaComunidade(id)) : null
+  const when = using.voce?.banidoEm ?? (record?.ok ? (record.valor.itens.find((r) => r.acao === 'banimento' && typeof r.alvo === 'object' && r.alvo.uid === me?.uid)?.em ?? null) : null)
+  const now = new Date()
+  const inside = when ? canAppeal(when, now) : true
   return (
     <>
-      <CabecalhoComunidade c={com} d={d} lang={lang} />
-      <div className="titulo-pag">
-        <p className="sobrelinha">
+      <CommunityHeader c={using} d={d} lang={lang} />
+      <div className="page-title">
+        <p className="overline">
           <Link href={`/${lang}/comunidades/${id}`}>{d.socForum.topico.voltar}</Link>
         </p>
         <h2 style={{ fontSize: 28 }}>{t.titulo}</h2>
         <p>{t.sub}</p>
       </div>
-      <div className="pilha">
-        <p className="nota-proposta">
+      <div className="stack">
+        <p className="proposal-note">
           <span>{t.quemDecide}</span>
         </p>
-        {quando && <p className={dentro ? 'miudo' : 'erro-campo'}>{dentro ? plural(t.janela, diasRestantesParaApelar(quando, agora)) : t.expirou}</p>}
-        {dentro && (
-          <section className="cartao">
-            <FormProposta
+        {when && <p className={inside ? 'fine' : 'error-field'}>{inside ? plural(t.janela, daysLeftToAppeal(when, now)) : t.expirou}</p>}
+        {inside && (
+          <section className="card">
+            <ProposalForm
               tipo="apelacao"
               d={d}
               lang={lang}
-              podeEscrever={eu !== null}
-              nomeDoRover={eu?.nome}
-              destino={{ rotulo: fmt(banido ? t.contexto : t.contextoRemocao, { nome: com.nome }) }}
-              ocultar={['tipo', 'alvo']}
+              canWrite={me !== null}
+              roverName={me?.nome}
+              destino={{ rotulo: fmt(banned ? t.contexto : t.contextoRemocao, { nome: using.nome }) }}
+              hide={['tipo', 'alvo']}
               enviar={t.titulo}
-              campos={{ tipo: banido ? 'banimento' : 'remocao', alvo: banido ? id : alvo!, texto: '' }}
+              campos={{ tipo: banned ? 'banimento' : 'remocao', alvo: banned ? id : target!, texto: '' }}
             />
           </section>
         )}

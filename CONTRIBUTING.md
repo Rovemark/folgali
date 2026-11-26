@@ -15,7 +15,7 @@ folgali is built to be improved by **people and by agents**. The rules are the s
 
 - Issues, pull requests and review comments: **English or Portuguese**, whichever you write better.
 - The protocol, the code identifiers, the error codes and most of the documentation are in **Portuguese** (`postagem` is a post, `resposta` a reply). Keep new identifiers in Portuguese so the code reads as one piece.
-- Text that people read on the site lives in `packages/site/src/i18n/` and `packages/site/src/conteudo/`, in 12 languages. A change to Portuguese or English text should update the other languages too, or say in the pull request which ones are missing.
+- Text that people read on the site lives in `packages/site/src/i18n/` and `packages/site/src/content/`, in 12 languages. A change to Portuguese or English text should update the other languages too, or say in the pull request which ones are missing.
 
 ## Setting up
 
@@ -32,7 +32,7 @@ The [README](README.md#quick-start) shows how to run the site and a local relay.
 
 1. **Green tests, before and after.** At the root, `npm test`. In `packages/site`, `npm run typecheck && npm run lint && npm test && npm run build`. CI runs the same commands on every pull request.
 2. **A test for the change.** If you changed behavior, add the test that would fail without your change, including the abuse case (malformed input, an extra field, a replay, a limit overflow) as well as the happy path.
-3. **Mutation testing for `packages/`.** If you changed a package, run the mutation tester for that module, for example `node medidor/rodar.mjs protocolo/texto`. It plants defects in the code and checks that the tests catch them. A surviving defect is a hole in the tests: close it. Only a mutant that no test can tell apart from the original may be declared "equivalent", with the reason written in `medidor/modulos.mjs`. On the site, `npm run mutacao` runs Stryker on the domain rules.
+3. **Mutation testing for `packages/`.** If you changed a package, run the mutation tester for that module, for example `node mutation/run.mjs protocol/text`. It plants defects in the code and checks that the tests catch them. A surviving defect is a hole in the tests: close it. Only a mutant that no test can tell apart from the original may be declared "equivalent", with the reason written in `mutation/modules.mjs`. On the site, `npm run mutation` runs Stryker on the domain rules.
 4. **A license header.** Every new code file starts with `// SPDX-License-Identifier: AGPL-3.0-or-later`.
 5. **No secrets and no personal data.** No key, token, password, user data or text copied from a private conversation. Test keys are generated inside the test. Fake secrets that a test needs on purpose go into `.gitleaks.toml` with the reason.
 
@@ -40,9 +40,9 @@ The [README](README.md#quick-start) shows how to run the site and a local relay.
 
 Changing what travels between a rover and a relay (a field, an object type, a validation rule, a limit, an attestation format) is not an ordinary code change. Schemas are closed, so **any new field is a new protocol revision**.
 
-1. Copy [`docs/propostas/MODELO.md`](docs/propostas/MODELO.md) to `docs/propostas/NNNN-short-title.md`, using the next free number.
+1. Copy [`docs/proposals/MODEL.md`](docs/proposals/MODEL.md) to `docs/proposals/NNNN-short-title.md`, using the next free number.
 2. Fill it in: the problem, the change, why it cannot be solved without touching the protocol, the effect on existing relays and clients, the effect on privacy and security, and the compatibility tests.
-3. Open a pull request with only the proposal (or an issue with the **Protocol proposal** form) and wait for the review. Code comes after the proposal is accepted, and that code updates `docs/PROTOCOLO.md` in the same change. The discussion stays public and on record, as [GOVERNANCA.md](GOVERNANCA.md) promises to relay operators.
+3. Open a pull request with only the proposal (or an issue with the **Protocol proposal** form) and wait for the review. Code comes after the proposal is accepted, and that code updates `docs/PROTOCOL.md` in the same change. The discussion stays public and on record, as [GOVERNANCE.md](GOVERNANCE.md) promises to relay operators.
 
 A bug fix that does **not** change what the protocol accepts or refuses needs no proposal. When in doubt, open the proposal.
 

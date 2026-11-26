@@ -47,7 +47,7 @@ Os líderes da comunidade têm o direito e a responsabilidade de remover, editar
 
 Este Código de Conduta vale em todos os espaços da comunidade, e também quando uma pessoa representa oficialmente a comunidade em espaços públicos. Exemplos de representação: usar um endereço de e-mail oficial, publicar por uma conta oficial de rede social ou agir como representante designado num evento online ou presencial.
 
-A rede folgali tem as próprias regras da casa, em [`docs/juridico/`](docs/juridico). Este Código de Conduta cobre o repositório e os espaços ao redor dele.
+A rede folgali tem as próprias regras da casa, nas [regras da casa](https://folgali.com/pt/regras) do site. Este Código de Conduta cobre o repositório e os espaços ao redor dele.
 
 ## Aplicação
 

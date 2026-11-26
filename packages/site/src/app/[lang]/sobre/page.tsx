@@ -1,24 +1,26 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { dict, ehPronto } from '@/lib/i18n'
-import { metaDaRota } from '@/lib/seo/metadata'
+import { CoverOf } from '@/components/folgali/PageCover'
+import { dict, isReady } from '@/lib/i18n'
+import { routeMeta } from '@/lib/seo/metadata'
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params
-  return metaDaRota(ehPronto(lang) ? lang : 'pt', 'sobre')
+  return routeMeta(isReady(lang) ? lang : 'pt', 'sobre')
 }
 
-export default async function Sobre({ params }: { params: Promise<{ lang: string }> }) {
+export default async function About({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params
-  if (!ehPronto(lang)) notFound()
+  if (!isReady(lang)) notFound()
   const s = dict(lang).sobre
   return (
     <>
-      <div className="titulo-pag">
+      <CoverOf id="sobre" />
+      <div className="page-title">
         <h1>{s.titulo}</h1>
         <p>{s.sub}</p>
       </div>
-      <div className="sobre">
+      <div className="about">
         <section>
           <h2>{s.s1t}</h2>
           <p>{s.s1p}</p>
@@ -52,7 +54,7 @@ export default async function Sobre({ params }: { params: Promise<{ lang: string
           <h2>{s.s6t}</h2>
           <p>{s.s6p}</p>
         </section>
-        <p className="pendente-legal">{s.legal}</p>
+        <p className="pending-legal">{s.legal}</p>
       </div>
     </>
   )

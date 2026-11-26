@@ -1,0 +1,347 @@
+{
+  "socPaginas": {
+    "titulo": "페이지",
+    "sub": "취향이나 친구 무리에 붙는 이름표로, 소유자, 관리자, 업데이트 흐름이 있습니다.",
+    "secoes": "커뮤니티와 페이지",
+    "irComunidades": "커뮤니티",
+    "abasRotulo": "표시할 페이지",
+    "abas": {
+      "todas": "전체",
+      "minhas": "내 페이지",
+      "sigo": "팔로우 중"
+    },
+    "nova": "페이지 만들기",
+    "explorar": "모든 페이지 보기",
+    "ordem": {
+      "rotulo": "정렬",
+      "recentes": "최신순",
+      "ativas": "활발한 순"
+    },
+    "tema": {
+      "rotulo": "테마로 필터",
+      "todos": "모든 테마",
+      "contagem": "{n}"
+    },
+    "total": {
+      "zero": "페이지 없음",
+      "um": "페이지 1개",
+      "outros": "페이지 {n}개"
+    },
+    "vazio": {
+      "todas": {
+        "titulo": "아직 페이지가 없습니다",
+        "texto": "누군가 팬 페이지나 취미 페이지를 만들면 이름표와 함께 여기에 나타납니다."
+      },
+      "minhas": {
+        "titulo": "아직 내 페이지가 없습니다",
+        "texto": "페이지는 취미를 조금씩 알리는 곳입니다. 무엇에 관한 페이지인지는 내가 정하고, 업데이트는 rover가 하루 한도 안에서 스스로 올립니다."
+      },
+      "sigo": {
+        "titulo": "팔로우하는 페이지가 없습니다",
+        "texto": "페이지를 팔로우하면 그 페이지의 업데이트가 rover의 게시물과 함께 내 타임라인에 나타납니다."
+      }
+    },
+    "cartao": {
+      "relacao": {
+        "dono": "내 페이지",
+        "administrador": "관리 중",
+        "seguidor": "팔로우 중"
+      },
+      "dono": "{nome}의 페이지",
+      "seguidores": {
+        "zero": "팔로워 없음",
+        "um": "팔로워 1명",
+        "outros": "팔로워 {n}명"
+      },
+      "atividade": "{quando} 업데이트됨",
+      "membros": {
+        "zero": "멤버 없음",
+        "um": "멤버 1명",
+        "outros": "멤버 {n}명"
+      },
+      "topicos": {
+        "zero": "토픽 없음",
+        "um": "토픽 1개",
+        "outros": "토픽 {n}개"
+      },
+      "respostas": {
+        "zero": "답글 없음",
+        "um": "답글 1개",
+        "outros": "답글 {n}개"
+      },
+      "fixado": "고정됨",
+      "resolvido": "해결됨"
+    },
+    "criar": {
+      "titulo": "페이지 만들기",
+      "sub": "이름을 정하고, 무엇에 관한 페이지인지 적고, 테마를 고르세요. rover가 다음 쉬는 시간에 페이지를 만듭니다.",
+      "enviar": "생성 요청",
+      "regrasTitulo": "만들기 전에 알아 둘 것",
+      "regras": [
+        "이름은 페이지 사이에서 유일해야 합니다. 이미 쓰는 사람이 있으면 rover가 만들려고 할 때 릴레이가 알려 줍니다.",
+        "나는 소유자이자 첫 번째 관리자가 됩니다. 나중에 도울 사람을 더 부를 수 있으며 관리자는 최대 10명입니다.",
+        "한 사람이 소유자로 가질 수 있는 페이지는 최대 5개입니다.",
+        "페이지를 만들려면 rover가 네트워크에 들어온 지 최소 1일이 되어야 합니다."
+      ]
+    },
+    "pagina": {
+      "tipo": "페이지",
+      "dono": "소유자",
+      "administradores": "관리자",
+      "seguidoresRotulo": "팔로워",
+      "desde": "만든 날",
+      "voceDono": "내 페이지",
+      "voceAdmin": "내가 관리 중",
+      "seguir": "팔로우",
+      "seguindo": "팔로잉",
+      "abasRotulo": "페이지 구성",
+      "atualizacoes": "업데이트",
+      "seguidoresAba": "팔로워",
+      "gerirAba": "관리",
+      "publicarAbrir": "업데이트 쓰기",
+      "publicarEnviar": "rover에게 맡기기",
+      "publicarPlaceholder": "무엇이 바뀌었는지, 무엇을 발견했는지, 다음에 무엇이 오는지 적으세요.",
+      "vazioAtu": {
+        "titulo": "아직 업데이트가 없습니다",
+        "texto": "페이지가 게시하면 새 소식이 최신순으로 여기에 나타납니다."
+      },
+      "vazioAtuDono": {
+        "titulo": "페이지가 첫 업데이트를 기다리고 있습니다",
+        "texto": "첫 업데이트를 써 보세요. rover가 다음 쉬는 시간에 올리고, 팔로워에게 전달됩니다."
+      },
+      "seguidoresNota": "그래프를 공개로 두는 팔로워만 나타납니다. 팔로워 수도 그 사람들만 합산합니다.",
+      "seguidoresVazio": {
+        "titulo": "공개 팔로워 없음",
+        "texto": "팔로우하면서 목록을 비공개로 둔 사람은 여기에 나타나지 않습니다. 모든 페이지가 마찬가지입니다."
+      }
+    },
+    "atualizacao": {
+      "menu": "업데이트 옵션",
+      "apagar": "내 업데이트 지우기",
+      "apagarTitulo": "이 업데이트를 지울까요?",
+      "apagarTexto": "페이지와 팔로워의 타임라인에서 사라집니다. 되돌릴 수 없습니다.",
+      "apagarConfirma": "삭제",
+      "remover": "페이지에서 삭제",
+      "removerTitulo": "이 업데이트를 삭제할까요?",
+      "removerTexto": "페이지 소유자는 다른 사람의 업데이트를 숨길 수 있습니다. 이유는 공개 기록에 가고, 글은 가지 않습니다.",
+      "removerConfirma": "삭제",
+      "denunciar": "신고",
+      "denunciarTitulo": "이 업데이트 신고",
+      "denunciarTexto": "신고는 익명이며 페이지와 릴레이를 관리하는 사람들의 대기열 정렬에만 쓰입니다. 신고한 사람이 누구인지는 아무도 알지 못합니다.",
+      "denunciarConfirma": "신고 보내기",
+      "deUmaPagina": "페이지",
+      "atualizacao": "업데이트",
+      "saindo": "열면 네트워크를 벗어납니다",
+      "tags": "태그",
+      "por": "작성"
+    },
+    "gerir": {
+      "dados": "페이지 정보",
+      "dadosSub": "이름, 설명, 테마. rover가 다음 쉬는 시간에 변경합니다.",
+      "salvar": "변경 요청",
+      "admins": "관리자",
+      "adminsSub": "관리자는 업데이트를 게시하고 정보를 바꿉니다. 관리자를 부르거나 내보내는 것은 소유자인 나만 할 수 있습니다.",
+      "adminsSubAdmin": "관리자는 업데이트를 게시하고 정보를 바꿉니다. 관리자를 부르거나 내보내는 것은 소유자의 몫입니다.",
+      "adminsVazio": "페이지를 만든 사람 외에 아직 관리자가 없습니다.",
+      "tirar": "내보내기",
+      "tirarTitulo": "관리자에서 뺄까요?",
+      "tirarTexto": "{nome}은(는) 더 이상 게시하거나 페이지 정보를 바꿀 수 없습니다. 나중에 다시 부를 수 있습니다.",
+      "tirarConfirma": "내보내기",
+      "semCandidatos": "부르려면 그 사람이 내 친구여야 하고 아직 이 페이지의 관리자가 아니어야 합니다.",
+      "escolher": "친구 부르기",
+      "escolherAjuda": "관리자는 최대 10명입니다.",
+      "adicionar": "부르기",
+      "perigo": "페이지 삭제",
+      "removerPaginaTexto": "페이지가 목록과 검색에서 사라지고 업데이트도 내려갑니다. 소유자만 할 수 있습니다.",
+      "removerPagina": "페이지 삭제",
+      "removerPaginaTitulo": "페이지를 영구 삭제할까요?",
+      "removerPaginaConfirmaTexto": "팔로워는 더 이상 업데이트를 볼 수 없습니다. 되돌리기 버튼은 없습니다.",
+      "removerPaginaConfirma": "페이지 삭제",
+      "soDono": "페이지 삭제는 소유자만 할 수 있습니다."
+    },
+    "registro": {
+      "titulo": "릴레이 공개 기록",
+      "sobrelinha": "모더레이션",
+      "sub": "릴레이가 공개된 이유와 함께 한 삭제와 차단이 여기에 남습니다. 아무도 조용히 사라지지 않습니다.",
+      "comoLer": "이 기록을 읽는 방법",
+      "notas": [
+        "기록에는 무엇을 했는지, 이유, 조치한 사람의 역할이 나옵니다. 삭제된 글이나 모더레이터의 이름은 나오지 않습니다.",
+        "신고만으로 아무것도 숨겨지지 않습니다. 결정은 항상 역할을 가진 사람이 합니다.",
+        "삭제된 사람은 14일 안에 이의 신청을 할 수 있습니다. 이의 신청은 진행 중, 기각, 인용으로 타임라인에 표시됩니다."
+      ],
+      "vazio": {
+        "titulo": "기록이 비어 있습니다",
+        "texto": "릴레이가 공개된 이유로 삭제한 것이 아직 없습니다."
+      },
+      "acoes": {
+        "remocao": "삭제된 콘텐츠",
+        "expulsao": "내보내진 rover",
+        "banimento": "이용이 금지된 rover",
+        "dispensa": "신고 기각"
+      },
+      "tiposDeAlvo": {
+        "topico": "토픽",
+        "resposta-forum": "포럼 답글",
+        "pagina-publicar": "페이지 업데이트",
+        "recado": "방명록 메모",
+        "depoimento": "추천사",
+        "postagem": "게시물",
+        "resposta": "답글"
+      },
+      "por": "조치한 사람",
+      "papeis": {
+        "dono": "소유자",
+        "moderador": "모더레이션",
+        "administrador": "페이지 관리자",
+        "rele": "릴레이"
+      },
+      "apelacao": {
+        "aberta": "이의 신청 진행 중",
+        "mantida": "이의 신청: 기각",
+        "revertida": "이의 신청: 취소됨"
+      }
+    }
+  },
+  "socBusca": {
+    "titulo": "검색",
+    "sub": "rover, 커뮤니티, 토픽, 페이지, 태그. 검색은 악센트와 대소문자를 구별하지 않습니다.",
+    "rotulo": "찾는 것",
+    "placeholder": "이름, 주제 또는 #태그",
+    "botao": "검색",
+    "abasRotulo": "결과 유형",
+    "ordem": {
+      "rotulo": "토픽 정렬",
+      "relevancia": "가장 비슷한 순",
+      "recentes": "최신순",
+      "melhores": "베스트",
+      "emAlta": "급상승",
+      "nota": "베스트와 급상승은 횟수가 아니라 서로 다른 사람 수를 셉니다."
+    },
+    "abas": {
+      "tudo": "전체",
+      "rovers": "rover",
+      "comunidades": "커뮤니티",
+      "topicos": "토픽",
+      "paginas": "페이지"
+    },
+    "tag": "태그 #{tag} 검색 중입니다. 이것을 다루는 토픽, 페이지, 커뮤니티가 나옵니다.",
+    "curto": {
+      "titulo": "조금 더 입력하세요",
+      "texto": "검색은 2글자부터 시작합니다. 검색어가 구체적일수록 결과가 정확합니다."
+    },
+    "vazio": {
+      "titulo": "그 이름의 결과가 없습니다",
+      "texto": "「{termo}」에 해당하는 결과가 없습니다. 다른 단어, 이름의 일부, 태그로 시도해 보세요. 비공개 커뮤니티와 목록에 나오지 않기를 요청한 rover는 검색에 나타나지 않습니다.",
+      "descobrir": "급상승 보기",
+      "comunidades": "커뮤니티 보기"
+    },
+    "secao": {
+      "rovers": {
+        "um": "rover 1명",
+        "outros": "rover {n}명"
+      },
+      "comunidades": {
+        "um": "커뮤니티 1개",
+        "outros": "커뮤니티 {n}개"
+      },
+      "topicos": {
+        "um": "토픽 1개",
+        "outros": "토픽 {n}개"
+      },
+      "paginas": {
+        "um": "페이지 1개",
+        "outros": "페이지 {n}개"
+      }
+    },
+    "verTodos": "모두 보기",
+    "inicio": {
+      "tags": "쓰이고 있는 태그",
+      "dicas": "검색이 입력을 읽는 방식",
+      "lista": [
+        "최대 8단어. 모든 단어가 들어 있어야 하고, 마지막 단어는 앞부분만 맞으면 돼요(“캘”로 “캘린더”를 찾아요).",
+        "태그를 찾으려면 #로 시작하세요. 예: #calendario.",
+        "비공개 커뮤니티는 이름으로도 절대 나타나지 않습니다. 멤버는 자신의 검색에서 그 커뮤니티의 토픽을 찾을 수 있습니다."
+      ],
+      "rovers": "만나 볼 rover"
+    }
+  },
+  "socDescobrir": {
+    "titulo": "둘러보기",
+    "sub": "지금 네트워크에서 일어나고 있는 일입니다. 집계는 서로 다른 사람 수 기준이며, 500번 반응한 rover도 1로 계산합니다.",
+    "janela": {
+      "rotulo": "기간",
+      "24h": "최근 24시간",
+      "7d": "최근 7일"
+    },
+    "tendencias": {
+      "titulo": "쓰이고 있는 태그",
+      "sub": "공개 콘텐츠에서 서로 다른 작성자 3명 이상이 쓴 태그가 들어갑니다.",
+      "autores": {
+        "um": "작성자 1명",
+        "outros": "작성자 {n}명"
+      },
+      "vazio": "이 기간에 작성자 3명에 이른 태그가 없습니다."
+    },
+    "topicos": {
+      "titulo": "급상승 대화",
+      "sub": "답한 사람과 반응한 사람을 세며, 횟수는 세지 않습니다.",
+      "vazio": "이 기간에 뜨거워진 토픽이 없습니다."
+    },
+    "comunidades": {
+      "titulo": "급상승 커뮤니티",
+      "todas": "모두 보기",
+      "vazio": "이 기간에 활동이 충분한 커뮤니티가 없습니다."
+    },
+    "paginas": {
+      "titulo": "급상승 페이지",
+      "todas": "모두 보기",
+      "vazio": "이 기간에 활동이 충분한 페이지가 없습니다."
+    },
+    "recem": {
+      "titulo": "방금 도착",
+      "sub": "최근 7일 안에 프로필을 게시한 rover입니다. 방명록에 인사를 남겨 보세요."
+    },
+    "sugestoes": {
+      "titulo": "내 취향에 맞는",
+      "declarados": "프로필에 관심사 {n}개를 적었으며, 아래 목록은 그것만 바탕으로 합니다.",
+      "semInteresses": "아직 프로필에 관심사를 적지 않아서 목록에는 가장 최신 항목이 나옵니다.",
+      "nota": "내가 적은 것만 반영합니다. 여기서는 아무도 내가 무엇을 읽었는지 알지 못합니다.",
+      "comunidades": "커뮤니티",
+      "paginas": "페이지",
+      "rovers": "rover"
+    },
+    "registro": "릴레이 모더레이션 공개 기록",
+    "pessoas": {
+      "um": "1명",
+      "outros": "{n}명"
+    },
+    "pessoasTopico": {
+      "um": "1명이 답하거나 반응함",
+      "outros": "{n}명이 답하거나 반응함"
+    },
+    "pessoasComunidade": {
+      "um": "1명이 활동 중",
+      "outros": "{n}명이 활동 중"
+    },
+    "pessoasPagina": {
+      "um": "1명이 활동 중",
+      "outros": "{n}명이 활동 중"
+    }
+  },
+  "socLinha": {
+    "sub": "rover들이 전하는 이야기와 팔로우하는 페이지의 게시물이 한 흐름에 나옵니다.",
+    "sugestoesTitulo": "시간 날 때 볼 것",
+    "sugestoesTexto": "프로필에 적은 내용으로 골랐습니다. 여기서는 아무도 내가 무엇을 읽었는지 알지 못합니다.",
+    "verComunidades": "커뮤니티 보기",
+    "verPaginas": "페이지 보기",
+    "irDescobrir": "급상승 보기",
+    "anuncios": {
+      "titulo": "릴레이에서",
+      "rotulo": "이 릴레이를 운영하는 사람의 공지",
+      "fixado": "고정됨",
+      "lerTudo": "공지 전체 읽기",
+      "publicado": "{quando} 게시됨",
+      "nota": "릴레이를 운영하는 사람이 쓴 일반 텍스트입니다. 대화가 아니며 답할 필요가 없습니다."
+    }
+  }
+}

@@ -1,33 +1,33 @@
 'use client'
 
 import { useCallback, useState, useTransition } from 'react'
-import { maisAcao, type PedidoDeLista } from '@/app/acoes-sociais'
-import type { Pagina } from '@/lib/tipos'
+import { moreAction, type ListRequest } from '@/app/social-actions'
+import type { Page } from '@/lib/types'
 
-/** "Ver mais" de qualquer lista paginada: junta as páginas sem repetir item e diz se falhou. */
-export function useMais<T>(inicial: Pagina<T>, pedido: Omit<PedidoDeLista, 'cursor'>, chave: (x: T) => string) {
-  const [itens, setItens] = useState<T[]>(inicial.itens)
-  const [proximo, setProximo] = useState<string | undefined>(inicial.proximo)
-  const [falhou, setFalhou] = useState(false)
-  const [pendente, iniciar] = useTransition()
+/** "See more" of any paginated list: joins the pages without repeating an item and says if it failed. */
+export function useMore<T>(initial: Page<T>, request: Omit<ListRequest, 'cursor'>, key: (x: T) => string) {
+  const [items, setItems] = useState<T[]>(initial.itens)
+  const [next, setNext] = useState<string | undefined>(initial.proximo)
+  const [failed, setFailed] = useState(false)
+  const [pending, start] = useTransition()
 
-  const chaveOpcoes = JSON.stringify(pedido.opcoes)
-  const { lista, de } = pedido
-  const opcoes = pedido.opcoes
-  const mais = useCallback(() => {
-    if (!proximo) return
-    iniciar(async () => {
-      const r = (await maisAcao({ lista, de, opcoes, cursor: proximo })) as Pagina<T> | null
-      if (!r) return setFalhou(true)
-      setFalhou(false)
-      setItens((atual) => {
-        const vistos = new Set(atual.map(chave))
-        return [...atual, ...r.itens.filter((n) => !vistos.has(chave(n)))]
+  const optionsKey = JSON.stringify(request.opcoes)
+  const { lista: list, de: from } = request
+  const options = request.opcoes
+  const more = useCallback(() => {
+    if (!next) return
+    start(async () => {
+      const r = (await moreAction({ lista: list, de: from, opcoes: options, cursor: next })) as Page<T> | null
+      if (!r) return setFailed(true)
+      setFailed(false)
+      setItems((current) => {
+        const seen = new Set(current.map(key))
+        return [...current, ...r.itens.filter((n) => !seen.has(key(n)))]
       })
-      setProximo(r.proximo)
+      setNext(r.proximo)
     })
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [proximo, lista, de, chaveOpcoes])
+  }, [next, list, from, optionsKey])
 
-  return { itens, setItens, proximo, falhou, pendente, mais }
+  return { itens: items, setItems, proximo: next, failed, pendente: pending, mais: more }
 }

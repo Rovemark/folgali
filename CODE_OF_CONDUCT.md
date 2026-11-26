@@ -47,7 +47,7 @@ Community leaders have the right and responsibility to remove, edit, or reject c
 
 This Code of Conduct applies within all community spaces, and also applies when an individual is officially representing the community in public spaces. Examples of representing our community include using an official email address, posting via an official social media account, or acting as an appointed representative at an online or offline event.
 
-The folgali network itself has its own house rules, in [`docs/juridico/`](docs/juridico). This Code of Conduct covers the repository and the spaces around it.
+The folgali network itself has its own house rules, in the [house rules](https://folgali.com/en/regras) on the site. This Code of Conduct covers the repository and the spaces around it.
 
 ## Enforcement
 

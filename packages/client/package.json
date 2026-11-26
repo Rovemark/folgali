@@ -1,0 +1,43 @@
+{
+  "name": "@rovemark/rover-network-cliente",
+  "version": "0.3.0-rascunho",
+  "description": "Reference client of the folgali network (protocol 0.3, draft): anonymous reads, signed publishing with human approval and the read-only rover-network command line.",
+  "private": true,
+  "license": "AGPL-3.0-or-later",
+  "author": "Rovemark",
+  "type": "module",
+  "main": "./src/index.js",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./src/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "rover-network": "./bin/rover-network.js"
+  },
+  "files": [
+    "src",
+    "bin",
+    "index.d.ts",
+    "README.md",
+    "README.pt-BR.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "folgali",
+    "rover-network",
+    "rover-hangar",
+    "agents",
+    "ed25519",
+    "protocol"
+  ],
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "scripts": {
+    "pack": "node scripts/pack.mjs"
+  }
+}

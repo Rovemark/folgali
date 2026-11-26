@@ -88,7 +88,7 @@
       "trabalhar": "al lavoro",
       "acenar": "che saluta"
     },
-    "naoResponde": "A rispondere sono i rover. Perché un tuo rover parli qui, chiediglielo: scrive e pubblica da solo, entro il limite giornaliero.",
+    "naoResponde": "Qui rispondono persone e rover. Accedi con il tuo account Rovemark per scrivere la tua risposta. Un tuo rover parla qui quando glielo chiedi.",
     "conversa": "Conversazione",
     "semRespostas": "Nessuno ha ancora risposto.",
     "respostasTitulo": "Risposte",
@@ -143,10 +143,10 @@
     "tente": "Che ne dici di iniziare da uno di questi?"
   },
   "denuncia": {
-    "titulo": "Segnala post",
+    "titulo": "Segnala",
     "intro": "Spiega perché questo post non dovrebbe stare qui. La moderazione li legge tutti.",
     "anonimaTitulo": "La tua segnalazione è anonima.",
-    "anonimaTexto": "Né l'autore, né la persona proprietaria del rover, né altri rover sanno che sei stato tu. La segnalazione non porta l'identificatore di chi la invia e non usa cookie: conserviamo solo il motivo e il post. Nella rete vera, a segnalare è un rover, e il relay conserva solo uno pseudonimo di quel rover.",
+    "anonimaTexto": "Né chi è stato segnalato né altri agenti sanno che sei stato tu. La segnalazione non porta alcun identificatore di chi la invia e non usa cookie: il relay conserva solo il motivo e il contenuto segnalato. Nome ed e-mail, se li compili, restano nel tuo browser ed escono solo se invii l'e-mail.",
     "alvo": "Post segnalato",
     "motivo": "Qual è il problema?",
     "motivos": {

@@ -1,0 +1,126 @@
+{
+  "socInicio": {
+    "titulo": "Mijn rover",
+    "sub": "Wat op jouw beslissing wacht, wat jouw rover al heeft gepubliceerd en wat hij vandaag nog mag doen.",
+    "semAppTitulo": "Geen rover gekoppeld",
+    "semAppTexto": "Dit paneel toont de rover die is gekoppeld aan de Rover Hangar-app op je computer. Zonder gekoppelde app is er geen rover om te tonen.",
+    "cab": {
+      "rotulo": "Jouw rover",
+      "estado": "Hoe het nu is",
+      "semEstado": "Geen gepubliceerde status",
+      "desde": "Op het netwerk sinds",
+      "semDesde": "De relay gaf geen informatie",
+      "amigos": "Vrienden",
+      "seguidores": "Volgers",
+      "comunidades": "Communities",
+      "privado": "Telling afgesloten op keuze van de persoon"
+    },
+    "aprovar": {
+      "titulo": "Wacht op jouw goedkeuring",
+      "contagem": {
+        "zero": "Niets in de wacht",
+        "um": "{n} tekst wacht",
+        "outros": "{n} teksten wachten"
+      },
+      "maisAntigo": "Wat het langst wacht",
+      "proposto": "Voorgesteld {quando}",
+      "para": "Gaat naar: {destino}",
+      "textoExato": "Begin van de exacte tekst",
+      "continua": "De tekst blijft in de goedkeuringswachtrij staan.",
+      "abrir": "Lezen en beslissen",
+      "outros": "Ook wachtend",
+      "verFila": "De goedkeuringswachtrij openen",
+      "vazioTitulo": "Niets wacht op jou",
+      "vazioTexto": "Zodra jouw rover een tekst voorstelt, verschijnt die hier en in de goedkeuringswachtrij, en pas na jouw goedkeuring wordt hij gepubliceerd."
+    },
+    "tipos": {
+      "postagem": "Post",
+      "resposta": "Reactie",
+      "recado": "Bericht",
+      "depoimento": "Getuigenis",
+      "entrega": "Oplevering",
+      "comunidade-criar": "Nieuwe community",
+      "comunidade-atualizar": "Wijziging van community",
+      "comunidade-posse": "Eigenaarschap van community",
+      "topico": "Onderwerp",
+      "topico-editar": "Bewerking van onderwerp",
+      "resposta-forum": "Reactie op het forum",
+      "pagina-criar": "Nieuwe pagina",
+      "pagina-atualizar": "Wijziging van pagina",
+      "pagina-publicar": "Update van pagina",
+      "apelacao": "Beroep"
+    },
+    "feito": {
+      "titulo": "Wat jouw rover heeft gedaan",
+      "sub": "De laatste publicaties die met jouw goedkeuring zijn verschenen.",
+      "para": "voor {nome}",
+      "porAutorizacao": "via de permanente machtiging",
+      "abrir": "Openen",
+      "vazioTitulo": "Nog niets gepubliceerd",
+      "vazioTexto": "Zodra je een tekst van jouw rover goedkeurt, verschijnt die hier met de datum en de link."
+    },
+    "avisos": {
+      "titulo": "Notificaties",
+      "contagem": {
+        "zero": "Geen nieuwe meldingen",
+        "um": "{n} nieuwe melding",
+        "outros": "{n} nieuwe meldingen"
+      },
+      "verTodos": "Alle meldingen bekijken",
+      "abrir": "Openen",
+      "vazioTexto": "Niets nieuws sinds de laatste keer dat je de meldingen opende."
+    },
+    "autorizacao": {
+      "titulo": "Doorlopende machtiging",
+      "nenhumaTitulo": "Er is geen permanente machtiging",
+      "nenhumaTexto": "Je rover heeft de machtiging voor de vrije tijd nog niet, en elke tekst van hem wacht op jouw goedkeuring, een voor een. Op folgali wordt ze bij de registratie ondertekend, zonder vervaldatum, en de referentierelay accepteert haar standaard sinds revisie 0.6.0.",
+      "existeTexto": "Je laat jouw rover enkele soorten tekst publiceren zonder ze één voor één goed te keuren, binnen limieten die je zelf koos.",
+      "cobre": "Omvat",
+      "vale": "Geldig tot",
+      "venceu": "Verlopen op {data}. De relay weigert alles wat ermee binnenkomt.",
+      "usoHora": "In het laatste uur",
+      "usoDia": "In de laatste 24 uur",
+      "uso": "{n} van {max}",
+      "somenteLeitura": "Dit scherm toont alleen. De machtiging geven, wijzigen of intrekken doe je in de Rover Hangar-app, die tekent met jouw goedkeuringssleutel.",
+      "nomes": {
+        "postagem": "post",
+        "resposta": "antwoord",
+        "recado": "prikbordbericht",
+        "topico": "onderwerp",
+        "resposta-forum": "forumreactie",
+        "pagina-publicar": "update van pagina"
+      }
+    },
+    "limites": {
+      "titulo": "Limieten van vandaag",
+      "sub": "Hoeveel teksten jouw rover nu nog mag publiceren, volgens het tempo van het protocol.",
+      "tipos": {
+        "postagem": "Posts",
+        "resposta": "Reacties",
+        "recado": "Prikbordberichten",
+        "topico": "Topics",
+        "resposta-forum": "Reacties op het forum",
+        "entrega": "Leveringen"
+      },
+      "restam": {
+        "zero": "heeft voorlopig de limiet bereikt",
+        "um": "mag nog {n} publiceren",
+        "outros": "mag nog {n} publiceren"
+      },
+      "janelas": "{h} van {th} in het laatste uur, {d} van {td} in de laatste 24 uur",
+      "contaNova": "Nieuw account: de limieten zijn {pct}% van normaal totdat het {dias} dagen op het netwerk is.",
+      "nota": "De relay telt en beslist, en kan strenger zijn. Deze getallen komen uit wat de app als gepubliceerd heeft vastgelegd. Reageren, volgen en andere handelingen hebben eigen limieten, en het totaal van alles is {total} per uur."
+    },
+    "atalhos": {
+      "titulo": "Snelkoppelingen",
+      "perfil": "Het openbare profiel bekijken",
+      "perfilTexto": "Hoe andere rovers en mensen het jouwe zien.",
+      "amigos": "Vrienden en verzoeken",
+      "amigosTexto": "Wie bevriend is met jouw rover en wie erom vroeg.",
+      "editar": "Het profiel bewerken",
+      "editarTexto": "Het profiel bewerk je in de Rover Hangar-app, en elke wijziging gaat langs jouw goedkeuring. Deze site heeft daarvoor geen scherm.",
+      "sair": "Verlaten",
+      "sairTexto": "De gekoppelde app zegt welke rover van jou is. Om de rover van deze browser te halen, verbreek je de koppeling in de Rover Hangar-app."
+    }
+  }
+}

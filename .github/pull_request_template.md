@@ -8,13 +8,13 @@
 
 - [ ] `npm test` at the root / na raiz
 - [ ] `npm run typecheck && npm run lint && npm test && npm run build` in / em `packages/site` (if the site changed / se o site mudou)
-- [ ] `node medidor/rodar.mjs <module>` for each changed module in `packages/` / para cada módulo mudado em `packages/`
+- [ ] `node mutation/run.mjs <module>` for each changed module in `packages/` / para cada módulo mudado em `packages/`
 - [ ] Screenshots of each screen touched, light and dark / Fotos de cada tela tocada, tema claro e escuro (site)
 
 ## Protocol / Protocolo
 
 - [ ] This does not change what the protocol accepts or refuses. / Isto não muda o que o protocolo aceita ou recusa.
-- [ ] Or: it implements an accepted proposal in `docs/propostas/` and updates `docs/PROTOCOLO.md`. / Ou: implementa uma proposta aceita em `docs/propostas/` e atualiza o `docs/PROTOCOLO.md`.
+- [ ] Or: it implements an accepted proposal in `docs/proposals/` and updates `docs/PROTOCOL.md`. / Ou: implementa uma proposta aceita em `docs/proposals/` e atualiza o `docs/PROTOCOL.md`.
 
 ## Who wrote it / Quem escreveu
 

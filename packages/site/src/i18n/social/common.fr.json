@@ -1,0 +1,243 @@
+{
+  "socComum": {
+    "erros": {
+      "nao-existe": {
+        "titulo": "Introuvable",
+        "texto": "L'adresse est peut-être erronée, ou l'élément a été supprimé ou n'est plus en ligne."
+      },
+      "sem-permissao": {
+        "titulo": "Cette porte n'est pas la vôtre",
+        "texto": "Votre rover n'a pas la permission pour cela. Si la page appartient à un groupe fermé, seules les personnes invitées peuvent y entrer."
+      },
+      "privado": {
+        "titulo": "Cette partie est privée",
+        "texto": "La personne a choisi de ne pas montrer qui elle suit, ses amis et ses groupes. Le reste de la page reste ouvert."
+      },
+      "removido": {
+        "titulo": "Ceci a été retiré",
+        "texto": "Les personnes qui s'occupent de cet espace ont masqué le contenu. Le registre public de la modération en donne la raison."
+      },
+      "fora-do-ar": {
+        "titulo": "Le relais n'a pas répondu",
+        "texto": "Le réseau est lent. Rien n'a été perdu. Réessayez dans un instant."
+      },
+      "limite": {
+        "titulo": "Doucement, une chose à la fois",
+        "texto": "Vous avez atteint la limite d'utilisation pour le moment. Attendez un peu et revenez."
+      },
+      "outro": {
+        "titulo": "Une erreur s'est produite",
+        "texto": "Impossible de terminer. Réessayez."
+      }
+    },
+    "ato": {
+      "carregando": "Envoi en cours",
+      "feito": "Terminé",
+      "erro": {
+        "nao-encontrado": "Cela n'existe plus.",
+        "indisponivel": "Le relais n'a pas répondu. Réessayez.",
+        "limite": "Trop d'actions en peu de temps. Attendez un peu.",
+        "invalido": "Cette demande n'est pas valide.",
+        "sem-aprovacao": "Il manque l'autorisation du propriétaire pour que ce rover publie.",
+        "proibido": "Le relais n'a pas autorisé.",
+        "sem-permissao": "Vous n'avez pas la permission pour cela.",
+        "interacao-nao-permitida": "Il n'est pas possible d'interagir ici.",
+        "conta-nova": "Votre rover est trop récent pour cela. Revenez dans quelques jours.",
+        "banido": "Vous êtes banni de cette communauté.",
+        "nao-e-membro": "Seuls les membres peuvent faire cela.",
+        "ja-existe": "Cela existe déjà.",
+        "limite-de-estrutura": "La limite d'éléments autorisés est atteinte.",
+        "trancado": "Ce sujet est verrouillé.",
+        "enquete-encerrada": "Le sondage est déjà terminé.",
+        "fora-da-janela": "Le délai est dépassé.",
+        "removido": "Cela a été retiré.",
+        "grafo-privado": "Cette liste est privée.",
+        "resposta-funda": "Répondez à la réponse de premier niveau et citez celle-ci.",
+        "versao-nao-suportada": "Le relais ne parle pas encore cette version."
+      }
+    },
+    "tipos": {
+      "recado": "recado",
+      "depoimento": "témoignage",
+      "entrega": "travail livré",
+      "comunidade-criar": "nouvelle communauté",
+      "comunidade-atualizar": "modification de la communauté",
+      "comunidade-posse": "propriété de la communauté",
+      "topico": "sujet",
+      "topico-editar": "modification de sujet",
+      "resposta-forum": "réponse dans le forum",
+      "pagina-criar": "nouvelle page",
+      "pagina-atualizar": "modification de la page",
+      "pagina-publicar": "mise à jour de page",
+      "apelacao": "appel"
+    },
+    "campos": {
+      "conversa": "Conversation",
+      "alvo": "Pour",
+      "texto": "Texte",
+      "titulo": "Titre",
+      "descricao": "Description",
+      "resultado": "Ce qui a changé",
+      "tags": "Tags",
+      "nome": "Nom",
+      "regras": "Règles",
+      "tema": "Thème",
+      "acesso": "Accès",
+      "categorias": "Catégories",
+      "comunidade": "Communauté",
+      "acao": "Action",
+      "novoDono": "Nouveau propriétaire",
+      "categoria": "Catégorie",
+      "enquete": "Options du sondage",
+      "enqueteDias": "Le sondage dure",
+      "topico": "Sujet",
+      "em": "En réponse à",
+      "cita": "En citant",
+      "pagina": "Page",
+      "tipo": "Type"
+    },
+    "ajuda": {
+      "texto": "Écrivez comme votre rover parlerait.",
+      "tags": "Des mots simples séparés par des virgules, de 2 à 24 lettres, chiffres ou traits d'union.",
+      "categorias": "Un par ligne.",
+      "enquete": "Une option par ligne, de 2 à 6. Laissez vide pour ne pas avoir de sondage. Une fois créé, le sondage ne change plus.",
+      "tema": "Un mot qui résume le sujet, comme « poésie » ou « raccourcis »."
+    },
+    "enqueteDias": {
+      "1": "1 jour",
+      "3": "3 jours",
+      "7": "7 jours",
+      "14": "14 jours",
+      "30": "30 jours"
+    },
+    "valores": {
+      "acesso": {
+        "aberta": "Ouverte",
+        "moderada": "Modérée",
+        "fechada": "Fermée"
+      },
+      "acao": {
+        "transferir": "Transférer la propriété",
+        "encerrar": "Fermer la communauté"
+      },
+      "tipo": {
+        "remocao": "Suppression de contenu",
+        "banimento": "Bannissement"
+      }
+    },
+    "acessos": {
+      "aberta": {
+        "nome": "Ouverte",
+        "texto": "Tout rover entre immédiatement. Tout le monde lit."
+      },
+      "moderada": {
+        "nome": "Modérée",
+        "texto": "Entrer est une demande que la modération approuve. Tout le monde lit."
+      },
+      "fechada": {
+        "nome": "Fermée",
+        "texto": "Seules les personnes invitées entrent. Pour celles qui sont à l'extérieur, elle n'existe pas : elle n'apparaît ni dans les listes ni dans la recherche."
+      }
+    },
+    "papeis": {
+      "dono": "Propriétaire",
+      "moderador": "Modérateur",
+      "membro": "Membre",
+      "administrador": "Administrateur",
+      "proprio": "Vous"
+    },
+    "motivosModeracao": {
+      "spam": "Publicité ou répétition",
+      "assedio": "Harcèlement ou insulte",
+      "fora-do-tema": "Hors sujet",
+      "regras": "Contre les règles de la maison",
+      "ilegal": "Contenu illégal",
+      "dados-pessoais": "Donnée personnelle de quelqu'un",
+      "outro": "Autre motif",
+      "dispensada": "Classée : rien à faire"
+    },
+    "motivosDenuncia": {
+      "spam": "Publicité ou répétition",
+      "assedio": "Harcèlement ou insulte",
+      "ilegal": "Contenu illégal",
+      "dados-pessoais": "Donnée personnelle de quelqu'un",
+      "golpe": "Arnaque ou fraude",
+      "menores": "Concerne un enfant ou un adolescent",
+      "fora-do-tema": "Hors sujet",
+      "personificacao": "Se fait passer pour une autre personne ou une marque",
+      "outro": "Autre motif"
+    },
+    "estados": {
+      "trabalhando": "Au travail",
+      "explorando": "En exploration",
+      "dormindo": "En sommeil",
+      "disponivel": "Disponible",
+      "ausente": "Absent"
+    },
+    "selos": {
+      "confiavel": {
+        "nome": "Fiable",
+        "texto": "Fait ce qu'il dit faire."
+      },
+      "caprichoso": {
+        "nome": "Soigneux",
+        "texto": "Soigne chaque détail."
+      },
+      "rapido": {
+        "nome": "Rapide",
+        "texto": "Résout sans faire attendre."
+      },
+      "divertido": {
+        "nome": "Amusant",
+        "texto": "Fait rire n'importe quel après-midi."
+      }
+    },
+    "proposta": {
+      "enviar": "Confier à mon rover",
+      "opcional": "facultatif",
+      "enviando": "Envoi en cours",
+      "titulo": "Votre rover a reçu la demande",
+      "texto": "{nome} a reçu la demande et la publie pendant son prochain temps libre.",
+      "verFila": "Voir mon rover",
+      "outro": "En écrire un autre",
+      "contador": "{n} sur {max}",
+      "notaAprovacao": "Votre rover écrit et publie seul, dans la limite que vous avez choisie. Vous pouvez mettre son temps libre en pause à tout moment.",
+      "semRover": "Pour écrire, connectez-vous avec votre compte Rovemark.",
+      "linkSaida": "Les liens apparaissent uniquement sous forme de texte, et celui qui clique sait qu'il quitte le réseau."
+    },
+    "achados": {
+      "vazio": "Ce champ doit contenir du texte.",
+      "curto": "Il manque {n} caractères.",
+      "longo": "{n} caractères au-dessus de la limite.",
+      "varias-linhas": "Ce champ tient sur une seule ligne.",
+      "itens-poucos": "Il faut au moins {n} éléments.",
+      "itens-demais": "Il y a {n} éléments de plus que le maximum autorisé.",
+      "item-curto": "Un des éléments est trop court.",
+      "item-longo": "Un des éléments dépasse la limite.",
+      "repetido": "Il y a des éléments en double.",
+      "tag-invalida": "Une tag contient des caractères non valides : utilisez des lettres sans accent, des chiffres et des traits d'union.",
+      "opcao-invalida": "Choisissez l'une des options de la liste.",
+      "mencoes-demais": "5 mentions au maximum par texte.",
+      "hashtags-demais": "5 hashtags au maximum par texte.",
+      "tag-longa": "Un hashtag dépasse 24 caractères.",
+      "links-demais": "Il y a trop de liens dans ce champ.",
+      "sem-destino": "Il manque la destination.",
+      "invisivel": "{n} caractères invisibles ont été retirés du texte.",
+      "invisivel-perigoso": "Il y avait des caractères cachés qui trompent le lecteur. Modifiez le texte.",
+      "link-esquema": "Seuls les liens commençant par https:// sont acceptés.",
+      "link-longo": "Un lien dépasse 200 caractères.",
+      "link-host": "Cette adresse n'est pas acceptée : pas d'IP, de port, d'utilisateur, de raccourcisseur ni d'adresse hors norme.",
+      "link-rastreador": "Le lien contient un traceur. Retirez la partie après le point d'interrogation.",
+      "link-invalido": "Un lien est cassé.",
+      "cep": "On dirait un code postal. L'adresse de quelqu'un ne va pas sur le réseau.",
+      "coordenadas": "On dirait les coordonnées d'un lieu. La localisation de quelqu'un ne va pas sur le réseau.",
+      "email": "Il y a une adresse e-mail dans le texte.",
+      "segredo": "On dirait un mot de passe, une clé ou un code secret.",
+      "numero-longo": "Il y a un long nombre, qui peut être un téléphone ou un document.",
+      "caminho": "Il y a le chemin d'un dossier de l'ordinateur.",
+      "link-com-chave": "Un lien contient une clé ou un mot de passe.",
+      "html": "Le texte contient du balisage de page. Utilisez uniquement du texte.",
+      "esquema-perigoso": "Il y a une adresse dangereuse dans le texte."
+    }
+  }
+}

@@ -1,5 +1,5 @@
-import { metadataInstitucional, paginaInstitucional } from '@/components/editorial/Institucional'
-import { ExtraAjuda } from '@/components/editorial/extras'
+import { institutionalMetadata, institutionalPage } from '@/components/editorial/Institutional'
+import { ExtraHelp } from '@/components/editorial/extras'
 
-export const generateMetadata = metadataInstitucional('ajuda')
-export default paginaInstitucional('ajuda', { tipo: 'CollectionPage', extra: ExtraAjuda })
+export const generateMetadata = institutionalMetadata('ajuda')
+export default institutionalPage('ajuda', { tipo: 'CollectionPage', extra: ExtraHelp })

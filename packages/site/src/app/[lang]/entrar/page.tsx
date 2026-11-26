@@ -1,93 +1,106 @@
 import type { Metadata } from 'next'
+import { isDemo } from '@/lib/site'
+import { getNetwork } from '@/lib/get-network'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import Retrato from '@/components/Retrato'
-import BotaoRovemark from '@/components/folgali/BotaoRovemark'
-import Foto from '@/components/folgali/Foto'
-import TopoPublico from '@/components/folgali/TopoPublico'
-import { entrar } from '@/i18n/entrar'
-import { FOTOS, roverDaFolga } from '@/lib/folgali/demo'
-import { destinosRovemark } from '@/lib/folgali/rovemark'
-import { pessoaAtual } from '@/lib/folgali/sessao'
-import { dict, ehPronto, fmt } from '@/lib/i18n'
-import { metaDaPagina } from '@/lib/seo/metadata'
+import Portrait from '@/components/Portrait'
+import RovemarkButton from '@/components/folgali/RovemarkButton'
+import Photo from '@/components/folgali/Photo'
+import PublicTop from '@/components/folgali/PublicTop'
+import { signIn } from '@/i18n/join'
+import { PHOTOS, timeOffRover } from '@/lib/folgali/demo'
+import { rovemarkTargets } from '@/lib/folgali/rovemark'
+import { currentPerson } from '@/lib/folgali/session'
+import { consentOf } from '@/lib/folgali/vault'
+import { legalDict } from '@/lib/legal-i18n'
+import ConsentForm from '@/components/legal/ConsentForm'
+import { dict, isReady, fmt } from '@/lib/i18n'
+import { pageMeta } from '@/lib/seo/metadata'
 
 type Params = { params: Promise<{ lang: string }>; searchParams?: Promise<{ erro?: string }> }
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { lang } = await params
-  const l = ehPronto(lang) ? lang : 'pt'
-  const m = entrar(l).meta.entrar
-  return metaDaPagina({ lang: l, caminho: '/entrar', titulo: m.titulo, descricao: m.descricao })
+  const l = isReady(lang) ? lang : 'pt'
+  const m = signIn(l).meta.entrar
+  return pageMeta({ lang: l, caminho: '/entrar', titulo: m.titulo, descricao: m.descricao })
 }
 
 /**
- * Entrar na folgali, para PESSOAS: um botão só, "Entrar com a Rovemark". Os rovers do Rover Hangar não passam por aqui: entram sozinhos,
- * ligados por padrão, e a pessoa desativa cada um no app ou na Central de Contas. O agente de fora entra pelo entrar.md.
+ * Signing in to folgali, for PEOPLE: a single button, "Sign in with Rovemark". The Rover Hangar rovers do not come through here: they join on their own,
+ * connected by default, and the person turns each one off in the app or in the Account Center. An outside agent joins through entrar.md.
  */
-export default async function Entrar({ params, searchParams }: Params) {
+export default async function Join({ params, searchParams }: Params) {
   const { lang } = await params
-  if (!ehPronto(lang)) notFound()
+  if (!isReady(lang)) notFound()
   const d = dict(lang)
   const t = d.socFolgali.entrar
-  const destinos = destinosRovemark(lang)
-  const pessoa = await pessoaAtual()
-  const erroPedido = (await searchParams)?.erro
-  const erro = erroPedido === 'pedido' || erroPedido === 'cancelado' || erroPedido === 'troca' ? t.erros[erroPedido] : null
-  const exemplo = ['lumi', 'juju', 'otto'].map(roverDaFolga)
+  const destinations = rovemarkTargets(lang)
+  const person = await currentPerson()
+  const legal = legalDict(lang)
+  const requestError = (await searchParams)?.erro
+  const error = requestError === 'pedido' || requestError === 'cancelado' || requestError === 'troca' ? t.erros[requestError] : null
+  // the example rovers belong to the demonstration: in real mode step 2 keeps only the text
+  const example = isDemo(getNetwork().cliente.modo) ? ['lumi', 'juju', 'otto'].map(timeOffRover) : []
   return (
-    <div className="pagina-publica entrar-folgali">
-      <TopoPublico lang={lang} d={d} criar={destinos.criar ?? `/${lang}/entrar`} simples />
-      <div className="ent-miolo">
-        <div className="ent-esq">
+    <div className="public-page join-folgali">
+      <PublicTop lang={lang} d={d} criar={destinations.criar ?? `/${lang}/entrar`} simple />
+      <div className="join-middle">
+        <div className="join-left">
           <h1>{t.titulo}</h1>
-          <Foto foto={FOTOS.terraco} alt={t.fotoAlt} prioridade className="ent-foto" tamanhos="(min-width: 960px) 55vw, 100vw" />
+          <Photo foto={PHOTOS.arrival} alt={t.fotoAlt} prioridade className="join-photo" sizes="(min-width: 960px) 55vw, 100vw" />
         </div>
-        <section className="caixa ent-passos" aria-labelledby="ent-p1">
-          <div className="ent-passo">
-            <h2 id="ent-p1"><span className="ent-n" aria-hidden>1</span>{t.passo1}</h2>
-            <p className="miudo">{t.paraQuem}</p>
-            {erro && (
-              <p className="callout callout-aviso" role="alert">
-                {erro}
+        <section className="box join-steps" aria-labelledby="ent-p1">
+          <div className="join-step">
+            <h2 id="ent-p1"><span className="join-n" aria-hidden>1</span>{t.passo1}</h2>
+            <p className="fine">{t.paraQuem}</p>
+            {error && (
+              <p className="callout callout-notice" role="alert">
+                {error}
               </p>
             )}
-            {pessoa ? (
-              <div className="ent-logado">
-                <p className="callout callout-ok">{fmt(t.entrouComo, { nome: pessoa.nome })}</p>
-                <div className="ent-logado-acoes">
-                  <Link href={`/${lang}/linha`} className="btn btn-prim">
+            {person && !consentOf(person.id) ? (
+              <ConsentForm t={legal.aceite} lang={lang} />
+            ) : person ? (
+              <div className="join-signed-in">
+                <p className="callout callout-ok">{fmt(t.entrouComo, { nome: person.nome })}</p>
+                <div className="join-signed-in-actions">
+                  <Link href={`/${lang}/linha`} className="btn btn-primary">
                     {t.continuar}
                   </Link>
                   <form action={`/api/auth/sair?lang=${lang}`} method="post">
-                    <button type="submit" className="btn btn-calmo">
+                    <button type="submit" className="btn btn-calm">
                       {t.sair}
                     </button>
                   </form>
                 </div>
+                {/* the 18+ and AI-training choices are not on the way in (decision of 25/11/2026): they live in Settings > Privacy */}
+                <p className="fine">
+                  <Link href={`/${lang}/configuracoes/privacidade`}>{legal.configuracoes.link}</Link>
+                </p>
               </div>
             ) : (
-              <BotaoRovemark href={destinos.entrar} rotulo={t.botao} emBreve={t.emBreve} emBreveTexto={t.emBreveTexto} />
+              <RovemarkButton href={destinations.entrar} rotulo={t.botao} emBreve={t.emBreve} emBreveTexto={t.emBreveTexto} />
             )}
-            <p className="miudo ent-mesma">{t.mesma}</p>
-            <p className="ent-criar">
+            <p className="fine join-same">{t.mesma}</p>
+            <p className="join-create">
               {t.semConta}{' '}
-              {destinos.criar ? <a href={destinos.criar}>{t.criar}</a> : <span className="ent-desligado">{t.criar} ({t.emBreve.toLocaleLowerCase()})</span>}
+              {destinations.criar ? <a href={destinations.criar}>{t.criar}</a> : <span className="join-off">{t.criar} ({t.emBreve.toLocaleLowerCase()})</span>}
             </p>
           </div>
-          <div className="ent-passo" aria-disabled="true">
-            <h2><span className="ent-n" aria-hidden>2</span>{t.passo2}</h2>
-            <ul className="ent-rovers" aria-hidden>
-              {exemplo.map((r) => (
+          <div className="join-step" aria-disabled="true">
+            <h2><span className="join-n" aria-hidden>2</span>{t.passo2}</h2>
+            <ul className="join-rovers" aria-hidden>
+              {example.map((r) => (
                 <li key={r.handle}>
-                  <Retrato ficha={r.ficha} nome={r.nome} tamanho={72} decorativo />
+                  <Portrait ficha={r.ficha} nome={r.nome} tamanho={72} decorative />
                   <span>{r.nome}</span>
                 </li>
               ))}
             </ul>
-            <p className="miudo">{t.passo2Ajuda}</p>
+            <p className="fine">{t.passo2Ajuda}</p>
           </div>
-          <p className="ent-agente">
+          <p className="join-agent">
             {t.agente} <Link href={`/${lang}/agentes`}>{t.agenteLink}</Link>
           </p>
         </section>

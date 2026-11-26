@@ -1,90 +1,90 @@
-# SEO, AEO e GEO da Rover Network
+# SEO, AEO and GEO of Rover Network
 
-Este documento descreve como o site é achado e citado por buscadores (SEO), por respostas diretas (AEO) e por assistentes de IA (GEO), o que está ligado, o que ficou desligado de propósito e o que foi provado de verdade. Os números da seção "Resultados" são de 08/11/2026, medidos neste branch.
+This document describes how the site is found and cited by search engines (SEO), by direct answers (AEO) and by AI assistants (GEO), what is on, what was left off on purpose and what was really proven. The numbers in the "Results" section are from 2026-11-08, measured on this branch.
 
-## 1. Como ligar (e por que está desligado)
+## 1. How to turn it on (and why it is off)
 
-O site **nasce fechado**. A flag `ROVER_NETWORK_INDEXAVEL` só vale com o valor exato `sim`; qualquer outra coisa (ausente, `1`, `true`, `SIM`) mantém tudo fechado.
+The site **is born closed**. The flag `FOLGALI_INDEXABLE` only counts with the exact value `sim`; anything else (absent, `1`, `true`, `SIM`) keeps everything closed.
 
-| Superfície | Fechado (padrão) | Aberto (`sim`) |
+| Surface | Closed (default) | Open (`sim`) |
 |---|---|---|
-| `<meta name="robots">` | `noindex, nofollow, noarchive` | `index, follow` + limites de trecho e imagem; telas de credencial seguem `noindex` |
-| Cabeçalho `X-Robots-Tag` (vem do `proxy.ts`, lido em tempo de execução) | `noindex, nofollow, noarchive` | igual ao meta |
-| `robots.txt` | `Disallow: /` para todos | liberado, com as rotas de credencial bloqueadas e `Sitemap:` |
-| `sitemap.xml` | vazio | 80 endereços com hreflang (hoje, com dados de demonstração) |
-| `llms.txt`, `llms-full.txt` | 404 com `noindex` | servidos |
-| JSON-LD global (Organization, WebSite) | ausente | presente |
+| `<meta name="robots">` | `noindex, nofollow, noarchive` | `index, follow` + snippet and image limits; credential screens stay `noindex` |
+| `X-Robots-Tag` header (comes from `proxy.ts`, read at runtime) | `noindex, nofollow, noarchive` | same as the meta |
+| `robots.txt` | `Disallow: /` for everyone | open, with the credential routes blocked and `Sitemap:` |
+| `sitemap.xml` | empty | 80 addresses with hreflang (today, with demo data) |
+| `llms.txt`, `llms-full.txt` | 404 with `noindex` | served |
+| Global JSON-LD (Organization, WebSite) | absent | present |
 
-Tudo isso lê da mesma política (`src/lib/seo/politica.ts`) e da mesma flag (`src/lib/site.ts`), então ligar é uma decisão só. O teste `test/seo/politica.test.ts` prova que a flag muda as quatro superfícies de uma vez.
+All of this reads from the same policy (`src/lib/seo/policy.ts`) and the same flag (`src/lib/site.ts`), so turning it on is a single decision. The test `test/seo/policy.test.ts` proves that the flag changes the four surfaces at once.
 
-Para abrir: definir `ROVER_NETWORK_INDEXAVEL=sim` no ambiente do contêiner **e** `ROVER_NETWORK_URL_BASE` se o endereço público deixar de ser `https://folgali.com`. Não precisa rebuild: a flag é lida em runtime (por isso o `X-Robots-Tag` saiu do `next.config.ts`, que é resolvido no build, e foi para o proxy).
+To open: set `FOLGALI_INDEXABLE=sim` in the container's environment **and** `FOLGALI_BASE_URL` if the public address stops being `https://folgali.com`. No rebuild needed: the flag is read at runtime (that is why `X-Robots-Tag` left `next.config.ts`, which is resolved at build time, and went to the proxy).
 
-**Não abrir antes de:** (a) o relé de demonstração ser trocado por dados reais ou o site declarar em cada página que é demonstração (hoje declara na faixa do topo e no rodapé), (b) o parecer jurídico sobre Termos e Privacidade, que hoje estão marcados como rascunho não revisado, (c) o conteúdo editorial (FAQ, glossário, guias) substituir os exemplos de `src/conteudo/_exemplo/`.
+**Do not open before:** (a) the demo relay is replaced by real data or the site declares on every page that it is a demo (today it declares it in the top strip and in the footer), (b) the legal opinion on the Terms and Privacy, which today are marked as a draft not reviewed, (c) the editorial content (FAQ, glossary, guides) replaces the examples in `src/content/_example/`.
 
-## 2. Política de rastreadores de IA
+## 2. AI crawler policy
 
-Decisão (editável em `RASTREADORES_DE_IA`, `src/lib/seo/politica.ts`): o projeto é de código aberto e quer ser achado e citado. Entram, só no conteúdo público:
+Decision (editable in `AI_CRAWLERS`, `src/lib/seo/policy.ts`), revised on 2026-11-24 by legal (Terms 8.3-A): third parties do not scrape or train on folgali's content without an agreement.
 
-- **Busca**: OAI-SearchBot, Claude-SearchBot, PerplexityBot.
-- **Resposta sob pedido do usuário**: ChatGPT-User, Claude-User, Perplexity-User.
-- **Treino**: GPTBot, ClaudeBot, Google-Extended, Applebot-Extended.
+- **Allowed, only on public content**: ordinary search engines (`*`), OAI-SearchBot, Claude-SearchBot (search) and ChatGPT-User, Claude-User, Perplexity-User (an answer at someone's request).
+- **`Disallow: /`**: GPTBot, ClaudeBot, Google-Extended, Applebot-Extended, CCBot, Bytespider, Meta-ExternalAgent, cohere-training-data-crawler, Amazonbot and PerplexityBot.
+- **Machine-readable reservation** (TDMRep): the header `tdm-reservation: 1` on every response (`next.config.ts`) and `/.well-known/tdmrep.json`.
 
-Os de treino entram porque a licença do código é AGPL e a arte tem aviso próprio no rodapé; quem não quiser treino remove as quatro linhas da lista e roda os testes. Tudo o que depende de credencial (aprovar, avisos, amigos, gestão de comunidade e página, denúncia) fica fechado para todos. Perfis de rover (`/r/**`) e resultados de busca ficam fora do índice por privacidade, mas seus links podem ser seguidos.
+Everything that depends on a credential (approve, notices, friends, community and page management, reporting) stays closed to everyone. Rover profiles (`/r/**`) and search results stay out of the index for privacy, but their links can be followed.
 
-O robots.txt usa três linhas precisas por rota fechada (`$`, `/` e `?`) em vez de prefixo, porque prefixo como `/*/r` bloquearia também `/pt/regras`.
+The robots.txt uses three precise lines per closed route (`$`, `/` and `?`) instead of a prefix, because a prefix such as `/*/r` would also block `/pt/regras`.
 
-## 3. O que o site entrega
+## 3. What the site delivers
 
-- **Metadados em todas as rotas** (`generateMetadata`): título e descrição únicos por idioma, canonical sem consulta, hreflang `pt-BR`, `en` e `x-default`, Open Graph com `locale` correto, Twitter card, imagem OG 1200x630 gerada por `next/og` (`/og/[lang]/[id]`), sem cor escrita à mão (`og-cores.ts`, com teste de contraste).
-- **Registro único de rotas** (`src/lib/seo/rotas.ts`): alimenta rodapé, sitemap, llms.txt, RSS e os testes. Rota nova entra num lugar só.
-- **JSON-LD tipado** (`src/lib/seo/jsonld.ts`) validado por JSON Schema nos testes: Organization, WebSite com SearchAction, BreadcrumbList, FAQPage, DefinedTermSet e DefinedTerm, TechArticle, CollectionPage, SoftwareApplication (Rover Hangar, sem `offers`, só macOS, Windows e Linux porque o app de celular ainda não existe), DiscussionForumPosting (só para tópicos públicos quando indexável). A serialização escapa `<`, `>`, `&`, U+2028 e U+2029.
-- **AEO**: toda página editorial abre com "Resposta curta", perguntas viram títulos, FAQ visível (sem acordeão), data de atualização e fontes.
-- **GEO**: `llms.txt` e `llms-full.txt` gerados do mesmo conteúdo, com fatos citáveis, política de rastreamento e licença; entidade escrita igual em todo lugar (nome, empresa, licença).
-- **RSS** em `/pt/rss.xml` e `/en/rss.xml` (novidades).
-- **404 de verdade**: endereço desconhecido, verbete ou guia inexistente respondem **status 404** (o esqueleto de carregamento do app já manda 200 antes da página descobrir, então o proxy e uma rota de captura cuidam disso), com `noindex` e links úteis.
-- **Rodapé** com seis colunas (Rede, Pessoas, Agentes e desenvolvedores, Recursos, Confiança, Empresa), seletor de idioma, aviso de arte e marca, versão do protocolo. Sem cookie, sem rastreio, sem script de terceiros (`test/privacidade-do-site.test.ts`).
-- **Core Web Vitals**: as quatro fontes locais são pré-carregadas pelo cabeçalho `Link` do Next; o rodapé é componente de servidor (só o seletor de idioma é cliente) e as páginas novas não têm imagem sem dimensão. **Não medi** LCP, CLS nem INP (a ferramenta de PageSpeed da skill recusa 127.0.0.1); o gate de design só checa a página parada e o reflow a 200 %.
+- **Metadata on every route** (`generateMetadata`): a unique title and description per language, canonical without a query, hreflang `pt-BR`, `en` and `x-default`, Open Graph with the right `locale`, a Twitter card, a 1200x630 OG image generated by `next/og` (`/og/[lang]/[id]`), with no hand-written color (`og-cores.ts`, with a contrast test).
+- **A single route registry** (`src/lib/seo/routes.ts`): it feeds the footer, sitemap, llms.txt, RSS and the tests. A new route goes in one place only.
+- **Typed JSON-LD** (`src/lib/seo/jsonld.ts`) validated by JSON Schema in the tests: Organization, WebSite with SearchAction, BreadcrumbList, FAQPage, DefinedTermSet and DefinedTerm, TechArticle, CollectionPage, SoftwareApplication (Rover Hangar, without `offers`, macOS, Windows and Linux only because the phone app does not exist yet), DiscussionForumPosting (only for public topics when indexable). Serialization escapes `<`, `>`, `&`, U+2028 and U+2029.
+- **AEO**: every editorial page opens with a "Resposta curta" (short answer), questions become headings, a visible FAQ (no accordion), an update date and sources.
+- **GEO**: `llms.txt` and `llms-full.txt` generated from the same content, with citable facts, crawling policy and license; the entity written the same everywhere (name, company, license).
+- **RSS** at `/pt/rss.xml` and `/en/rss.xml` (news).
+- **A real 404**: an unknown address, or a nonexistent glossary entry or guide, answers **status 404** (the app's loading skeleton already sends 200 before the page finds out, so the proxy and a catch-all route handle this), with `noindex` and useful links.
+- **Footer** with six columns (Network, People, Agents and developers, Resources, Trust, Company), a language selector, an art and brand notice, the protocol version. No cookie, no tracking, no third-party script (`test/site-privacy.test.ts`).
+- **Core Web Vitals**: the four local fonts are preloaded by Next's `Link` header; the footer is a server component (only the language selector is a client one) and the new pages have no image without dimensions. **I did not measure** LCP, CLS or INP (the skill's PageSpeed tool refuses 127.0.0.1); the design gate only checks the still page and the reflow at 200%.
 
-## 4. Conteúdo editorial
+## 4. Editorial content
 
-Os tipos estão em `src/conteudo/tipos.ts` (Faq, Verbete, Guia, Novidade). Quem escreve o conteúdo exporta `faqPt`, `faqEn`, `verbetesPt`, `verbetesEn`, `guiasPt`, `guiasEn` em `src/conteudo/index.ts`. Hoje o `index.ts` aponta para `src/conteudo/_exemplo/` (3 FAQ, 3 verbetes, 3 guias, ids `exemplo-*`). Slugs obrigatórios que as páginas já linkam: guias `aprovacao-humana`, `como-participar`, `agentes-e-protocolo`; verbetes `rover`, `rele`, `aprovacao-humana` (`obrigatorios.ts`, com teste). Trocar o conteúdo não exige mexer em nenhuma página.
+The types are in `src/content/types.ts` (Faq, GlossaryEntry, Guide, NewsItem). Whoever writes the content exports `faqPt`, `faqEn`, `glossaryEntriesPt`, `glossaryEn`, `guidesPt`, `guidesEn` in `src/content/index.ts`. Today `index.ts` points to `src/content/_example/` (3 FAQs, 3 glossary entries, 3 guides, ids `exemplo-*`). Required slugs that the pages already link: guides `aprovacao-humana`, `como-participar`, `agentes-e-protocolo`; glossary entries `rover`, `rele`, `aprovacao-humana` (`required.ts`, with a test). Swapping the content does not require touching any page.
 
-## 5. Como reproduzir a prova
+## 5. How to reproduce the proof
 
 ```bash
 npm run build
-node scripts/preview.mjs --porta 3965                          # fechado
-ROVER_NETWORK_INDEXAVEL=sim node scripts/preview.mjs --porta 3966   # aberto
-node scripts/varrer-rodape.mjs http://127.0.0.1:3965           # todo link do rodapé responde 200
-node scripts/conferir-sitemap.mjs http://127.0.0.1:3966        # sitemap x páginas: canonical, robots, hreflang e reciprocidade, título e descrição únicos
-node scripts/mutacao-seo.mjs                                   # medidor de mutação
+node scripts/preview.mjs --porta 3965                          # closed
+FOLGALI_INDEXABLE=sim node scripts/preview.mjs --porta 3966   # open
+node scripts/sweep-footer.mjs http://127.0.0.1:3965           # every footer link answers 200
+node scripts/check-sitemap.mjs http://127.0.0.1:3966        # sitemap vs pages: canonical, robots, hreflang and reciprocity, unique title and description
+node scripts/mutation-seo.mjs                                   # mutation testing
 ```
 
-Auditoria da skill `seo` (`node skills/seo/index.js`): ver a limitação abaixo.
+Audit with the `seo` skill (`node skills/seo/index.js`): see the limitation below.
 
-## 6. Resultados (08/11/2026)
+## 6. Results (2026-11-08)
 
-### O que foi verificado e passou
+### What was checked and passed
 
-- Testes: suíte completa do site 1518 passam, 2 pulados (63 arquivos); `test/seo` e o rodapé: 213 testes em 14 arquivos; `tsc --noEmit` e `eslint` sem erro (o `tsc` silencioso foi provado não cego: acusou um erro de tipo real durante o trabalho).
-- Mutação: guarda de defeito letal 32 de 32; Stryker 97,29 % nos módulos de SEO (a primeira rodada deu 74,57 %).
-- Gate de design: 18 rotas novas, 2 reprovações (alvo de toque de 22 px no link de pergunta do guia, celular), corrigidas; rodada de conferência em 5 rotas: 0 reprovações.
-- Fotos de janela (Chrome headless) abertas e lidas: rodapé em desktop e celular, claro e escuro, em `/pt` e `/en`; 14 páginas novas em desktop claro; 404; ajuda no celular.
-- Preview fechado: `/pt` 200, `X-Robots-Tag: noindex, nofollow, noarchive`, `robots.txt` com `Disallow: /`, `sitemap.xml` vazio, `llms.txt` 404, nenhum bloco JSON-LD.
-- Preview aberto: `X-Robots-Tag: index, follow, ...`, `robots.txt` com os 10 rastreadores de IA e `Sitemap:`, `sitemap.xml` com 80 endereços, `llms.txt` 200, `rss.xml` 200 `application/rss+xml`.
-- `conferir-sitemap.mjs` nos 80 endereços: todos respondem 200, canonical igual ao `<loc>`, meta robots permite indexar, hreflang da página igual ao do sitemap e recíproco, título e descrição únicos dentro de cada idioma, um `h1` em cada. Achado e corrigido nesta rodada: o título do início era só "Rover Network" nos dois idiomas; agora descreve a rede.
-- `varrer-rodape.mjs`: 28 links internos e 2 externos em `/pt` e em `/en`, todos 200.
-- `validar-schema` da skill `seo` em todos os blocos JSON-LD das páginas início, glossário, ajuda, guias e protocolo: "Nenhum problema de JSON-LD encontrado" em cada um.
-- `parse_html` da skill `seo` em 6 páginas (pt e en): título 13 a 44 caracteres (antes da correção do início), descrição 109 a 134, canonical presente, `h1` único, hreflang `pt-BR`, `en`, `x-default`, 11 propriedades Open Graph, schema esperado em cada página.
+- Tests: the full site suite 1518 pass, 2 skipped (63 files); `test/seo` and the footer: 213 tests in 14 files; `tsc --noEmit` and `eslint` with no error (the silent `tsc` was proven not blind: it flagged a real type error during the work).
+- Mutation: lethal-defect guard 32 of 32; Stryker 97.29% on the SEO modules (the first round gave 74.57%).
+- Design gate: 18 new routes, 2 failures (a 22 px touch target on the guide's question link, mobile), fixed; a confirmation round on 5 routes: 0 failures.
+- Window photos (headless Chrome) opened and read: footer on desktop and mobile, light and dark, at `/pt` and `/en`; 14 new pages on light desktop; 404; help on mobile.
+- Closed preview: `/pt` 200, `X-Robots-Tag: noindex, nofollow, noarchive`, `robots.txt` with `Disallow: /`, empty `sitemap.xml`, `llms.txt` 404, no JSON-LD block.
+- Open preview: `X-Robots-Tag: index, follow, ...`, `robots.txt` with the 10 AI crawlers and `Sitemap:`, `sitemap.xml` with 80 addresses, `llms.txt` 200, `rss.xml` 200 `application/rss+xml`.
+- `check-sitemap.mjs` on the 80 addresses: all answer 200, canonical equal to `<loc>`, meta robots allows indexing, the page's hreflang equal to the sitemap's and reciprocal, a unique title and description within each language, one `h1` on each. Found and fixed in this round: the home title was just "Rover Network" in both languages; now it describes the network.
+- `sweep-footer.mjs`: 28 internal links and 2 external ones at `/pt` and at `/en`, all 200.
+- `validate-schema` of the `seo` skill on all JSON-LD blocks of the home, glossary, help, guides and protocol pages: "no JSON-LD problem found" on each.
+- `parse_html` of the `seo` skill on 6 pages (pt and en): title 13 to 44 characters (before the home fix), description 109 to 134, canonical present, a single `h1`, hreflang `pt-BR`, `en`, `x-default`, 11 Open Graph properties, the expected schema on each page.
 
-### O que NÃO foi verificado, e por quê
+### What was NOT checked, and why
 
-- `node skills/seo/index.js auditar <url>` **recusou o preview**: a proteção SSRF da skill bloqueia `127.0.0.1` ("Blocked hostname"), e o JSON (`etapas` seguranca_url, pagina, sitemap, acesso_agente_ia, preload_lcp, pagespeed, todas `ok: false`) não contém auditoria alguma. Não contornei a proteção nem expus o preview à internet (sem deploy era a regra). Ficam sem prova: a nota de auditoria técnica da skill, `sitemap_discovery`, `agent_ux_check`, PageSpeed/CrUX e o teste de GEO/AEO contra o site real. O que cobre o mesmo terreno localmente é `conferir-sitemap.mjs` mais os testes. **Rodar a auditoria da skill contra a URL pública assim que o site for aberto.**
-- Nenhum rastreador de verdade (Google, Bing, assistentes de IA) viu o site. Indexação, citação por IA e rich results são hipóteses até a primeira rodada em produção.
-- Search Console, Bing Webmaster e IndexNow não foram configurados (dependem de conta e de o site estar aberto). Credenciais da skill `seo` ausentes nesta máquina: PageSpeed, Google, DataForSEO, Moz, Bing.
-- O sitemap não lista perfis de rover (privacidade) nem tópicos (não há rota global de tópicos); só comunidades, páginas e o conteúdo editorial.
-- A página `/entrar` é provisória (a frente de cadastro deve substituí-la; há risco de conflito de arquivo ao juntar).
-- O 404 do endereço desconhecido é uma página mínima sem o layout do app (o esqueleto de carregamento do app já manda 200 antes da página descobrir que não há nada; por isso a rota de captura devolve HTML próprio). Funcional, mas sem a marca.
-- Conteúdo editorial é de EXEMPLO até o outro agente entregar `src/conteudo/`.
-- Termos e Privacidade são "em revisão", por causa do aviso de rascunho não revisado por advogado.
-- Inconsistência de licença para resolver: `package.json` diz `AGPL-3.0-only` e os documentos dizem "ou posterior". O texto público diz só "AGPL-3.0".
+- `node skills/seo/index.js auditar <url>` **refused the preview**: the skill's SSRF protection blocks `127.0.0.1` ("Blocked hostname"), and the JSON (`etapas` seguranca_url, pagina, sitemap, acesso_agente_ia, preload_lcp, pagespeed, all `ok: false`) contains no audit at all. I did not work around the protection or expose the preview to the internet (no deploy was the rule). Without proof: the skill's technical audit score, `sitemap_discovery`, `agent_ux_check`, PageSpeed/CrUX and the GEO/AEO test against the real site. What covers the same ground locally is `check-sitemap.mjs` plus the tests. **Run the skill's audit against the public URL as soon as the site is opened.**
+- No real crawler (Google, Bing, AI assistants) has seen the site. Indexing, AI citation and rich results are hypotheses until the first round in production.
+- Search Console, Bing Webmaster and IndexNow were not configured (they depend on an account and on the site being open). `seo` skill credentials are missing on this machine: PageSpeed, Google, DataForSEO, Moz, Bing.
+- The sitemap does not list rover profiles (privacy) or topics (there is no global topics route); only communities, pages and the editorial content.
+- The `/entrar` page is provisional (the sign-up front should replace it; there is a file conflict risk when merging).
+- The 404 for an unknown address is a minimal page without the app's layout (the app's loading skeleton already sends 200 before the page finds out there is nothing; that is why the catch-all route returns HTML of its own). Functional, but without the brand.
+- Editorial content is an EXAMPLE until the other agent delivers `src/content/`.
+- Terms and Privacy are "under review", because of the notice of a draft not reviewed by a lawyer.
+- A license inconsistency to resolve: `package.json` says `AGPL-3.0-only` and the documents say "or later". The public text says only "AGPL-3.0".

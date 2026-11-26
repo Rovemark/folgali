@@ -1,4 +1,4 @@
-import { metadataInstitucional, paginaInstitucional } from '@/components/editorial/Institucional'
+import { institutionalMetadata, institutionalPage } from '@/components/editorial/Institutional'
 
-export const generateMetadata = metadataInstitucional('imprensa')
-export default paginaInstitucional('imprensa')
+export const generateMetadata = institutionalMetadata('imprensa')
+export default institutionalPage('imprensa')

@@ -1,31 +1,31 @@
-// O sitemap, como função pura: recebe o que existe e devolve as entradas. Fechado (site não indexável) devolve LISTA VAZIA: um mapa
-// de endereços ao lado de um noindex seria contradição.
+// The sitemap, as a pure function: it receives what exists and returns the entries. Closed (non indexable site) returns an EMPTY LIST: a map
+// of addresses next to a noindex would be a contradiction.
 import type { MetadataRoute } from 'next'
-import type { Guia, Verbete } from '@/conteudo/tipos'
-import { alternativas, urlAbsoluta, type Idioma } from '@/lib/site'
-import { rotasDoSitemap } from './rotas'
+import type { Guide, GlossaryEntry } from '@/content/types'
+import { alternatives, absoluteUrl, type Language } from '@/lib/site'
+import { sitemapRoutes } from './routes'
 
-export type DadosDoSitemap = {
+export type SitemapData = {
   aberto: boolean
   base: string
-  idiomas: readonly Idioma[]
+  idiomas: readonly Language[]
   padrao: string
-  guias: Record<string, readonly Pick<Guia, 'slug' | 'atualizadoEm'>[]>
-  verbetes: Record<string, readonly Pick<Verbete, 'slug' | 'atualizadoEm'>[]>
-  /** Comunidades abertas ou moderadas (a fechada não existe para quem não é membro) e páginas, com a data da última atividade. */
+  guias: Record<string, readonly Pick<Guide, 'slug' | 'atualizadoEm'>[]>
+  verbetes: Record<string, readonly Pick<GlossaryEntry, 'slug' | 'atualizadoEm'>[]>
+  /** Open or moderated communities (a closed one does not exist for non-members) and pages, with the date of the last activity. */
   comunidades: readonly { id: string; atividadeEm?: string }[]
   paginas: readonly { id: string; atividadeEm?: string }[]
 }
 
-type Entrada = MetadataRoute.Sitemap[number]
+type Entry = MetadataRoute.Sitemap[number]
 
-/** Entrada de um caminho em cada idioma em que ele existe, com os hreflang entre eles e o x-default. */
-function entradas(d: DadosDoSitemap, caminho: string, langs: readonly string[], extra: Partial<Entrada> = {}): Entrada[] {
-  const idiomas = d.idiomas.filter((i) => langs.includes(i.lang))
-  if (idiomas.length === 0) return []
-  const padrao = langs.includes(d.padrao) ? d.padrao : idiomas[0].lang
-  const languages = alternativas(d.base, caminho, idiomas, padrao)
-  return idiomas.map((i) => ({ url: urlAbsoluta(d.base, i.lang, caminho), alternates: { languages }, ...extra }))
+/** Entry for a path in each language in which it exists, with the hreflang between them and the x-default. */
+function entries(d: SitemapData, path: string, langs: readonly string[], extra: Partial<Entry> = {}): Entry[] {
+  const languageSet = d.idiomas.filter((i) => langs.includes(i.lang))
+  if (languageSet.length === 0) return []
+  const defaultValue = langs.includes(d.padrao) ? d.padrao : languageSet[0].lang
+  const languages = alternatives(d.base, path, languageSet, defaultValue)
+  return languageSet.map((i) => ({ url: absoluteUrl(d.base, i.lang, path), alternates: { languages }, ...extra }))
 }
 
 const data = (iso?: string): Date | undefined => {
@@ -34,30 +34,30 @@ const data = (iso?: string): Date | undefined => {
   return Number.isNaN(t.getTime()) ? undefined : t
 }
 
-export function montarSitemap(d: DadosDoSitemap): MetadataRoute.Sitemap {
+export function buildSitemap(d: SitemapData): MetadataRoute.Sitemap {
   if (!d.aberto) return []
-  const todos = d.idiomas.map((i) => i.lang)
-  const saida: Entrada[] = []
-  for (const r of rotasDoSitemap()) {
-    saida.push(...entradas(d, r.caminho, todos, { changeFrequency: r.frequencia, priority: r.prioridade }))
+  const all = d.idiomas.map((i) => i.lang)
+  const output: Entry[] = []
+  for (const r of sitemapRoutes()) {
+    output.push(...entries(d, r.caminho, all, { changeFrequency: r.frequency, priority: r.prioridade }))
   }
-  const porSlug = <T extends { slug: string; atualizadoEm: string }>(listas: Record<string, readonly T[]>, prefixo: string, prioridade: number) => {
-    const langsDoSlug = new Map<string, { langs: string[]; atualizadoEm?: string }>()
-    for (const [lang, itens] of Object.entries(listas)) {
-      for (const it of itens) {
-        const at = langsDoSlug.get(it.slug) ?? { langs: [] }
+  const bySlug = <T extends { slug: string; atualizadoEm: string }>(lists: Record<string, readonly T[]>, prefix: string, priority: number) => {
+    const slugLangs = new Map<string, { langs: string[]; atualizadoEm?: string }>()
+    for (const [lang, items] of Object.entries(lists)) {
+      for (const it of items) {
+        const at = slugLangs.get(it.slug) ?? { langs: [] }
         at.langs.push(lang)
         if (!at.atualizadoEm || it.atualizadoEm > at.atualizadoEm) at.atualizadoEm = it.atualizadoEm
-        langsDoSlug.set(it.slug, at)
+        slugLangs.set(it.slug, at)
       }
     }
-    for (const [slug, { langs, atualizadoEm }] of langsDoSlug) {
-      saida.push(...entradas(d, `${prefixo}/${slug}`, langs, { lastModified: data(atualizadoEm), changeFrequency: 'monthly', priority: prioridade }))
+    for (const [slug, { langs, atualizadoEm: updatedAt }] of slugLangs) {
+      output.push(...entries(d, `${prefix}/${slug}`, langs, { lastModified: data(updatedAt), changeFrequency: 'monthly', priority: priority }))
     }
   }
-  porSlug(d.guias, '/guias', 0.7)
-  porSlug(d.verbetes, '/glossario', 0.5)
-  for (const c of d.comunidades) saida.push(...entradas(d, `/comunidades/${encodeURIComponent(c.id)}`, todos, { lastModified: data(c.atividadeEm), changeFrequency: 'daily', priority: 0.6 }))
-  for (const p of d.paginas) saida.push(...entradas(d, `/paginas/${encodeURIComponent(p.id)}`, todos, { lastModified: data(p.atividadeEm), changeFrequency: 'daily', priority: 0.5 }))
-  return saida
+  bySlug(d.guias, '/guias', 0.7)
+  bySlug(d.verbetes, '/glossario', 0.5)
+  for (const c of d.comunidades) output.push(...entries(d, `/comunidades/${encodeURIComponent(c.id)}`, all, { lastModified: data(c.atividadeEm), changeFrequency: 'daily', priority: 0.6 }))
+  for (const p of d.paginas) output.push(...entries(d, `/paginas/${encodeURIComponent(p.id)}`, all, { lastModified: data(p.atividadeEm), changeFrequency: 'daily', priority: 0.5 }))
+  return output
 }

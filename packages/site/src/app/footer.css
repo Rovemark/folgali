@@ -1,0 +1,117 @@
+/* Footer. Only the site's semantic variables (--fundo, --tecido, --linha, --tinta*, --acao, --f-*): when the visual identity changes,
+   the footer follows. Four parts, top to bottom: the brand and the four columns, the discreet legal line, the final strip (rights,
+   Terms, Privacy, Cookies, beta, language and theme) and the small print. Luna naps on the network, sitting on the top line.*/
+.footer { position: relative; background: var(--tecido); border-top: 1px solid var(--linha); color: var(--tinta-2); margin-top: 72px; padding: 0 20px calc(104px + env(safe-area-inset-bottom)); }
+.footer-inside { position: relative; max-width: 1240px; margin-inline: auto; }
+.footer a { color: var(--tinta-2); text-decoration: none; }
+.footer a:hover { color: var(--tinta); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+
+.footer-luna { position: absolute; top: 0; inset-inline-end: 4px; width: 92px; height: auto; transform: translateY(-91%); pointer-events: none; user-select: none; }
+
+.footer-middle { display: grid; gap: 40px; padding-block: 48px 40px; }
+.footer-brand { display: grid; gap: 16px; align-content: start; max-width: 36ch; }
+.footer-brand .brand { padding: 0; justify-self: start; }
+.footer-description { margin: 0; font-size: 15px; line-height: 1.6; color: var(--tinta-2); text-wrap: pretty; }
+.footer-icons { list-style: none; margin: 4px 0 0; padding: 0; display: flex; gap: 8px; }
+.footer .footer-icon { display: inline-grid; place-items: center; width: 44px; height: 44px; border: 1px solid var(--linha); border-radius: var(--raio); background: var(--fundo); color: var(--tinta-2); transition: color 0.2s, border-color 0.2s, background-color 0.2s; }
+.footer .footer-icon:hover { color: var(--acao); border-color: color-mix(in oklab, var(--acao) 40%, var(--linha)); background: var(--acao-fundo); text-decoration: none; }
+
+.footer-nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 20px; }
+.footer-nav h2 { margin: 0 0 12px; font-family: var(--f-mono); font-size: 11.5px; font-weight: 500; line-height: 1.45; letter-spacing: 0.08em; text-wrap: balance; text-transform: uppercase; color: var(--tinta-3); }
+.footer-nav ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+/* columns as <details> (FooterGroup): a plain title on wide screens, a fold on phones */
+.footer-group summary { list-style: none; display: block; }
+.footer-group summary::-webkit-details-marker { display: none; }
+@media (min-width: 720px) { .footer-group summary { cursor: default; } }
+@media (max-width: 719px) {
+  .footer-nav { grid-template-columns: 1fr; gap: 0; }
+  .footer-group { border-bottom: 1px solid var(--linha); }
+  .footer-group:not([data-fixed]) summary { cursor: pointer; display: flex; align-items: center; justify-content: space-between; min-height: 48px; }
+  .footer-group:not([data-fixed]) summary::after {
+    content: ''; width: 9px; height: 9px; margin-inline-end: 6px; border-right: 2px solid var(--tinta-3); border-bottom: 2px solid var(--tinta-3);
+    rotate: 45deg; translate: 0 -3px; transition: rotate 0.2s;
+  }
+  .footer-group details[open] summary::after { rotate: 225deg; translate: 0 2px; }
+  .footer-group summary h2 { margin: 0; }
+  .footer-group details[open] > ul { padding-bottom: 12px; }
+  .footer-group[data-fixed] summary h2 { margin: 14px 0 6px; }
+  /* phones: the links of a fixed column side by side, so it takes two or three lines instead of five */
+  .footer-group[data-fixed] ul { display: flex; flex-wrap: wrap; gap: 0 18px; padding-bottom: 8px; }
+  .footer-middle { gap: 24px; padding-block: 36px 20px; }
+}
+.footer-nav a { display: inline-flex; align-items: center; min-height: 34px; padding-block: 5px; font-size: 15px; line-height: 1.35; }
+
+.footer-legal { border-top: 1px solid var(--linha); padding-block: 14px; }
+.footer-legal ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0 22px; }
+.footer-legal a { display: inline-flex; align-items: center; min-height: 34px; font-size: 13.5px; color: var(--tinta-3); }
+
+.footer-base { border-top: 1px solid var(--linha); padding-block: 14px 6px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 24px; }
+.footer-base-text { display: flex; flex-wrap: wrap; align-items: center; gap: 0 22px; font-size: 13.5px; color: var(--tinta-3); }
+.footer-base-text p { margin: 0; }
+.footer-copy { color: var(--tinta-2); }
+.footer-brands { font-size: 12.5px; color: var(--tinta-3); }
+.footer-contacts a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.footer-base-links { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0 18px; }
+.footer-base-links a { display: inline-flex; align-items: center; min-height: 34px; color: var(--tinta-3); }
+.footer-beta { display: inline-flex; align-items: center; gap: 8px; min-height: 34px; font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.04em; }
+.footer-beta::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--manga); box-shadow: 0 0 0 3px color-mix(in oklab, var(--manga) 28%, transparent); }
+
+.footer-preferences { display: flex; align-items: center; gap: 6px; }
+
+/* language: a compact button (globe and the language name) that opens the list upwards */
+.footer-language { position: relative; }
+.footer-language summary { list-style: none; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 12px 0 10px; border: 1px solid var(--linha); border-radius: var(--raio); background: var(--fundo); color: var(--tinta-2); font-size: 14px; font-weight: 600; transition: border-color 0.2s, color 0.2s; }
+.footer-language summary::-webkit-details-marker { display: none; }
+.footer-language summary:hover, .footer-language[open] summary { color: var(--tinta); border-color: var(--linha-forte); }
+.footer-language-globe { width: 18px; height: 18px; flex: none; }
+.footer-language-arrow { flex: none; color: var(--tinta-3); transition: transform 0.2s; }
+.footer-language[open] .footer-language-arrow { transform: rotate(180deg); }
+.footer-language-list {
+  position: absolute; bottom: calc(100% + 8px); inset-inline-end: 0; z-index: 30; min-width: 200px; max-height: min(60vh, 440px); overflow-y: auto;
+  list-style: none; margin: 0; padding: 6px; display: grid; background: var(--tecido); border-radius: var(--raio);
+  box-shadow: 0 0 0 1px var(--linha-forte), 0 14px 30px -14px color-mix(in oklab, var(--grafite) 50%, transparent);
+}
+.footer .footer-language-list a { display: flex; align-items: center; min-height: 40px; padding: 0 12px; border-radius: var(--raio-peq); font-size: 15px; color: var(--tinta); }
+.footer .footer-language-list a:hover { background: var(--tecido-2); text-decoration: none; }
+.footer .footer-language-list a[aria-current='true'] { color: var(--acao); font-weight: 700; }
+
+/* theme: small switch; the ball shows the current theme */
+.footer-theme { display: inline-grid; place-items: center; min-width: 44px; min-height: 44px; padding: 0 2px; border: 0; background: transparent; cursor: pointer; color: var(--tinta-2); }
+.footer-theme-rail { position: relative; display: block; width: 52px; height: 30px; border-radius: 15px; background: var(--acao-fundo); box-shadow: inset 0 0 0 1px var(--linha-forte); transition: background-color 0.25s; }
+.footer-theme-dot { position: absolute; top: 3px; inset-inline-start: 3px; display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--tecido); color: var(--tinta); box-shadow: 0 1px 3px color-mix(in oklab, var(--grafite) 35%, transparent); transition: transform 0.25s; }
+.footer-theme-dot svg { width: 14px; height: 14px; }
+.footer-theme-moon { display: none; }
+.footer-theme[aria-checked='true'] .footer-theme-dot { transform: translateX(22px); }
+[dir='rtl'] .footer-theme[aria-checked='true'] .footer-theme-dot { transform: translateX(-22px); }
+.footer-theme[aria-checked='true'] .footer-theme-sun { display: none; }
+.footer-theme[aria-checked='true'] .footer-theme-moon { display: block; }
+
+.footer-fine { display: grid; gap: 4px; padding-top: 6px; max-width: 90ch; font-size: 12.5px; line-height: 1.55; color: var(--tinta-3); }
+.footer-fine p { margin: 0; }
+
+/* Arabic joins the letters: spacing between them breaks the writing; in ideograms uppercase does not exist */
+:is(:lang(ar), :lang(zh), :lang(ja), :lang(ko)) :is(.footer-nav h2, .footer-beta, .map-group h2) { letter-spacing: 0; text-transform: none; }
+
+@media (min-width: 720px) {
+  .footer { padding-inline: 32px; }
+  /* columns the size of the content, spread out; if width is short, they shrink and the text wraps */
+  .footer-nav { grid-template-columns: repeat(4, minmax(0, max-content)); justify-content: space-between; column-gap: 28px; }
+  .footer-luna { width: 112px; inset-inline-end: 12px; }
+}
+@media (min-width: 960px) {
+  .footer { padding-bottom: 32px; }
+  .footer-middle { grid-template-columns: minmax(0, 320px) minmax(0, 1fr); gap: 72px; padding-block: 64px 48px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .footer-theme-rail, .footer-theme-dot, .footer-language-arrow, .footer-group summary::after { transition: none; }
+}
+@media (forced-colors: active) {
+  .footer-theme-rail { border: 1px solid ButtonText; }
+  .footer-theme-dot { border: 1px solid ButtonText; }
+}
+
+/* the site map (/mapa-do-site): each group of the registry, in columns that adjust to the width */
+.sitemap { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 28px 24px; }
+.map-group h2 { margin: 0 0 8px; font-family: var(--f-mono); font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--tinta-3); }
+.map-group ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.map-group a { display: inline-flex; align-items: center; min-height: 36px; font-size: 16px; color: var(--tinta); }

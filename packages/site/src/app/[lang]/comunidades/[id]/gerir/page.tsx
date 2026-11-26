@@ -1,84 +1,84 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import EstadoVazio from '@/components/EstadoVazio'
-import CabecalhoComunidade from '@/components/comunidades/CabecalhoComunidade'
-import PosseForm from '@/components/comunidades/PosseForm'
-import { IcAlerta } from '@/components/Icones'
-import EstadoDeErro from '@/components/social/EstadoDeErro'
-import FormProposta from '@/components/social/FormProposta'
-import { ehCompleta, ID_OK, lerComunidade, quemDe, quemSou } from '@/lib/comunidades/dados'
-import { rostoPorUid } from '@/lib/dominio/expressao'
-import { podeNaComunidade } from '@/lib/dominio/permissoes'
-import { dict, ehPronto } from '@/lib/i18n'
-import { obterRede } from '@/lib/obter-rede'
-import { carregar } from '@/lib/social/carregar'
-import { metaTela } from '@/lib/seo/meta-telas'
+import EmptyState from '@/components/EmptyState'
+import CommunityHeader from '@/components/communities/CommunityHeader'
+import OwnershipForm from '@/components/communities/OwnershipForm'
+import { IcAlert } from '@/components/Icons'
+import ErrorState from '@/components/social/ErrorState'
+import ProposalForm from '@/components/social/ProposalForm'
+import { isComplete, ID_OK, readCommunity, whoOf, whoAmI } from '@/lib/communities/data'
+import { faceByUid } from '@/lib/domain/expression'
+import { canInCommunity } from '@/lib/domain/permissions'
+import { dict, isReady } from '@/lib/i18n'
+import { getNetwork } from '@/lib/get-network'
+import { load } from '@/lib/social/load'
+import { screenMeta } from '@/lib/seo/meta-screens'
 
 type P = { params: Promise<{ lang: string; id: string }> }
 
 export async function generateMetadata({ params }: P): Promise<Metadata> {
   const { lang, id } = await params
-  return metaTela(lang, `/comunidades/${id}/gerir`, dict(ehPronto(lang) ? lang : 'pt').socComunidades.gerir.titulo)
+  return screenMeta(lang, `/comunidades/${id}/gerir`, dict(isReady(lang) ? lang : 'pt').socComunidades.gerir.titulo)
 }
 
-export default async function Gerir({ params }: P) {
+export default async function Manage({ params }: P) {
   const { lang, id } = await params
-  if (!ehPronto(lang)) notFound()
+  if (!isReady(lang)) notFound()
   const d = dict(lang)
   const t = d.socComunidades.gerir
-  const c = ID_OK.test(id) ? await lerComunidade(id) : ({ ok: false, codigo: 'nao-encontrado' } as const)
-  if (!c.ok) return <EstadoDeErro codigo={c.codigo} d={d} lang={lang} />
-  const com = c.valor
-  if (!ehCompleta(com)) return <CabecalhoComunidade c={com} d={d} lang={lang} />
-  const quem = quemDe(com.voce)
-  if (!podeNaComunidade('editar-dados', quem, com.acesso).ok) {
+  const c = ID_OK.test(id) ? await readCommunity(id) : ({ ok: false, codigo: 'nao-encontrado' } as const)
+  if (!c.ok) return <ErrorState codigo={c.codigo} d={d} lang={lang} />
+  const using = c.valor
+  if (!isComplete(using)) return <CommunityHeader c={using} d={d} lang={lang} />
+  const who = whoOf(using.voce)
+  if (!canInCommunity('editar-dados', who, using.acesso).ok) {
     return (
       <>
-        <CabecalhoComunidade c={com} d={d} lang={lang} aba="gerir" />
-        <EstadoVazio titulo={d.socModeracao.soEquipe.titulo} texto={t.soEquipe} ficha={rostoPorUid('rvr_gerir_so_equipe_0000')} estado="parado" erro />
+        <CommunityHeader c={using} d={d} lang={lang} aba="gerir" />
+        <EmptyState titulo={d.socModeracao.soEquipe.titulo} texto={t.soEquipe} ficha={faceByUid('rvr_gerir_so_equipe_0000')} estado="parado" erro />
       </>
     )
   }
-  const eu = await quemSou()
-  const dono = podeNaComunidade('transferir', quem, com.acesso).ok
-  const membros = dono ? await carregar(() => obterRede().cliente.membros(id)) : null
-  const candidatos = membros?.ok ? membros.valor.itens.filter((m) => m.papel !== 'dono' && m.rover.uid !== eu?.uid).map((m) => m.rover) : []
+  const me = await whoAmI()
+  const owner = canInCommunity('transferir', who, using.acesso).ok
+  const members = owner ? await load(() => getNetwork().cliente.membros(id)) : null
+  const candidates = members?.ok ? members.valor.itens.filter((m) => m.papel !== 'dono' && m.rover.uid !== me?.uid).map((m) => m.rover) : []
   return (
     <>
-      <CabecalhoComunidade c={com} d={d} lang={lang} aba="gerir" />
-      <div className="pilha-g">
+      <CommunityHeader c={using} d={d} lang={lang} aba="gerir" />
+      <div className="stack-large">
         <div>
           <h2>{t.titulo}</h2>
-          <p className="suave">{t.sub}</p>
+          <p className="soft">{t.sub}</p>
         </div>
-        <section className="cartao" aria-labelledby="ed-t">
+        <section className="card" aria-labelledby="ed-t">
           <h3 id="ed-t">{t.editar}</h3>
-          <p className="suave">{t.editarTexto}</p>
-          {com.acesso === 'fechada' && (
-            <p className="aviso-comunidade" role="note">
-              <IcAlerta />
+          <p className="soft">{t.editarTexto}</p>
+          {using.acesso === 'fechada' && (
+            <p className="notice-community" role="note">
+              <IcAlert />
               <span>{t.fechadaAbre}</span>
             </p>
           )}
-          {!dono && <p className="miudo">{t.acessoSoDono}</p>}
-          <FormProposta
+          {!owner && <p className="fine">{t.acessoSoDono}</p>}
+          <ProposalForm
             tipo="comunidade-atualizar"
             d={d}
             lang={lang}
-            podeEscrever={eu !== null}
-            nomeDoRover={eu?.nome}
-            destino={{ rotulo: com.nome, href: `/${lang}/comunidades/${id}` }}
-            ocultar={dono ? ['comunidade'] : ['comunidade', 'acesso']}
-            campos={{ comunidade: id, nome: com.nome, descricao: com.descricao, regras: com.regras, tema: com.tema, acesso: com.acesso, categorias: com.categorias }}
+            canWrite={me !== null}
+            roverName={me?.nome}
+            destino={{ rotulo: using.nome, href: `/${lang}/comunidades/${id}` }}
+            hide={owner ? ['comunidade'] : ['comunidade', 'acesso']}
+            campos={{ comunidade: id, nome: using.nome, descricao: using.descricao, regras: using.regras, tema: using.tema, acesso: using.acesso, categorias: using.categorias }}
           />
         </section>
-        {dono && eu && (
-          <section aria-labelledby="posse-t" className="pilha">
+        {owner && me && (
+          <section aria-labelledby="posse-t" className="stack">
             <div>
               <h3 id="posse-t">{t.posse}</h3>
-              <p className="suave">{t.posseTexto}</p>
+              <p className="soft">{t.posseTexto}</p>
             </div>
-            <PosseForm comunidade={id} nomeDaComunidade={com.nome} membros={candidatos} d={d} lang={lang} nomeDoRover={eu.nome} />
+            <OwnershipForm comunidade={id} communityName={using.nome} membros={candidates} d={d} lang={lang} roverName={me.nome} />
           </section>
         )}
       </div>

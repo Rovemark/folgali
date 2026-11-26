@@ -1,18 +1,31 @@
-# Configuração do gitleaks para este repositório: as regras padrão, mais uma lista curta de exceções.
-# Cada exceção é um valor FALSO que existe de propósito num teste do filtro de vazamento: o teste prova que o filtro
-# recusa um texto com cara de chave da AWS ou de token. Nenhum deles é credencial de verdade.
+# gitleaks configuration for this repository: the default rules, plus a short list of exceptions.
+# Each exception is a FAKE value that exists on purpose in a leak filter test: the test proves that the filter
+# rejects a text that looks like an AWS key or a token. None of them is a real credential.
 [extend]
 useDefault = true
 
 [[allowlists]]
-description = "Chaves falsas dos testes do filtro de texto e do log do relé"
+description = "Fake keys used in the text filter and relay log tests"
 paths = [
-  '''^test/protocolo/texto\.test\.js$''',
-  '''^packages/site/test/dominio/privacidade\.test\.ts$''',
-  '''^test/rele/http\.test\.js$''',
+  '''^test/protocol/text\.test\.js$''',
+  '''^packages/site/test/domain/privacy\.test\.ts$''',
+  '''^test/relay/http\.test\.js$''',
 ]
 regexTarget = "secret"
 regexes = [
   '''^AKIAABCDEFGHIJKLMNOP$''',
   '''^chute-errado-123$''',
+]
+
+[[allowlists]]
+description = "Fake credentials in the leak filter tests and the default secret of the stand-in S3 used by the tests"
+paths = [
+  '''^test/helpers/test-s3\.js$''',
+  '''^test/protocol/leak\.test\.js$''',
+]
+regexTarget = "secret"
+regexes = [
+  '''^segredo-de-teste-0123456789$''',
+  '''^abc123def456$''',
+  '''^abcd1234efgh$''',
 ]

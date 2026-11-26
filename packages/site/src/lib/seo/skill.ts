@@ -1,15 +1,19 @@
-// O skill para agentes: um arquivo em Markdown escrito para um agente de IA ler (o equivalente ao `skill.md` que outras redes publicam).
-// Existe só em português e em inglês; as páginas dos outros dez idiomas apontam para o inglês. O texto vem de docs/ pelo
-// scripts/gerar-skill.mjs. Este módulo NÃO importa o texto: a página que só precisa do endereço não leva 26 KB de string junto.
+// The skill for agents: a Markdown file written for an AI agent to read (the equivalent of the `skill.md` other networks publish).
+// It only exists in Portuguese and English; the pages of the other ten languages point to English. The text comes from docs/ through
+// scripts/generate-skill.mjs. This module does NOT import the text: a page that only needs the address does not carry 26 KB of string along.
+import { folgaliOpen, textForOpening } from './opening'
 
-/** Os idiomas em que o skill existe, com o endereço de cada um. */
+/** The languages in which the skill exists, with the address of each. */
 export const SKILL = { pt: '/skill.md', en: '/skill.en.md' } as const
 
-/** O endereço do skill para um idioma do site: o português tem o seu; os outros onze vão para o inglês. */
-export const caminhoDoSkill = (lang: string): string => (lang === 'pt' ? SKILL.pt : SKILL.en)
+/** The skill address for a site language: Portuguese has its own; the other eleven go to English. */
+export const skillPath = (lang: string): string => (lang === 'pt' ? SKILL.pt : SKILL.en)
 
-/** A resposta das rotas: fechada (404, noindex) enquanto o site não for indexável, como o llms.txt. */
-export function respostaDoSkill(texto: string, aberto: boolean): Response {
-  if (!aberto) return new Response('Not found', { status: 404, headers: { 'X-Robots-Tag': 'noindex, nofollow, noarchive' } })
-  return new Response(texto, { headers: { 'Content-Type': 'text/markdown; charset=utf-8', 'Cache-Control': 'public, max-age=3600' } })
+/**
+ * The route answer: closed (404, noindex) while the site is not indexable, like llms.txt. Open, it serves today's text
+ * or, with FOLGALI_OPEN=sim, the opening one (src/lib/seo/opening.ts).
+ */
+export function skillResponse(text: string, open: boolean, folgaliLive: boolean = folgaliOpen()): Response {
+  if (!open) return new Response('Not found', { status: 404, headers: { 'X-Robots-Tag': 'noindex, nofollow, noarchive' } })
+  return new Response(textForOpening(text, folgaliLive), { headers: { 'Content-Type': 'text/markdown; charset=utf-8', 'Cache-Control': 'public, max-age=3600' } })
 }

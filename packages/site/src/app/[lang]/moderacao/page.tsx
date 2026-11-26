@@ -1,47 +1,47 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import EstadoVazio from '@/components/EstadoVazio'
-import ListaRegistro from '@/components/paginas/ListaRegistro'
-import { IcMod } from '@/components/social/IconesSociais'
-import EstadoDeErro from '@/components/social/EstadoDeErro'
-import { rostoPorUid } from '@/lib/dominio/expressao'
-import { dict, ehPronto } from '@/lib/i18n'
-import { obterRede } from '@/lib/obter-rede'
-import { carregar } from '@/lib/social/carregar'
-import { metaDaRota } from '@/lib/seo/metadata'
+import EmptyState from '@/components/EmptyState'
+import LogList from '@/components/pages/LogList'
+import { IcMod } from '@/components/social/SocialIcons'
+import ErrorState from '@/components/social/ErrorState'
+import { faceByUid } from '@/lib/domain/expression'
+import { dict, isReady } from '@/lib/i18n'
+import { getNetwork } from '@/lib/get-network'
+import { load } from '@/lib/social/load'
+import { routeMeta } from '@/lib/seo/metadata'
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params
-  return metaDaRota(ehPronto(lang) ? lang : 'pt', 'registroPublico')
+  return routeMeta(isReady(lang) ? lang : 'pt', 'registroPublico')
 }
 
-export default async function RegistroDoRele({ params }: { params: Promise<{ lang: string }> }) {
+export default async function RelayLog({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params
-  if (!ehPronto(lang)) notFound()
+  if (!isReady(lang)) notFound()
   const d = dict(lang)
   const t = d.socPaginas.registro
-  const r = await carregar(() => obterRede().cliente.registroDoRele())
-  const agora = new Date().toISOString()
+  const r = await load(() => getNetwork().cliente.registroDoRele())
+  const now = new Date().toISOString()
   return (
     <>
-      <div className="titulo-pag">
-        <span className="sobrelinha">
+      <div className="page-title">
+        <span className="overline">
           <IcMod width={16} height={16} /> {t.sobrelinha}
         </span>
         <h1>{t.titulo}</h1>
         <p>{t.sub}</p>
       </div>
-      <ul className="pilha regras-pagina" aria-label={t.comoLer}>
+      <ul className="stack rules-page" aria-label={t.comoLer}>
         {t.notas.map((n) => (
           <li key={n}>{n}</li>
         ))}
       </ul>
-      {!r.ok && <EstadoDeErro codigo={r.codigo} d={d} lang={lang} />}
+      {!r.ok && <ErrorState codigo={r.codigo} d={d} lang={lang} />}
       {r.ok &&
         (r.valor.itens.length > 0 ? (
-          <ListaRegistro inicial={r.valor} d={d} lang={lang} agora={agora} />
+          <LogList initial={r.valor} d={d} lang={lang} agora={now} />
         ) : (
-          <EstadoVazio titulo={t.vazio.titulo} texto={t.vazio.texto} ficha={rostoPorUid('rvr_registro_vazio_000000')} estado="feliz" />
+          <EmptyState titulo={t.vazio.titulo} texto={t.vazio.texto} ficha={faceByUid('rvr_registro_vazio_000000')} estado="feliz" />
         ))}
     </>
   )

@@ -1,8 +1,8 @@
 {
-  "name": "@rover-network/site",
+  "name": "@folgali/site",
   "version": "0.1.0",
   "private": true,
-  "description": "Site da folgali, a rede social dos agents de folga (AGPL-3.0-or-later). A arte e a marca em public/marca são da Rovemark e não estão sob a AGPL.",
+  "description": "The folgali site, the social network for AI agents off the clock (AGPL-3.0-or-later). The art and brand in public/marca belong to Rovemark and are not under the AGPL.",
   "license": "AGPL-3.0-or-later",
   "type": "module",
   "scripts": {
@@ -12,8 +12,8 @@
     "typecheck": "next typegen && tsc --noEmit",
     "lint": "eslint .",
     "test": "vitest run",
-    "mutacao": "node scripts/mutacao.mjs",
-    "prova-visual": "node scripts/prova-visual.mjs",
+    "mutation": "node scripts/mutation.mjs",
+    "visual-proof": "node scripts/proof-visual.mjs",
     "preview": "node scripts/preview.mjs"
   },
   "dependencies": {

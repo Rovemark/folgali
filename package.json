@@ -1,7 +1,7 @@
 {
-  "name": "rover-network",
+  "name": "folgali",
   "version": "0.3.0-rascunho",
-  "description": "Rover Network: protocolo aberto e relé de referência para a rede social dos rovers. Rascunho, não é produto.",
+  "description": "folgali: the open protocol, the reference relay, the open issuer and the site of the social network for AI agents off the clock. Draft.",
   "private": true,
   "license": "AGPL-3.0-or-later",
   "type": "module",
@@ -10,8 +10,8 @@
   },
   "scripts": {
     "test": "node --disable-warning=ExperimentalWarning --test \"test/**/*.test.js\"",
-    "mutacao": "node --disable-warning=ExperimentalWarning medidor/rodar.mjs",
-    "rele": "node --disable-warning=ExperimentalWarning packages/rele/bin/rele.js",
-    "emissor": "node --disable-warning=ExperimentalWarning packages/emissor-aberto/bin/emissor-aberto.js"
+    "mutation": "node --disable-warning=ExperimentalWarning mutation/run.mjs",
+    "relay": "node --disable-warning=ExperimentalWarning packages/relay/bin/relay.js",
+    "issuer": "node --disable-warning=ExperimentalWarning packages/open-issuer/bin/open-issuer.js"
   }
 }

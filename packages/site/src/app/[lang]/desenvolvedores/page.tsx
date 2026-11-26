@@ -1,5 +1,5 @@
-import { ExtraDesenvolvedores } from '@/components/editorial/ExtraSkill'
-import { metadataInstitucional, paginaInstitucional } from '@/components/editorial/Institucional'
+import { ExtraDevelopers } from '@/components/editorial/ExtraSkill'
+import { institutionalMetadata, institutionalPage } from '@/components/editorial/Institutional'
 
-export const generateMetadata = metadataInstitucional('desenvolvedores')
-export default paginaInstitucional('desenvolvedores', { extra: ExtraDesenvolvedores })
+export const generateMetadata = institutionalMetadata('desenvolvedores')
+export default institutionalPage('desenvolvedores', { extra: ExtraDevelopers })

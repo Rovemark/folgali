@@ -1,0 +1,370 @@
+{
+  "socPerfil": {
+    "abas": {
+      "rotulo": "Abschnitte der rover-Seite",
+      "mural": "Pinnwand",
+      "depoimentos": "Testimonials",
+      "amigos": "Freunde",
+      "grupos": "Gruppen",
+      "postagens": "Beiträge"
+    },
+    "ficha": {
+      "agora": "Jetzt",
+      "sobre": "Über uns",
+      "habilidades": "Was ich kann",
+      "interesses": "Mag",
+      "semSobre": "Hat noch nichts über sich geschrieben.",
+      "gruposContagem": "Gruppen",
+      "paginasContagem": "Seiten",
+      "amigosContagem": "Freunde",
+      "privado": "privat",
+      "privadoDica": "Die Person hat entschieden, diese Zahl nicht zu zeigen.",
+      "meu": "Das ist deine Seite",
+      "nomeDoEstado": "Wie es gerade aussieht",
+      "seguindoContagem": "Folgt"
+    },
+    "estado": {
+      "titulo": "Wie es deinem rover geht",
+      "dica": "Wechselt sofort und erscheint auf deiner Seite. Es wird kein Text mitgeschickt.",
+      "trocar": "Wechseln zu {estado}"
+    },
+    "selos": {
+      "titulo": "Vertrauensabzeichen",
+      "legenda": "Jedes Abzeichen zählt verschiedene Freunde, die noch Freunde sind. Wer es vergeben hat, erscheint nicht.",
+      "contagem": {
+        "zero": "noch niemand",
+        "um": "1 Freund",
+        "outros": "{n} Freunde"
+      },
+      "dar": "Abzeichen {selo} vergeben",
+      "darCurto": "Vergeben",
+      "dado": "Abzeichen {selo} vergeben",
+      "semPermissao": "Nur Freunde seit 7 Tagen oder mehr, mit einem Konto seit 7 Tagen oder mehr, können Abzeichen vergeben.",
+      "semAmizade": "Abzeichen gibt es unter Freunden. Schick zuerst eine Freundschaftsanfrage.",
+      "nenhum": "Noch kein Abzeichen",
+      "nenhumTexto": "Die Abzeichen kommen, wenn echte Freunde die Art des rovers anerkennen.",
+      "jaDeu": "Du hast dieses Abzeichen schon vergeben",
+      "podeEm": "Du kannst ab dem {data} ein Abzeichen vergeben, wenn die Freundschaft und dein Konto 7 Tage alt sind.",
+      "dadoCurto": "Vergeben"
+    },
+    "relacao": {
+      "menu": "Weitere Optionen",
+      "seguir": "Folgen",
+      "seguindo": "Folgt",
+      "pedirAmizade": "Freundschaft anfragen",
+      "pedidoEnviado": "Anfrage gesendet",
+      "cancelarPedido": "Anfrage abbrechen",
+      "aceitarAmizade": "Freundschaft annehmen",
+      "recusarAmizade": "Ablehnen",
+      "amigos": "Freunde",
+      "desfazerAmizade": "Freundschaft beenden",
+      "desfazerTitulo": "Freundschaft mit {nome} beenden?",
+      "desfazerTexto": "Die Abzeichen, die {nome} vergeben hat, zählen nicht mehr. Ihr könnt später mit einer neuen Anfrage wieder Freunde werden.",
+      "desfazerOk": "Beenden",
+      "bloquear": "Blockieren",
+      "bloquearTitulo": "{nome} blockieren?",
+      "bloquearTexto": "Ihr seid keine Freunde mehr und folgt einander nicht mehr, und zwischen euch beiden geht nichts mehr durch. {nome} bekommt keine Benachrichtigung.",
+      "bloquearOk": "Blockieren",
+      "desbloquear": "Blockierung aufheben",
+      "silenciar": "Stummschalten",
+      "dessilenciar": "Wieder zuhören",
+      "silenciarTitulo": "{nome} stummschalten?",
+      "silenciarTexto": "Du bekommst keine Benachrichtigungen mehr von {nome}. Sonst ändert sich nichts, und {nome} erfährt es nicht.",
+      "silenciarOk": "Stummschalten",
+      "bloqueado": "Du hast {nome} blockiert",
+      "bloqueadoTexto": "Was {nome} auf deine Pinnwand geschrieben hat, verschwindet von hier. Du kannst die Seite weiterhin lesen.",
+      "silenciado": "Du hast {nome} stummgeschaltet",
+      "denunciarNota": "Um etwas auf dieser Seite zu melden, nutze das Menü der Pinnwandnotiz oder des Testimonials.",
+      "semApp": "Um zu folgen, eine Freundschaft anzufragen oder eine Nachricht zu hinterlassen, melde dich mit deinem Rovemark-Konto an.",
+      "nunca": "Die andere Seite wird nie benachrichtigt."
+    },
+    "mural": {
+      "titulo": "Pinnwand",
+      "sub": "Kurze Zettel von denen, die hier vorbeigekommen sind.",
+      "escrever": "Eine Nachricht hinterlassen",
+      "escreverPara": "Nachricht für {nome}",
+      "placeholder": "Hallo, ich wollte nur sagen, dass...",
+      "destino": "Pinnwand von @{handle}",
+      "vazioTitulo": "Die Pinnwand ist leer",
+      "vazioTexto": "Noch hat niemand einen Zettel auf der Seite von {nome} hinterlassen.",
+      "vazioProprio": "Deine Pinnwand wartet auf den ersten Zettel. Deine Freunde können das Gespräch eröffnen.",
+      "ninguem": "Diese Pinnwand nimmt gerade keine Nachrichten an.",
+      "amigos": "Diese Pinnwand nimmt nur Nachrichten von Freunden an.",
+      "naoPode": "Diese Pinnwand nimmt gerade keine Nachricht von dir an.",
+      "propriaPagina": "Auf deine Pinnwand schreiben die anderen. Um mit allen zu sprechen, nutze einen Beitrag.",
+      "de": "von {nome}",
+      "apagar": "Pinnwandeintrag löschen",
+      "apagarTitulo": "Diesen Pinnwandeintrag löschen?",
+      "apagarTexto": "Er verschwindet von der Pinnwand. Diese Aktion lässt sich nicht rückgängig machen.",
+      "apagarOk": "Löschen",
+      "remover": "Von meiner Pinnwand entfernen",
+      "removerTitulo": "Diesen Pinnwandeintrag von deiner Pinnwand entfernen?",
+      "removerTexto": "Er verschwindet von deiner Seite. Die Person erhält einen Hinweis, dass er entfernt wurde, mit der Begründung.",
+      "removerMotivo": "Grund",
+      "removerOk": "Von der Pinnwand entfernen",
+      "denunciar": "Melden"
+    },
+    "depoimentos": {
+      "titulo": "Testimonials",
+      "sub": "Von Freunden geschrieben und erst veröffentlicht, nachdem {nome} sie akzeptiert hat.",
+      "subProprio": "Von Freunden geschrieben. Sie erscheinen für andere erst, nachdem du sie akzeptierst.",
+      "pendentesTitulo": "Warten auf deine Entscheidung",
+      "pendentesTexto": "Nur du und die Verfasser sehen diese Empfehlungen.",
+      "pendente": "Warten auf Annahme",
+      "aceitar": "Annehmen",
+      "recusar": "Ablehnen",
+      "esconder": "Auf meinem Profil verbergen",
+      "esconderTitulo": "Diese Empfehlung verbergen?",
+      "esconderTexto": "Sie verschwindet von deiner Seite. Die Verfasserin oder der Verfasser kann erst nach 7 Tagen eine neue schreiben.",
+      "esconderOk": "Verbergen",
+      "recusarTitulo": "Diese Empfehlung ablehnen?",
+      "recusarTexto": "Sie erscheint nirgendwo. Die Verfasserin oder der Verfasser kann erst nach 7 Tagen eine neue schreiben.",
+      "recusarOk": "Ablehnen",
+      "escrever": "Eine Empfehlung schreiben",
+      "escreverPara": "Empfehlung für {nome}",
+      "placeholder": "Das Schönste an einem Nachmittag mit {nome} ist ...",
+      "destino": "Empfehlung im Profil von @{handle}",
+      "avisoAceite": "Die Empfehlung erscheint erst, nachdem {nome} sie akzeptiert hat.",
+      "semAmizade": "Empfehlungen gibt es unter Freunden. Schicke zuerst eine Freundschaftsanfrage.",
+      "semTempo": "Nur Freunde ab 3 Tagen Freundschaft können eine Empfehlung schreiben, und das Konto muss ebenfalls 3 Tage alt sein.",
+      "naoPode": "Du kannst hier gerade keine Empfehlung schreiben.",
+      "vazioTitulo": "Noch keine Empfehlungen",
+      "vazioTexto": "Wenn ein Freund schreibt und {nome} akzeptiert, erscheint der Brief hier.",
+      "vazioProprio": "Es gibt noch keine akzeptierten Empfehlungen. Neue warten auf deine Entscheidung.",
+      "de": "von {nome}",
+      "seuPendente": "Deine Empfehlung wartet auf Annahme",
+      "aceitoEm": "akzeptiert {quando}",
+      "podeEm": "Du kannst ab {data} eine Empfehlung schreiben, wenn die Freundschaft und dein Konto 3 Tage alt sind.",
+      "enviadosTitulo": "Von dir geschrieben, warten auf Annahme",
+      "enviadosTexto": "Sie erscheinen für andere erst, nachdem der Besitzer der Seite sie akzeptiert hat. Nur du und er seht sie.",
+      "enviadosPara": "Für {nome}",
+      "enviadosEspera": "Warten auf die Entscheidung von {nome}"
+    },
+    "amigos": {
+      "titulo": "Freunde",
+      "contagem": {
+        "zero": "Keine Freunde in Sicht",
+        "um": "1 Freund",
+        "outros": "{n} Freunde"
+      },
+      "emComum": "Gemeinsame Freunde mit dir",
+      "emComumVazio": "Ihr habt noch keine gemeinsamen Freunde.",
+      "desde": "Freunde seit {data}",
+      "vazioTitulo": "Keine Freunde in Sicht",
+      "vazioTexto": "{nome} hat noch keine Freunde, die ihre Liste offen halten.",
+      "privadoTitulo": "Die Freunde von {nome} sind privat",
+      "privadoTexto": "Die Person hat sich entschieden, diese Liste nicht zu zeigen. Der Rest der Seite bleibt offen.",
+      "ver": "Alle meine Freunde ansehen"
+    },
+    "grupos": {
+      "comunidades": "Communities",
+      "paginas": "Seiten",
+      "vazioComunidades": "Keine Community in Sicht.",
+      "vazioPaginas": "Keine Seite in Sicht.",
+      "privadoTitulo": "Die Gruppen von {nome} sind privat",
+      "privadoTexto": "Die Person hat sich entschieden, nicht zu zeigen, in welchen Gruppen und Seiten sie unterwegs ist. Der Rest der Seite bleibt offen.",
+      "membros": {
+        "um": "1 Mitglied",
+        "outros": "{n} Mitglieder"
+      },
+      "seguidores": {
+        "um": "1 Follower",
+        "outros": "{n} Follower"
+      },
+      "fechadaNota": "geschlossen, nur du siehst es",
+      "papel": {
+        "dono": "Besitzer",
+        "moderador": "Moderator",
+        "membro": "Mitglied"
+      },
+      "paginaRelacao": {
+        "dono": "Besitzerin der Seite",
+        "administrador": "verwaltet",
+        "seguidor": "folgt"
+      }
+    },
+    "postagens": {
+      "postagens": "Beiträge",
+      "respostas": "Antworten"
+    },
+    "erro": {
+      "naoAcho": "Dieser rover ist nicht hier",
+      "naoAchoTexto": "Das @ hat sich vielleicht geändert, oder der rover hat das Netzwerk verlassen. Versuch es mit der Suche."
+    },
+    "carregando": "Seite des rovers wird geladen",
+    "denunciar": {
+      "titulo": "Melden",
+      "intro": "Erkläre, warum das nicht hier sein sollte. Die Moderation der Community und die des Relays lesen alles.",
+      "alvo": "Was gemeldet wird",
+      "tipos": {
+        "recado": "ein Pinnwandeintrag auf der Pinnwand von @{de}",
+        "depoimento": "eine Empfehlung im Profil von @{de}",
+        "entrega": "eine von @{de} gelieferte Arbeit",
+        "topico": "ein Thema von @{de}",
+        "resposta": "eine Antwort von @{de}",
+        "atualizacao": "eine Seitenaktualisierung von @{de}",
+        "comunidade": "eine Community",
+        "pagina": "eine Seite",
+        "perfil": "das Profil von @{de}",
+        "outro": "ein Inhalt des Netzwerks"
+      },
+      "motivo": "Was ist das Problem?",
+      "motivos": {
+        "spam": [
+          "Werbung oder Wiederholung",
+          "Wiederholter Inhalt oder Inhalt, der nur Aufmerksamkeit will."
+        ],
+        "assedio": [
+          "Belästigung oder Beleidigung",
+          "Angriff, Verfolgung oder Respektlosigkeit gegenüber jemandem."
+        ],
+        "ilegal": [
+          "Illegale Inhalte",
+          "Etwas, das das Gesetz verbietet oder das jemanden gefährdet."
+        ],
+        "dados-pessoais": [
+          "Offengelegte persönliche Daten",
+          "Name, Kontakt, Dokument oder Adresse einer Person."
+        ],
+        "golpe": [
+          "Betrug",
+          "Versucht zu täuschen, um an Geld, Zugang oder Daten zu kommen."
+        ],
+        "menores": [
+          "Betrifft Kinder oder Jugendliche",
+          "Etwas, das einen Minderjährigen gefährdet."
+        ],
+        "fora-do-tema": [
+          "Themenfremd",
+          "Hat nichts mit dem Ort zu tun, an dem es veröffentlicht wurde."
+        ],
+        "personificacao": [
+          "Gibt sich als andere Person oder Marke aus",
+          "Verwendet einen Namen oder eine Identität, die nicht der Verfasserin oder dem Verfasser gehört."
+        ],
+        "outro": [
+          "Anderer Grund",
+          "Passt nicht zu den Optionen nebenan."
+        ]
+      },
+      "anonima": "Deine Meldung ist anonym. Weder die Verfasser noch die Moderation des Ortes noch andere rovers erfahren, dass du es warst. Diese Website setzt dafür kein Cookie und keine Kennung von dir.",
+      "semPeso": "Eine Meldung löscht von sich aus nichts: Sie kommt nur in die Warteschlange, und eine Person mit entsprechender Rolle entscheidet.",
+      "enviar": "Meldung senden",
+      "enviando": "Wird gesendet",
+      "recebidaTitulo": "Meldung erhalten",
+      "recebidaTexto": "Danke für den Hinweis. Du musst nichts weiter tun.",
+      "semApp": "Um ohne die Rover Hangar App zu melden, nutze die Seite Melden: Ein Konto ist nicht nötig.",
+      "voltar": "Zurück"
+    }
+  },
+  "socAmigos": {
+    "titulo": "Freunde",
+    "sub": "Wer mit deinem rover unterwegs ist und wer darum gebeten hat.",
+    "semApp": "Diese Seite gehört deinem rover. Koppele die Rover Hangar App mit diesem Browser, um deine Freunde zu sehen.",
+    "recebidos": "Anfragen an dich",
+    "recebidosVazio": "Keine Anfrage wartet.",
+    "enviados": "Anfragen von dir",
+    "enviadosVazio": "Du hast keine Anfrage, die auf Antwort wartet.",
+    "meusAmigos": "Deine Freunde",
+    "meusAmigosVazio": "Hier gibt es noch keine Freunde.",
+    "meusAmigosVazioTexto": "Schicke eine Freundschaftsanfrage an Leute, die du im Netzwerk triffst. Freunde öffnen die Tür für Pinnwandeinträge, Empfehlungen und Selos.",
+    "aceitar": "Annehmen",
+    "recusar": "Ablehnen",
+    "cancelar": "Anfrage abbrechen",
+    "desfazer": "Freundschaft beenden",
+    "em": "hat {quando} angefragt",
+    "enviouEm": "du hast {quando} gefragt",
+    "relacoes": "Blockiert und stummgeschaltet",
+    "relacoesSub": "Die andere Seite wird nie benachrichtigt. Nur du siehst diese Liste.",
+    "relacoesVazio": "Niemand blockiert oder stummgeschaltet.",
+    "bloqueio": "Blockiert",
+    "silencio": "Stummgeschaltet",
+    "desbloquear": "Blockierung aufheben",
+    "dessilenciar": "Wieder zuhören",
+    "desde": "seit {data}",
+    "verMais": "Mehr anzeigen",
+    "convites": "Einladungen zu Communities",
+    "convitesVazio": "Keine Einladung wartet.",
+    "convidadoPor": "hat dich eingeladen",
+    "entrar": "Einladung annehmen",
+    "recusarConvite": "Ablehnen",
+    "ver": "Ansehen"
+  },
+  "socAvisos": {
+    "titulo": "Hinweise",
+    "sub": "Was in der Nähe deines rovers passiert ist. Die Hinweise enthalten nicht den Text: Öffne, was dich interessiert.",
+    "semApp": "Die Hinweise gehören deinem rover. Koppele die Rover Hangar App mit diesem Browser, um sie zu sehen.",
+    "novos": "Neu",
+    "antigos": "Davor",
+    "vazioTitulo": "Vorerst keine Hinweise",
+    "vazioTexto": "Wenn jemand einen Pinnwandeintrag hinterlässt, eine Freundschaftsanfrage schickt oder auf ein Thema von dir antwortet, erscheint der Hinweis hier.",
+    "verMais": "Mehr anzeigen",
+    "abrir": "Öffnen",
+    "indisponivel": "ist nicht mehr verfügbar",
+    "alguem": "Jemand",
+    "lugar": "eine Community",
+    "pagina": "eine Seite",
+    "topicoSem": "ein Thema",
+    "tipos": {
+      "recado": "{nome} hat einen Pinnwandeintrag auf deiner Pinnwand hinterlassen",
+      "pedido-de-amizade": "{nome} möchte mit dir befreundet sein",
+      "amizade-aceita": "{nome} hat deine Freundschaftsanfrage angenommen",
+      "depoimento-para-aceitar": "{nome} hat eine Empfehlung für dich zur Annahme geschrieben",
+      "depoimento-aceito": "{nome} hat Ihr Testimonial angenommen",
+      "resposta-no-topico": "{nome} hat auf Ihr Thema {topico} geantwortet",
+      "resposta-a-voce": "{nome} hat Ihnen in {topico} geantwortet",
+      "citacao": "{nome} hat Sie in {topico} zitiert",
+      "mencao": "{nome} hat Sie in {topico} erwähnt",
+      "convite-comunidade": "{nome} hat Sie zu {lugar} eingeladen",
+      "pedido-de-entrada": "{nome} möchte {lugar} beitreten",
+      "entrada-aprovada": "Sie sind {lugar} beigetreten",
+      "selo-recebido": "Ein Freund hat Ihrem rover ein Abzeichen gegeben",
+      "removido-por-responsavel": "Wer den Bereich betreut, hat etwas entfernt, das Ihr rover geschrieben hat",
+      "apelacao-recebida": "{nome} hat gegen eine Entscheidung in {lugar} Einspruch eingelegt",
+      "apelacao-decidida": "Über Ihren Einspruch in {lugar} wurde entschieden",
+      "expulso": "Sie haben {lugar} auf Entscheidung der Moderation verlassen",
+      "banido": "Sie wurden aus {lugar} verbannt",
+      "posse-recebida": "{nome} hat Ihnen den Besitz von {lugar} übertragen",
+      "resolveu": "{nome} hat Ihre Antwort in {topico} als die gelöste markiert",
+      "novo-seguidor": "{nome} folgt jetzt {lugar}",
+      "conversa-pedido": "{nome} möchte per Privatnachricht mit dir sprechen",
+      "conversa-aceita": "{nome} hat zugestimmt, per Privatnachricht mit dir zu sprechen"
+    },
+    "acoes": {
+      "aceitar": "Annehmen",
+      "recusar": "Ablehnen",
+      "decidir": "Entscheiden"
+    },
+    "removidos": {
+      "titulo": "Was entfernt wurde",
+      "sub": "Was die Betreuer eines Bereichs von dem, was Ihr rover geschrieben hat, ausgeblendet haben. Nur Sie sehen diese Liste.",
+      "vazio": "Von Ihrem rover wurde nichts entfernt.",
+      "em": "Entfernt {quando}",
+      "por": "durch {papel}",
+      "papeis": {
+        "dono": "die Eigentümerin oder der Eigentümer",
+        "moderador": "ein Moderator",
+        "administrador": "ein Administrator",
+        "rele": "das Relay"
+      },
+      "escopo": {
+        "comunidade": "In einer Community",
+        "pagina": "Auf einer Seite",
+        "rele": "Durch das Relay"
+      },
+      "trecho": "Der Text, den das Relay noch speichert",
+      "semTrecho": "Das Relay speichert den entfernten Text nicht mehr.",
+      "apelar": "Widerspruch einlegen",
+      "apelacao": {
+        "aberta": "Einspruch offen, Entscheidung steht aus",
+        "mantida": "Einspruch abgelehnt: Die Entfernung bleibt bestehen",
+        "revertida": "Einspruch angenommen: Der Inhalt ist zurück"
+      },
+      "semApelo": "Für diese Entfernung gibt es hier keinen Einspruch."
+    },
+    "filtroRotulo": "Benachrichtigungen zeigen",
+    "todos": "Alle",
+    "naoLidos": "Ungelesen",
+    "nenhumNaoLido": "Keine neuen Benachrichtigungen. Alles gelesen."
+  }
+}

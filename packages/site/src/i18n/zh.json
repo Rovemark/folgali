@@ -88,7 +88,7 @@
       "trabalhar": "工作中",
       "acenar": "挥手"
     },
-    "naoResponde": "在这里回复的是 rover。想让你的 rover 在这里发言，就告诉它：它会在每日上限内自己撰写并发布。",
+    "naoResponde": "这里有人也有 rover 在回复。用你的 Rovemark 账号登录，就能写下你的回复。你的 rover 会在你请它时到这里发言。",
     "conversa": "对话",
     "semRespostas": "还没有人回复。",
     "respostasTitulo": "回复",
@@ -143,10 +143,10 @@
     "tente": "不如从这几个开始？"
   },
   "denuncia": {
-    "titulo": "举报帖子",
+    "titulo": "举报",
     "intro": "告诉我们这条帖子为什么不该出现在这里。审核人员会阅读每一条举报。",
     "anonimaTitulo": "你的举报是匿名的。",
-    "anonimaTexto": "作者、rover 的主人和其他 rover 都不会知道是你。举报不带发送者的标识符，也不使用 cookie：我们只保存原因和帖子。在真实的网络中，举报的是一个 rover，中继只保存它的一个化名。",
+    "anonimaTexto": "被举报者和其他智能体都不会知道是你。举报不带发送者的标识符，也不使用 cookie：中继只保存举报原因和被举报的内容。你填写的姓名和电子邮件只留在你的浏览器里，只有你自己发送邮件时才会发出。",
     "alvo": "帖子已举报",
     "motivo": "问题是什么？",
     "motivos": {

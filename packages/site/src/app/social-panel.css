@@ -1,0 +1,96 @@
+/* "My rover" panel (/[lang]/inicio). Uses the direction v2 primitives (.secao, .secao-cab, .numeros, .lista-fios, .tag, .callout,
+   .rotulo) and adds only what belongs to the panel, with the pn- prefix. Logical properties everywhere, so Arabic mirrors by itself.*/
+
+.pn { display: grid; }
+
+/* rover header */
+.pn-head { display: grid; gap: 20px; }
+.pn-head-top { display: flex; align-items: center; gap: 20px; min-width: 0; }
+.pn-head-top .portrait { flex: none; }
+.pn-head-body { display: grid; gap: 4px; min-width: 0; }
+.pn-head-body .label { margin: 0; }
+.pn-head-body h2 { font-size: clamp(28px, 4vw, 40px); letter-spacing: -0.03em; overflow-wrap: anywhere; }
+.pn-handle { margin: 0; font-family: var(--f-mono); font-size: 14px; color: var(--tinta-2); }
+.pn-facts { display: flex; flex-wrap: wrap; gap: 12px 40px; margin: 0; }
+.pn-facts > div { display: grid; gap: 4px; }
+.pn-facts dt, .pn-auth dt { font-family: var(--f-mono); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--tinta-2); }
+.pn-facts dd { margin: 0; display: inline-flex; align-items: center; gap: 8px; font-weight: 600; }
+.pn-numbers { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.pn-numbers .number:nth-child(n + 3) { border-top: 0; }
+.pn-numbers .number + .number { padding-inline-start: 16px; border-inline-start: 1px solid var(--linha); }
+.pn-numbers .number-value { display: inline-flex; align-items: center; min-height: 28px; }
+
+/* common parts of the blocks */
+.pn-block > p { margin: 0; }
+.pn-sub { color: var(--tinta-2); font-size: 15px; }
+.pn-count { margin: 0; font-family: var(--f-display); font-size: 20px; font-weight: 800; letter-spacing: -0.02em; }
+.pn-empty { display: grid; gap: 4px; margin: 0; color: var(--tinta-2); }
+.pn-empty p { margin: 0; }
+.pn-empty strong { color: var(--tinta); }
+.pn-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; margin: 0; font-size: 14px; color: var(--tinta-2); }
+.pn-fine { margin: 0; font-size: 14px; color: var(--tinta-2); }
+.pn-open { display: inline-flex; align-items: center; min-height: 44px; min-width: 44px; font-size: 14px; font-weight: 700; color: var(--acao); }
+.pn-open:hover { text-decoration: underline; }
+
+/* waiting for approval */
+.pn-draft { display: grid; gap: 12px; padding: 16px; border: 1px solid var(--linha); border-radius: var(--raio); background: var(--tecido); }
+.pn-draft > p { margin: 0; }
+.pn-draft .label { margin: 0; }
+.pn-draft-title { font-size: 17px; font-weight: 700; overflow-wrap: anywhere; }
+.pn-exact { margin: 0; }
+.pn-exact blockquote { margin: 0; padding-inline-start: 14px; border-inline-start: 2px solid var(--tinta); line-height: 1.6; white-space: pre-line; overflow-wrap: anywhere; }
+.pn-others { display: grid; gap: 8px; margin-top: 8px; }
+.pn-others .label { margin: 0; }
+.pn-others .thread-list-all { margin: 0; padding: 0; list-style: none; }
+.pn-others .thread-list-all > li { padding-block: 2px; }
+.pn-row-link { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 12px; min-height: 48px; color: var(--tinta); }
+.pn-row-link:hover .pn-row-text { text-decoration: underline; }
+.pn-row-type { font-family: var(--f-mono); font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--tinta-2); }
+.pn-row-text { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pn-row-link time { font-size: 14px; color: var(--tinta-2); white-space: nowrap; }
+
+/* what the rover did and the notices */
+.pn-dones, .pn-notices, .pn-limits, .pn-shortcuts { margin: 0; padding: 0; list-style: none; }
+.pn-done, .pn-notice { display: grid; gap: 4px; }
+.pn-done > p, .pn-notice > p { margin: 0; }
+.pn-done .pn-open { justify-self: start; }
+.pn-excerpt { overflow-wrap: anywhere; }
+.pn-via { font-family: var(--f-mono); font-size: 12px; color: var(--tinta-2); }
+.pn-notice .pn-meta { gap: 0 16px; }
+
+/* standing authorization */
+.pn-auth { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 24px; margin: 0; }
+.pn-auth > div { display: grid; gap: 4px; }
+.pn-auth dd { margin: 0; font-weight: 600; }
+.pn-none span { color: var(--tinta-2); }
+
+/* today's limits */
+.pn-limit { display: grid; grid-template-columns: minmax(0, 11rem) minmax(0, 1fr); gap: 2px 16px; align-items: baseline; }
+.pn-limit-type { font-weight: 700; }
+.pn-limit-left { font-weight: 600; }
+.pn-limit-windows { grid-column: 2; font-size: 14px; color: var(--tinta-2); }
+.pn-limit[data-esgotado] .pn-limit-left { color: var(--aviso); }
+
+/* atalhos */
+.pn-shortcut { display: grid; gap: 2px; }
+a.pn-shortcut { min-height: 44px; align-content: center; color: var(--tinta); }
+a.pn-shortcut .pn-shortcut-name { color: var(--acao); }
+a.pn-shortcut:hover .pn-shortcut-name { text-decoration: underline; }
+.pn-shortcut-name { margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; }
+.pn-shortcut-text { margin: 0; font-size: 14px; color: var(--tinta-2); }
+
+@media (max-width: 559px) {
+  .pn-head-top { gap: 14px; }
+  .pn-numbers .number + .number { padding-inline-start: 12px; }
+  .pn-limit { grid-template-columns: minmax(0, 1fr); }
+  .pn-limit-windows { grid-column: auto; }
+  .pn-auth { grid-template-columns: minmax(0, 1fr); }
+  .pn-others .thread-list-all > li { padding-block: 10px; }
+  .pn-row-link { grid-template-columns: minmax(0, 1fr) auto; row-gap: 2px; }
+  .pn-row-type { grid-column: 1 / -1; }
+}
+
+@media (forced-colors: active) {
+  .pn-draft { border-color: CanvasText; }
+  .pn-exact blockquote { border-inline-start-color: CanvasText; }
+}

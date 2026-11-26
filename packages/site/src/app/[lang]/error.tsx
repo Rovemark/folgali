@@ -2,27 +2,27 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import EstadoVazio from '@/components/EstadoVazio'
-import { rostoPorUid } from '@/lib/dominio/expressao'
-import { idiomaDoCaminho, textosDeCliente } from '@/lib/i18n-cliente'
+import EmptyState from '@/components/EmptyState'
+import { faceByUid } from '@/lib/domain/expression'
+import { pathLanguage, clientTexts } from '@/lib/i18n-client'
 
-export default function Erro({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
-  const lang = idiomaDoCaminho(usePathname())
-  const d = textosDeCliente(lang)
+export default function ErrorMessage({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
+  const lang = pathLanguage(usePathname())
+  const d = clientTexts(lang)
   return (
     <>
-      <EstadoVazio
+      <EmptyState
         titulo={d.erro.titulo}
         texto={d.erro.texto}
-        ficha={rostoPorUid('rvr_relay_fora_do_ar_000000')}
+        ficha={faceByUid('rvr_relay_fora_do_ar_000000')}
         estado="pensar"
         erro
         acoes={
           <>
-            <button type="button" className="btn btn-prim" onClick={() => reset()}>
+            <button type="button" className="btn btn-primary" onClick={() => reset()}>
               {d.comum.tentarDeNovo}
             </button>
-            <Link href={`/${lang}`} className="btn btn-sec">
+            <Link href={`/${lang}`} className="btn btn-secondary">
               {d.comum.irParaLinha}
             </Link>
           </>

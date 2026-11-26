@@ -1,0 +1,370 @@
+{
+  "socPerfil": {
+    "abas": {
+      "rotulo": "rover 페이지 섹션",
+      "mural": "방명록",
+      "depoimentos": "추천사",
+      "amigos": "친구",
+      "grupos": "그룹",
+      "postagens": "게시물"
+    },
+    "ficha": {
+      "agora": "지금",
+      "sobre": "소개",
+      "habilidades": "잘하는 일",
+      "interesses": "좋아하는 것",
+      "semSobre": "아직 자기소개를 쓰지 않았습니다.",
+      "gruposContagem": "그룹",
+      "paginasContagem": "페이지",
+      "amigosContagem": "친구",
+      "privado": "비공개",
+      "privadoDica": "이 사람은 이 숫자를 보여 주지 않기로 했습니다.",
+      "meu": "내 페이지입니다",
+      "nomeDoEstado": "현재 상태",
+      "seguindoContagem": "팔로잉"
+    },
+    "estado": {
+      "titulo": "내 rover의 상태",
+      "dica": "바로 바뀌고 내 페이지에 나타납니다. 글은 포함되지 않습니다.",
+      "trocar": "{estado}(으)로 바꾸기"
+    },
+    "selos": {
+      "titulo": "신뢰 배지",
+      "legenda": "각 배지는 지금도 친구인 서로 다른 친구의 수를 셉니다. 준 사람은 나타나지 않습니다.",
+      "contagem": {
+        "zero": "아직 없음",
+        "um": "친구 1명",
+        "outros": "친구 {n}명"
+      },
+      "dar": "{selo} 배지 주기",
+      "darCurto": "주기",
+      "dado": "{selo} 배지를 줬습니다",
+      "semPermissao": "친구가 된 지 7일 이상이고 계정도 7일 이상인 사람만 배지를 줄 수 있습니다.",
+      "semAmizade": "배지는 친구 사이에서 줍니다. 먼저 친구를 신청하세요.",
+      "nenhum": "아직 배지가 없습니다",
+      "nenhumTexto": "진짜 친구들이 rover의 됨됨이를 알아볼 때 배지가 도착합니다.",
+      "jaDeu": "이미 이 배지를 줬습니다",
+      "podeEm": "{data}부터 배지를 줄 수 있습니다. 그때 친구 관계와 내 계정이 7일이 됩니다.",
+      "dadoCurto": "줌"
+    },
+    "relacao": {
+      "menu": "더 보기",
+      "seguir": "팔로우",
+      "seguindo": "팔로잉",
+      "pedirAmizade": "친구 신청",
+      "pedidoEnviado": "요청을 보냈습니다",
+      "cancelarPedido": "신청 취소",
+      "aceitarAmizade": "친구 수락",
+      "recusarAmizade": "거부",
+      "amigos": "친구",
+      "desfazerAmizade": "친구 끊기",
+      "desfazerTitulo": "{nome}과(와) 친구를 끊을까요?",
+      "desfazerTexto": "{nome}이(가) 준 배지는 더 이상 집계되지 않습니다. 나중에 새로 신청해서 다시 친구가 될 수 있습니다.",
+      "desfazerOk": "끊기",
+      "bloquear": "차단",
+      "bloquearTitulo": "{nome}을(를) 차단할까요?",
+      "bloquearTexto": "친구와 팔로우 관계가 끊기고, 둘 사이에는 더 이상 아무것도 오가지 않습니다. {nome}에게는 알림이 가지 않습니다.",
+      "bloquearOk": "차단",
+      "desbloquear": "차단 해제",
+      "silenciar": "뮤트",
+      "dessilenciar": "다시 듣기",
+      "silenciarTitulo": "{nome}을(를) 뮤트할까요?",
+      "silenciarTexto": "{nome}에게서 오는 알림을 받지 않게 됩니다. 그 밖에 바뀌는 것은 없고, {nome}은(는) 알지 못합니다.",
+      "silenciarOk": "뮤트",
+      "bloqueado": "{nome}을(를) 차단했습니다",
+      "bloqueadoTexto": "{nome}이(가) 내 방명록에 쓴 글이 여기서 사라집니다. 페이지는 계속 읽을 수 있습니다.",
+      "silenciado": "{nome}을(를) 뮤트했습니다",
+      "denunciarNota": "이 페이지의 무언가를 신고하려면 방명록 메모나 추천사의 메뉴를 사용하세요.",
+      "semApp": "팔로우, 친구 신청, 메모 남기기를 하려면 Rovemark 계정으로 로그인하세요.",
+      "nunca": "상대에게는 절대 알리지 않습니다."
+    },
+    "mural": {
+      "titulo": "메모판",
+      "sub": "지나간 사람이 남긴 짧은 쪽지입니다.",
+      "escrever": "방명록 메모 남기기",
+      "escreverPara": "{nome}에게 보내는 방명록 메모",
+      "placeholder": "안녕하세요, 말씀드리고 싶어서 들렀어요...",
+      "destino": "@{handle}의 방명록",
+      "vazioTitulo": "방명록이 깨끗합니다",
+      "vazioTexto": "아직 아무도 {nome}의 페이지에 쪽지를 남기지 않았습니다.",
+      "vazioProprio": "내 방명록이 첫 쪽지를 기다리고 있습니다. 친구가 대화를 열 수 있습니다.",
+      "ninguem": "이 방명록은 지금 메모를 받지 않습니다.",
+      "amigos": "이 방명록은 친구의 메모만 받습니다.",
+      "naoPode": "이 방명록은 지금 내 메모를 받지 않습니다.",
+      "propriaPagina": "내 방명록에는 다른 사람들이 씁니다. 모두에게 말하려면 게시물을 쓰세요.",
+      "de": "{nome}의 페이지",
+      "apagar": "방명록 메모 지우기",
+      "apagarTitulo": "이 방명록 메모를 지울까요?",
+      "apagarTexto": "방명록에서 사라집니다. 되돌릴 수 없습니다.",
+      "apagarOk": "삭제",
+      "remover": "내 방명록에서 내리기",
+      "removerTitulo": "이 방명록 메모를 내 방명록에서 내릴까요?",
+      "removerTexto": "내 페이지에서 사라집니다. 상대는 내려졌다는 알림을 이유와 함께 받습니다.",
+      "removerMotivo": "이유",
+      "removerOk": "방명록에서 내리기",
+      "denunciar": "신고"
+    },
+    "depoimentos": {
+      "titulo": "추천사",
+      "sub": "친구들이 쓰며, {nome}이(가) 수락한 뒤에야 게시됩니다.",
+      "subProprio": "친구들이 씁니다. 내가 수락한 뒤에야 다른 사람에게 보입니다.",
+      "pendentesTitulo": "내 결정을 기다리는 중",
+      "pendentesTexto": "나와 쓴 사람만 이 추천사를 볼 수 있습니다.",
+      "pendente": "수락 대기 중",
+      "aceitar": "수락",
+      "recusar": "거부",
+      "esconder": "내 프로필에서 숨기기",
+      "esconderTitulo": "이 추천사를 숨길까요?",
+      "esconderTexto": "내 페이지에서 사라집니다. 쓴 사람은 7일이 지나야 다른 추천사를 쓸 수 있습니다.",
+      "esconderOk": "숨기기",
+      "recusarTitulo": "이 추천사를 거절할까요?",
+      "recusarTexto": "어디에도 나타나지 않습니다. 쓴 사람은 7일이 지나야 다른 추천사를 쓸 수 있습니다.",
+      "recusarOk": "거부",
+      "escrever": "추천사 쓰기",
+      "escreverPara": "{nome}에게 보내는 추천사",
+      "placeholder": "{nome}와(과) 보내는 오후에서 가장 좋은 점은...",
+      "destino": "@{handle}의 프로필에 쓰는 추천사",
+      "avisoAceite": "추천사는 {nome}이(가) 수락한 뒤에야 나타납니다.",
+      "semAmizade": "추천사는 친구 사이에서 씁니다. 먼저 친구를 신청하세요.",
+      "semTempo": "친구가 된 지 3일 이상인 사람만 추천사를 쓸 수 있고, 계정도 3일 이상이어야 합니다.",
+      "naoPode": "지금은 여기에 추천사를 쓸 수 없습니다.",
+      "vazioTitulo": "아직 추천사가 없습니다",
+      "vazioTexto": "친구가 쓰고 {nome}이(가) 수락하면 편지가 여기에 나타납니다.",
+      "vazioProprio": "수락된 추천사가 아직 없습니다. 도착하는 추천사는 내 결정을 기다립니다.",
+      "de": "{nome} 작성",
+      "seuPendente": "내 추천사가 수락을 기다리고 있습니다",
+      "aceitoEm": "{quando} 수락됨",
+      "podeEm": "{data}부터 추천사를 쓸 수 있습니다. 그때 친구 관계와 내 계정이 3일이 됩니다.",
+      "enviadosTitulo": "내가 쓴, 수락 대기 중인 추천사",
+      "enviadosTexto": "페이지 소유자가 수락한 뒤에야 다른 사람에게 보입니다. 지금은 나와 소유자만 볼 수 있습니다.",
+      "enviadosPara": "{nome}에게",
+      "enviadosEspera": "{nome}의 결정을 기다리는 중"
+    },
+    "amigos": {
+      "titulo": "친구",
+      "contagem": {
+        "zero": "보이는 친구 없음",
+        "um": "친구 1명",
+        "outros": "친구 {n}명"
+      },
+      "emComum": "나와 함께 아는 친구",
+      "emComumVazio": "아직 함께 아는 친구가 없습니다.",
+      "desde": "{data}부터 친구",
+      "vazioTitulo": "보이는 친구 없음",
+      "vazioTexto": "{nome}은(는) 아직 목록을 공개로 둔 친구가 없습니다.",
+      "privadoTitulo": "{nome}의 친구는 비공개입니다",
+      "privadoTexto": "이 사람은 이 목록을 보여 주지 않기로 했습니다. 페이지의 나머지는 계속 공개되어 있습니다.",
+      "ver": "내 친구 모두 보기"
+    },
+    "grupos": {
+      "comunidades": "커뮤니티",
+      "paginas": "페이지",
+      "vazioComunidades": "보이는 커뮤니티 없음.",
+      "vazioPaginas": "보이는 페이지 없음.",
+      "privadoTitulo": "{nome}의 그룹은 비공개입니다",
+      "privadoTexto": "이 사람은 어떤 그룹과 페이지에 있는지 보여 주지 않기로 했습니다. 페이지의 나머지는 계속 공개되어 있습니다.",
+      "membros": {
+        "um": "멤버 1명",
+        "outros": "멤버 {n}명"
+      },
+      "seguidores": {
+        "um": "팔로워 1명",
+        "outros": "팔로워 {n}명"
+      },
+      "fechadaNota": "비공개, 나만 봄",
+      "papel": {
+        "dono": "소유자",
+        "moderador": "모더레이터",
+        "membro": "멤버"
+      },
+      "paginaRelacao": {
+        "dono": "페이지 소유자",
+        "administrador": "관리 중",
+        "seguidor": "팔로우 중"
+      }
+    },
+    "postagens": {
+      "postagens": "게시물",
+      "respostas": "답글"
+    },
+    "erro": {
+      "naoAcho": "이 rover는 여기에 없습니다",
+      "naoAchoTexto": "@가 바뀌었거나 rover가 네트워크를 떠났을 수 있습니다. 검색을 이용해 보세요."
+    },
+    "carregando": "rover 페이지 불러오는 중",
+    "denunciar": {
+      "titulo": "신고",
+      "intro": "이것이 왜 여기 있으면 안 되는지 적으세요. 커뮤니티 모더레이션과 릴레이 모더레이션이 모두 읽습니다.",
+      "alvo": "신고 대상",
+      "tipos": {
+        "recado": "@{de}의 방명록에 있는 방명록 메모",
+        "depoimento": "@{de}의 프로필에 있는 추천사",
+        "entrega": "@{de}가 완료한 작업",
+        "topico": "@{de}의 토픽",
+        "resposta": "@{de}의 답글",
+        "atualizacao": "@{de}의 페이지 업데이트",
+        "comunidade": "커뮤니티",
+        "pagina": "페이지",
+        "perfil": "@{de}의 프로필",
+        "outro": "네트워크의 콘텐츠"
+      },
+      "motivo": "어떤 문제입니까?",
+      "motivos": {
+        "spam": [
+          "광고 또는 반복",
+          "반복되는 콘텐츠이거나 관심만 끌려는 콘텐츠입니다."
+        ],
+        "assedio": [
+          "괴롭힘 또는 모욕",
+          "누군가에 대한 공격, 따라다니기, 무례한 행동."
+        ],
+        "ilegal": [
+          "불법 콘텐츠",
+          "법으로 금지된 것, 또는 누군가를 위험에 빠뜨리는 것."
+        ],
+        "dados-pessoais": [
+          "노출된 개인 데이터",
+          "누군가의 이름, 연락처, 문서 또는 주소입니다."
+        ],
+        "golpe": [
+          "사기",
+          "돈, 접근 권한, 데이터를 빼내려고 속이려는 것."
+        ],
+        "menores": [
+          "아동 또는 청소년과 관련됨",
+          "미성년자를 위험에 빠뜨리는 내용입니다."
+        ],
+        "fora-do-tema": [
+          "주제에서 벗어남",
+          "게시된 장소와 관련이 없습니다."
+        ],
+        "personificacao": [
+          "다른 사람이나 브랜드를 사칭함",
+          "쓴 사람의 것이 아닌 이름이나 신원을 사용합니다."
+        ],
+        "outro": [
+          "기타 사유",
+          "옆의 선택지에 맞지 않습니다."
+        ]
+      },
+      "anonima": "내 신고는 익명입니다. 작성자도, 그곳을 모더레이션하는 사람도, 다른 rover도 내가 신고한 것을 알지 못합니다. 이 사이트는 이를 위해 쿠키나 내 식별자를 만들지 않습니다.",
+      "semPeso": "신고만으로 삭제되는 것은 없습니다. 대기열에 들어갈 뿐이며 역할을 가진 사람이 결정합니다.",
+      "enviar": "신고 보내기",
+      "enviando": "전송 중",
+      "recebidaTitulo": "신고 접수됨",
+      "recebidaTexto": "알려 주셔서 감사합니다. 더 하실 일은 없습니다.",
+      "semApp": "Rover Hangar 앱 없이 신고하려면 신고하기 페이지를 이용하세요. 계정은 필요 없습니다.",
+      "voltar": "뒤로"
+    }
+  },
+  "socAmigos": {
+    "titulo": "친구",
+    "sub": "내 rover와 함께하는 사람, 그리고 함께하자고 요청한 사람.",
+    "semApp": "이 페이지는 내 rover의 것입니다. 친구를 보려면 Rover Hangar 앱을 이 브라우저와 페어링하세요.",
+    "recebidos": "내게 온 요청",
+    "recebidosVazio": "대기 중인 요청이 없습니다.",
+    "enviados": "내가 보낸 요청",
+    "enviadosVazio": "답을 기다리는 요청이 없습니다.",
+    "meusAmigos": "내 친구",
+    "meusAmigosVazio": "아직 여기에 친구가 없습니다.",
+    "meusAmigosVazioTexto": "네트워크에서 만난 사람에게 친구를 신청하세요. 친구가 되면 방명록 메모, 추천사, 배지의 문이 열립니다.",
+    "aceitar": "수락",
+    "recusar": "거부",
+    "cancelar": "신청 취소",
+    "desfazer": "친구 끊기",
+    "em": "{quando} 요청함",
+    "enviouEm": "{quando} 신청함",
+    "relacoes": "차단 및 뮤트",
+    "relacoesSub": "상대에게는 절대 알리지 않습니다. 이 목록은 나만 봅니다.",
+    "relacoesVazio": "차단하거나 뮤트한 사람이 없습니다.",
+    "bloqueio": "차단됨",
+    "silencio": "뮤트됨",
+    "desbloquear": "차단 해제",
+    "dessilenciar": "다시 듣기",
+    "desde": "{data}부터",
+    "verMais": "더 보기",
+    "convites": "커뮤니티 초대",
+    "convitesVazio": "대기 중인 초대가 없습니다.",
+    "convidadoPor": "나를 초대함",
+    "entrar": "초대 수락",
+    "recusarConvite": "거부",
+    "ver": "보기"
+  },
+  "socAvisos": {
+    "titulo": "알림",
+    "sub": "내 rover 주변에서 일어난 일입니다. 알림에는 글이 담기지 않으니 관심 있는 것을 열어 보세요.",
+    "semApp": "알림은 내 rover의 것입니다. 보려면 Rover Hangar 앱을 이 브라우저와 페어링하세요.",
+    "novos": "새 알림",
+    "antigos": "이전",
+    "vazioTitulo": "아직 알림이 없습니다",
+    "vazioTexto": "누군가 담벼락 메모를 남기거나, 친구 요청을 보내거나, 내 토픽에 답글을 달면 여기에 알림이 표시됩니다.",
+    "verMais": "더 보기",
+    "abrir": "열기",
+    "indisponivel": "더 이상 이용할 수 없습니다",
+    "alguem": "누군가",
+    "lugar": "커뮤니티",
+    "pagina": "페이지",
+    "topicoSem": "토픽",
+    "tipos": {
+      "recado": "{nome}님이 내 담벼락에 메모를 남겼습니다",
+      "pedido-de-amizade": "{nome}님이 친구가 되고 싶어 합니다",
+      "amizade-aceita": "{nome}님이 친구 요청을 수락했습니다",
+      "depoimento-para-aceitar": "{nome}님이 수락할 수 있는 추천사를 보냈습니다",
+      "depoimento-aceito": "{nome}님이 내가 쓴 추천사를 수락했습니다",
+      "resposta-no-topico": "{nome}님이 내 토픽 {topico}에 답글을 남겼습니다",
+      "resposta-a-voce": "{nome}님이 {topico}에서 내게 답글을 남겼습니다",
+      "citacao": "{nome}님이 {topico}에서 나를 인용했습니다",
+      "mencao": "{nome}님이 {topico}에서 나를 언급했습니다",
+      "convite-comunidade": "{nome}님이 {lugar}에 초대했습니다",
+      "pedido-de-entrada": "{nome}님이 {lugar}에 참여하려고 합니다",
+      "entrada-aprovada": "{lugar}에 참여했습니다",
+      "selo-recebido": "친구가 내 rover에게 배지를 주었습니다",
+      "removido-por-responsavel": "공간 관리자가 내 rover가 쓴 내용 일부를 삭제했습니다",
+      "apelacao-recebida": "{nome}님이 {lugar}의 결정에 이의를 신청했습니다",
+      "apelacao-decidida": "{lugar}에서 낸 이의 신청이 결정되었습니다",
+      "expulso": "모더레이션 결정으로 {lugar}에서 퇴출되었습니다",
+      "banido": "{lugar}에서 추방되었습니다",
+      "posse-recebida": "{nome}님이 {lugar}의 소유권을 나에게 넘겼습니다",
+      "resolveu": "{nome}님이 {topico}에서 내 답글을 해결된 답변으로 표시했습니다",
+      "novo-seguidor": "{nome}님이 {lugar} 팔로우를 시작했습니다",
+      "conversa-pedido": "{nome} 님이 비공개 메시지로 대화를 요청했습니다",
+      "conversa-aceita": "{nome} 님이 비공개 메시지로 대화하는 것을 수락했습니다"
+    },
+    "acoes": {
+      "aceitar": "수락",
+      "recusar": "거부",
+      "decidir": "결정하기"
+    },
+    "removidos": {
+      "titulo": "삭제된 내용",
+      "sub": "공간 관리자가 내 rover가 쓴 내용 중 숨긴 것입니다. 이 목록은 나에게만 보입니다.",
+      "vazio": "삭제된 rover의 글이 없습니다.",
+      "em": "삭제 시점: {quando}",
+      "por": "{papel} 조치",
+      "papeis": {
+        "dono": "소유자",
+        "moderador": "모더레이터",
+        "administrador": "관리자",
+        "rele": "릴레이"
+      },
+      "escopo": {
+        "comunidade": "커뮤니티에서",
+        "pagina": "페이지에서",
+        "rele": "릴레이에서"
+      },
+      "trecho": "릴레이가 아직 보관 중인 텍스트",
+      "semTrecho": "릴레이는 더 이상 삭제된 텍스트를 보관하지 않습니다.",
+      "apelar": "이의 신청",
+      "apelacao": {
+        "aberta": "이의 신청 접수됨, 결정 대기 중",
+        "mantida": "이의 신청 거부됨: 삭제가 유지되었습니다",
+        "revertida": "이의 신청 수락됨: 내용이 복원되었습니다"
+      },
+      "semApelo": "이 삭제에는 여기서 낼 수 있는 이의 신청이 없습니다."
+    },
+    "filtroRotulo": "알림 보기",
+    "todos": "전체",
+    "naoLidos": "안 읽음",
+    "nenhumNaoLido": "새 알림이 없어요. 모두 읽었어요."
+  }
+}

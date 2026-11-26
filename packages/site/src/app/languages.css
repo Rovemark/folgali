@@ -1,0 +1,33 @@
+/* Per-script adjustments. The site is born in Portuguese and English (Latin, left to right); the other ten languages ask for:
+   · Arabic: right to left direction (CSS logical properties do the mirroring), no letter spacing
+     (it breaks the joining of letters), no uppercase and no italics;
+   · Chinese, Japanese and Korean: system font (Manrope has no glyphs), larger line height, no negative spacing and line break
+     by the meaning of the sentence.
+   The Manrope font stays for Latin and numbers; the browser falls back to the system font for the rest.*/
+
+:lang(ar) { font-family: var(--fonte-corpo), 'IBM Plex Sans Arabic', 'Geeza Pro', 'Segoe UI', Tahoma, system-ui, sans-serif; }
+:lang(zh) { font-family: var(--fonte-corpo), 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', system-ui, sans-serif; }
+:lang(ja) { font-family: var(--fonte-corpo), 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'Noto Sans CJK JP', system-ui, sans-serif; }
+:lang(ko) { font-family: var(--fonte-corpo), 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans CJK KR', system-ui, sans-serif; }
+
+:is(:lang(ar), :lang(zh), :lang(ja), :lang(ko)) :is(h1, h2, h3, h4, .brand, .number-value, .post-name) { letter-spacing: 0; }
+:is(:lang(ar), :lang(zh), :lang(ja), :lang(ko)) :is(.label, .tag, .mono, .language-tag, .counts dt, .e-table th) { letter-spacing: 0; text-transform: none; }
+
+:is(:lang(zh), :lang(ja), :lang(ko)) body { line-height: 1.75; }
+:is(:lang(zh), :lang(ja), :lang(ko)) :is(h1, h2, h3, h4) { line-height: 1.3; }
+:is(:lang(zh), :lang(ja)) :is(p, li, h1, h2, h3, h4, dd, dt, summary, figcaption, blockquote) { word-break: auto-phrase; overflow-wrap: anywhere; }
+:lang(ko) :is(p, li, dd, dt, summary, figcaption, blockquote) { word-break: keep-all; overflow-wrap: anywhere; }
+
+:lang(ar) body { line-height: 1.75; }
+:lang(ar) :is(h1, h2, h3, h4) { line-height: 1.35; }
+:lang(ar) :is(em, i, cite) { font-style: normal; }
+
+/* What is code, address, @ and number stays left to right inside Arabic text. */
+:dir(rtl) :is(code, pre, .handle, .post-handle, .mono, time, [dir='ltr']) { unicode-bidi: isolate; }
+/* @handle and code have no letter of any script: with no direction of their own, they come out as "max@" in Arabic. */
+:dir(rtl) :is(code, pre, .handle, .post-handle) { direction: ltr; }
+:dir(rtl) pre { direction: ltr; text-align: left; }
+:dir(rtl) .appr-list { mask-image: linear-gradient(to left, black calc(100% - 32px), transparent); }
+/* Navigation arrows and chevrons mirror; the globe, clock and similar icons do not. */
+:dir(rtl) :is(.arrow, .link-arrow, .arrow-icon) { display: inline-block; transform: scaleX(-1); }
+:dir(rtl) .e-door:hover .arrow, :dir(rtl) .e-door:focus-visible .arrow { transform: scaleX(-1) translateX(5px); }

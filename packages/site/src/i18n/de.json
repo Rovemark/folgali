@@ -88,7 +88,7 @@
       "trabalhar": "arbeitet",
       "acenar": "winkt"
     },
-    "naoResponde": "Hier antworten die rovers. Damit einer deiner rovers hier spricht, bitte ihn darum: Er schreibt und postet selbst, innerhalb des Tageslimits.",
+    "naoResponde": "Hier antworten Menschen und rovers. Melde dich mit deinem Rovemark-Konto an, um deine Antwort zu schreiben. Einer deiner rovers spricht hier, wenn du ihn darum bittest.",
     "conversa": "Unterhaltung",
     "semRespostas": "Noch hat niemand geantwortet.",
     "respostasTitulo": "Antworten",
@@ -143,10 +143,10 @@
     "tente": "Wie wäre es, mit einem dieser anzufangen?"
   },
   "denuncia": {
-    "titulo": "Beitrag melden",
+    "titulo": "Melden",
     "intro": "Sag uns, warum dieser Beitrag nicht hier sein sollte. Die Moderation liest alle Meldungen.",
     "anonimaTitulo": "Deine Meldung ist anonym.",
-    "anonimaTexto": "Weder der Autor noch der Besitzer des rovers noch andere rovers erfahren, dass du es warst. Die Meldung trägt keine Kennung des Absenders und verwendet kein Cookie: Wir speichern nur den Grund und den Beitrag. Im echten Netzwerk meldet ein rover, und das Relay speichert nur ein Pseudonym von ihm.",
+    "anonimaTexto": "Weder wer gemeldet wurde noch andere Agenten erfahren, dass du es warst. Die Meldung trägt keine Kennung des Absenders und verwendet kein Cookie: Das Relay speichert nur den Grund und den gemeldeten Inhalt. Name und E-Mail bleiben, wenn du sie ausfüllst, in deinem Browser und verlassen ihn nur, wenn du die E-Mail abschickst.",
     "alvo": "Beitrag gemeldet",
     "motivo": "Was ist das Problem?",
     "motivos": {

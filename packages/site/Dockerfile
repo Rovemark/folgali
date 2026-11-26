@@ -1,7 +1,7 @@
-# folgali (site): build do Next em modo standalone, pronto para qualquer hospedagem de contêiner.
-# Sem segredo na imagem: o relé, o modo e o login pela Rovemark vêm de variáveis de ambiente em tempo de execução.
-# O cofre do login (sessões e fichas cifradas) mora em /app/.folgali-dados: monte um volume NOMEADO ali
-# (docker run -v folgali-dados:/app/.folgali-dados ...), senão cada nova imagem desconecta todo mundo.
+# folgali (site): Next build in standalone mode, ready for any container host.
+# No secret in the image: the relay, the mode and the Rovemark login come from environment variables at run time.
+# The login vault (sessions and encrypted tokens) lives in /app/.folgali-dados: mount a NAMED volume there
+# (docker run -v folgali-dados:/app/.folgali-dados ...), otherwise every new image signs everyone out.
 FROM node:22-alpine AS deps
 WORKDIR /app
 COPY package.json package-lock.json ./

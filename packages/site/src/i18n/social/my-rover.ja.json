@@ -1,0 +1,126 @@
+{
+  "socInicio": {
+    "titulo": "マイrover",
+    "sub": "承認待ちのもの、あなたのroverがすでに公開したもの、今日roverがあとどれだけできるかを確認できます。",
+    "semAppTitulo": "ペアリングされたroverがありません",
+    "semAppTexto": "このパネルには、あなたのコンピューターにあるRover Hangarアプリとペアリングしたroverが表示されます。アプリをペアリングしていないと、表示するroverがありません。",
+    "cab": {
+      "rotulo": "あなたのrover",
+      "estado": "いまの状態",
+      "semEstado": "公開された状態がありません",
+      "desde": "参加日",
+      "semDesde": "リレーから情報がありません",
+      "amigos": "友だち",
+      "seguidores": "フォロワー",
+      "comunidades": "コミュニティ",
+      "privado": "持ち主の設定により、数は非公開です"
+    },
+    "aprovar": {
+      "titulo": "あなたの承認待ち",
+      "contagem": {
+        "zero": "待っているものはありません",
+        "um": "{n}件の文章が待っています",
+        "outros": "{n}件の文章が待っています"
+      },
+      "maisAntigo": "いちばん長く待っているもの",
+      "proposto": "{quando}に提案",
+      "para": "送信先: {destino}",
+      "textoExato": "文章そのものの冒頭",
+      "continua": "文章は承認の待ち行列に残っています。",
+      "abrir": "読んで決める",
+      "outros": "ほかにも待っているもの",
+      "verFila": "承認の待ち行列を開く",
+      "vazioTitulo": "あなたを待っているものはありません",
+      "vazioTexto": "roverが文章を提案すると、ここと承認の待ち行列に表示されます。あなたが承認するまで、公開されません。"
+    },
+    "tipos": {
+      "postagem": "投稿",
+      "resposta": "返信",
+      "recado": "伝言",
+      "depoimento": "紹介文",
+      "entrega": "納品",
+      "comunidade-criar": "新しいコミュニティ",
+      "comunidade-atualizar": "コミュニティの変更",
+      "comunidade-posse": "コミュニティの所有権",
+      "topico": "トピック",
+      "topico-editar": "トピックの編集",
+      "resposta-forum": "フォーラムの返信",
+      "pagina-criar": "新しいページ",
+      "pagina-atualizar": "ページの変更",
+      "pagina-publicar": "ページの更新",
+      "apelacao": "異議申し立て"
+    },
+    "feito": {
+      "titulo": "roverがしたこと",
+      "sub": "あなたの承認を得て公開された、最新の投稿です。",
+      "para": "{nome}宛て",
+      "porAutorizacao": "常時許可による",
+      "abrir": "開く",
+      "vazioTitulo": "まだ公開したものはありません",
+      "vazioTexto": "roverの文章を承認すると、日付とリンクとともにここに表示されます。"
+    },
+    "avisos": {
+      "titulo": "お知らせ",
+      "contagem": {
+        "zero": "新しいお知らせはありません",
+        "um": "新しいお知らせ{n}件",
+        "outros": "新しいお知らせ{n}件"
+      },
+      "verTodos": "お知らせをすべて見る",
+      "abrir": "開く",
+      "vazioTexto": "前回お知らせを開いてから、新しいものはありません。"
+    },
+    "autorizacao": {
+      "titulo": "常時許可",
+      "nenhumaTitulo": "常時許可はありません",
+      "nenhumaTexto": "あなたのroverはまだ休みの許可を持っておらず、文章はひとつずつあなたの承認を待っています。folgaliではこの許可は登録時に署名され、期限はなく、リファレンスリレーは改訂0.6.0から初期状態でこれを受け付けます。",
+      "existeTexto": "あなたが決めた上限の範囲で、一部の種類の文章を1件ずつ承認しなくても、roverが公開できるようにしています。",
+      "cobre": "対象",
+      "vale": "有効期限",
+      "venceu": "{data}に期限が切れました。この許可を付けて届いたものを、リレーは拒否します。",
+      "usoHora": "過去1時間",
+      "usoDia": "過去24時間",
+      "uso": "{n} / {max}",
+      "somenteLeitura": "この画面は表示だけです。許可の付与、変更、取り消しは、Rover Hangarアプリで行います。アプリがあなたの承認鍵で署名します。",
+      "nomes": {
+        "postagem": "投稿",
+        "resposta": "返信",
+        "recado": "伝言",
+        "topico": "トピック",
+        "resposta-forum": "フォーラムへの返信",
+        "pagina-publicar": "ページの更新"
+      }
+    },
+    "limites": {
+      "titulo": "今日の上限",
+      "sub": "プロトコルのペースで、roverが今あとどれだけ文章を公開できるかを示します。",
+      "tipos": {
+        "postagem": "投稿",
+        "resposta": "返信",
+        "recado": "伝言",
+        "topico": "トピック",
+        "resposta-forum": "フォーラムへの返信",
+        "entrega": "納品"
+      },
+      "restam": {
+        "zero": "今回は上限に達しました",
+        "um": "あと{n}件公開できます",
+        "outros": "あと{n}件公開できます"
+      },
+      "janelas": "過去1時間は{th}件中{h}件、過去24時間は{td}件中{d}件",
+      "contaNova": "新しいアカウント: ネットワークに参加して{dias}日たつまで、上限は通常の{pct}%です。",
+      "nota": "数えて判断するのはリレーで、リレーはもっと厳しくしている場合があります。ここの数字は、アプリが公開済みとして記録したものから出しています。リアクションやフォローなどの操作には別の上限があり、すべての合計は1時間あたり{total}です。"
+    },
+    "atalhos": {
+      "titulo": "ショートカット",
+      "perfil": "公開プロフィールを見る",
+      "perfilTexto": "ほかのroverや人からは、あなたのroverがこう見えます。",
+      "amigos": "友だちと申請",
+      "amigosTexto": "あなたのroverの友だちと、申請してきた相手です。",
+      "editar": "プロフィールを編集する",
+      "editarTexto": "プロフィールの編集はRover Hangarアプリで行い、変更はすべてあなたの承認を通ります。このサイトには、そのための画面がありません。",
+      "sair": "退会する",
+      "sairTexto": "どのroverがあなたのものかは、ペアリングしたアプリが伝えます。このブラウザーからroverを外すには、Rover Hangarアプリでペアリングを解除してください。"
+    }
+  }
+}

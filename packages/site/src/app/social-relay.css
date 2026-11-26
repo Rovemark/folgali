@@ -1,0 +1,53 @@
+/* Revision 0.3.2: community vocabulary (labels and statuses), note on by-people orders and relay operator announcements.
+   The eight protocol colors are fixed (blue, green, amber, red, violet, pink, orange, gray) and the chip always carries the text: color
+   is never the only signal. Each color has a light and dark pair with text contrast of at least 4.5:1.*/
+
+.vocab-chip {
+  --voc-h: 268; --voc-c: 0.012;
+  display: inline-flex; align-items: center; gap: 6px; min-height: 28px; padding: 2px 12px; border-radius: var(--raio-peq);
+  font-size: 14px; font-weight: 800; line-height: 1.2; white-space: nowrap; max-width: 100%;
+  background: light-dark(oklch(0.93 calc(var(--voc-c) * 4) var(--voc-h)), oklch(0.3 calc(var(--voc-c) * 2.2) var(--voc-h)));
+  color: light-dark(oklch(0.38 calc(var(--voc-c) * 6) var(--voc-h)), oklch(0.88 calc(var(--voc-c) * 5) var(--voc-h)));
+}
+/* the status is a badge with a dot; the label is a flat pill: the shape also says which of the two it is */
+.vocab-chip[data-tipo='status'] { border-radius: var(--raio); border: 1.5px solid currentColor; }
+.vocab-chip[data-tipo='etiqueta'] { border-radius: var(--raio-peq); }
+.vocab-dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; flex: none; }
+.vocab-chip[data-cor='azul'] { --voc-h: 255; --voc-c: 0.03; }
+.vocab-chip[data-cor='verde'] { --voc-h: 155; --voc-c: 0.03; }
+.vocab-chip[data-cor='ambar'] { --voc-h: 80; --voc-c: 0.03; }
+.vocab-chip[data-cor='vermelho'] { --voc-h: 25; --voc-c: 0.03; }
+.vocab-chip[data-cor='violeta'] { --voc-h: 300; --voc-c: 0.03; }
+.vocab-chip[data-cor='rosa'] { --voc-h: 350; --voc-c: 0.03; }
+.vocab-chip[data-cor='laranja'] { --voc-h: 50; --voc-c: 0.03; }
+.vocab-chip[data-cor='cinza'] { --voc-h: 268; --voc-c: 0.012; }
+
+/* filters by brand: the chip inside a 44 px link, with the selected one highlighted by a ring (and not only by color) */
+.vocab-filters { display: grid; gap: 4px; }
+.vocab-filter { display: inline-flex; align-items: center; min-height: 44px; padding: 0 4px; border-radius: var(--raio-peq); flex: none; }
+.vocab-filter:hover { text-decoration: none; }
+.vocab-filter:hover .vocab-chip { filter: brightness(0.96); }
+.vocab-filter[aria-current='true'] .vocab-chip { outline: 2.5px solid var(--acao); outline-offset: 2px; }
+.vocab-filter:focus-visible { outline: 3px solid var(--acao); outline-offset: 1px; }
+
+/* the note on by-people orders */
+.order-people { display: grid; gap: 8px; margin: 0 0 8px; }
+.order-note { max-width: 62ch; text-wrap: pretty; }
+
+/* relay operator announcements (home) */
+.relay-announcements { display: grid; gap: 10px; margin: 0 0 20px; padding: 16px 18px 14px; border-radius: var(--raio); background: var(--tecido); border: 1.5px solid var(--linha); border-inline-start: 6px solid var(--acao); }
+.relay-announcements ul { display: grid; gap: 14px; margin: 0; padding: 0; list-style: none; }
+.announcement { display: grid; gap: 6px; min-width: 0; }
+.announcement + .announcement { padding-top: 14px; border-top: 1px solid var(--linha); }
+.announcement-head { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+.announcement h3 { font-size: 18px; line-height: 1.25; overflow-wrap: anywhere; }
+.announcement-text { color: var(--tinta-2); white-space: pre-line; overflow-wrap: anywhere; text-wrap: pretty; max-width: 68ch; }
+.announcement details summary { cursor: pointer; font-weight: 800; color: var(--acao); min-height: 44px; display: inline-flex; align-items: center; }
+.announcement details[open] summary { margin-bottom: 4px; }
+.relay-announcements .fine { color: var(--tinta-3); }
+
+@media (forced-colors: active) {
+  .vocab-chip { border: 1px solid CanvasText; }
+  .vocab-filter[aria-current='true'] .vocab-chip { outline-color: Highlight; }
+  .relay-announcements { border-inline-start-color: Highlight; }
+}

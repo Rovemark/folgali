@@ -1,38 +1,38 @@
-// Parte LEVE da internacionalização: lista de idiomas, metadados, formatação e plural. Sem dicionários, para que componentes de
-// CLIENTE possam importar daqui sem levar os textos dos 12 idiomas para o navegador (quem precisa dos textos importa `@/lib/i18n`).
-import type { Dicionario } from './i18n'
-export type { Dicionario }
+// LIGHT part of internationalization: list of languages, metadata, formatting and plural. No dictionaries, so CLIENT components
+// can import from here without bringing the texts of the 12 languages to the browser (whoever needs the texts imports `@/lib/i18n`).
+import type { Dictionary } from './i18n'
+export type { Dictionary }
 
 export const LOCALES = ['pt', 'en', 'es', 'fr', 'de', 'it', 'ja', 'ko', 'zh', 'ru', 'ar', 'nl'] as const
 export type Locale = (typeof LOCALES)[number]
 
-export const META: Record<Locale, { nativo: string; html: string; dir: 'ltr' | 'rtl'; pronto: boolean }> = {
-  pt: { nativo: 'Português', html: 'pt-BR', dir: 'ltr', pronto: true },
-  en: { nativo: 'English', html: 'en', dir: 'ltr', pronto: true },
-  es: { nativo: 'Español', html: 'es', dir: 'ltr', pronto: true },
-  fr: { nativo: 'Français', html: 'fr', dir: 'ltr', pronto: true },
-  de: { nativo: 'Deutsch', html: 'de', dir: 'ltr', pronto: true },
-  it: { nativo: 'Italiano', html: 'it', dir: 'ltr', pronto: true },
-  ja: { nativo: '日本語', html: 'ja', dir: 'ltr', pronto: true },
-  ko: { nativo: '한국어', html: 'ko', dir: 'ltr', pronto: true },
-  zh: { nativo: '中文', html: 'zh-Hans', dir: 'ltr', pronto: true },
-  ru: { nativo: 'Русский', html: 'ru', dir: 'ltr', pronto: true },
-  ar: { nativo: 'العربية', html: 'ar', dir: 'rtl', pronto: true },
-  nl: { nativo: 'Nederlands', html: 'nl', dir: 'ltr', pronto: true },
+export const META: Record<Locale, { native: string; html: string; dir: 'ltr' | 'rtl'; pronto: boolean }> = {
+  pt: { native: 'Português', html: 'pt-BR', dir: 'ltr', pronto: true },
+  en: { native: 'English', html: 'en', dir: 'ltr', pronto: true },
+  es: { native: 'Español', html: 'es', dir: 'ltr', pronto: true },
+  fr: { native: 'Français', html: 'fr', dir: 'ltr', pronto: true },
+  de: { native: 'Deutsch', html: 'de', dir: 'ltr', pronto: true },
+  it: { native: 'Italiano', html: 'it', dir: 'ltr', pronto: true },
+  ja: { native: '日本語', html: 'ja', dir: 'ltr', pronto: true },
+  ko: { native: '한국어', html: 'ko', dir: 'ltr', pronto: true },
+  zh: { native: '中文', html: 'zh-Hans', dir: 'ltr', pronto: true },
+  ru: { native: 'Русский', html: 'ru', dir: 'ltr', pronto: true },
+  ar: { native: 'العربية', html: 'ar', dir: 'rtl', pronto: true },
+  nl: { native: 'Nederlands', html: 'nl', dir: 'ltr', pronto: true },
 }
 
-/** Idioma com texto completo e verificado. Todo `Locale` tem pacote; `pronto` liga o idioma no seletor e nas rotas. */
-export type Pronto = Locale
-export const PADRAO: Pronto = 'pt'
-export const PRONTOS = LOCALES.filter((l) => META[l].pronto)
+/** Language with full, verified text. Every `Locale` has a pack; `pronto` turns the language on in the selector and in the routes. */
+export type Ready = Locale
+export const DEFAULT: Ready = 'pt'
+export const READY = LOCALES.filter((l) => META[l].pronto)
 
-export const ehLocale = (x: string): x is Locale => (LOCALES as readonly string[]).includes(x)
-export const ehPronto = (x: string): x is Pronto => ehLocale(x) && META[x].pronto
+export const isLocale = (x: string): x is Locale => (LOCALES as readonly string[]).includes(x)
+export const isReady = (x: string): x is Ready => isLocale(x) && META[x].pronto
 
-/** O idioma da pessoa a partir de Accept-Language, entre os que têm texto. */
-export function escolherIdioma(cabecalho: string | null | undefined): Pronto {
-  if (!cabecalho) return PADRAO
-  const pedidos = cabecalho
+/** The person's language from Accept-Language, among those that have text. */
+export function pickLanguage(header: string | null | undefined): Ready {
+  if (!header) return DEFAULT
+  const requests = header
     .split(',')
     .map((p) => {
       const [tag, q] = p.trim().split(';q=')
@@ -40,16 +40,16 @@ export function escolherIdioma(cabecalho: string | null | undefined): Pronto {
     })
     .filter((p) => p.tag && !Number.isNaN(p.q))
     .sort((a, b) => b.q - a.q)
-  for (const { tag } of pedidos) {
+  for (const { tag } of requests) {
     const base = tag.split('-')[0]
-    if (ehPronto(base)) return base
+    if (isReady(base)) return base
   }
-  return PADRAO
+  return DEFAULT
 }
 
-/** Troca `{x}` pelos valores. Variável que falta fica visível, para o teste pegar. */
-export function fmt(texto: string, vars: Record<string, string | number> = {}): string {
-  return texto.replace(/\{(\w+)\}/g, (_m, k: string) => (k in vars ? String(vars[k]) : `{${k}}`))
+/** Replaces `{x}` with the values. A missing variable stays visible, so the test catches it. */
+export function fmt(text: string, vars: Record<string, string | number> = {}): string {
+  return text.replace(/\{(\w+)\}/g, (_m, k: string) => (k in vars ? String(vars[k]) : `{${k}}`))
 }
 
 export type Plural = { zero?: string; um: string; outros: string }
@@ -59,17 +59,17 @@ export function plural(p: Plural, n: number, vars: Record<string, string | numbe
   return fmt(base, { n, ...vars })
 }
 
-/** "há 6 min", "6 min ago": curto, sem depender do fuso do servidor. */
-export function tempoRelativo(iso: string, d: Dicionario, agora: Date): string {
-  const seg = Math.max(0, Math.round((agora.getTime() - new Date(iso).getTime()) / 1000))
-  if (seg < 60) return d.tempo.agora
-  const min = Math.floor(seg / 60)
+/** "há 6 min", "6 min ago": short, without depending on the server time zone. */
+export function relativeTime(iso: string, d: Dictionary, now: Date): string {
+  const segment = Math.max(0, Math.round((now.getTime() - new Date(iso).getTime()) / 1000))
+  if (segment < 60) return d.tempo.agora
+  const min = Math.floor(segment / 60)
   if (min < 60) return fmt(d.tempo.min, { n: min })
   const h = Math.floor(min / 60)
   if (h < 24) return fmt(d.tempo.h, { n: h })
   return fmt(d.tempo.d, { n: Math.floor(h / 24) })
 }
 
-export function dataCurta(iso: string, lang: Pronto): string {
+export function shortDate(iso: string, lang: Ready): string {
   return new Intl.DateTimeFormat(META[lang].html, { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }).format(new Date(iso))
 }

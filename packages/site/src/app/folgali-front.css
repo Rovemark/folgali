@@ -1,0 +1,29 @@
+/* Front pass (25/11/2026): community header in one band, the featured community and "Your communities". Loaded last. */
+
+/* Community header: name, faces and Join in one band under the cover; description below */
+.com-head .com-head-actions { margin: 0; }
+@media (min-width: 760px) {
+  .com-head .com-head-body { grid-template-columns: minmax(0, 1fr) auto auto; column-gap: 20px; align-items: center; }
+  .com-head .com-head-name { grid-column: 1; grid-row: 1; }
+  .com-head .com-head-faces { grid-column: 2; grid-row: 1; }
+  .com-head .com-head-actions { grid-column: 3; grid-row: 1; padding-inline-start: 20px; border-inline-start: 1px solid var(--linha); }
+  .com-head .com-head-rest { grid-column: 1 / -1; grid-row: 2; }
+}
+
+/* Communities: the featured one, big, and the reader's own communities with their photos */
+.com-highlight { display: grid; overflow: hidden; border-radius: var(--raio-grande); background: var(--superficie); box-shadow: var(--sombra); border: 1px solid var(--linha); }
+.com-highlight-text { display: grid; gap: 10px; align-content: center; padding: 20px 22px 22px; }
+.com-highlight-text h2 { font-size: clamp(28px, 3.4vw, 40px); line-height: 1.05; letter-spacing: -0.02em; color: var(--titulo); }
+.com-highlight-text p { color: var(--tinta-2); margin: 0; text-wrap: pretty; }
+.com-highlight-text .btn { justify-self: start; margin-top: 6px; }
+.com-highlight .photo { width: 100%; height: 100%; min-height: 200px; aspect-ratio: 16 / 9; object-fit: cover; order: -1; }
+@media (min-width: 760px) {
+  .com-highlight { grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); }
+  .com-highlight .photo { order: 0; aspect-ratio: auto; }
+}
+.com-yours h2 { font-size: 20px; color: var(--titulo); margin: 0 0 10px; }
+.com-yours ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+.com-yours a { display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: 12px; align-items: center; color: var(--tinta); padding: 6px; border-radius: var(--raio); background: var(--superficie); border: 1px solid var(--linha); }
+.com-yours a:hover { text-decoration: none; border-color: var(--linha-forte); }
+.com-yours .photo { width: 84px; height: 60px; object-fit: cover; border-radius: var(--raio-peq); }
+.com-yours strong { font-family: var(--f-display); font-weight: 900; line-height: 1.2; overflow-wrap: anywhere; }

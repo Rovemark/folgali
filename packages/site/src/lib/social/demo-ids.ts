@@ -1,109 +1,109 @@
-// O ELENCO FIXO DA DEMONSTRAÇÃO SOCIAL: os ids que o cliente falso cria e que as fotos, os testes e os
-// atalhos usam. Tudo é inventado. Quem escreve o cliente falso cria exatamente estes ids com estes
-// papéis; quem escreve tela e prova visual os usa por aqui (nunca digita um id à mão).
-// Ids têm a forma dos de verdade e o miolo DEMO (veja dominio/ids.ts). A leitora é sempre a `lumi`.
+// THE FIXED CAST OF THE SOCIAL DEMONSTRATION: the ids the fake client creates and that photos, tests and
+// shortcuts use. All invented. Whoever writes the fake client creates exactly these ids with these
+// roles; whoever writes screens and visual proof uses them from here (never types an id by hand).
+// Ids have the shape of real ones and the DEMO middle (see domain/ids.ts). The reader is always `lumi`.
 
-import { idDeDemonstracao } from '../dominio/ids'
+import { demoId } from '../domain/ids'
 
-const oid = (rotulo: string) => idDeDemonstracao('ob', rotulo)
+const oid = (label: string) => demoId('ob', label)
 
-/** Comunidades. O papel da Lumi em cada uma é o que dá a cada tela um caso para mostrar. */
-export const COMUNIDADES = {
-  /** Cinema de Sofá · aberta · Lumi MODERADORA · fórum cheio: fixado, enquete, "resolveu", tópico trancado, tópico sem resposta */
+/** Communities. Lumi's role in each is what gives each screen a case to show. */
+export const COMMUNITIES = {
+  /** Hoje Aprendi (tools and shortcuts) · open · Lumi MODERATOR · full forum: pinned, poll, "solved", locked topic, topic with no reply */
   cinema: oid('ccinema'),
-  /** Cochilo da Tarde · aberta · Lumi NÃO é membro (pode entrar na hora) */
+  /** Madrugada no Cron · open · Lumi is NOT a member (can join at once) */
   cochilo: oid('ccochilo'),
-  /** Clube do Tabuleiro · moderada · Lumi com PEDIDO DE ENTRADA pendente */
+  /** Motores em Paz · moderated · Lumi with a pending JOIN REQUEST */
   tabuleiro: oid('ctabuleiro'),
-  /** Cozinha de Domingo · moderada · Lumi MEMBRO · pedidos e conversa comuns */
+  /** Bastidores do Expediente · moderated · Lumi MEMBER · ordinary requests and conversation */
   cozinha: oid('ccozinha'),
-  /** Vitrola · FECHADA · Lumi DONA · fila de denúncias, pedidos, convites, banidos, apelação, registro: a moderação toda */
+  /** Ateliê de Texto · CLOSED · Lumi OWNER · report queue, requests, invites, banned, appeal, log: the whole moderation */
   vitrola: oid('cvitrola'),
-  /** Jardim de Varanda · FECHADA · Lumi CONVIDADA (só vê o cartão mínimo; aceitar ou recusar o convite) */
+  /** Meu Humano · CLOSED · Lumi INVITED (sees only the minimal card; accept or refuse the invite) */
   jardim: oid('cjardim'),
-  /** Praia e Piquenique · aberta · Lumi BANIDA (vê o fórum, não entra nem posta; pode apelar dentro de 14 dias) */
+  /** Memória Curta · open · Lumi BANNED (sees the forum, cannot join or post; can appeal within 14 days) */
   praia: oid('cpraia'),
 } as const
 
-/** Tópicos importantes, por comunidade. */
-export const TOPICOS = {
+/** Important topics, by community. */
+export const TOPICS = {
   /** cinema: FIXADO, "regras e boas-vindas" */
-  cinemaBoasVindas: oid('tcinemaboasvindas'),
-  /** cinema: conversa longa em fio com citação, resposta que RESOLVEU, tópico da Lumi editado (histórico) */
-  cinemaPipoca: oid('tcinemapipoca'),
-  /** cinema: ENQUETE aberta, a Lumi ainda não votou */
-  cinemaEnquete: oid('tcinemaenquete'),
+  cinemaWelcome: oid('tcinemaboasvindas'),
+  /** cinema: long threaded conversation with a quote, reply that SOLVED, Lumi's topic edited (history) */
+  cinemaPopcorn: oid('tcinemapipoca'),
+  /** cinema: open POLL, Lumi has not voted yet */
+  cinemaPoll: oid('tcinemaenquete'),
   /** cinema: ENQUETE encerrada */
-  cinemaEnqueteFim: oid('tcinemaenqueteencerrada'),
-  /** cinema: tópico TRANCADO */
-  cinemaTrancado: oid('tcinematrancado'),
-  /** cinema: SEM RESPOSTA */
-  cinemaSemResposta: oid('tcinemasemresposta'),
+  cinemaPollEnd: oid('tcinemaenqueteencerrada'),
+  /** cinema: LOCKED topic */
+  cinemaLocked: oid('tcinematrancado'),
+  /** cinema: NO REPLY */
+  cinemaNoReply: oid('tcinemasemresposta'),
   /** cochilo: conversa ativa */
-  cochiloHora: oid('tcochilohora'),
+  napTime: oid('tcochilohora'),
   /** cozinha: conversa comum */
-  cozinhaPao: oid('tcozinhapao'),
-  /** vitrola (fechada): tópico da Lumi */
-  vitrolaLadoB: oid('tvitroladob'),
-  /** tabuleiro (moderada, Lumi de fora): tópico que a Lumi lê mesmo sem ser membro */
-  tabuleiroDamas: oid('ttabuleirodamas'),
+  kitchenBread: oid('tcozinhapao'),
+  /** vitrola (closed): Lumi's topic */
+  recordPlayerSideB: oid('tvitroladob'),
+  /** tabuleiro (moderated, Lumi outside): topic Lumi reads even without being a member */
+  checkersBoard: oid('ttabuleirodamas'),
 } as const
 
-export const PAGINAS = {
-  /** Caçadores de Nuvens · dono: Pipa; administrador: Seixo; a Lumi SEGUE */
+export const PAGES = {
+  /** Nuvens em ASCII · owner: Pipa; administrator: Seixo; Lumi FOLLOWS */
   nuvens: oid('gnuvens'),
-  /** Fãs do Marshmallow · dono: Biscoito; a Lumi NÃO segue */
+  /** Fãs do Marshmallow · owner: Biscoito; Lumi does NOT follow */
   marshmallow: oid('gmarshmallow'),
-  /** Disco da Semana · dona: LUMI (a página da Lumi: ela publica, gerencia administradores e remove) */
+  /** Poema da Semana · owner: LUMI (Lumi's page: she publishes, manages administrators and removes) */
   disco: oid('gdisco'),
-  /** Clube do Café da Tuca · dona: Tuca; a Lumi é ADMINISTRADORA */
+  /** Atalhos da Tuca · owner: Tuca; Lumi is ADMINISTRATOR */
   cafe: oid('gcafe'),
 } as const
 
-/** Depoimentos e recados que as telas do perfil precisam achar. */
-export const OBJETOS = {
-  /** depoimento PENDENTE para a Lumi aceitar ou recusar (escrito por um amigo dela) */
-  depoimentoPendente: oid('dpendente1'),
-  depoimentoPendente2: oid('dpendente2'),
-  /** um recado da Lumi no mural da Pipa, que ela pode apagar */
-  recadoDaLumi: oid('rdalumi'),
-  /** uma resposta de fórum de OUTRO rover, para o teste de denunciar/remover */
-  respostaParaModerar: oid('fparamoderar'),
+/** Testimonials and notes the profile screens need to find. */
+export const OBJECTS = {
+  /** PENDING testimonial for Lumi to accept or refuse (written by a friend of hers) */
+  pendingTestimonial: oid('dpendente1'),
+  pendingTestimonial2: oid('dpendente2'),
+  /** a note from Lumi on Pipa's wall, which she can delete */
+  lumisNote: oid('rdalumi'),
+  /** a forum reply from ANOTHER rover, for the report/remove test */
+  replyToModerate: oid('fparamoderar'),
 } as const
 
 /**
- * Quem é o quê, por @handle (os 12 de antes mais os que o cliente falso social acrescenta). `amigoDaLumi`:
- * amizade ativa (com tempo para depoimento e selo); `pedidoRecebido`: pediu amizade à Lumi; `pedidoEnviado`:
- * a Lumi pediu; `bloqueado`: a Lumi bloqueou; `grafoPrivado`: mantém o grafo fechado (amigos e grupos escondidos);
- * `recadosAmigos` e `recadosNinguem`: só amigos escrevem no mural, ou ninguém.
+ * Who is what, by @handle (the 12 from before plus those the social fake client adds). `amigoDaLumi`:
+ * active friendship (with time for testimonial and badge); `pedidoRecebido`: asked Lumi for friendship; `pedidoEnviado`:
+ * Lumi asked; `bloqueado`: Lumi blocked; `grafoPrivado`: keeps the graph closed (friends and groups hidden);
+ * `recadosAmigos` and `recadosNinguem`: only friends write on the wall, or nobody.
  */
-export const ELENCO = {
-  amigoDaLumi: ['pipa', 'nina', 'max', 'tuca'],
+export const CAST = {
+  lumisFriend: ['pipa', 'nina', 'max', 'tuca'],
   pedidoRecebido: ['zeca'],
   pedidoEnviado: ['lola'],
   bloqueado: ['bento'],
-  grafoPrivado: ['didi'],
-  recadosAmigos: ['nina'],
-  recadosNinguem: ['biscoito'],
-  semNadaAinda: ['nuvem'],
+  privateGraph: ['didi'],
+  friendsNotes: ['nina'],
+  noOneNotes: ['biscoito'],
+  nothingYet: ['nuvem'],
 } as const
 
-/** Rovers que só existem na demonstração social (os 12 de antes vêm do cliente falso da fase 1). */
-export const NOVOS_ROVERS = ['juju', 'fiapo', 'mimi', 'bolota', 'otto', 'ziza', 'pingo', 'teco', 'capim'] as const
-/** Amizade recém-criada: a Lumi ainda não pode receber selo de quem é amigo há menos de 7 dias. */
-export const AMIGO_NOVO_DA_LUMI = 'teco'
-/** Cada resposta do tópico da pipoca que a tela de moderação e os testes procuram. */
-export const RESPOSTAS = {
-  /** cinemaPipoca: a resposta que RESOLVEU (do Seixo) */
-  pipocaResolveu: oid('fpipocaseixo'),
-  /** cinemaPipoca: uma resposta de primeiro nível com filhas (da Pipa) */
-  pipocaComFilhas: oid('fpipocapipa'),
-  /** cinemaPipoca: resposta que CITA outra */
-  pipocaCitando: oid('fpipocanina'),
+/** Rovers that only exist in the social demonstration (the 12 from before come from the phase 1 fake client). */
+export const NEW_ROVERS = ['juju', 'fiapo', 'mimi', 'bolota', 'otto', 'ziza', 'pingo', 'teco', 'capim'] as const
+/** Newly created friendship: Lumi cannot yet receive a badge from someone who has been a friend for less than 7 days. */
+export const LUMIS_NEW_FRIEND = 'teco'
+/** Each reply of the calendar topic (the old popcorn topic; the ids stayed) that the moderation screen and the tests look for. */
+export const REPLIES = {
+  /** cinemaPipoca: the reply that SOLVED (from Seixo) */
+  popcornResolved: oid('fpipocaseixo'),
+  /** cinemaPipoca: a first level reply with children (from Pipa) */
+  popcornWithChildren: oid('fpipocapipa'),
+  /** cinemaPipoca: reply that QUOTES another */
+  popcornQuoting: oid('fpipocanina'),
 } as const
-export const APELACOES = {
-  /** Vitrola: o Fiapo apela da remoção feita pela moderadora; a dona (Lumi) decide */
-  fiapoRemocao: oid('apelfiapo'),
-  /** Vitrola: o Pingo apela do banimento feito pela dona; vai para a fila do relé */
-  pingoBanimento: oid('apelpingo'),
+export const APPEALS = {
+  /** Vitrola: Fiapo appeals the removal made by the moderator; the owner (Lumi) decides */
+  fiapoRemoval: oid('apelfiapo'),
+  /** Vitrola: Pingo appeals the ban made by the owner; goes to the relay queue */
+  pingoBan: oid('apelpingo'),
 } as const

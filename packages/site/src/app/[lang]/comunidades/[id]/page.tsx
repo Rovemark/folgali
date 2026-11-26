@@ -1,209 +1,225 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import EstadoVazio from '@/components/EstadoVazio'
-import { AvisoDeBanimento, AvisoDeConvite } from '@/components/comunidades/AvisoDaComunidade'
-import CabecalhoComunidade from '@/components/comunidades/CabecalhoComunidade'
-import CartaoTopico from '@/components/comunidades/CartaoTopico'
-import { ChipDeEtiqueta, ChipDeStatus } from '@/components/comunidades/Marcas'
-import { TopicosMais } from '@/components/comunidades/ListasMais'
-import EstadoDeErro from '@/components/social/EstadoDeErro'
-import { ehCompleta, ID_OK, lerComunidade, quemDe, quemSou } from '@/lib/comunidades/dados'
-import { rostoPorUid } from '@/lib/dominio/expressao'
-import { janelaDaOrdem, ordemDosTopicos } from '@/lib/dominio/ordem'
-import { podeNaComunidade } from '@/lib/dominio/permissoes'
-import { statusParaFiltro } from '@/lib/dominio/vocabulario'
-import { dict, ehPronto } from '@/lib/i18n'
-import { obterRede } from '@/lib/obter-rede'
-import { carregar } from '@/lib/social/carregar'
-import { metaTela } from '@/lib/seo/meta-telas'
+import EmptyState from '@/components/EmptyState'
+import { BanNotice, InviteNotice } from '@/components/communities/CommunityNotice'
+import CommunityHeader from '@/components/communities/CommunityHeader'
+import TopicCard from '@/components/communities/TopicCard'
+import CommunitySide from '@/components/communities/CommunitySide'
+import { UpcomingInCommunity } from '@/components/events/MiniEvents'
+import { isDemo } from '@/lib/site'
+import { TagChip, StatusChip } from '@/components/communities/Brands'
+import { TopicsMore } from '@/components/communities/MoreLists'
+import ErrorState from '@/components/social/ErrorState'
+import { isComplete, ID_OK, readCommunity, whoOf, whoAmI } from '@/lib/communities/data'
+import { faceByUid } from '@/lib/domain/expression'
+import { orderWindow, topicOrder } from '@/lib/domain/order'
+import { canInCommunity } from '@/lib/domain/permissions'
+import { statusForFilter } from '@/lib/domain/vocabulary'
+import { dict, isReady } from '@/lib/i18n'
+import { getNetwork } from '@/lib/get-network'
+import { load } from '@/lib/social/load'
+import { screenMeta } from '@/lib/seo/meta-screens'
 
 type P = { params: Promise<{ lang: string; id: string }>; searchParams: Promise<{ ordem?: string; categoria?: string; tag?: string; janela?: string; status?: string; etiqueta?: string }> }
 
 export async function generateMetadata({ params }: P): Promise<Metadata> {
   const { lang, id } = await params
-  const c = ID_OK.test(id) ? await lerComunidade(id) : null
-  const d = dict(ehPronto(lang) ? lang : 'pt')
-  return metaTela(lang, `/comunidades/${id}`, c?.ok ? c.valor.nome : d.socComunidades.titulo, c?.ok ? c.valor.descricao : undefined)
+  const c = ID_OK.test(id) ? await readCommunity(id) : null
+  const d = dict(isReady(lang) ? lang : 'pt')
+  return screenMeta(lang, `/comunidades/${id}`, c?.ok ? c.valor.nome : d.socComunidades.titulo, c?.ok ? c.valor.descricao : undefined)
 }
 
-export default async function ComunidadePagina({ params, searchParams }: P) {
+export default async function CommunityPage({ params, searchParams }: P) {
   const { lang, id } = await params
-  if (!ehPronto(lang)) notFound()
+  if (!isReady(lang)) notFound()
   const q = await searchParams
   const d = dict(lang)
   const t = d.socForum.lista
-  const c = ID_OK.test(id) ? await lerComunidade(id) : ({ ok: false, codigo: 'nao-encontrado' } as const)
-  if (!c.ok) return <EstadoDeErro codigo={c.codigo} d={d} lang={lang} />
-  const com = c.valor
-  const agora = new Date().toISOString()
-  const eu = await quemSou()
+  const c = ID_OK.test(id) ? await readCommunity(id) : ({ ok: false, codigo: 'nao-encontrado' } as const)
+  if (!c.ok) return <ErrorState codigo={c.codigo} d={d} lang={lang} />
+  const using = c.valor
+  const now = new Date().toISOString()
+  const me = await whoAmI()
 
-  if (!ehCompleta(com)) {
+  if (!isComplete(using)) {
     return (
       <>
-        <CabecalhoComunidade c={com} d={d} lang={lang} />
-        <AvisoDeConvite d={d} />
+        <CommunityHeader c={using} d={d} lang={lang} />
+        <InviteNotice d={d} />
       </>
     )
   }
 
-  // 0.3.2: as ordens por pessoas só são oferecidas se o relé declara o recurso; o vocabulário vem na própria comunidade (relé 0.3 e 0.3.1 não o mandam)
-  const porPessoas = await obterRede().cliente.suporta('ordem-por-pessoas')
-  const ordem = ordemDosTopicos(q.ordem, porPessoas)
-  const janela = janelaDaOrdem(ordem, q.janela)
-  const categoria = q.categoria && com.categorias.includes(q.categoria) ? q.categoria : undefined
+  // 0.3.2: the by-people orders are only offered if the relay declares the feature; the vocabulary comes in the community itself (relay 0.3 and 0.3.1 do not send it)
+  const byPeople = await getNetwork().cliente.suporta('ordem-por-pessoas')
+  const order = topicOrder(q.ordem, byPeople)
+  const window = orderWindow(order, q.janela)
+  const category = q.categoria && using.categorias.includes(q.categoria) ? q.categoria : undefined
   const tag = q.tag && /^[a-z0-9][a-z0-9-]{1,23}$/.test(q.tag) ? q.tag : undefined
-  const voc = com.vocabulario
-  const status = voc?.status.find((s) => s.chave === q.status)?.chave
-  const etiqueta = voc?.etiquetas.find((e) => e.chave === q.etiqueta)?.chave
-  const [lista, registro] = await Promise.all([
-    carregar(() => obterRede().cliente.topicos(id, { ordem, categoria, tag, janela, status, etiqueta })),
-    // relé 0.3: a data do banimento sai do registro público; relé 0.3.1 já a manda em `voce.banidoEm` e a chamada nem sai
-    com.voce?.banido && eu && !com.voce.banidoEm ? carregar(() => obterRede().cliente.registroDaComunidade(id)) : Promise.resolve(null),
+  const vocab = using.vocabulario
+  const status = vocab?.status.find((s) => s.chave === q.status)?.chave
+  const label = vocab?.etiquetas.find((e) => e.chave === q.etiqueta)?.chave
+  const [list, record, members] = await Promise.all([
+    load(() => getNetwork().cliente.topicos(id, { ordem: order, categoria: category, tag, janela: window, status, etiqueta: label })),
+    // relay 0.3: the ban date comes from the public record; relay 0.3.1 already sends it in `voce.banidoEm` and the call is not even made
+    using.voce?.banido && me && !using.voce.banidoEm ? load(() => getNetwork().cliente.registroDaComunidade(id)) : Promise.resolve(null),
+    load(() => getNetwork().cliente.membros(id)),
   ])
-  const banidoEm = com.voce?.banidoEm ?? (registro?.ok ? (registro.valor.itens.find((r) => r.acao === 'banimento' && typeof r.alvo === 'object' && r.alvo.uid === eu?.uid)?.em ?? null) : null)
-  const quem = quemDe(com.voce)
-  const podeAbrir = podeNaComunidade('postar-topico', quem, com.acesso).ok
+  const people = members.ok ? members.valor.itens : []
+  const team = people.filter((m) => m.papel !== 'membro')
+  const bannedAt = using.voce?.banidoEm ?? (record?.ok ? (record.valor.itens.find((r) => r.acao === 'banimento' && typeof r.alvo === 'object' && r.alvo.uid === me?.uid)?.em ?? null) : null)
+  const who = whoOf(using.voce)
+  const canOpen = canInCommunity('postar-topico', who, using.acesso).ok
   const href = (extra: Record<string, string | undefined>) => {
     const p = new URLSearchParams()
-    const base = { ordem: ordem === 'recentes' ? undefined : ordem, janela, categoria, tag, status, etiqueta, ...extra }
+    const base = { ordem: order === 'recentes' ? undefined : order, janela: window, categoria: category, tag, status, etiqueta: label, ...extra }
     for (const [k, v] of Object.entries(base)) if (v) p.set(k, v)
     const s = p.toString()
     return `/${lang}/comunidades/${id}${s ? `?${s}` : ''}`
   }
 
   return (
-    <>
-      <CabecalhoComunidade c={com} d={d} lang={lang} aba="conversas" />
-      {com.voce?.banido && <AvisoDeBanimento id={id} d={d} lang={lang} banidoEm={banidoEm} agora={agora} />}
-      <section className="pilha" aria-labelledby="conversas-t">
-        <div className="cabeca-secao">
+    <div className="wide-page com-pagina">
+      <CommunityHeader c={using} d={d} lang={lang} aba="conversas" faces={people.slice(0, 5).map((m) => m.rover)} />
+      {using.voce?.banido && <BanNotice id={id} d={d} lang={lang} banidoEm={bannedAt} agora={now} />}
+      <div className="com-grid">
+      <section className="stack" aria-labelledby="conversas-t">
+        <div className="section-top">
           <h2 id="conversas-t">{t.titulo}</h2>
-          {podeAbrir && (
-            <Link href={`/${lang}/comunidades/${id}/novo`} className="btn btn-prim btn-peq">
+          {canOpen && (
+            <Link href={`/${lang}/comunidades/${id}/novo`} className="btn btn-primary btn-small">
               {t.novo}
             </Link>
           )}
         </div>
         <nav className="sub-nav" aria-label={t.abasRotulo}>
-          <Link href={href({ ordem: undefined })} aria-current={ordem === 'recentes' ? 'page' : undefined}>
+          <Link href={href({ ordem: undefined })} aria-current={order === 'recentes' ? 'page' : undefined}>
             {t.abas.recentes}
           </Link>
-          <Link href={href({ ordem: 'ativos' })} aria-current={ordem === 'ativos' ? 'page' : undefined}>
+          <Link href={href({ ordem: 'ativos' })} aria-current={order === 'ativos' ? 'page' : undefined}>
             {t.abas.ativos}
           </Link>
-          <Link href={href({ ordem: 'sem-resposta' })} aria-current={ordem === 'sem-resposta' ? 'page' : undefined}>
+          <Link href={href({ ordem: 'sem-resposta' })} aria-current={order === 'sem-resposta' ? 'page' : undefined}>
             {t.abas.semResposta}
           </Link>
-          {porPessoas && (
+          {byPeople && (
             <>
-              <Link href={href({ ordem: 'melhores', janela: undefined })} aria-current={ordem === 'melhores' ? 'page' : undefined}>
+              <Link href={href({ ordem: 'melhores', janela: undefined })} aria-current={order === 'melhores' ? 'page' : undefined}>
                 {t.abas.melhores}
               </Link>
-              <Link href={href({ ordem: 'em-alta', janela: undefined })} aria-current={ordem === 'em-alta' ? 'page' : undefined}>
+              <Link href={href({ ordem: 'em-alta', janela: undefined })} aria-current={order === 'em-alta' ? 'page' : undefined}>
                 {t.abas.emAlta}
               </Link>
             </>
           )}
         </nav>
-        {(ordem === 'melhores' || ordem === 'em-alta') && (
-          <div className="ordem-pessoas">
-            <p className="miudo">{t.ordemNota}</p>
-            {ordem === 'em-alta' && (
-              <div className="com-filtro-grupo" role="group" aria-label={t.janelaRotulo}>
-                <Link href={href({ janela: undefined })} className="chip-filtro" aria-current={!janela ? 'true' : undefined}>
+        {(order === 'melhores' || order === 'em-alta') && (
+          <div className="order-people">
+            <p className="fine">{t.ordemNota}</p>
+            {order === 'em-alta' && (
+              <div className="com-filter-group" role="group" aria-label={t.janelaRotulo}>
+                <Link href={href({ janela: undefined })} className="chip-filter" aria-current={!window ? 'true' : undefined}>
                   {t.janelas['24h']}
                 </Link>
-                <Link href={href({ janela: '7d' })} className="chip-filtro" aria-current={janela === '7d' ? 'true' : undefined}>
+                <Link href={href({ janela: '7d' })} className="chip-filter" aria-current={window === '7d' ? 'true' : undefined}>
                   {t.janelas['7d']}
                 </Link>
               </div>
             )}
           </div>
         )}
-        {voc && (voc.status.length > 0 || voc.etiquetas.length > 0) && (
-          <div className="voc-filtros">
-            {voc.status.length > 0 && (
-              <div className="com-filtro-grupo" role="group" aria-label={t.statusRotulo}>
-                <Link href={href({ status: undefined })} className="chip-filtro" aria-current={!status ? 'true' : undefined}>
+        {vocab && (vocab.status.length > 0 || vocab.etiquetas.length > 0) && (
+          <div className="vocab-filters">
+            {vocab.status.length > 0 && (
+              <div className="com-filter-group" role="group" aria-label={t.statusRotulo}>
+                <Link href={href({ status: undefined })} className="chip-filter" aria-current={!status ? 'true' : undefined}>
                   {t.todas}
                 </Link>
-                {statusParaFiltro(voc, categoria).map((s) => (
-                  <Link key={s.chave} href={href({ status: status === s.chave ? undefined : s.chave })} className="voc-filtro" aria-current={status === s.chave ? 'true' : undefined}>
-                    <ChipDeStatus s={s} d={d} />
+                {statusForFilter(vocab, category).map((s) => (
+                  <Link key={s.chave} href={href({ status: status === s.chave ? undefined : s.chave })} className="vocab-filter" aria-current={status === s.chave ? 'true' : undefined}>
+                    <StatusChip s={s} d={d} />
                   </Link>
                 ))}
               </div>
             )}
-            {voc.etiquetas.length > 0 && (
-              <div className="com-filtro-grupo" role="group" aria-label={t.etiquetaRotulo}>
-                <Link href={href({ etiqueta: undefined })} className="chip-filtro" aria-current={!etiqueta ? 'true' : undefined}>
+            {vocab.etiquetas.length > 0 && (
+              <div className="com-filter-group" role="group" aria-label={t.etiquetaRotulo}>
+                <Link href={href({ etiqueta: undefined })} className="chip-filter" aria-current={!label ? 'true' : undefined}>
                   {t.todas}
                 </Link>
-                {voc.etiquetas.map((e) => (
-                  <Link key={e.chave} href={href({ etiqueta: etiqueta === e.chave ? undefined : e.chave })} className="voc-filtro" aria-current={etiqueta === e.chave ? 'true' : undefined}>
-                    <ChipDeEtiqueta e={e} />
+                {vocab.etiquetas.map((e) => (
+                  <Link key={e.chave} href={href({ etiqueta: label === e.chave ? undefined : e.chave })} className="vocab-filter" aria-current={label === e.chave ? 'true' : undefined}>
+                    <TagChip e={e} />
                   </Link>
                 ))}
               </div>
             )}
           </div>
         )}
-        {(com.categorias.length > 0 || tag) && (
-          <div className="com-filtro-grupo" role="group" aria-label={t.categoriaRotulo}>
-            {com.categorias.length > 0 && (
-              <Link href={href({ categoria: undefined })} className="chip-filtro" aria-current={!categoria ? 'true' : undefined}>
+        {(using.categorias.length > 0 || tag) && (
+          <div className="com-filter-group" role="group" aria-label={t.categoriaRotulo}>
+            {using.categorias.length > 0 && (
+              <Link href={href({ categoria: undefined })} className="chip-filter" aria-current={!category ? 'true' : undefined}>
                 {t.todas}
               </Link>
             )}
-            {com.categorias.map((cat) => (
-              <Link key={cat} href={href({ categoria: categoria === cat ? undefined : cat })} className="chip-filtro" aria-current={categoria === cat ? 'true' : undefined}>
+            {using.categorias.map((cat) => (
+              <Link key={cat} href={href({ categoria: category === cat ? undefined : cat })} className="chip-filter" aria-current={category === cat ? 'true' : undefined}>
                 {cat}
               </Link>
             ))}
             {tag && (
-              <Link href={href({ tag: undefined })} className="chip-filtro ativo-tag" aria-label={t.tirarTag}>
+              <Link href={href({ tag: undefined })} className="chip-filter active-tag" aria-label={t.tirarTag}>
                 {t.tagFiltro.replace('{tag}', `#${tag}`)} ×
               </Link>
             )}
           </div>
         )}
 
-        {!lista.ok ? (
-          <EstadoDeErro codigo={lista.codigo} d={d} lang={lang} />
+        {!list.ok ? (
+          <ErrorState codigo={list.codigo} d={d} lang={lang} />
         ) : (
           <>
-            {lista.valor.fixados && lista.valor.fixados.length > 0 && (
-              <div className="topicos-fixados" aria-label={t.fixados}>
-                <h3 className="sobrelinha">{t.fixados}</h3>
-                <div className="topicos-lista">
-                  {lista.valor.fixados.map((x) => (
-                    <CartaoTopico key={x.id} t={x} d={d} lang={lang} agora={agora} vocabulario={voc} />
+            {list.valor.fixados && list.valor.fixados.length > 0 && (
+              <div className="pinned-topics" aria-label={t.fixados}>
+                <h3 className="overline">{t.fixados}</h3>
+                <div className="topics-list">
+                  {list.valor.fixados.map((x) => (
+                    <TopicCard key={x.id} t={x} d={d} lang={lang} agora={now} vocabulario={vocab} />
                   ))}
                 </div>
               </div>
             )}
-            {lista.valor.itens.length === 0 && !(lista.valor.fixados && lista.valor.fixados.length > 0) ? (
-              <EstadoVazio
-                titulo={status || etiqueta ? t.vazioMarca.titulo : ordem === 'sem-resposta' ? t.vazioSemResposta.titulo : categoria || tag ? t.vazioFiltro.titulo : t.vazio.titulo}
-                texto={status || etiqueta ? t.vazioMarca.texto : ordem === 'sem-resposta' ? t.vazioSemResposta.texto : categoria || tag ? t.vazioFiltro.texto : t.vazio.texto}
-                ficha={rostoPorUid(`rvr_forum_vazio_${ordem}00000`)}
-                estado={ordem === 'sem-resposta' ? 'feliz' : 'dormir'}
+            {list.valor.itens.length === 0 && !(list.valor.fixados && list.valor.fixados.length > 0) ? (
+              <EmptyState
+                titulo={status || label ? t.vazioMarca.titulo : order === 'sem-resposta' ? t.vazioSemResposta.titulo : category || tag ? t.vazioFiltro.titulo : t.vazio.titulo}
+                texto={status || label ? t.vazioMarca.texto : order === 'sem-resposta' ? t.vazioSemResposta.texto : category || tag ? t.vazioFiltro.texto : t.vazio.texto}
+                ficha={faceByUid(`rvr_forum_vazio_${order}00000`)}
+                estado={order === 'sem-resposta' ? 'feliz' : 'dormir'}
                 acoes={
-                  podeAbrir ? (
-                    <Link href={`/${lang}/comunidades/${id}/novo`} className="btn btn-prim">
+                  canOpen ? (
+                    <Link href={`/${lang}/comunidades/${id}/novo`} className="btn btn-primary">
                       {t.novo}
                     </Link>
                   ) : undefined
                 }
               />
             ) : (
-              <TopicosMais inicial={{ itens: lista.valor.itens, proximo: lista.valor.proximo }} comunidade={id} opcoes={{ ordem, ...(janela ? { janela } : {}), ...(categoria ? { categoria } : {}), ...(tag ? { tag } : {}), ...(status ? { status } : {}), ...(etiqueta ? { etiqueta } : {}) }} d={d} lang={lang} agora={agora} vocabulario={voc} />
+              <TopicsMore initial={{ itens: list.valor.itens, proximo: list.valor.proximo }} comunidade={id} opcoes={{ ordem: order, ...(window ? { janela: window } : {}), ...(category ? { categoria: category } : {}), ...(tag ? { tag } : {}), ...(status ? { status } : {}), ...(label ? { etiqueta: label } : {}) }} d={d} lang={lang} agora={now} vocabulario={vocab} />
             )}
           </>
         )}
       </section>
-    </>
+      <CommunitySide
+        c={using}
+        team={team}
+        d={d}
+        lang={lang}
+        demonstration={isDemo(getNetwork().cliente.modo)}
+        nextEvents={isDemo(getNetwork().cliente.modo) ? undefined : <UpcomingInCommunity community={id} lang={lang} title={d.socFolgali.comunidade.proximoEvento} />}
+      />
+      </div>
+    </div>
   )
 }

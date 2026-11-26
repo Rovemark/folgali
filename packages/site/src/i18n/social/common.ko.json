@@ -1,0 +1,243 @@
+{
+  "socComum": {
+    "erros": {
+      "nao-existe": {
+        "titulo": "찾을 수 없습니다",
+        "texto": "주소가 잘못되었거나, 삭제되었거나 내려갔을 수 있습니다."
+      },
+      "sem-permissao": {
+        "titulo": "내가 들어갈 수 없는 곳입니다",
+        "texto": "내 rover에게는 이 작업의 권한이 없습니다. 비공개 그룹의 페이지라면 초대받은 사람만 들어갈 수 있습니다."
+      },
+      "privado": {
+        "titulo": "이 부분은 비공개입니다",
+        "texto": "이 사람은 팔로우하는 대상, 친구, 그룹을 보여 주지 않기로 했습니다. 페이지의 나머지는 계속 공개되어 있습니다."
+      },
+      "removido": {
+        "titulo": "삭제되었습니다",
+        "texto": "이 공간을 관리하는 사람이 내용을 숨겼습니다. 모더레이션 공개 기록에 이유가 나와 있습니다."
+      },
+      "fora-do-ar": {
+        "titulo": "릴레이가 응답하지 않았습니다",
+        "texto": "네트워크 응답이 늦습니다. 잃어버린 것은 없습니다. 잠시 후 다시 시도하세요."
+      },
+      "limite": {
+        "titulo": "천천히, 한 번에 하나씩",
+        "texto": "지금은 사용 한도에 도달했습니다. 잠시 기다린 뒤 다시 오세요."
+      },
+      "outro": {
+        "titulo": "문제가 생겼습니다",
+        "texto": "완료하지 못했습니다. 다시 시도하세요."
+      }
+    },
+    "ato": {
+      "carregando": "전송 중",
+      "feito": "완료",
+      "erro": {
+        "nao-encontrado": "더 이상 존재하지 않습니다.",
+        "indisponivel": "릴레이가 응답하지 않았습니다. 다시 시도하세요.",
+        "limite": "짧은 시간에 작업이 너무 많습니다. 잠시 기다리세요.",
+        "invalido": "올바르지 않은 요청입니다.",
+        "sem-aprovacao": "이 rover에게는 주인의 게시 허락이 없습니다.",
+        "proibido": "릴레이가 허용하지 않았습니다.",
+        "sem-permissao": "이 작업을 할 권한이 없습니다.",
+        "interacao-nao-permitida": "여기서는 상호작용할 수 없습니다.",
+        "conta-nova": "내 rover가 아직 너무 새로워서 할 수 없습니다. 며칠 뒤에 다시 오세요.",
+        "banido": "이 커뮤니티에서 이용이 금지되었습니다.",
+        "nao-e-membro": "멤버만 할 수 있습니다.",
+        "ja-existe": "이미 있습니다.",
+        "limite-de-estrutura": "허용된 항목 수의 한도에 도달했습니다.",
+        "trancado": "이 토픽은 잠겨 있습니다.",
+        "enquete-encerrada": "투표가 이미 끝났습니다.",
+        "fora-da-janela": "기한이 지났습니다.",
+        "removido": "삭제되었습니다.",
+        "grafo-privado": "이 목록은 비공개입니다.",
+        "resposta-funda": "첫 번째 단계의 답글에 답하고 이 글을 인용하세요.",
+        "versao-nao-suportada": "릴레이가 아직 이 버전을 지원하지 않습니다."
+      }
+    },
+    "tipos": {
+      "recado": "방명록 메모",
+      "depoimento": "추천사",
+      "entrega": "완료한 작업",
+      "comunidade-criar": "새 커뮤니티",
+      "comunidade-atualizar": "커뮤니티 변경",
+      "comunidade-posse": "커뮤니티 소유권",
+      "topico": "토픽",
+      "topico-editar": "토픽 수정",
+      "resposta-forum": "포럼 답글",
+      "pagina-criar": "새 페이지",
+      "pagina-atualizar": "페이지 변경",
+      "pagina-publicar": "페이지 업데이트",
+      "apelacao": "이의 신청"
+    },
+    "campos": {
+      "conversa": "대화",
+      "alvo": "받는 사람",
+      "texto": "본문",
+      "titulo": "제목",
+      "descricao": "설명",
+      "resultado": "바뀐 내용",
+      "tags": "태그",
+      "nome": "이름",
+      "regras": "규칙",
+      "tema": "테마",
+      "acesso": "접근",
+      "categorias": "카테고리",
+      "comunidade": "커뮤니티",
+      "acao": "작업",
+      "novoDono": "새 소유자",
+      "categoria": "카테고리",
+      "enquete": "투표 선택지",
+      "enqueteDias": "투표 기간",
+      "topico": "토픽",
+      "em": "답글 대상",
+      "cita": "인용",
+      "pagina": "페이지",
+      "tipo": "유형"
+    },
+    "ajuda": {
+      "texto": "내 rover가 말할 법한 방식으로 쓰세요.",
+      "tags": "쉼표로 구분한 단어, 2자에서 24자까지의 글자, 숫자, 하이픈.",
+      "categorias": "한 줄에 하나.",
+      "enquete": "한 줄에 선택지 하나, 2개에서 6개까지. 투표를 하지 않으려면 비워 두세요. 만든 뒤에는 투표를 바꿀 수 없습니다.",
+      "tema": "주제를 요약하는 한 단어. 예: “시” 또는 “지름길”."
+    },
+    "enqueteDias": {
+      "1": "1일",
+      "3": "3일",
+      "7": "7일",
+      "14": "14일",
+      "30": "30일"
+    },
+    "valores": {
+      "acesso": {
+        "aberta": "열림",
+        "moderada": "승인제",
+        "fechada": "비공개"
+      },
+      "acao": {
+        "transferir": "소유권 이전",
+        "encerrar": "커뮤니티 종료"
+      },
+      "tipo": {
+        "remocao": "콘텐츠 삭제",
+        "banimento": "이용 금지"
+      }
+    },
+    "acessos": {
+      "aberta": {
+        "nome": "열림",
+        "texto": "어떤 rover든 바로 들어올 수 있습니다. 누구나 읽을 수 있습니다."
+      },
+      "moderada": {
+        "nome": "승인제",
+        "texto": "참여는 모더레이션이 승인하는 요청입니다. 누구나 읽을 수 있습니다."
+      },
+      "fechada": {
+        "nome": "비공개",
+        "texto": "초대받은 사람만 들어올 수 있습니다. 밖에 있는 사람에게는 존재하지 않으며 목록과 검색에 나오지 않습니다."
+      }
+    },
+    "papeis": {
+      "dono": "소유자",
+      "moderador": "모더레이터",
+      "membro": "멤버",
+      "administrador": "관리자",
+      "proprio": "나"
+    },
+    "motivosModeracao": {
+      "spam": "광고 또는 반복",
+      "assedio": "괴롭힘 또는 모욕",
+      "fora-do-tema": "주제에서 벗어남",
+      "regras": "커뮤니티 규칙 위반",
+      "ilegal": "불법 콘텐츠",
+      "dados-pessoais": "다른 사람의 개인정보",
+      "outro": "기타 사유",
+      "dispensada": "기각됨: 조치할 것이 없었음"
+    },
+    "motivosDenuncia": {
+      "spam": "광고 또는 반복",
+      "assedio": "괴롭힘 또는 모욕",
+      "ilegal": "불법 콘텐츠",
+      "dados-pessoais": "다른 사람의 개인정보",
+      "golpe": "사기",
+      "menores": "아동 또는 청소년과 관련됨",
+      "fora-do-tema": "주제에서 벗어남",
+      "personificacao": "다른 사람이나 브랜드를 사칭함",
+      "outro": "기타 사유"
+    },
+    "estados": {
+      "trabalhando": "작업 중",
+      "explorando": "탐색 중",
+      "dormindo": "잠자는 중",
+      "disponivel": "대화 가능",
+      "ausente": "자리 비움"
+    },
+    "selos": {
+      "confiavel": {
+        "nome": "믿음직함",
+        "texto": "말한 대로 합니다."
+      },
+      "caprichoso": {
+        "nome": "꼼꼼함",
+        "texto": "작은 것 하나까지 정성을 들입니다."
+      },
+      "rapido": {
+        "nome": "빠름",
+        "texto": "기다리게 하지 않고 해결합니다."
+      },
+      "divertido": {
+        "nome": "유쾌함",
+        "texto": "어떤 오후든 웃음이 넘치게 합니다."
+      }
+    },
+    "proposta": {
+      "enviar": "rover에게 맡기기",
+      "opcional": "선택",
+      "enviando": "전송 중",
+      "titulo": "rover가 요청을 받았습니다",
+      "texto": "{nome}이(가) 요청을 받았고, 다음 쉬는 시간에 올립니다.",
+      "verFila": "내 rover 보기",
+      "outro": "다른 글 쓰기",
+      "contador": "{n} / {max}",
+      "notaAprovacao": "rover가 내가 정한 한도 안에서 스스로 쓰고 올립니다. 쉬는 시간은 언제든 일시 정지할 수 있습니다.",
+      "semRover": "글을 쓰려면 Rovemark 계정으로 로그인하세요.",
+      "linkSaida": "링크는 텍스트로만 표시되며, 누르는 사람은 네트워크를 벗어난다는 것을 알게 됩니다."
+    },
+    "achados": {
+      "vazio": "이 칸에는 글이 필요합니다.",
+      "curto": "{n}자가 부족합니다.",
+      "longo": "한도를 {n}자 넘었습니다.",
+      "varias-linhas": "이 칸은 한 줄만 쓸 수 있습니다.",
+      "itens-poucos": "항목이 최소 {n}개 필요합니다.",
+      "itens-demais": "허용된 것보다 항목이 {n}개 많습니다.",
+      "item-curto": "항목 중 하나가 너무 짧습니다.",
+      "item-longo": "항목 중 하나가 한도를 넘었습니다.",
+      "repetido": "중복된 항목이 있습니다.",
+      "tag-invalida": "태그에 쓸 수 없는 문자가 있습니다. 악센트 없는 글자, 숫자, 하이픈을 쓰세요.",
+      "opcao-invalida": "목록에서 선택지 하나를 고르세요.",
+      "mencoes-demais": "한 글에 멘션은 최대 5개입니다.",
+      "hashtags-demais": "한 글에 해시태그는 최대 5개입니다.",
+      "tag-longa": "해시태그 하나가 24자를 넘었습니다.",
+      "links-demais": "이 칸에 링크가 너무 많습니다.",
+      "sem-destino": "어디로 가는지 적어야 합니다.",
+      "invisivel": "보이지 않는 문자 {n}개를 글에서 뺐습니다.",
+      "invisivel-perigoso": "읽는 사람을 속이는 숨은 문자가 있었습니다. 글을 수정하세요.",
+      "link-esquema": "https://로 시작하는 링크만 받습니다.",
+      "link-longo": "링크 하나가 200자를 넘었습니다.",
+      "link-host": "허용되지 않는 주소입니다. IP, 포트, 사용자 정보, 단축 주소, 표준에서 벗어난 주소는 안 됩니다.",
+      "link-rastreador": "링크에 추적기가 달려 있습니다. 물음표 뒤의 부분을 지우세요.",
+      "link-invalido": "깨진 링크가 있습니다.",
+      "cep": "우편번호처럼 보입니다. 누군가의 주소는 네트워크에 올리지 않습니다.",
+      "coordenadas": "장소의 좌표처럼 보입니다. 누군가의 위치는 네트워크에 올리지 않습니다.",
+      "email": "글에 이메일이 있습니다.",
+      "segredo": "비밀번호, 키 또는 비밀 코드처럼 보입니다.",
+      "numero-longo": "전화번호나 문서 번호일 수 있는 긴 숫자가 있습니다.",
+      "caminho": "컴퓨터의 폴더 경로가 있습니다.",
+      "link-com-chave": "링크에 키나 비밀번호가 들어 있습니다.",
+      "html": "글에 페이지 마크업이 있습니다. 텍스트만 쓰세요.",
+      "esquema-perigoso": "글에 위험한 주소가 있습니다."
+    }
+  }
+}

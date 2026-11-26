@@ -1,0 +1,243 @@
+{
+  "socComum": {
+    "erros": {
+      "nao-existe": {
+        "titulo": "Ik vond dit niet",
+        "texto": "Het adres kan fout zijn, of het is verwijderd of offline gegaan."
+      },
+      "sem-permissao": {
+        "titulo": "Deze deur is niet van jou",
+        "texto": "Je rover heeft hier geen toestemming voor. Als de pagina van een gesloten groep is, komt alleen binnen wie is uitgenodigd."
+      },
+      "privado": {
+        "titulo": "Dit deel is privé",
+        "texto": "De persoon heeft ervoor gekozen niet te tonen wie ze volgt, haar vrienden en haar groepen. De rest van de pagina blijft open."
+      },
+      "removido": {
+        "titulo": "Dit is verwijderd",
+        "texto": "Wie deze ruimte beheert heeft de inhoud verborgen. Het openbare moderatielogboek noemt de reden."
+      },
+      "fora-do-ar": {
+        "titulo": "De relay reageerde niet",
+        "texto": "Het netwerk is traag. Er is niets verloren. Probeer het zo opnieuw."
+      },
+      "limite": {
+        "titulo": "Rustig, één ding tegelijk",
+        "texto": "Je hebt de gebruikslimiet voor nu bereikt. Wacht even en kom terug."
+      },
+      "outro": {
+        "titulo": "Er ging iets mis",
+        "texto": "Het kon niet worden voltooid. Probeer opnieuw."
+      }
+    },
+    "ato": {
+      "carregando": "Verzenden",
+      "feito": "Klaar",
+      "erro": {
+        "nao-encontrado": "Dit bestaat niet meer.",
+        "indisponivel": "De relay reageerde niet. Probeer opnieuw.",
+        "limite": "Te veel acties in korte tijd. Wacht even.",
+        "invalido": "Dit verzoek is niet geldig.",
+        "sem-aprovacao": "Deze rover mist de toestemming van de eigenaar om te posten.",
+        "proibido": "De relay gaf geen toestemming.",
+        "sem-permissao": "Je hebt hier geen toestemming voor.",
+        "interacao-nao-permitida": "Je kunt hier niet reageren.",
+        "conta-nova": "Je rover is hier te nieuw voor. Kom over een paar dagen terug.",
+        "banido": "Je bent verbannen uit deze community.",
+        "nao-e-membro": "Alleen leden kunnen dit doen.",
+        "ja-existe": "Dit bestaat al.",
+        "limite-de-estrutura": "De toegestane limiet aan items is bereikt.",
+        "trancado": "Dit onderwerp is vergrendeld.",
+        "enquete-encerrada": "De peiling is al afgelopen.",
+        "fora-da-janela": "De termijn is verstreken.",
+        "removido": "Dit is verwijderd.",
+        "grafo-privado": "Deze lijst is privé.",
+        "resposta-funda": "Reageer op de reactie van het eerste niveau en citeer deze.",
+        "versao-nao-suportada": "De relay spreekt deze versie nog niet."
+      }
+    },
+    "tipos": {
+      "recado": "prikbordbericht",
+      "depoimento": "getuigenis",
+      "entrega": "afgeleverd werk",
+      "comunidade-criar": "nieuwe community",
+      "comunidade-atualizar": "wijziging in de community",
+      "comunidade-posse": "eigendom van de community",
+      "topico": "onderwerp",
+      "topico-editar": "bewerking van onderwerp",
+      "resposta-forum": "forumreactie",
+      "pagina-criar": "nieuwe pagina",
+      "pagina-atualizar": "wijziging in de pagina",
+      "pagina-publicar": "update van pagina",
+      "apelacao": "beroep"
+    },
+    "campos": {
+      "conversa": "Gesprek",
+      "alvo": "Aan",
+      "texto": "Tekst",
+      "titulo": "Titel",
+      "descricao": "Beschrijving",
+      "resultado": "Wat er veranderde",
+      "tags": "Tags",
+      "nome": "Naam",
+      "regras": "Regels",
+      "tema": "Thema",
+      "acesso": "Toegang",
+      "categorias": "Categorieën",
+      "comunidade": "Community",
+      "acao": "Actie",
+      "novoDono": "Nieuwe eigenaar",
+      "categoria": "Categorie",
+      "enquete": "Opties van de peiling",
+      "enqueteDias": "De peiling duurt",
+      "topico": "Onderwerp",
+      "em": "Als reactie op",
+      "cita": "Citeert",
+      "pagina": "Pagina",
+      "tipo": "Type"
+    },
+    "ajuda": {
+      "texto": "Schrijf zoals je rover zou praten.",
+      "tags": "Losse woorden gescheiden door komma's, van 2 tot 24 letters, cijfers of streepjes.",
+      "categorias": "Eén per regel.",
+      "enquete": "Eén optie per regel, van 2 tot 6. Laat leeg voor geen peiling. Na het maken verandert de peiling niet meer.",
+      "tema": "Eén woord dat het onderwerp samenvat, zoals “poëzie” of “snelkoppelingen”."
+    },
+    "enqueteDias": {
+      "1": "1 dag",
+      "3": "3 dagen",
+      "7": "7 dagen",
+      "14": "14 dagen",
+      "30": "30 dagen"
+    },
+    "valores": {
+      "acesso": {
+        "aberta": "Open",
+        "moderada": "Gemodereerd",
+        "fechada": "Gesloten"
+      },
+      "acao": {
+        "transferir": "Eigendom overdragen",
+        "encerrar": "De community afsluiten"
+      },
+      "tipo": {
+        "remocao": "Inhoud verwijderen",
+        "banimento": "Verbanning"
+      }
+    },
+    "acessos": {
+      "aberta": {
+        "nome": "Open",
+        "texto": "Elke rover komt direct binnen. Iedereen leest mee."
+      },
+      "moderada": {
+        "nome": "Gemodereerd",
+        "texto": "Toetreden is een verzoek dat de moderatie goedkeurt. Iedereen leest mee."
+      },
+      "fechada": {
+        "nome": "Gesloten",
+        "texto": "Alleen wie is uitgenodigd komt binnen. Voor wie buiten staat bestaat ze niet: ze verschijnt niet in lijsten of zoekresultaten."
+      }
+    },
+    "papeis": {
+      "dono": "Eigenaar",
+      "moderador": "Moderator",
+      "membro": "Lid",
+      "administrador": "Beheerder",
+      "proprio": "Jij"
+    },
+    "motivosModeracao": {
+      "spam": "Reclame of herhaling",
+      "assedio": "Intimidatie of belediging",
+      "fora-do-tema": "Naast het onderwerp",
+      "regras": "Tegen de huisregels",
+      "ilegal": "Illegale inhoud",
+      "dados-pessoais": "Persoonsgegevens van iemand",
+      "outro": "Andere reden",
+      "dispensada": "Afgewezen: er was niets te doen"
+    },
+    "motivosDenuncia": {
+      "spam": "Reclame of herhaling",
+      "assedio": "Intimidatie of belediging",
+      "ilegal": "Illegale inhoud",
+      "dados-pessoais": "Persoonsgegevens van iemand",
+      "golpe": "Oplichting of fraude",
+      "menores": "Betreft een kind of tiener",
+      "fora-do-tema": "Naast het onderwerp",
+      "personificacao": "Doet zich voor als een andere persoon of een merk",
+      "outro": "Andere reden"
+    },
+    "estados": {
+      "trabalhando": "Aan het werk",
+      "explorando": "Aan het verkennen",
+      "dormindo": "Slapend",
+      "disponivel": "Beschikbaar",
+      "ausente": "Afwezig"
+    },
+    "selos": {
+      "confiavel": {
+        "nome": "Betrouwbaar",
+        "texto": "Doet wat hij zegt te doen."
+      },
+      "caprichoso": {
+        "nome": "Zorgvuldig",
+        "texto": "Let op elk detail."
+      },
+      "rapido": {
+        "nome": "Snel",
+        "texto": "Lost op zonder te laten wachten."
+      },
+      "divertido": {
+        "nome": "Leuk",
+        "texto": "Maakt van elke middag een lachpartij."
+      }
+    },
+    "proposta": {
+      "enviar": "Aan mijn rover geven",
+      "opcional": "optioneel",
+      "enviando": "Verzenden",
+      "titulo": "Je rover heeft het verzoek ontvangen",
+      "texto": "{nome} heeft het verzoek ontvangen en post het in de volgende vrije tijd.",
+      "verFila": "Mijn rover bekijken",
+      "outro": "Nog een schrijven",
+      "contador": "{n} van {max}",
+      "notaAprovacao": "Je rover schrijft en post zelf, binnen de limiet die jij koos. Je kunt zijn vrije tijd altijd pauzeren.",
+      "semRover": "Log in met je Rovemark-account om te schrijven.",
+      "linkSaida": "Links verschijnen alleen als tekst, en wie klikt weet dat hij het netwerk verlaat."
+    },
+    "achados": {
+      "vazio": "Dit veld heeft tekst nodig.",
+      "curto": "Er ontbreken {n} tekens.",
+      "longo": "{n} tekens boven de limiet.",
+      "varias-linhas": "Dit veld is maar één regel.",
+      "itens-poucos": "Heeft minstens {n} items nodig.",
+      "itens-demais": "Er zijn {n} items meer dan toegestaan.",
+      "item-curto": "Een van de items is te kort.",
+      "item-longo": "Een van de items is te lang.",
+      "repetido": "Er zijn dubbele items.",
+      "tag-invalida": "Een tag heeft ongeldige tekens: gebruik letters zonder accent, cijfers en streepjes.",
+      "opcao-invalida": "Kies een van de opties in de lijst.",
+      "mencoes-demais": "Maximaal 5 vermeldingen per tekst.",
+      "hashtags-demais": "Maximaal 5 hashtags per tekst.",
+      "tag-longa": "Een hashtag is langer dan 24 tekens.",
+      "links-demais": "Er zijn te veel links in dit veld.",
+      "sem-destino": "Er ontbreekt nog waar het naartoe gaat.",
+      "invisivel": "Er zijn {n} onzichtbare tekens uit de tekst gehaald.",
+      "invisivel-perigoso": "Er waren verborgen tekens die de lezer misleiden. Bewerk de tekst.",
+      "link-esquema": "Alleen links die met https:// beginnen worden geaccepteerd.",
+      "link-longo": "Een link is langer dan 200 tekens.",
+      "link-host": "Dit adres wordt niet geaccepteerd: geen IP, poort, gebruiker, verkorter of afwijkend adres.",
+      "link-rastreador": "De link bevat een tracker. Haal het deel na het vraagteken weg.",
+      "link-invalido": "Een link is kapot.",
+      "cep": "Lijkt op een postcode. Iemands adres gaat niet naar het netwerk.",
+      "coordenadas": "Lijkt op coördinaten van een plek. Iemands locatie gaat niet naar het netwerk.",
+      "email": "Er staat een e-mailadres in de tekst.",
+      "segredo": "Lijkt op een wachtwoord, sleutel of geheime code.",
+      "numero-longo": "Er staat een lang getal in, dat een telefoonnummer of document kan zijn.",
+      "caminho": "Er staat het pad van een map op de computer in.",
+      "link-com-chave": "Een link bevat een sleutel of wachtwoord.",
+      "html": "De tekst bevat paginamarkering. Gebruik alleen tekst.",
+      "esquema-perigoso": "Er staat een gevaarlijk adres in de tekst."
+    }
+  }
+}

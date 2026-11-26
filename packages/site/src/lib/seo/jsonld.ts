@@ -1,40 +1,40 @@
-// Dados estruturados (schema.org em JSON-LD), tipados e sem efeito colateral. Cada construtor devolve um objeto puro; o teste valida a
-// forma de cada um contra um JSON Schema (test/seo/schemas.ts) e a serialização contra injeção em <script>.
+// Structured data (schema.org in JSON-LD), typed and with no side effects. Each builder returns a pure object; the test validates the
+// shape of each against a JSON Schema (test/seo/schemas.ts) and the serialization against injection in <script>.
 //
-// Regras do que se afirma: só entra aqui o que o site pode provar. Nada de preço, de nota, de número de usuários, de sistema operacional
-// que ainda não existe. A entidade é sempre a mesma (nome, empresa, sameAs), em todas as páginas, para as máquinas não duvidarem dela.
-import type { Faq, Guia, Verbete } from '@/conteudo/tipos'
-import { ENTIDADE } from '@/lib/site'
+// Rules for what is claimed: only what the site can prove goes in here. No price, rating, user count, or operating system
+// that does not exist yet. The entity is always the same (name, company, sameAs), on every page, so machines do not doubt it.
+import type { Faq, Guide, GlossaryEntry } from '@/content/types'
+import { ENTITY } from '@/lib/site'
 
 export type JsonLd = Record<string, unknown>
-const CONTEXTO = 'https://schema.org'
+const CONTEXT = 'https://schema.org'
 
 const idOrg = (base: string) => `${base}/#organizacao`
 const idSite = (base: string) => `${base}/#site`
-const idEmpresa = () => `${ENTIDADE.urlEmpresa}/#organizacao`
+const companyId = () => `${ENTITY.companyUrl}/#organizacao`
 
-/** A folgali como organização, filha da Rovemark. O mesmo bloco serve de referência (`@id`) para o resto. */
-export function organizacao(base: string, descricao: string): JsonLd {
+/** folgali as an organization, a child of Rovemark. The same block serves as a reference (`@id`) for the rest. */
+export function organization(base: string, description: string): JsonLd {
   return {
     '@type': 'Organization',
     '@id': idOrg(base),
-    name: ENTIDADE.nome,
+    name: ENTITY.nome,
     url: base,
-    description: descricao,
+    description: description,
     logo: `${base}/marca/icone.svg`,
-    parentOrganization: { '@type': 'Organization', '@id': idEmpresa(), name: ENTIDADE.empresa, url: ENTIDADE.urlEmpresa },
-    sameAs: [ENTIDADE.urlEmpresa, ENTIDADE.urlProdutoIrmao],
+    parentOrganization: { '@type': 'Organization', '@id': companyId(), name: ENTITY.empresa, url: ENTITY.companyUrl },
+    sameAs: [ENTITY.companyUrl, ENTITY.siblingProductUrl],
   }
 }
 
-/** O site, com a busca. A busca existe de verdade em `/buscar?q=`. */
-export function website(base: string, lang: string, nome: string, descricao: string): JsonLd {
+/** The site, with search. Search really exists at `/buscar?q=`. */
+export function website(base: string, lang: string, name: string, description: string): JsonLd {
   return {
     '@type': 'WebSite',
     '@id': idSite(base),
     url: `${base}/${lang}`,
-    name: nome,
-    description: descricao,
+    name: name,
+    description: description,
     inLanguage: lang,
     publisher: { '@id': idOrg(base) },
     potentialAction: {
@@ -45,17 +45,17 @@ export function website(base: string, lang: string, nome: string, descricao: str
   }
 }
 
-export type Migalha = { nome: string; url: string }
+export type Breadcrumb = { nome: string; url: string }
 
-export function migalhas(itens: readonly Migalha[]): JsonLd {
+export function breadcrumbs(items: readonly Breadcrumb[]): JsonLd {
   return {
     '@type': 'BreadcrumbList',
-    itemListElement: itens.map((m, i) => ({ '@type': 'ListItem', position: i + 1, name: m.nome, item: m.url })),
+    itemListElement: items.map((m, i) => ({ '@type': 'ListItem', position: i + 1, name: m.nome, item: m.url })),
   }
 }
 
-/** A página como `WebPage` (ou um subtipo), ligada ao site e à organização. */
-export function pagina(base: string, o: { tipo?: 'WebPage' | 'AboutPage' | 'ContactPage' | 'CollectionPage'; url: string; titulo: string; descricao: string; lang: string; atualizadoEm?: string }): JsonLd {
+/** The page as `WebPage` (or a subtype), linked to the site and to the organization. */
+export function page(base: string, o: { tipo?: 'WebPage' | 'AboutPage' | 'ContactPage' | 'CollectionPage'; url: string; titulo: string; descricao: string; lang: string; atualizadoEm?: string }): JsonLd {
   return {
     '@type': o.tipo ?? 'WebPage',
     '@id': `${o.url}#pagina`,
@@ -69,11 +69,11 @@ export function pagina(base: string, o: { tipo?: 'WebPage' | 'AboutPage' | 'Cont
   }
 }
 
-/** FAQPage. A resposta que vai ao dado estruturado é a MESMA que está na página: o Google exige que o texto esteja visível. */
-export function faq(itens: readonly Pick<Faq, 'pergunta' | 'respostaCurta' | 'resposta'>[]): JsonLd {
+/** FAQPage. The answer that goes into the structured data is the SAME one on the page: Google requires the text to be visible. */
+export function faq(items: readonly Pick<Faq, 'pergunta' | 'respostaCurta' | 'resposta'>[]): JsonLd {
   return {
     '@type': 'FAQPage',
-    mainEntity: itens.map((f) => ({
+    mainEntity: items.map((f) => ({
       '@type': 'Question',
       name: f.pergunta,
       acceptedAnswer: { '@type': 'Answer', text: `${f.respostaCurta} ${f.resposta}`.trim() },
@@ -81,31 +81,31 @@ export function faq(itens: readonly Pick<Faq, 'pergunta' | 'respostaCurta' | 're
   }
 }
 
-export function termoDefinido(base: string, lang: string, v: Verbete, idConjunto: string): JsonLd {
+export function definedTerm(base: string, lang: string, v: GlossaryEntry, setId: string): JsonLd {
   return {
     '@type': 'DefinedTerm',
     '@id': `${base}/${lang}/glossario/${v.slug}#termo`,
     name: v.termo,
     description: v.definicaoCurta,
     url: `${base}/${lang}/glossario/${v.slug}`,
-    inDefinedTermSet: { '@id': idConjunto },
+    inDefinedTermSet: { '@id': setId },
   }
 }
 
-export function conjuntoDeTermos(base: string, lang: string, nome: string, descricao: string, verbetes: readonly Verbete[]): JsonLd {
+export function termSet(base: string, lang: string, name: string, description: string, glossaryEntries: readonly GlossaryEntry[]): JsonLd {
   const id = `${base}/${lang}/glossario#conjunto`
   return {
     '@type': 'DefinedTermSet',
     '@id': id,
-    name: nome,
-    description: descricao,
+    name: name,
+    description: description,
     url: `${base}/${lang}/glossario`,
     inLanguage: lang,
-    hasDefinedTerm: verbetes.map((v) => termoDefinido(base, lang, v, id)),
+    hasDefinedTerm: glossaryEntries.map((v) => definedTerm(base, lang, v, id)),
   }
 }
 
-export function artigoTecnico(base: string, lang: string, g: Pick<Guia, 'slug' | 'titulo' | 'descricao' | 'atualizadoEm'>): JsonLd {
+export function technicalArticle(base: string, lang: string, g: Pick<Guide, 'slug' | 'titulo' | 'descricao' | 'atualizadoEm'>): JsonLd {
   const url = `${base}/${lang}/guias/${g.slug}`
   return {
     '@type': 'TechArticle',
@@ -120,24 +120,24 @@ export function artigoTecnico(base: string, lang: string, g: Pick<Guia, 'slug' |
   }
 }
 
-/** O Rover Hangar, o app que a pessoa usa para ter o rover. Só os sistemas em que ele existe hoje. */
-export function aplicativo(base: string): JsonLd {
+/** Rover Hangar, the app the person uses to have the rover. Only the systems where it exists today. */
+export function application(base: string): JsonLd {
   return {
     '@type': 'SoftwareApplication',
-    '@id': `${ENTIDADE.urlProdutoIrmao}/#aplicativo`,
-    name: ENTIDADE.produtoIrmao,
-    url: ENTIDADE.urlProdutoIrmao,
+    '@id': `${ENTITY.siblingProductUrl}/#aplicativo`,
+    name: ENTITY.siblingProduct,
+    url: ENTITY.siblingProductUrl,
     applicationCategory: 'ProductivityApplication',
     operatingSystem: 'macOS, Windows, Linux',
-    publisher: { '@id': idEmpresa() },
+    publisher: { '@id': companyId() },
     isRelatedTo: { '@id': idOrg(base) },
   }
 }
 
-export type TopicoPublico = { url: string; titulo: string; texto: string; autor: string; criadoEm: string; respostas: number; lang: string }
+export type PublicTopic = { url: string; titulo: string; texto: string; autor: string; criadoEm: string; respostas: number; lang: string }
 
-/** Tópico de comunidade aberta. Só o site indexável chama isto: a página decide, não este construtor. */
-export function postagemDeForum(t: TopicoPublico): JsonLd {
+/** Open community topic. Only the indexable site calls this: the page decides, not this builder. */
+export function forumPost(t: PublicTopic): JsonLd {
   return {
     '@type': 'DiscussionForumPosting',
     '@id': `${t.url}#topico`,
@@ -151,16 +151,16 @@ export function postagemDeForum(t: TopicoPublico): JsonLd {
   }
 }
 
-/** Junta vários blocos num grafo só, tirando o `@context` de cada um. */
-export function grafo(...blocos: JsonLd[]): JsonLd {
-  return { '@context': CONTEXTO, '@graph': blocos.map((b) => Object.fromEntries(Object.entries(b).filter(([k]) => k !== '@context'))) }
+/** Joins several blocks into a single graph, removing the `@context` of each. */
+export function graph(...blocks: JsonLd[]): JsonLd {
+  return { '@context': CONTEXT, '@graph': blocks.map((b) => Object.fromEntries(Object.entries(b).filter(([k]) => k !== '@context'))) }
 }
 
 /**
- * Serializa para dentro de um <script type="application/ld+json">. Texto de gente (título de tópico, nome de comunidade) pode conter
- * `</script>`, então os caracteres que fecham a tag ou quebram a linha saem como escape unicode.
+ * Serializes into a <script type="application/ld+json">. Text from people (topic title, community name) may contain
+ * `</script>`, so the characters that close the tag or break the line come out as unicode escapes.
  */
-export function serializar(json: JsonLd): string {
+export function serialize(json: JsonLd): string {
   return JSON.stringify(json)
     .replace(/</g, '\\u003c')
     .replace(/>/g, '\\u003e')

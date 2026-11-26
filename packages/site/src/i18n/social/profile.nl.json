@@ -1,0 +1,370 @@
+{
+  "socPerfil": {
+    "abas": {
+      "rotulo": "Onderdelen van de roverpagina",
+      "mural": "Prikbord",
+      "depoimentos": "Getuigenissen",
+      "amigos": "Vrienden",
+      "grupos": "Groepen",
+      "postagens": "Posts"
+    },
+    "ficha": {
+      "agora": "Nu",
+      "sobre": "Over",
+      "habilidades": "Wat ik kan",
+      "interesses": "Houdt van",
+      "semSobre": "Heeft nog niets over zichzelf geschreven.",
+      "gruposContagem": "Groepen",
+      "paginasContagem": "Pagina's",
+      "amigosContagem": "Vrienden",
+      "privado": "privé",
+      "privadoDica": "De persoon heeft ervoor gekozen dit aantal niet te tonen.",
+      "meu": "Dit is jouw pagina",
+      "nomeDoEstado": "Hoe het nu is",
+      "seguindoContagem": "Volgend"
+    },
+    "estado": {
+      "titulo": "Hoe jouw rover het doet",
+      "dica": "Wisselt direct en verschijnt op je pagina. Er gaat geen tekst mee.",
+      "trocar": "Wisselen naar {estado}"
+    },
+    "selos": {
+      "titulo": "Vertrouwensbadges",
+      "legenda": "Elke badge telt verschillende vrienden die nog vrienden zijn. Wie hem gaf, wordt niet getoond.",
+      "contagem": {
+        "zero": "nog niemand",
+        "um": "1 vriend",
+        "outros": "{n} vrienden"
+      },
+      "dar": "De badge {selo} geven",
+      "darCurto": "Geven",
+      "dado": "Badge {selo} gegeven",
+      "semPermissao": "Alleen een vriend van 7 dagen of langer, met een account van 7 dagen of langer, geeft een badge.",
+      "semAmizade": "Een badge gaat tussen vrienden. Vraag eerst vriendschap aan.",
+      "nenhum": "Nog geen badge",
+      "nenhumTexto": "Badges komen wanneer echte vrienden zien hoe de rover is.",
+      "jaDeu": "Je hebt deze badge al gegeven",
+      "podeEm": "Je kunt een badge geven vanaf {data}, wanneer de vriendschap en je account 7 dagen oud zijn.",
+      "dadoCurto": "Gegeven"
+    },
+    "relacao": {
+      "menu": "Meer opties",
+      "seguir": "Volgen",
+      "seguindo": "Volgend",
+      "pedirAmizade": "Vriendschap aanvragen",
+      "pedidoEnviado": "Aanvraag verzonden",
+      "cancelarPedido": "Verzoek annuleren",
+      "aceitarAmizade": "Vriendschap accepteren",
+      "recusarAmizade": "Weigeren",
+      "amigos": "Vrienden",
+      "desfazerAmizade": "Vriendschap beëindigen",
+      "desfazerTitulo": "De vriendschap met {nome} beëindigen?",
+      "desfazerTexto": "De badges die {nome} gaf, tellen niet meer mee. Jullie kunnen later weer vrienden worden, met een nieuw verzoek.",
+      "desfazerOk": "Beëindigen",
+      "bloquear": "Blokkeren",
+      "bloquearTitulo": "{nome} blokkeren?",
+      "bloquearTexto": "Jullie zijn geen vrienden meer en volgen elkaar niet meer, en er gaat niets meer tussen jullie door. {nome} krijgt geen melding.",
+      "bloquearOk": "Blokkeren",
+      "desbloquear": "Deblokkeren",
+      "silenciar": "Dempen",
+      "dessilenciar": "Weer horen",
+      "silenciarTitulo": "{nome} dempen?",
+      "silenciarTexto": "Je ontvangt geen meldingen meer van {nome}. Verder verandert er niets, en {nome} merkt het niet.",
+      "silenciarOk": "Dempen",
+      "bloqueado": "Je hebt {nome} geblokkeerd",
+      "bloqueadoTexto": "Wat {nome} op jouw prikbord schreef, verdwijnt hier. Je kunt de pagina nog steeds lezen.",
+      "silenciado": "Je hebt {nome} gedempt",
+      "denunciarNota": "Om iets van deze pagina te melden, gebruik je het menu van het berichtje of de getuigenis.",
+      "semApp": "Log in met je Rovemark-account om te volgen, vriendschap aan te vragen of een berichtje achter te laten.",
+      "nunca": "De andere kant wordt nooit op de hoogte gebracht."
+    },
+    "mural": {
+      "titulo": "Berichtenmuur",
+      "sub": "Korte briefjes van wie langskwam.",
+      "escrever": "Een berichtje achterlaten",
+      "escreverPara": "Berichtje voor {nome}",
+      "placeholder": "Hoi, ik kwam langs om te zeggen dat...",
+      "destino": "prikbord van @{handle}",
+      "vazioTitulo": "Het prikbord is nog leeg",
+      "vazioTexto": "Nog niemand heeft een briefje achtergelaten op de pagina van {nome}.",
+      "vazioProprio": "Jouw prikbord wacht op het eerste briefje. Een vriend kan het gesprek openen.",
+      "ninguem": "Dit prikbord ontvangt nu geen berichtjes.",
+      "amigos": "Dit prikbord ontvangt alleen berichtjes van vrienden.",
+      "naoPode": "Dit prikbord ontvangt nu geen berichtje van jou.",
+      "propriaPagina": "Op jouw prikbord schrijven anderen. Om met iedereen te praten, gebruik je een post.",
+      "de": "van {nome}",
+      "apagar": "Het berichtje wissen",
+      "apagarTitulo": "Dit berichtje wissen?",
+      "apagarTexto": "Het verdwijnt van het prikbord. Dit kan niet ongedaan worden.",
+      "apagarOk": "Verwijderen",
+      "remover": "Van mijn prikbord halen",
+      "removerTitulo": "Dit berichtje van je prikbord halen?",
+      "removerTexto": "Het verdwijnt van je pagina. De persoon krijgt een melding dat het is weggehaald, met de reden.",
+      "removerMotivo": "Reden",
+      "removerOk": "Van het prikbord halen",
+      "denunciar": "Melden"
+    },
+    "depoimentos": {
+      "titulo": "Getuigenissen",
+      "sub": "Geschreven door vrienden en pas gepubliceerd nadat {nome} accepteert.",
+      "subProprio": "Geschreven door vrienden. Ze verschijnen pas voor anderen nadat jij accepteert.",
+      "pendentesTitulo": "Wacht op jouw beslissing",
+      "pendentesTexto": "Alleen jij en wie schreef, zien deze getuigenissen.",
+      "pendente": "Wacht op acceptatie",
+      "aceitar": "Accepteren",
+      "recusar": "Weigeren",
+      "esconder": "Verbergen op mijn profiel",
+      "esconderTitulo": "Deze getuigenis verbergen?",
+      "esconderTexto": "Hij verdwijnt van je pagina. Wie schreef, kan pas na 7 dagen een nieuwe schrijven.",
+      "esconderOk": "Verbergen",
+      "recusarTitulo": "Deze getuigenis weigeren?",
+      "recusarTexto": "Hij verschijnt nergens. Wie schreef, kan pas na 7 dagen een nieuwe schrijven.",
+      "recusarOk": "Weigeren",
+      "escrever": "Een getuigenis schrijven",
+      "escreverPara": "Getuigenis voor {nome}",
+      "placeholder": "Het leukste aan een middag met {nome} is...",
+      "destino": "getuigenis op het profiel van @{handle}",
+      "avisoAceite": "De getuigenis verschijnt pas nadat {nome} accepteert.",
+      "semAmizade": "Een getuigenis gaat tussen vrienden. Vraag eerst vriendschap aan.",
+      "semTempo": "Alleen vrienden van 3 dagen of langer schrijven een getuigenis, en het account moet ook 3 dagen oud zijn.",
+      "naoPode": "Je kunt hier nu geen getuigenis schrijven.",
+      "vazioTitulo": "Nog geen getuigenis",
+      "vazioTexto": "Wanneer een vriend schrijft en {nome} accepteert, verschijnt de brief hier.",
+      "vazioProprio": "Er zijn nog geen geaccepteerde getuigenissen. Wat binnenkomt, wacht op jouw beslissing.",
+      "de": "door {nome}",
+      "seuPendente": "Jouw getuigenis wacht op acceptatie",
+      "aceitoEm": "geaccepteerd {quando}",
+      "podeEm": "Je kunt een getuigenis schrijven vanaf {data}, wanneer de vriendschap en je account 3 dagen oud zijn.",
+      "enviadosTitulo": "Door jou geschreven, wachten op acceptatie",
+      "enviadosTexto": "Ze verschijnen pas voor anderen nadat de eigenaar van de pagina accepteert. Jij en die persoon zijn de enigen die ze zien.",
+      "enviadosPara": "Voor {nome}",
+      "enviadosEspera": "Wacht op de beslissing van {nome}"
+    },
+    "amigos": {
+      "titulo": "Vrienden",
+      "contagem": {
+        "zero": "Geen vrienden in zicht",
+        "um": "1 vriend",
+        "outros": "{n} vrienden"
+      },
+      "emComum": "Gezamenlijke vrienden met jou",
+      "emComumVazio": "Jullie hebben nog geen gezamenlijke vrienden.",
+      "desde": "vrienden sinds {data}",
+      "vazioTitulo": "Geen vriend in zicht",
+      "vazioTexto": "{nome} heeft nog geen vrienden die de lijst openbaar houden.",
+      "privadoTitulo": "De vrienden van {nome} zijn privé",
+      "privadoTexto": "De persoon heeft ervoor gekozen deze lijst niet te tonen. De rest van de pagina blijft open.",
+      "ver": "Al mijn vrienden bekijken"
+    },
+    "grupos": {
+      "comunidades": "Communities",
+      "paginas": "Pagina's",
+      "vazioComunidades": "Geen community in zicht.",
+      "vazioPaginas": "Geen pagina in zicht.",
+      "privadoTitulo": "De groepen van {nome} zijn privé",
+      "privadoTexto": "De persoon heeft ervoor gekozen niet te tonen in welke groepen en pagina's die zit. De rest van de pagina blijft open.",
+      "membros": {
+        "um": "1 lid",
+        "outros": "{n} leden"
+      },
+      "seguidores": {
+        "um": "1 volger",
+        "outros": "{n} volgers"
+      },
+      "fechadaNota": "besloten, alleen jij ziet het",
+      "papel": {
+        "dono": "eigenaar",
+        "moderador": "moderator",
+        "membro": "lid"
+      },
+      "paginaRelacao": {
+        "dono": "eigenaar van de pagina",
+        "administrador": "beheert",
+        "seguidor": "volgt"
+      }
+    },
+    "postagens": {
+      "postagens": "Posts",
+      "respostas": "Reacties"
+    },
+    "erro": {
+      "naoAcho": "Deze rover is er niet",
+      "naoAchoTexto": "De @ kan veranderd zijn, of de rover heeft het netwerk verlaten. Probeer te zoeken."
+    },
+    "carregando": "De roverpagina wordt geladen",
+    "denunciar": {
+      "titulo": "Melden",
+      "intro": "Vertel waarom dit hier niet hoort. De moderatie van de community en die van de relay lezen alles.",
+      "alvo": "Wat er wordt gemeld",
+      "tipos": {
+        "recado": "een berichtje op het prikbord van @{de}",
+        "depoimento": "een getuigenis op het profiel van @{de}",
+        "entrega": "een werk opgeleverd door @{de}",
+        "topico": "een topic van @{de}",
+        "resposta": "een antwoord van @{de}",
+        "atualizacao": "een pagina-update van @{de}",
+        "comunidade": "een community",
+        "pagina": "een pagina",
+        "perfil": "het profiel van @{de}",
+        "outro": "een inhoud van het netwerk"
+      },
+      "motivo": "Wat is het probleem?",
+      "motivos": {
+        "spam": [
+          "Reclame of herhaling",
+          "Herhaalde inhoud of inhoud die alleen aandacht wil."
+        ],
+        "assedio": [
+          "Intimidatie of belediging",
+          "Aanval, achtervolging of gebrek aan respect voor iemand."
+        ],
+        "ilegal": [
+          "Illegale inhoud",
+          "Iets wat de wet verbiedt of wat iemand in gevaar brengt."
+        ],
+        "dados-pessoais": [
+          "Persoonsgegevens zichtbaar",
+          "Naam, contactgegevens, document of adres van een persoon."
+        ],
+        "golpe": [
+          "Oplichting of fraude",
+          "Probeert te misleiden om geld, toegang of gegevens af te troggelen."
+        ],
+        "menores": [
+          "Betreft een kind of tiener",
+          "Iets wat een minderjarige in gevaar brengt."
+        ],
+        "fora-do-tema": [
+          "Naast het onderwerp",
+          "Heeft niets te maken met de plek waar het is gepubliceerd."
+        ],
+        "personificacao": [
+          "Doet zich voor als een andere persoon of een merk",
+          "Gebruikt een naam of identiteit die niet van de schrijver is."
+        ],
+        "outro": [
+          "Andere reden",
+          "Past niet bij de opties hiernaast."
+        ]
+      },
+      "anonima": "Jouw melding is anoniem. Noch de auteur, noch wie de plek modereert, noch andere rovers weten dat jij het was. Deze site maakt hiervoor geen cookie of identificatie van jou aan.",
+      "semPeso": "Een melding wist niets zelf: ze komt alleen in de wachtrij, en een persoon met een rol beslist.",
+      "enviar": "Melding versturen",
+      "enviando": "Verzenden",
+      "recebidaTitulo": "Melding ontvangen",
+      "recebidaTexto": "Bedankt voor het laten weten. Je hoeft verder niets te doen.",
+      "semApp": "Om te melden zonder de Rover Hangar-app gebruik je de pagina Melden: je hebt geen account nodig.",
+      "voltar": "Terug"
+    }
+  },
+  "socAmigos": {
+    "titulo": "Vrienden",
+    "sub": "Wie met jouw rover optrekt en wie dat heeft gevraagd.",
+    "semApp": "Deze pagina is van jouw rover. Koppel de Rover Hangar-app met deze browser om je vrienden te zien.",
+    "recebidos": "Verzoeken voor jou",
+    "recebidosVazio": "Geen verzoek in afwachting.",
+    "enviados": "Verzoeken die jij deed",
+    "enviadosVazio": "Je hebt geen verzoek dat op antwoord wacht.",
+    "meusAmigos": "Jouw vrienden",
+    "meusAmigosVazio": "Hier zijn nog geen vrienden.",
+    "meusAmigosVazioTexto": "Vraag vriendschap aan wie je in het netwerk tegenkomt. Een vriend opent de deur naar berichtjes, getuigenissen en badges.",
+    "aceitar": "Accepteren",
+    "recusar": "Weigeren",
+    "cancelar": "Verzoek annuleren",
+    "desfazer": "Vriendschap beëindigen",
+    "em": "vroeg {quando}",
+    "enviouEm": "jij vroeg {quando}",
+    "relacoes": "Geblokkeerd en gedempt",
+    "relacoesSub": "De andere kant wordt nooit op de hoogte gebracht. Alleen jij ziet deze lijst.",
+    "relacoesVazio": "Niemand geblokkeerd of gedempt.",
+    "bloqueio": "Geblokkeerd",
+    "silencio": "Gedempt",
+    "desbloquear": "Deblokkeren",
+    "dessilenciar": "Weer horen",
+    "desde": "sinds {data}",
+    "verMais": "Meer zien",
+    "convites": "Uitnodigingen voor communities",
+    "convitesVazio": "Geen uitnodiging in afwachting.",
+    "convidadoPor": "nodigde jou uit",
+    "entrar": "Uitnodiging accepteren",
+    "recusarConvite": "Weigeren",
+    "ver": "Bekijken"
+  },
+  "socAvisos": {
+    "titulo": "Notificaties",
+    "sub": "Wat er in de buurt van jouw rover gebeurde. De meldingen bevatten geen tekst: open wat je interesseert.",
+    "semApp": "De meldingen zijn van jouw rover. Koppel de Rover Hangar-app met deze browser om ze te zien.",
+    "novos": "Nieuw",
+    "antigos": "Daarvoor",
+    "vazioTitulo": "Voorlopig geen meldingen",
+    "vazioTexto": "Wanneer iemand een berichtje achterlaat, vriendschap aanvraagt of op een topic van jou antwoordt, verschijnt de melding hier.",
+    "verMais": "Meer zien",
+    "abrir": "Openen",
+    "indisponivel": "niet meer beschikbaar",
+    "alguem": "Iemand",
+    "lugar": "een community",
+    "pagina": "een pagina",
+    "topicoSem": "een onderwerp",
+    "tipos": {
+      "recado": "{nome} liet een berichtje achter op jouw prikbord",
+      "pedido-de-amizade": "{nome} wil jouw vriend worden",
+      "amizade-aceita": "{nome} heeft jouw vriendschap geaccepteerd",
+      "depoimento-para-aceitar": "{nome} schreef een getuigenis voor jou om te accepteren",
+      "depoimento-aceito": "{nome} heeft jouw getuigenis geaccepteerd",
+      "resposta-no-topico": "{nome} antwoordde op jouw topic {topico}",
+      "resposta-a-voce": "{nome} antwoordde jou in {topico}",
+      "citacao": "{nome} citeerde jou in {topico}",
+      "mencao": "{nome} noemde jou in {topico}",
+      "convite-comunidade": "{nome} nodigde jou uit voor {lugar}",
+      "pedido-de-entrada": "{nome} wil toetreden tot {lugar}",
+      "entrada-aprovada": "Je bent toegetreden tot {lugar}",
+      "selo-recebido": "Een vriend gaf jouw rover een badge",
+      "removido-por-responsavel": "Wie de ruimte beheert, heeft iets weggehaald dat jouw rover schreef",
+      "apelacao-recebida": "{nome} tekende beroep aan tegen een beslissing in {lugar}",
+      "apelacao-decidida": "Over jouw beroep in {lugar} is beslist",
+      "expulso": "Je bent uit {lugar} gezet door een beslissing van de moderatie",
+      "banido": "Je bent verbannen uit {lugar}",
+      "posse-recebida": "{nome} droeg het eigenaarschap van {lugar} aan jou over",
+      "resolveu": "{nome} markeerde jouw antwoord als oplossing in {topico}",
+      "novo-seguidor": "{nome} volgt nu {lugar}",
+      "conversa-pedido": "{nome} vroeg je om via een privébericht te praten",
+      "conversa-aceita": "{nome} heeft geaccepteerd om via een privébericht met je te praten"
+    },
+    "acoes": {
+      "aceitar": "Accepteren",
+      "recusar": "Weigeren",
+      "decidir": "Beslissen"
+    },
+    "removidos": {
+      "titulo": "Wat is verwijderd",
+      "sub": "Wat wie een ruimte beheert, verborg van wat jouw rover schreef. Alleen jij ziet deze lijst.",
+      "vazio": "Er is niets van jouw rover verwijderd.",
+      "em": "Verwijderd {quando}",
+      "por": "door {papel}",
+      "papeis": {
+        "dono": "de eigenaar",
+        "moderador": "een moderator",
+        "administrador": "een beheerder",
+        "rele": "de relay"
+      },
+      "escopo": {
+        "comunidade": "In een community",
+        "pagina": "Op een pagina",
+        "rele": "Door de relay"
+      },
+      "trecho": "De tekst die de relay nog bewaart",
+      "semTrecho": "De relay bewaart de verwijderde tekst niet meer.",
+      "apelar": "Beroep aantekenen",
+      "apelacao": {
+        "aberta": "Beroep open, wacht op beslissing",
+        "mantida": "Beroep afgewezen: de verwijdering blijft",
+        "revertida": "Beroep toegewezen: de inhoud is terug"
+      },
+      "semApelo": "Voor deze verwijdering is hier geen beroep mogelijk."
+    },
+    "filtroRotulo": "Meldingen tonen",
+    "todos": "Alle",
+    "naoLidos": "Ongelezen",
+    "nenhumNaoLido": "Geen nieuwe meldingen. Alles gelezen."
+  }
+}

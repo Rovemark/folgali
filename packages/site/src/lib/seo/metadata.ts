@@ -1,77 +1,78 @@
-// Metadados de cada página, numa função só: título e descrição únicos, canonical, hreflang, robots, Open Graph e Twitter card.
-// Toda rota chama `metaDaPagina` (ou `metaDaRota`, para as do registro). O robots vem da MESMA política do proxy e do robots.txt.
+// Metadata of each page, in one function: unique title and description, canonical, hreflang, robots, Open Graph and Twitter card.
+// Every route calls `pageMeta` (or `routeMeta`, for the registry ones). The robots value comes from the SAME policy as the proxy and robots.txt.
+import '@/lib/legacy-env'
 import type { Metadata } from 'next'
-import { META, PADRAO, PRONTOS, type Pronto } from '@/lib/i18n'
-import { metaDe } from '@/lib/i18n-extra'
-import { ENTIDADE, alternativas, indexavel, urlAbsoluta, urlBase, type Idioma } from '@/lib/site'
-import { metaRobots, politicaDaRota } from './politica'
-import { ROTAS } from './rotas'
+import { META, DEFAULT, READY, type Ready } from '@/lib/i18n'
+import { metaOf } from '@/lib/i18n-extra'
+import { ENTITY, alternatives, indexable, absoluteUrl, urlBase, type Language } from '@/lib/site'
+import { metaRobots, routePolicy } from './policy'
+import { ROUTES } from './routes'
 
-export type Ambiente = Readonly<Record<string, string | undefined>>
+export type Environment = Readonly<Record<string, string | undefined>>
 
-/** Código de idioma do Open Graph (`pt_BR`, `en_US`): o formato idioma_TERRITÓRIO que as redes esperam. */
-const OG: Record<Pronto, string> = {
+/** Open Graph language code (`pt_BR`, `en_US`): the language_TERRITORY format the networks expect. */
+const OG: Record<Ready, string> = {
   pt: 'pt_BR', en: 'en_US', es: 'es_ES', fr: 'fr_FR', de: 'de_DE', it: 'it_IT', nl: 'nl_NL', ru: 'ru_RU', ar: 'ar_AR', zh: 'zh_CN', ja: 'ja_JP', ko: 'ko_KR',
 }
-export const localeOg = (lang: Pronto): string => OG[lang]
+export const localeOg = (lang: Ready): string => OG[lang]
 
-export const idiomasProntos = (): Idioma[] => PRONTOS.map((l) => ({ lang: l, hreflang: META[l].html }))
+export const readyLanguages = (): Language[] => READY.map((l) => ({ lang: l, hreflang: META[l].html }))
 
-export type EntradaMeta = {
-  lang: Pronto
-  /** '' (início) ou `/algo`, sem idioma e sem consulta. A consulta (`?antes=`) nunca entra no canonical. */
+export type MetaEntry = {
+  lang: Ready
+  /** '' (start) or `/something`, without language and without query. The query (`?antes=`) never goes into the canonical. */
   caminho: string
   titulo: string
   descricao: string
   tipo?: 'website' | 'article'
-  /** Id da imagem Open Graph em `/og/<idioma>/<id>`. Sem ele vale a imagem padrão. */
-  imagemId?: string
-  /** Rotas que só existem num idioma (conteúdo sem tradução) não anunciam hreflang dos outros. */
-  idiomas?: readonly Pronto[]
-  /** Endereço de um feed RSS da página (vira `<link rel="alternate" type="application/rss+xml">`). */
+  /** Id of the Open Graph image at `/og/<language>/<id>`. Without it the default image applies. */
+  imageId?: string
+  /** Routes that only exist in one language (content without translation) do not announce hreflang for the others. */
+  idiomas?: readonly Ready[]
+  /** Address of a page RSS feed (becomes `<link rel="alternate" type="application/rss+xml">`). */
   feed?: string
 }
 
-/** Descrição de página com no máximo ~155 caracteres, sem cortar palavra no meio. */
-export function resumir(texto: string, max = 155): string {
-  const limpo = texto.replace(/\s+/g, ' ').trim()
-  if (limpo.length <= max) return limpo
-  const corte = limpo.slice(0, max - 1)
-  const espaco = corte.lastIndexOf(' ')
-  return `${(espaco > max * 0.6 ? corte.slice(0, espaco) : corte).replace(/[\s,.;:]+$/, '')}…`
+/** Page description of at most ~155 characters, without cutting a word in the middle. */
+export function summarize(text: string, max = 155): string {
+  const clean = text.replace(/\s+/g, ' ').trim()
+  if (clean.length <= max) return clean
+  const cutoff = clean.slice(0, max - 1)
+  const space = cutoff.lastIndexOf(' ')
+  return `${(space > max * 0.6 ? cutoff.slice(0, space) : cutoff).replace(/[\s,.;:]+$/, '')}…`
 }
 
-export function metaDaPagina(e: EntradaMeta, env: Ambiente = process.env): Metadata {
+export function pageMeta(e: MetaEntry, env: Environment = process.env): Metadata {
   const base = urlBase(env)
-  const aberto = indexavel(env)
-  const url = urlAbsoluta(base, e.lang, e.caminho)
-  const idiomas = idiomasProntos().filter((i) => !e.idiomas || (e.idiomas as readonly string[]).includes(i.lang))
-  const languages = alternativas(base, e.caminho, idiomas, e.idiomas && !e.idiomas.includes(PADRAO) ? e.idiomas[0] : PADRAO)
-  const descricao = resumir(e.descricao)
-  const imagem = `${base}/og/${e.lang}/${e.imagemId ?? 'padrao'}`
+  const open = indexable(env)
+  const url = absoluteUrl(base, e.lang, e.caminho)
+  const languageSet = readyLanguages().filter((i) => !e.idiomas || (e.idiomas as readonly string[]).includes(i.lang))
+  const languages = alternatives(base, e.caminho, languageSet, e.idiomas && !e.idiomas.includes(DEFAULT) ? e.idiomas[0] : DEFAULT)
+  const description = summarize(e.descricao)
+  const image = `${base}/og/${e.lang}/${e.imageId ?? 'padrao'}`
   return {
     title: e.caminho === '' ? { absolute: e.titulo } : e.titulo,
-    description: descricao,
+    description: description,
     alternates: { canonical: url, languages, ...(e.feed ? { types: { 'application/rss+xml': e.feed } } : {}) },
-    robots: metaRobots(politicaDaRota(`/${e.lang}${e.caminho}`, aberto)),
+    robots: metaRobots(routePolicy(`/${e.lang}${e.caminho}`, open)),
     openGraph: {
       type: e.tipo ?? 'website',
       url,
-      siteName: ENTIDADE.nome,
+      siteName: ENTITY.nome,
       locale: localeOg(e.lang),
-      alternateLocale: idiomas.filter((i) => i.lang !== e.lang).map((i) => localeOg(i.lang as Pronto)),
+      alternateLocale: languageSet.filter((i) => i.lang !== e.lang).map((i) => localeOg(i.lang as Ready)),
       title: e.titulo,
-      description: descricao,
-      images: [{ url: imagem, width: 1200, height: 630, alt: e.titulo }],
+      description: description,
+      images: [{ url: image, width: 1200, height: 630, alt: e.titulo }],
     },
-    twitter: { card: 'summary_large_image', title: e.titulo, description: descricao, images: [imagem] },
+    twitter: { card: 'summary_large_image', title: e.titulo, description: description, images: [image] },
   }
 }
 
-/** Metadados de uma rota do registro (`rotas.ts`), com o texto de `institucional.<idioma>.json`. */
-export function metaDaRota(lang: Pronto, id: string, env: Ambiente = process.env): Metadata {
-  const rota = ROTAS.find((r) => r.id === id)
-  if (!rota || rota.externo !== undefined) throw new Error(`rota interna desconhecida: ${id}`)
-  const m = metaDe(lang, id)
-  return metaDaPagina({ lang, caminho: rota.caminho, titulo: m.titulo, descricao: m.descricao, imagemId: id }, env)
+/** Metadata of a registry route (`routes.ts`), with the text from `institucional.<language>.json`. */
+export function routeMeta(lang: Ready, id: string, env: Environment = process.env): Metadata {
+  const route = ROUTES.find((r) => r.id === id)
+  if (!route || route.externo !== undefined) throw new Error(`rota interna desconhecida: ${id}`)
+  const m = metaOf(lang, id)
+  return pageMeta({ lang, caminho: route.caminho, titulo: m.titulo, descricao: m.descricao, imageId: id }, env)
 }

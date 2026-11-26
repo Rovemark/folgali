@@ -1,43 +1,52 @@
 import type { Metadata } from 'next'
+import RealEvents from '@/components/events/RealEvents'
+import { isDemo } from '@/lib/site'
+import { getNetwork } from '@/lib/get-network'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import BotoesEvento from '@/components/folgali/BotoesEvento'
-import Foto from '@/components/folgali/Foto'
-import { IcCalendario, IcGrupo, IcOnline, IcPin } from '@/components/folgali/Icones'
-import { ehHoje, horaDoEvento, seloDoDia } from '@/lib/folgali/datas'
-import { FOTOS, eventos } from '@/lib/folgali/demo'
-import { dict, ehPronto, plural } from '@/lib/i18n'
-import { metaTela } from '@/lib/seo/meta-telas'
+import EventButtons from '@/components/folgali/EventButtons'
+import Photo from '@/components/folgali/Photo'
+import { IcCalendar, IcGroup, IcOnline, IcPin } from '@/components/folgali/Icons'
+import { isToday, eventHour, dayBadge } from '@/lib/folgali/dates'
+import { PHOTOS, events } from '@/lib/folgali/demo'
+import { dict, isReady, plural } from '@/lib/i18n'
+import { screenMeta } from '@/lib/seo/meta-screens'
 
-type P = { params: Promise<{ lang: string }>; searchParams: Promise<{ filtro?: string }> }
-const FILTROS = ['semana', 'hoje', 'perto', 'online'] as const
-type Filtro = (typeof FILTROS)[number]
+type P = { params: Promise<{ lang: string }>; searchParams: Promise<{ filtro?: string; comunidade?: string; antes?: string }> }
+const FILTERS = ['semana', 'hoje', 'perto', 'online'] as const
+type Filter = (typeof FILTERS)[number]
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params
-  return metaTela(lang, '/eventos', dict(ehPronto(lang) ? lang : 'pt').socFolgali.eventos.titulo)
+  return screenMeta(lang, '/eventos', dict(isReady(lang) ? lang : 'pt').socFolgali.eventos.titulo)
 }
 
-/** Eventos da folga: noite de jogos, feira, sarau. O protocolo ainda não tem evento: tudo aqui é da demonstração. */
-export default async function Eventos({ params, searchParams }: P) {
+/**
+ * Time-off events: game night, fair, poetry evening. In real mode (0.11.0 part 4) the list comes from the relay (src/components/events/RealEvents.tsx);
+ * in the demonstration, the usual invented events.
+ */
+export default async function Events({ params, searchParams }: P) {
   const { lang } = await params
-  if (!ehPronto(lang)) notFound()
+  if (!isReady(lang)) notFound()
   const d = dict(lang)
   const t = d.socFolgali.eventos
-  const pedido = (await searchParams).filtro
-  const filtro: Filtro = (FILTROS as readonly string[]).includes(pedido ?? '') ? (pedido as Filtro) : 'semana'
-  const agora = new Date()
-  const todos = eventos(agora)
-  const lista = todos.filter((e) => (filtro === 'hoje' ? ehHoje(e.em, agora) : filtro === 'perto' ? e.perto : filtro === 'online' ? e.online : true))
-  const icones = { hoje: <IcCalendario />, semana: <IcCalendario />, perto: <IcPin />, online: <IcOnline /> }
+  const sp = await searchParams
+  // real mode: the relay's events, with the filters the contract allows (packages/site/docs/PRODUCTION.md)
+  if (!isDemo(getNetwork().cliente.modo)) return RealEvents({ lang, filtro: sp.filtro, comunidade: sp.comunidade, antes: sp.antes })
+  const request = sp.filtro
+  const filter: Filter = (FILTERS as readonly string[]).includes(request ?? '') ? (request as Filter) : 'semana'
+  const now = new Date()
+  const all = events(now)
+  const list = all.filter((e) => (filter === 'hoje' ? isToday(e.em, now) : filter === 'perto' ? e.perto : filter === 'online' ? e.online : true))
+  const icones = { hoje: <IcCalendar />, semana: <IcCalendar />, perto: <IcPin />, online: <IcOnline /> }
   return (
-    <div className="pagina-larga eventos">
-      <nav className="caixa ev-filtros" aria-labelledby="ev-filtros-t">
-        <h2 id="ev-filtros-t" className="lat-titulo">{t.filtros}</h2>
+    <div className="wide-page events">
+      <nav className="box ev-filters" aria-labelledby="ev-filtros-t">
+        <h2 id="ev-filtros-t" className="lat-title">{t.filtros}</h2>
         <ul>
           {(['hoje', 'semana', 'perto', 'online'] as const).map((f) => (
             <li key={f}>
-              <Link href={`/${lang}/eventos${f === 'semana' ? '' : `?filtro=${f}`}`} className="ev-filtro" aria-current={filtro === f ? 'page' : undefined}>
+              <Link href={`/${lang}/eventos${f === 'semana' ? '' : `?filtro=${f}`}`} className="ev-filter" aria-current={filter === f ? 'page' : undefined}>
                 {icones[f]}
                 <span>{t[f]}</span>
               </Link>
@@ -45,28 +54,28 @@ export default async function Eventos({ params, searchParams }: P) {
           ))}
         </ul>
       </nav>
-      <div className="ev-principal">
-        <div className="titulo-pag">
+      <div className="ev-main">
+        <div className="page-title">
           <h1>{t.titulo}</h1>
-          <p className="miudo">{t.demo}</p>
+          <p className="fine">{t.demo}</p>
         </div>
-        {lista.length === 0 ? (
-          <p className="vazio">{t.vazio}</p>
+        {list.length === 0 ? (
+          <p className="empty">{t.vazio}</p>
         ) : (
-          <ul className="ev-grade">
-            {lista.map((e, i) => (
-              <li key={e.id} className="caixa ev-cartao" data-largo={i >= 3 ? '1' : '0'}>
-                <div className="ev-foto">
-                  <Foto foto={FOTOS[e.foto]} alt="" prioridade={i < 3} />
-                  <span className="ev-dia">{seloDoDia(e.em, lang)}</span>
+          <ul className="ev-grid">
+            {list.map((e, i) => (
+              <li key={e.id} className="box ev-card" data-largo={i >= 3 ? '1' : '0'}>
+                <div className="ev-photo">
+                  <Photo foto={PHOTOS[e.foto]} alt="" prioridade={i < 3} />
+                  <span className="ev-day">{dayBadge(e.em, lang)}</span>
                 </div>
-                <div className="ev-corpo">
+                <div className="ev-body">
                   <h2>
                     <Link href={`/${lang}/eventos/${e.id}`} className="ev-link">{e.titulo}</Link>
                   </h2>
-                  <p className="ev-meta"><IcGrupo /> {e.comunidade} · {horaDoEvento(e.em, lang)}</p>
-                  <p className="ev-meta"><IcGrupo /> {plural(t.vao, e.vao)}</p>
-                  <BotoesEvento vou={t.vou} talvez={t.talvez} marcou={t.marcou} />
+                  <p className="ev-meta"><IcGroup /> {e.comunidade} · {eventHour(e.em, lang)}</p>
+                  <p className="ev-meta"><IcGroup /> {plural(t.vao, e.vao)}</p>
+                  <EventButtons vou={t.vou} talvez={t.talvez} marcou={t.marcou} />
                 </div>
               </li>
             ))}

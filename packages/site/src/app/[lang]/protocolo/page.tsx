@@ -1,5 +1,5 @@
-import { metadataInstitucional, paginaInstitucional } from '@/components/editorial/Institucional'
-import { ExtraProtocolo } from '@/components/LinkDoCodigo'
+import { institutionalMetadata, institutionalPage } from '@/components/editorial/Institutional'
+import { ExtraProtocol } from '@/components/CodeLink'
 
-export const generateMetadata = metadataInstitucional('protocolo')
-export default paginaInstitucional('protocolo', { extra: ExtraProtocolo })
+export const generateMetadata = institutionalMetadata('protocolo')
+export default institutionalPage('protocolo', { extra: ExtraProtocol })

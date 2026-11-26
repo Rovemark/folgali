@@ -1,20 +1,21 @@
-// Começa o "Entrar com a Rovemark": gera verificador PKCE e estado, guarda os dois no cookie lacrado e manda para a Rovemark.
-// `?tela=criar` abre a página já em "Criar conta"; `?destino=/pt/...` é para onde voltar depois de entrar.
+// Starts "Sign in with Rovemark": generates the PKCE verifier and state, stores both in the sealed cookie and sends to Rovemark.
+// `?tela=criar` opens the page already on "Create account"; `?destino=/pt/...` is where to return after signing in.
 import { NextResponse, type NextRequest } from 'next/server'
-import { configLogin, desafioS256, destinoSeguro, novoEstado, novoVerificador, urlDeInicio } from '@/lib/folgali/login'
-import { gravarNaResposta, lerDoPedido } from '@/lib/folgali/sessao'
+import { urlBase } from '@/lib/site'
+import { configLogin, challengeS256, safeTarget, newState, newVerifier, startUrl } from '@/lib/folgali/login'
+import { writeToResponse, readFromRequest } from '@/lib/folgali/session'
 
 export const dynamic = 'force-dynamic'
 
 export function GET(req: NextRequest) {
   const c = configLogin()
   const lang = /^[a-z]{2}$/.test(req.nextUrl.searchParams.get('lang') ?? '') ? req.nextUrl.searchParams.get('lang')! : 'pt'
-  if (!c) return NextResponse.redirect(new URL(`/${lang}/entrar`, req.url), 303)
-  const verificador = novoVerificador()
-  const estado = novoEstado()
-  const destino = destinoSeguro(req.nextUrl.searchParams.get('destino'), lang)
-  const res = NextResponse.redirect(urlDeInicio(c, desafioS256(verificador), estado, req.nextUrl.searchParams.get('tela') === 'criar'), 302)
-  gravarNaResposta(res, { ...lerDoPedido(req, c), login: { verificador, estado, destino, em: Date.now() } }, c)
+  if (!c) return NextResponse.redirect(new URL(`/${lang}/entrar`, urlBase() + '/'), 303)
+  const verifier = newVerifier()
+  const state = newState()
+  const destination = safeTarget(req.nextUrl.searchParams.get('destino'), lang)
+  const res = NextResponse.redirect(startUrl(c, challengeS256(verifier), state, req.nextUrl.searchParams.get('tela') === 'criar'), 302)
+  writeToResponse(res, { ...readFromRequest(req, c), login: { verificador: verifier, estado: state, destino: destination, em: Date.now() } }, c)
   res.headers.set('cache-control', 'no-store')
   return res
 }

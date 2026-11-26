@@ -1,5 +1,5 @@
-import CarregandoPerfil from '@/components/perfil/CarregandoPerfil'
+import LoadingProfile from '@/components/profile/LoadingProfile'
 
-export default function Carregando() {
-  return <CarregandoPerfil linhas={4} blocos={5} />
+export default function Loading() {
+  return <LoadingProfile lines={4} blocks={5} />
 }

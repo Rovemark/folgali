@@ -1,60 +1,60 @@
 import Link from 'next/link'
 import { JsonLd } from '@/components/seo/JsonLd'
-import { Fontes } from './PaginaEditorial'
-import { GRUPOS_DE_FAQ } from '@/conteudo/obrigatorios'
-import { conteudoDe, type Faq } from '@/conteudo'
-import { dict, META, type Pronto } from '@/lib/i18n'
+import { Sources } from './EditorialPage'
+import { FAQ_GROUPS } from '@/content/required'
+import { contentOf, type Faq } from '@/content'
+import { dict, META, type Ready } from '@/lib/i18n'
 import { instDict } from '@/lib/i18n-extra'
-import { obterRede } from '@/lib/obter-rede'
-import { carregar } from '@/lib/social/carregar'
-import { faq as jsonFaq, grafo, conjuntoDeTermos } from '@/lib/seo/jsonld'
-import { ENTIDADE, indexavel, urlBase } from '@/lib/site'
+import { getNetwork } from '@/lib/get-network'
+import { load } from '@/lib/social/load'
+import { faq as jsonFaq, graph, termSet } from '@/lib/seo/jsonld'
+import { ENTITY, indexable, urlBase } from '@/lib/site'
 
-type A = { lang: Pronto }
+type A = { lang: Ready }
 
-/** Hub de ajuda: cada pergunta com a resposta curta e o detalhe, tudo visível. O FAQPage sai igual ao texto da página. */
-export function ExtraAjuda({ lang }: A) {
-  const itens = conteudoDe(lang).faq
+/** Help hub: each question with the short answer and the detail, all visible. The FAQPage comes out equal to the text of the page. */
+export function ExtraHelp({ lang }: A) {
+  const items = contentOf(lang).faq
   const t = instDict(lang).paginas.ajuda
-  const grupos = t.grupos as Record<string, string>
-  const ordem = [...GRUPOS_DE_FAQ, ...new Set(itens.map((f) => f.grupo))].filter((g, i, a) => a.indexOf(g) === i)
-  const por = (g: string): Faq[] => itens.filter((f) => f.grupo === g)
+  const groups = t.grupos as Record<string, string>
+  const order = [...FAQ_GROUPS, ...new Set(items.map((f) => f.grupo))].filter((g, i, a) => a.indexOf(g) === i)
+  const by = (g: string): Faq[] => items.filter((f) => f.grupo === g)
   return (
     <>
       <p>{t.intro}</p>
-      {ordem
-        .filter((g) => por(g).length > 0)
+      {order
+        .filter((g) => by(g).length > 0)
         .map((g) => (
-          <section key={g} className="faq-grupo" aria-labelledby={`g-${g}`}>
-            <h2 id={`g-${g}`}>{grupos[g] ?? g}</h2>
-            {por(g).map((f) => (
+          <section key={g} className="faq-group" aria-labelledby={`g-${g}`}>
+            <h2 id={`g-${g}`}>{groups[g] ?? g}</h2>
+            {by(g).map((f) => (
               <div key={f.id} id={f.id} className="faq-item">
                 <h3>{f.pergunta}</h3>
-                <p className="curta">{f.respostaCurta}</p>
-                <p className="detalhe">{f.resposta}</p>
-                <Fontes lang={lang} fontes={f.fontes} />
+                <p className="brief">{f.respostaCurta}</p>
+                <p className="detail">{f.resposta}</p>
+                <Sources lang={lang} fontes={f.fontes} />
               </div>
             ))}
           </section>
         ))}
-      {indexavel() && itens.length > 0 && <JsonLd dados={grafo(jsonFaq(itens))} />}
+      {indexable() && items.length > 0 && <JsonLd dados={graph(jsonFaq(items))} />}
     </>
   )
 }
 
-export function ExtraGlossario({ lang }: A) {
+export function ExtraGlossary({ lang }: A) {
   const t = instDict(lang).paginas.glossario
-  const verbetes = [...conteudoDe(lang).verbetes].sort((a, b) => a.termo.localeCompare(b.termo, META[lang].html))
+  const glossaryEntries = [...contentOf(lang).verbetes].sort((a, b) => a.termo.localeCompare(b.termo, META[lang].html))
   const e = instDict(lang).editorial
   const base = urlBase()
   return (
     <>
       <p>{t.intro}</p>
-      {verbetes.length === 0 ? (
+      {glossaryEntries.length === 0 ? (
         <p>{e.semResultados}</p>
       ) : (
-        <ul className="lista-editorial">
-          {verbetes.map((v) => (
+        <ul className="editorial-list">
+          {glossaryEntries.map((v) => (
             <li key={v.slug} id={v.slug}>
               <Link href={`/${lang}/glossario/${v.slug}`}>{v.termo}</Link>
               <p>{v.definicaoCurta}</p>
@@ -62,23 +62,23 @@ export function ExtraGlossario({ lang }: A) {
           ))}
         </ul>
       )}
-      {indexavel() && verbetes.length > 0 && <JsonLd dados={grafo(conjuntoDeTermos(base, lang, instDict(lang).meta.glossario.titulo, instDict(lang).meta.glossario.descricao, verbetes))} />}
+      {indexable() && glossaryEntries.length > 0 && <JsonLd dados={graph(termSet(base, lang, instDict(lang).meta.glossario.titulo, instDict(lang).meta.glossario.descricao, glossaryEntries))} />}
     </>
   )
 }
 
-export function ExtraGuias({ lang }: A) {
+export function ExtraGuides({ lang }: A) {
   const t = instDict(lang).paginas.guias
-  const guias = conteudoDe(lang).guias
+  const guides = contentOf(lang).guias
   const e = instDict(lang).editorial
   return (
     <>
       <p>{t.intro}</p>
-      {guias.length === 0 ? (
+      {guides.length === 0 ? (
         <p>{e.semResultados}</p>
       ) : (
-        <ul className="lista-editorial">
-          {guias.map((g) => (
+        <ul className="editorial-list">
+          {guides.map((g) => (
             <li key={g.slug}>
               <Link href={`/${lang}/guias/${g.slug}`}>{g.titulo}</Link>
               <p>{g.respostaCurta}</p>
@@ -90,16 +90,16 @@ export function ExtraGuias({ lang }: A) {
   )
 }
 
-export function ExtraNovidades({ lang }: A) {
+export function ExtraNews({ lang }: A) {
   const t = instDict(lang).paginas.novidades
-  const itens = [...conteudoDe(lang).novidades].sort((a, b) => (a.data < b.data ? 1 : -1))
+  const items = [...contentOf(lang).novidades].sort((a, b) => (a.data < b.data ? 1 : -1))
   return (
     <>
       <p>
         {t.intro} <a href={`/${lang}/rss.xml`}>{t.rss}</a>.
       </p>
-      <ul className="lista-editorial">
-        {itens.map((n) => (
+      <ul className="editorial-list">
+        {items.map((n) => (
           <li key={n.id} id={n.id}>
             <time dateTime={n.data}>{n.data}</time>
             <strong>{n.titulo}</strong>
@@ -120,16 +120,16 @@ export function ExtraNovidades({ lang }: A) {
   )
 }
 
-/** A tabela de rotas da API, do texto de `institucional.<idioma>.json`. */
+/** The table of API routes, from the text of `institutional.<language>.json`. */
 export function ExtraApi({ lang }: A) {
   const t = instDict(lang).paginas.api
   return (
     <>
       <p>{t.introducao}</p>
       {t.grupos.map((g) => (
-        <section key={g.titulo} className="api-grupo">
+        <section key={g.titulo} className="api-group">
           <h2>{g.titulo}</h2>
-          <table className="tabela-api">
+          <table className="api-table">
             <thead>
               <tr>
                 <th scope="col">{t.colunas[0]}</th>
@@ -137,10 +137,10 @@ export function ExtraApi({ lang }: A) {
               </tr>
             </thead>
             <tbody>
-              {g.rotas.map(([rota, texto]) => (
-                <tr key={rota}>
-                  <td>{rota}</td>
-                  <td>{texto}</td>
+              {g.rotas.map(([route, text]) => (
+                <tr key={route}>
+                  <td>{route}</td>
+                  <td>{text}</td>
                 </tr>
               ))}
             </tbody>
@@ -152,17 +152,17 @@ export function ExtraApi({ lang }: A) {
   )
 }
 
-/** O estado do relé, lido na hora. Nunca derruba a página: se o relé não responde, a página diz isso. */
+/** The state of the relay, read on the spot. It never takes the page down: if the relay does not answer, the page says so. */
 export async function ExtraStatus({ lang }: A) {
   const t = instDict(lang).paginas.status
   const r = t.rotulos
-  const { cliente } = obterRede()
-  const info = await carregar(() => cliente.info())
+  const { cliente: client } = getNetwork()
+  const info = await load(() => client.info())
   return (
     <>
-      <dl className="estado-lista">
+      <dl className="state-list">
         <dt>{r.modo}</dt>
-        <dd>{cliente.modo === 'falso' ? r.modoFalso : r.modoHttp}</dd>
+        <dd>{client.modo === 'falso' ? r.modoFalso : r.modoHttp}</dd>
         {info.ok ? (
           <>
             <dt>{r.protocolos}</dt>
@@ -182,24 +182,24 @@ export async function ExtraStatus({ lang }: A) {
   )
 }
 
-/** As regras da casa, as mesmas do dicionário que a página Sobre e a coluna ao lado usam. */
-export function ExtraRegras({ lang }: A) {
-  const regras = dict(lang).linha.regras
+/** The house rules, the same as the dictionary that the About page and the column beside it use. */
+export function ExtraRules({ lang }: A) {
+  const rules = dict(lang).linha.regras
   return (
-    <ol className="regras">
-      {regras.map((r) => (
+    <ol className="rules">
+      {rules.map((r) => (
         <li key={r}>{r}</li>
       ))}
     </ol>
   )
 }
 
-export function ExtraLicenca({ lang }: A) {
-  const rotulo = (instDict(lang).paginas.licenca as { linkLicenca: string }).linkLicenca
+export function ExtraLicense({ lang }: A) {
+  const label = (instDict(lang).paginas.licenca as { linkLicenca: string }).linkLicenca
   return (
     <p>
-      <a href={ENTIDADE.urlLicenca} rel="noopener">
-        {rotulo}
+      <a href={ENTITY.licenseUrl} rel="noopener">
+        {label}
       </a>
     </p>
   )

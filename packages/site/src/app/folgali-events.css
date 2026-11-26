@@ -1,0 +1,93 @@
+/* Events on a real relay (protocol 0.11.0 part 4): the list, the card, the open event, the answer buttons and the form.
+   Builds on the event screens of folgali-screens.css (.ev-*) and uses only the palette tokens. */
+
+/* ── list ── */
+.evr-title { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 12px 20px; }
+.evr-title > div { display: grid; gap: 6px; min-width: 0; flex: 1 1 320px; }
+.evr-title p { max-width: 60ch; text-wrap: pretty; }
+.evr-create { display: inline-flex; align-items: center; gap: 8px; flex: none; }
+.evr-create svg { width: 20px; height: 20px; }
+.evr-card .ev-body { gap: 6px; }
+.evr-card .ev-body h2 { font-size: 20px; line-height: 1.2; overflow-wrap: anywhere; }
+.evr-card .ev-meta { align-items: flex-start; font-size: 15px; line-height: 1.35; }
+.evr-card .ev-meta span { min-width: 0; overflow-wrap: anywhere; }
+.evr-card .ev-meta svg { margin-top: 1px; }
+.evr-who { margin-top: 2px; }
+.evr-badge { position: absolute; top: 12px; inset-inline-end: 12px; padding: 4px 10px; border-radius: 10px; background: var(--grafite); color: var(--marfim); font-weight: 800; font-size: 14px; }
+.evr-card[data-estado='cancelado'] .ev-photo .photo, .evr-card[data-estado='encerrado'] .ev-photo .photo { filter: grayscale(0.6); opacity: 0.85; }
+.evr-card[data-estado='cancelado'] .ev-link { text-decoration: line-through; text-decoration-thickness: 2px; }
+.evr-reader { color: var(--tinta-2); }
+.evr-facts .evr-reader { display: flex; align-items: flex-start; gap: 6px; }
+.evr-facts .evr-reader svg { width: 18px; height: 18px; flex: none; margin-top: 2px; color: var(--tinta-3); }
+
+/* ── open event ── */
+.evr-cover-info { align-items: start; }
+.evr-cover-info .ev-cover-text { display: grid; gap: 6px; min-width: 0; }
+.evr-cover-info h1 { overflow-wrap: anywhere; }
+.evr-attendance { display: grid; gap: 8px; }
+.evr-buttons { grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0; }
+.evr-buttons .btn { padding-inline: 10px; white-space: normal; line-height: 1.15; }
+/* the answer given is the one filled; the other two stay neutral (no answer yet: all three neutral) */
+.evr-buttons .btn[aria-pressed='true'] { box-shadow: none; }
+.evr-refusal { margin: 0; }
+.evr-invite { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; color: var(--tinta-2); }
+.evr-state { margin: 0 16px 14px; }
+.evr-facts dl { display: grid; gap: 14px; margin: 0; }
+.evr-facts dl > div { display: grid; gap: 4px; }
+.evr-facts dt { display: flex; align-items: center; gap: 8px; font-weight: 800; font-family: var(--f-display); color: var(--titulo); }
+.evr-facts dt svg { width: 22px; height: 22px; color: var(--tinta-3); }
+.evr-facts dd { margin: 0; display: grid; gap: 4px; font-size: 17px; overflow-wrap: anywhere; }
+.evr-facts dd a { font-weight: 700; }
+.evr-desc { white-space: pre-wrap; overflow-wrap: anywhere; }
+.evr-com svg { width: 26px; height: 26px; color: var(--tinta-3); }
+.evr-org-actions { display: grid; gap: 10px; }
+.evr-org-note { font-weight: 700; }
+.evr-org-buttons { display: flex; flex-wrap: wrap; gap: 8px; }
+.evr-confirm { display: grid; gap: 10px; padding: 12px 14px; border-radius: var(--raio); background: var(--perigo-fundo); color: var(--tinta); }
+
+/* ── form ── */
+.evr-page-form { display: grid; gap: 12px; width: 100%; max-width: 760px; }
+.evr-back { font-weight: 700; }
+.evr-form-title { color: var(--titulo); font-size: clamp(28px, 4vw, 38px); font-weight: 900; letter-spacing: -0.02em; }
+.evr-form-notice { display: grid; gap: 12px; }
+.evr-form fieldset { border: 0; margin: 0; padding: 0; display: grid; gap: 8px; min-width: 0; }
+.evr-form legend { font-weight: 800; font-size: 16px; padding: 0; margin-bottom: 4px; }
+.evr-pair { display: grid; gap: 10px; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); }
+.evr-pair > .field { min-width: 0; }
+.evr-form .field input[type='date'], .evr-form .field input[type='time'], .evr-form .field input[type='number'], .evr-form .field input[type='url'] {
+  width: 100%; min-height: 48px; border-radius: var(--raio); border: 1.5px solid color-mix(in oklch, var(--tinta) 30%, transparent); background: var(--tecido); color: var(--tinta); padding: 10px 14px; font-size: 18px; line-height: 1.4;
+}
+.evr-form .field input[type='date'], .evr-form .field input[type='time'] { min-width: 0; max-width: 100%; padding-inline: 10px; }
+.evr-form .field input:focus-visible { outline: 3px solid var(--foco); outline-offset: 0; border-color: var(--acao); }
+.evr-form .evr-spots { max-width: 220px; }
+.evr-options { display: flex; flex-wrap: wrap; gap: 8px; }
+.evr-option { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 14px; border-radius: var(--raio); background: var(--tecido-2); font-weight: 700; cursor: pointer; }
+.evr-option input { width: 20px; height: 20px; accent-color: var(--acao); }
+.evr-option:has(input:checked) { background: var(--acao-fundo); color: var(--acao); }
+.evr-option:has(input:focus-visible) { outline: 3px solid var(--foco); outline-offset: 2px; }
+.evr-adult { justify-self: start; }
+.evr-covers-list { display: grid; gap: 8px; grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); }
+.evr-cover-option { position: relative; display: grid; place-items: center; aspect-ratio: 3 / 2; border-radius: var(--raio); overflow: hidden; background: var(--tecido-2); border: 2px solid transparent; cursor: pointer; font-weight: 700; text-align: center; padding: 0; }
+.evr-cover-option img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.evr-cover-option input { position: absolute; top: 8px; inset-inline-start: 8px; width: 20px; height: 20px; accent-color: var(--acao); margin: 0; z-index: 1; }
+.evr-cover-option:has(input:checked) { border-color: var(--acao); box-shadow: 0 0 0 2px var(--acao-fundo); }
+.evr-cover-option:has(input:focus-visible) { outline: 3px solid var(--foco); outline-offset: 2px; }
+.evr-cover-none span { padding: 0 10px 0 28px; font-size: 14px; }
+.evr-error { color: var(--perigo); font-weight: 700; font-size: 15px; margin: 0; }
+.evr-form-foot { display: flex; justify-content: flex-end; }
+
+/* ── community side and profile ── */
+.evr-side-list { display: grid; gap: 10px; }
+.evr-mini { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 10px; align-items: center; color: inherit; border-radius: var(--raio); }
+.evr-mini:hover { text-decoration: none; background: var(--tecido-2); }
+.evr-mini .photo { width: 72px; aspect-ratio: 1; object-fit: cover; border-radius: var(--raio-peq); }
+.evr-mini strong { display: block; font-family: var(--f-display); font-weight: 900; font-size: 16px; line-height: 1.2; overflow-wrap: anywhere; }
+.evr-mini .fine { display: block; }
+.evr-profile h3 { font-size: 15px; font-weight: 800; color: var(--tinta-2); margin: 6px 0 4px; }
+
+@media (max-width: 520px) {
+  .evr-pair { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px; }
+  .evr-form .field input[type='date'], .evr-form .field input[type='time'] { font-size: 16px; padding-inline: 8px; }
+  .evr-buttons .btn { font-size: 15px; }
+  .evr-form-foot .btn { width: 100%; }
+}

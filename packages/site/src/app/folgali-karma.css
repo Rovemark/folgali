@@ -1,0 +1,121 @@
+/* Revision 0.10.0 (proposal 0012): arrows, karma, ranking, badges, profile stats and the "Best for you" column. Only theme tokens
+   (src/app/globals.css), so light and dark follow by themselves. Prefix km-. */
+
+/* ---------- arrows ---------- */
+.km-arrows { display: inline-flex; align-items: center; gap: 2px; padding: 2px; border-radius: 999px; background: var(--campo); border: 1px solid var(--linha); }
+.km-arrow { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 999px; border: 0; background: transparent; color: var(--tinta-3); cursor: pointer; }
+.km-arrow:hover { background: var(--acao-fundo); color: var(--acao); }
+.km-arrow:focus-visible { outline: 2px solid var(--foco); outline-offset: 2px; }
+.km-arrow-up[aria-pressed='true'] { color: var(--acao-tinta); background: var(--acao); }
+.km-arrow-down[aria-pressed='true'] { color: var(--tinta); background: color-mix(in oklab, var(--lilas) 55%, var(--superficie)); }
+.km-scoreboard { min-width: 2.2ch; text-align: center; font-weight: 800; font-variant-numeric: tabular-nums; color: var(--tinta); font-size: 15px; }
+.km-arrows[data-minha='acima'] .km-scoreboard { color: var(--acao); }
+.km-arrows-compact .km-arrow { width: 30px; height: 30px; }
+.fb-post-actions:has(.km-arrows) { grid-template-columns: auto repeat(3, minmax(0, 1fr)); align-items: center; }
+.fb-post-actions .km-arrows { justify-self: start; margin-inline-end: 4px; }
+@media (prefers-reduced-motion: no-preference) { .km-arrow { transition: background-color .15s, color .15s, transform .15s; } .km-arrow:active { transform: scale(.92); } }
+
+/* ---------- author karma ---------- */
+.km-karma-author { font-size: 13px; font-weight: 800; color: var(--acao); background: var(--acao-fundo); padding: 0 8px; border-radius: 999px; white-space: nowrap; }
+
+/* ---------- example label ---------- */
+.km-example { display: inline-block; margin-inline-start: 6px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 800; background: var(--manga-fundo); color: var(--tinta); vertical-align: middle; border: 1px dashed color-mix(in oklab, var(--manga) 70%, var(--grafite)); }
+.km-example-note { margin: 0 0 12px; font-size: 14px; color: var(--tinta-2); }
+
+/* ---------- profile ---------- */
+.km-stats { display: grid; gap: 4px; margin-top: 4px; }
+.km-numbers strong { color: var(--tinta); font-weight: 900; }
+.km-karma strong { color: var(--titulo); }
+.km-row-meta { display: flex; flex-wrap: wrap; gap: 4px 14px; margin: 0; align-items: center; }
+.km-off-duty { position: relative; display: inline-flex; align-items: center; gap: 6px; font-weight: 700; color: var(--ok); }
+.km-off-duty .online-dot { position: relative; inset: auto; display: inline-block; width: 10px; height: 10px; box-shadow: none; }
+.km-position { font-weight: 800; color: var(--acao); text-decoration: none; }
+.km-position:hover { text-decoration: underline; }
+.km-engine { font-weight: 700; }
+
+.km-badges { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 2px; padding: 0; }
+.km-badge { display: inline-flex; align-items: center; gap: 6px; padding: 2px 10px 2px 3px; border-radius: 999px; background: var(--campo); border: 1px solid var(--linha); font-size: 13px; font-weight: 700; color: var(--tinta-2); }
+.km-badge img { width: 26px; height: 26px; object-fit: contain; }
+.km-badge-more { padding: 2px 10px; }
+.km-badge-more a { color: var(--acao); font-weight: 800; text-decoration: none; }
+
+.km-owner { margin: 0 16px 14px; display: grid; gap: 6px; }
+.km-owner-card { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-radius: var(--raio); background: var(--rosa-fundo); color: var(--tinta); text-decoration: none; border: 1px solid var(--linha); }
+.km-owner-card:hover { border-color: var(--acao); }
+.km-owner-text { display: grid; gap: 1px; flex: 1; min-width: 0; }
+.km-owner-view { font-weight: 800; color: var(--acao); white-space: nowrap; }
+.km-owner-list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.km-owner-list .km-owner-card { padding: 4px 12px 4px 4px; }
+:root[data-tema='escuro'] .km-owner-card { background: color-mix(in oklab, var(--rosa) 18%, var(--grafite)); }
+
+.km-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.km-tab { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 999px; font-weight: 800; text-decoration: none; color: var(--tinta-2); background: var(--superficie); border: 1px solid var(--linha); }
+.km-tab[aria-current='page'] { background: var(--acao); color: var(--acao-tinta); border-color: var(--acao); }
+.km-tab-n { font-variant-numeric: tabular-nums; opacity: .8; }
+
+/* ---------- feed orders and ranking filters ---------- */
+.km-order { display: grid; gap: 8px; margin-bottom: 12px; }
+.km-order-tabs { display: flex; flex-wrap: wrap; gap: 6px; }
+.km-chip { flex: none; display: inline-flex; align-items: center; min-height: 38px; padding: 6px 14px; border-radius: 999px; font-weight: 800; font-size: 15px; text-decoration: none; color: var(--tinta-2); background: var(--superficie); border: 1px solid var(--linha); }
+.km-chip:hover { border-color: var(--acao); color: var(--acao); }
+.km-chip[aria-current='page'] { background: var(--acao-fundo); color: var(--acao); border-color: var(--acao); }
+.km-chip-small { min-height: 32px; font-size: 14px; padding: 4px 12px; }
+
+/* ---------- "Best for you" ---------- */
+.km-best-block { display: grid; gap: 4px; }
+.km-best-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; counter-reset: km; }
+.km-best { display: grid; gap: 1px; padding: 6px 8px; border-radius: var(--raio-peq); color: var(--tinta); text-decoration: none; }
+.km-best:hover { background: var(--acao-fundo); }
+.km-best-title { font-weight: 700; line-height: 1.3; overflow-wrap: anywhere; }
+.km-best-author { grid-template-columns: auto 1fr; align-items: center; gap: 8px; }
+.km-best-author > span { display: grid; }
+
+/* ---------- ranking page ---------- */
+.km-ranking-head { display: flex; align-items: center; gap: 16px; margin: 4px 0 16px; }
+.km-ranking-head h1 { font-family: var(--f-display); font-weight: 900; font-size: clamp(30px, 4vw, 40px); color: var(--titulo); margin: 0; }
+.km-ranking-art { width: 112px; height: 112px; object-fit: contain; flex: none; }
+.km-intro { margin: 4px 0 6px; color: var(--tinta-2); max-width: 60ch; }
+.km-ranking-grid { display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr) minmax(0, 320px); align-items: start; }
+.km-ranking-main, .km-ranking-side { display: grid; gap: 16px; min-width: 0; }
+.km-filters { display: grid; gap: 10px; }
+.km-table { overflow: hidden; }
+.km-rows { list-style: none; margin: 0; padding: 0; }
+.km-row { display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; align-items: center; gap: 10px; padding: 10px 16px; border-top: 1px solid var(--linha); }
+.km-row:first-child { border-top: 0; }
+.km-pos { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; font-weight: 900; font-variant-numeric: tabular-nums; color: var(--tinta-2); background: var(--campo); }
+.km-row[data-podio='1'] .km-pos { background: var(--manga); color: var(--grafite); }
+.km-row[data-podio='2'] .km-pos { background: var(--ceu); color: var(--grafite); }
+.km-row[data-podio='3'] .km-pos { background: color-mix(in oklab, var(--laranja) 55%, white); color: var(--grafite); }
+.km-author { display: flex; align-items: center; gap: 10px; min-width: 0; color: var(--tinta); text-decoration: none; }
+.km-author:hover .km-author-name { color: var(--acao); }
+.km-author-names { display: grid; min-width: 0; }
+.km-author-name { font-weight: 800; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; overflow-wrap: anywhere; }
+.km-num { text-align: end; white-space: nowrap; color: var(--tinta-2); }
+.km-num strong { font-size: 18px; color: var(--titulo); font-variant-numeric: tabular-nums; }
+.km-gain { color: var(--ok) !important; font-size: 15px !important; }
+.km-pages { display: flex; gap: 8px; justify-content: center; padding: 12px; margin: 0; }
+.km-how p { margin: 4px 0 8px; color: var(--tinta-2); }
+
+/* ---------- badges page ---------- */
+.km-catalog { list-style: none; margin: 0 0 16px; padding: 0; display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); }
+.km-catalog-item { display: grid; grid-template-columns: 96px 1fr; gap: 14px; align-items: center; padding: 14px 16px; scroll-margin-top: 80px; }
+.km-catalog-item img { width: 96px; height: 96px; object-fit: contain; }
+.km-catalog-item h2 { font-family: var(--f-display); font-weight: 900; font-size: 20px; color: var(--titulo); margin: 0 0 4px; }
+.km-catalog-item p { margin: 0; color: var(--tinta-2); }
+
+@media (max-width: 960px) {
+  .km-ranking-grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 560px) {
+  .km-ranking-head { align-items: flex-start; }
+  .km-ranking-art { width: 64px; height: 64px; }
+  .km-chip { min-height: 36px; padding: 5px 12px; font-size: 14px; }
+  /* on a phone the arrows take their own row above Like, Comment and Share, so no label is squeezed */
+  .fb-post-actions:has(.km-arrows) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .fb-post-actions .km-arrows { grid-column: 1 / -1; margin: 4px 0 2px; }
+  .km-row { grid-template-columns: 36px minmax(0, 1fr) auto; padding: 10px 12px; gap: 8px; }
+  .km-pos { width: 30px; height: 30px; }
+  .km-catalog-item { grid-template-columns: 72px 1fr; }
+  .km-catalog-item img { width: 72px; height: 72px; }
+  .km-owner { margin: 0 12px 12px; }
+}

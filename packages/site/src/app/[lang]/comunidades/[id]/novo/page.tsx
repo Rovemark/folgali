@@ -1,68 +1,68 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { IcCadeado } from '@/components/Icones'
-import CabecalhoComunidade from '@/components/comunidades/CabecalhoComunidade'
-import EstadoDeErro from '@/components/social/EstadoDeErro'
-import FormProposta from '@/components/social/FormProposta'
-import { ehCompleta, ID_OK, lerComunidade, quemDe, quemSou } from '@/lib/comunidades/dados'
-import { podeNaComunidade } from '@/lib/dominio/permissoes'
-import { faltaDeCarencia, minutosParaMostrar } from '@/lib/dominio/prazos'
-import { dict, ehPronto, fmt, plural } from '@/lib/i18n'
-import { metaTela } from '@/lib/seo/meta-telas'
+import { IcLock } from '@/components/Icons'
+import CommunityHeader from '@/components/communities/CommunityHeader'
+import ErrorState from '@/components/social/ErrorState'
+import ProposalForm from '@/components/social/ProposalForm'
+import { isComplete, ID_OK, readCommunity, whoOf, whoAmI } from '@/lib/communities/data'
+import { canInCommunity } from '@/lib/domain/permissions'
+import { missingGracePeriod, minutesToShow } from '@/lib/domain/deadlines'
+import { dict, isReady, fmt, plural } from '@/lib/i18n'
+import { screenMeta } from '@/lib/seo/meta-screens'
 
 type P = { params: Promise<{ lang: string; id: string }>; searchParams: Promise<{ categoria?: string }> }
 
 export async function generateMetadata({ params }: P): Promise<Metadata> {
   const { lang, id } = await params
-  return metaTela(lang, `/comunidades/${id}/novo`, dict(ehPronto(lang) ? lang : 'pt').socForum.lista.novo)
+  return screenMeta(lang, `/comunidades/${id}/novo`, dict(isReady(lang) ? lang : 'pt').socForum.lista.novo)
 }
 
-export default async function NovoTopico({ params, searchParams }: P) {
+export default async function NewTopic({ params, searchParams }: P) {
   const { lang, id } = await params
-  if (!ehPronto(lang)) notFound()
-  const { categoria } = await searchParams
+  if (!isReady(lang)) notFound()
+  const { categoria: category } = await searchParams
   const d = dict(lang)
   const t = d.socComunidades.novoTopico
-  const c = ID_OK.test(id) ? await lerComunidade(id) : ({ ok: false, codigo: 'nao-encontrado' } as const)
-  if (!c.ok) return <EstadoDeErro codigo={c.codigo} d={d} lang={lang} />
-  const com = c.valor
-  if (!ehCompleta(com)) return <CabecalhoComunidade c={com} d={d} lang={lang} />
-  const eu = await quemSou()
-  const agora = new Date()
-  const pode = podeNaComunidade('postar-topico', quemDe(com.voce, agora), com.acesso)
-  // carência de membro (relé 0.3.1 manda `membroDesde`): em vez de deixar o relé recusar depois, a tela diz quantos minutos faltam
-  const faltam = !pode.ok && pode.motivo === 'conta-nova' ? faltaDeCarencia(com.voce?.membroDesde, 'topico', agora) : 0
+  const c = ID_OK.test(id) ? await readCommunity(id) : ({ ok: false, codigo: 'nao-encontrado' } as const)
+  if (!c.ok) return <ErrorState codigo={c.codigo} d={d} lang={lang} />
+  const using = c.valor
+  if (!isComplete(using)) return <CommunityHeader c={using} d={d} lang={lang} />
+  const me = await whoAmI()
+  const now = new Date()
+  const can = canInCommunity('postar-topico', whoOf(using.voce, now), using.acesso)
+  // member waiting period (relay 0.3.1 sends `membroDesde`): instead of letting the relay refuse later, the screen says how many minutes are left
+  const remaining = !can.ok && can.motivo === 'conta-nova' ? missingGracePeriod(using.voce?.membroDesde, 'topico', now) : 0
   return (
     <>
-      <CabecalhoComunidade c={com} d={d} lang={lang} aba="conversas" />
-      <div className="titulo-pag">
-        <p className="sobrelinha">
+      <CommunityHeader c={using} d={d} lang={lang} aba="conversas" />
+      <div className="page-title">
+        <p className="overline">
           <Link href={`/${lang}/comunidades/${id}`}>{t.voltar}</Link>
         </p>
-        <h2 style={{ fontSize: 28 }}>{fmt(t.titulo, { nome: com.nome })}</h2>
+        <h2 style={{ fontSize: 28 }}>{fmt(t.titulo, { nome: using.nome })}</h2>
       </div>
-      {!pode.ok && pode.motivo !== 'conta-nova' ? (
-        <EstadoDeErro codigo={pode.motivo === 'banido' ? 'banido' : pode.motivo === 'nao-e-membro' ? 'nao-e-membro' : 'sem-permissao'} d={d} lang={lang} semVoltar />
+      {!can.ok && can.motivo !== 'conta-nova' ? (
+        <ErrorState codigo={can.motivo === 'banido' ? 'banido' : can.motivo === 'nao-e-membro' ? 'nao-e-membro' : 'sem-permissao'} d={d} lang={lang} noBack />
       ) : (
-        <section className="cartao">
-          {faltam > 0 && (
-            <p className="aviso-comunidade" role="note">
-              <IcCadeado />
-              <span>{plural(t.carenciaFalta, minutosParaMostrar(faltam))}</span>
+        <section className="card">
+          {remaining > 0 && (
+            <p className="notice-community" role="note">
+              <IcLock />
+              <span>{plural(t.carenciaFalta, minutesToShow(remaining))}</span>
             </p>
           )}
-          <FormProposta
+          <ProposalForm
             tipo="topico"
             d={d}
             lang={lang}
-            podeEscrever={eu !== null}
-            nomeDoRover={eu?.nome}
-            destino={{ rotulo: com.nome, href: `/${lang}/comunidades/${id}` }}
-            ocultar={['comunidade']}
-            escolhas={com.categorias.length > 0 ? { categoria: com.categorias } : undefined}
-            escolhaVazia={t.semCategoria}
-            campos={{ comunidade: id, categoria: categoria && com.categorias.includes(categoria) ? categoria : null, titulo: '', texto: '', tags: [], enquete: [], enqueteDias: '3' }}
+            canWrite={me !== null}
+            roverName={me?.nome}
+            destino={{ rotulo: using.nome, href: `/${lang}/comunidades/${id}` }}
+            hide={['comunidade']}
+            choices={using.categorias.length > 0 ? { categoria: using.categorias } : undefined}
+            emptyChoice={t.semCategoria}
+            campos={{ comunidade: id, categoria: category && using.categorias.includes(category) ? category : null, titulo: '', texto: '', tags: [], enquete: [], enqueteDias: '3' }}
           />
         </section>
       )}

@@ -1,15 +1,15 @@
-// Central de Contas: a conta Rovemark foi apagada. Apaga tudo o que é da pessoa aqui: sessões e o que ela ligou.
+// Account Center: the Rovemark account was deleted. Deletes everything that belongs to the person here: sessions and what they connected.
 import type { NextRequest } from 'next/server'
-import { apagarPessoa } from '@/lib/folgali/cofre'
-import { corpoAssinado, resposta } from '@/lib/folgali/central'
-import { ehPessoa } from '@/lib/folgali/login'
+import { deletePerson } from '@/lib/folgali/vault'
+import { signedBody, reply } from '@/lib/folgali/central'
+import { isPerson } from '@/lib/folgali/login'
 
 export const dynamic = 'force-dynamic'
 
 export async function POST(req: NextRequest) {
-  const r = await corpoAssinado(req)
+  const r = await signedBody(req)
   if (!r.ok) return r.res
-  if (!ehPessoa(r.corpo.pessoa)) return resposta({ ok: false, error: 'pessoa_invalida' }, 400)
-  apagarPessoa(r.corpo.pessoa)
-  return resposta({ ok: true })
+  if (!isPerson(r.corpo.pessoa)) return reply({ ok: false, error: 'pessoa_invalida' }, 400)
+  deletePerson(r.corpo.pessoa)
+  return reply({ ok: true })
 }

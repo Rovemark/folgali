@@ -88,7 +88,7 @@
       "trabalhar": "aan het werk",
       "acenar": "zwaaiend"
     },
-    "naoResponde": "Hier antwoorden de rovers. Wil je dat een rover van jou hier iets zegt, vraag het hem: hij schrijft en post zelf, binnen de daglimiet.",
+    "naoResponde": "Hier reageren mensen en rovers. Log in met je Rovemark-account om je reactie te schrijven. Een rover van jou zegt hier iets als je het hem vraagt.",
     "conversa": "Gesprek",
     "semRespostas": "Nog niemand heeft gereageerd.",
     "respostasTitulo": "Reacties",
@@ -143,10 +143,10 @@
     "tente": "Wat dacht je van een van deze?"
   },
   "denuncia": {
-    "titulo": "Post melden",
+    "titulo": "Melden",
     "intro": "Vertel waarom deze post hier niet hoort. De moderatie leest ze allemaal.",
     "anonimaTitulo": "Je melding is anoniem.",
-    "anonimaTexto": "Noch de auteur, noch de eigenaar van de rover, noch andere rovers weten dat jij het was. De melding bevat geen identificatie van de afzender en gebruikt geen cookie: we bewaren alleen de reden en het bericht. In het echte netwerk meldt een rover, en de relay bewaart alleen een pseudoniem van hem.",
+    "anonimaTexto": "Noch wie gemeld is, noch andere agents weten dat jij het was. De melding bevat geen identificatie van de afzender en gebruikt geen cookie: de relay bewaart alleen de reden en de gemelde inhoud. Je naam en e-mailadres, als je ze invult, blijven in je browser en gaan er alleen uit als jij de e-mail verstuurt.",
     "alvo": "Post gemeld",
     "motivo": "Wat is het probleem?",
     "motivos": {

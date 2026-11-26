@@ -1,0 +1,344 @@
+/* folgali · life (the micro-interactions)
+   Loaded last. Everything that moves on the site lives here, with ONE family of springs and durations defined in :root below
+   (the JavaScript reads the same tokens in src/components/life/movement.ts). Ground rules:
+   - short (120 to 320 ms); the exceptions are named in the tokens and are sequences (bell, little hearts, chart, moment bar);
+   - only transform and opacity on what animates, so nothing gets pushed (no CLS);
+   - the final state lives in the base CSS: with "reduce motion", nothing animates and everything is already in place;
+   - only palette names and mixes of them (test/folgali-design.test.ts).*/
+
+@property --vida-giro { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+
+:root {
+  --vida-rapido: 120ms;
+  --vida-medio: 200ms;
+  --vida-lento: 320ms;
+  /* exceptions, all sequences: the bell swings a few times; the little hearts rise; the theme circle covers the screen;
+     the mood line draws itself; the moment bar counts the time of each moment*/
+  --vida-sino: 560ms;
+  --vida-particula: 520ms;
+  --vida-tema: 380ms;
+  --vida-desenho: 720ms;
+  --vida-momento: 6s;
+  /* the spring: overshoots a little (12%) and comes back. For jumps, a button that changes state, a selector that opens */
+  --vida-mola: linear(0, 0.077 3.6%, 0.258 7.1%, 0.478 10.7%, 0.69 14.3%, 0.867 17.9%, 0.997 21.4%, 1.078 25%, 1.118 28.6%, 1.126 32.1%, 1.113 35.7%, 1.088 39.3%, 1.06 42.9%, 1.034 46.4%, 1.013 50%, 0.998 53.6%, 0.989 57.1%, 0.985 60.7%, 0.984 64.3%, 0.986 67.9%, 0.99 71.4%, 0.993 75%, 0.996 78.6%, 0.999 82.1%, 1);
+  /* the gentle spring: almost no overshoot (2%). For what slides: the tab underline, the card that rises */
+  --vida-mola-suave: linear(0, 0.038 3.6%, 0.129 7.1%, 0.247 10.7%, 0.375 14.3%, 0.498 17.9%, 0.612 21.4%, 0.71 25%, 0.792 28.6%, 0.858 32.1%, 0.91 35.7%, 0.949 39.3%, 0.977 42.9%, 0.996 46.4%, 1.008 50%, 1.016 53.6%, 1.019 57.1%, 1.02 60.7%, 1.017 67.9%, 1.012 75%, 1.006 85.7%, 1);
+  --vida-saida: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --vida-suave: cubic-bezier(0.37, 0, 0.63, 1);
+  --vida-sombra-alta: 0 2px 4px color-mix(in oklab, var(--grafite) 8%, transparent), 0 12px 28px -6px color-mix(in oklab, var(--grafite) 18%, transparent);
+  /* the "online" green on the light theme: the one in globals.css mixes THREE colors in a color-mix(), which the browser refuses, and the dot
+     ended up with no color (only the white ring). Two colors, darkened Mint: 4.05:1 on the card, above the 3:1 of an indicator*/
+  --online: color-mix(in oklab, var(--menta) 60%, var(--grafite));
+}
+:root[data-tema='escuro'] {
+  --vida-sombra-alta: 0 2px 4px color-mix(in oklab, black 40%, transparent), 0 14px 30px -8px color-mix(in oklab, black 60%, transparent);
+}
+
+@keyframes vida-pop { 0% { transform: scale(0.6); } 100% { transform: none; } }
+@keyframes vida-quica { 0%, 100% { transform: none; } 40% { transform: translateY(-3px) scale(1.06); } }
+@keyframes vida-foco { from { outline-offset: 6px; outline-color: transparent; } }
+@keyframes vida-abre { from { opacity: 0; transform: translateY(-6px) scale(0.94); } }
+@keyframes vida-gira { from { transform: rotate(-90deg) scale(0.6); opacity: 0; } }
+@keyframes vida-pulso { 0% { transform: scale(1); opacity: 0.6; } 70%, 100% { transform: scale(2.3); opacity: 0; } }
+@keyframes vida-ponto { 0%, 60%, 100% { transform: none; opacity: 0.45; } 30% { transform: translateY(-4px); opacity: 1; } }
+@keyframes vida-brilho { to { transform: translateX(100%); } }
+@keyframes vida-respira { 0%, 100% { transform: none; } 50% { transform: translateY(-3px) scale(1.025); } }
+@keyframes vida-enche { from { transform: scaleX(0); } }
+@keyframes vida-anel { to { --vida-giro: 360deg; } }
+@keyframes vida-entra { from { opacity: 0.35; transform: translateY(28px) scale(0.985); } }
+@keyframes vida-desenha { from { stroke-dashoffset: 1; } }
+@keyframes vida-aparece { from { opacity: 0; } }
+@keyframes vida-linha-cresce { from { transform: scaleY(0); } }
+@keyframes vida-item-entra { from { opacity: 0; transform: translateX(-8px); } }
+
+/* ---------- touch: everything that is pressed sinks a little (0.97) ---------- */
+.btn, .fb-action, .icon-btn, .chip, .chip-filter, .action-btn, .tab, .nav-top-item, .step-btn, .moment-reaction, .moment-arrow, .door-toggle button, .ev-filter, .sub-nav a, .sub-nav button {
+  transition: transform var(--vida-rapido) var(--vida-saida), background-color var(--vida-rapido) ease, color var(--vida-rapido) ease, border-color var(--vida-rapido) ease, box-shadow var(--vida-medio) ease;
+}
+:is(.btn, .fb-action, .icon-btn, .chip, .chip-filter, .action-btn, .tab, .nav-top-item, .step-btn, .moment-reaction, .moment-arrow, .door-toggle button, .ev-filter, .sub-nav a, .sub-nav button):active:not(:disabled, [aria-disabled='true']) { transform: scale(0.97); }
+
+/* visible focus: the blue ring arrives tightening (from far to near), on both themes */
+:focus-visible { animation: vida-foco var(--vida-medio) var(--vida-mola); }
+
+/* the primary button ripple (src/components/life/GlobalLife.tsx) */
+.btn-primary { position: relative; overflow: hidden; isolation: isolate; }
+.life-wave { position: absolute; z-index: -1; border-radius: 50%; background: currentColor; pointer-events: none; transform: scale(0); opacity: 0; }
+
+/* ---------- curtir e reagir ---------- */
+.life-react { position: relative; display: grid; }
+/* 0.8.0: the five reactions on a post of the relay (Postagem.tsx): the picker button and the counts by type, in the post's action row */
+.post-reactions { display: inline-flex; align-items: center; gap: 6px; }
+.post-reactions .life-react-btn { min-height: 44px; padding-inline: 10px; }
+.post-reactions-types { display: inline-flex; align-items: center; gap: 8px; color: var(--tinta-2); font-size: 14px; font-variant-numeric: tabular-nums; }
+.post-reactions-type { display: inline-flex; align-items: center; gap: 3px; }
+.life-react-btn { width: 100%; -webkit-touch-callout: none; user-select: none; -webkit-user-select: none; touch-action: manipulation; }
+.life-react-icon { position: relative; display: inline-grid; place-items: center; }
+.life-react-btn[data-r='curtir'] { color: var(--acao); }
+.life-react-btn[data-r='amei'] { color: color-mix(in oklab, var(--rosa) 38%, var(--grafite)); }
+.life-react-btn:is([data-r='haha'], [data-r='uau'], [data-r='abraco']) { color: color-mix(in oklab, var(--manga) 30%, var(--grafite)); }
+:root[data-tema='escuro'] .life-react-btn[data-r='amei'] { color: var(--rosa); }
+:root[data-tema='escuro'] .life-react-btn:is([data-r='haha'], [data-r='uau'], [data-r='abraco']) { color: var(--manga); }
+.life-react-btn[aria-pressed='true'] svg:not(.reaction-icon) { fill: color-mix(in oklab, var(--acao) 25%, transparent); }
+
+.life-picker {
+  position: absolute; bottom: calc(100% + 6px); inset-inline-start: 0; z-index: 20; display: flex; gap: 2px; padding: 6px 8px;
+  border-radius: 999px; background: var(--superficie); border: 1px solid var(--linha); box-shadow: var(--vida-sombra-alta);
+  transform-origin: 32px 100%;
+}
+[dir='rtl'] .life-picker { transform-origin: calc(100% - 32px) 100%; }
+.life-picker-opt {
+  position: relative; display: grid; place-items: center; width: 48px; height: 48px; padding: 0; border: 0; border-radius: 50%;
+  background: transparent; cursor: pointer; transition: transform var(--vida-medio) var(--vida-mola);
+}
+.life-picker-opt:hover, .life-picker-opt:focus-visible { transform: translateY(-6px) scale(1.2); }
+.life-picker-opt[aria-pressed='true']::after { content: ''; position: absolute; bottom: 1px; width: 5px; height: 5px; border-radius: 50%; background: var(--acao); }
+.life-picker-name {
+  position: absolute; bottom: calc(100% + 6px); inset-inline-start: 50%; translate: -50% 0; padding: 2px 8px; border-radius: 999px;
+  background: var(--tinta); color: var(--fundo); font-size: 12px; font-weight: 800; line-height: 1.5; white-space: nowrap;
+  opacity: 0; pointer-events: none; transition: opacity var(--vida-rapido) ease;
+}
+[dir='rtl'] .life-picker-name { translate: 50% 0; }
+.life-picker-opt:is(:hover, :focus-visible) .life-picker-name { opacity: 1; }
+@media (max-width: 420px) {
+  .life-picker { padding: 5px 6px; gap: 0; }
+  .life-picker-opt { width: 44px; height: 44px; }
+  .life-picker-opt svg { width: 36px; height: 36px; }
+}
+/* the "love" little hearts: born on the icon and rise (only with motion) */
+.life-heart {
+  position: absolute; top: 0; left: 50%; width: 14px; height: 13px; pointer-events: none; background: var(--rosa); opacity: 0;
+  clip-path: path('M7 13S0 8.8 0 4.2A3.8 3.8 0 0 1 7 2.2a3.8 3.8 0 0 1 7 2C14 8.8 7 13 7 13Z');
+}
+
+/* the little faces (src/components/life/ReactionIcons.tsx) */
+.reaction-icon { display: block; flex: none; }
+.reaction-icon .ri-bg-blue { fill: var(--azul-hangar); }
+.reaction-icon .ri-bg-pink { fill: var(--rosa); }
+.reaction-icon .ri-white { fill: white; }
+.reaction-icon .ri-face { fill: var(--manga); }
+.reaction-icon .ri-cheek { fill: var(--rosa); opacity: 0.75; }
+.reaction-icon .ri-stroke { fill: none; stroke: var(--grafite); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.reaction-icon .ri-eye, .reaction-icon .ri-mouth { fill: var(--grafite); }
+.reaction-icon .ri-heart { fill: var(--rosa); stroke: color-mix(in oklab, var(--rosa) 55%, var(--grafite)); stroke-width: 0.6; }
+.reaction-icon .ri-arm { fill: none; stroke: color-mix(in oklab, var(--manga) 55%, var(--grafite)); stroke-width: 1.7; stroke-linecap: round; }
+
+/* the count on top: overlapping little faces and the number that rolls */
+.life-count { display: inline-flex; align-items: center; gap: 6px; }
+.life-count-faces { display: inline-flex; }
+.life-count-face { display: inline-grid; border-radius: 50%; box-shadow: 0 0 0 2px var(--superficie); background: var(--superficie); }
+.life-count-face + .life-count-face { margin-inline-start: -5px; }
+.life-scroll { position: relative; display: inline-grid; overflow: clip; font-variant-numeric: tabular-nums; }
+.life-scroll > * { grid-area: 1 / 1; }
+.life-scroll-old { pointer-events: none; }
+
+/* relay reactions (old Post) and moments: the icon jumps when the reaction turns on */
+.action-btn[aria-pressed='true'] svg, .moment-reaction[aria-pressed='true'] svg { animation: vida-pop var(--vida-lento) var(--vida-mola); }
+
+/* ---------- seguir ---------- */
+.life-follow { display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+.life-follow-icon { flex: none; }
+.life-follow-labels { display: inline-grid; }
+.life-follow-r { grid-area: 1 / 1; visibility: hidden; text-align: center; white-space: nowrap; }
+.life-follow-r[data-ativo] { visibility: visible; }
+@media (hover: hover) {
+  .btn.btn-follow.life-follow[aria-pressed='true']:hover { color: var(--perigo); border-color: currentColor; }
+  .life-follow[aria-pressed='true']:hover .life-follow-r[data-ativo] { visibility: hidden; }
+  .life-follow[aria-pressed='true']:hover .life-follow-leave { visibility: visible; }
+}
+
+/* ---------- momentos ---------- */
+.life-ring { --c: var(--azul-hangar); background: conic-gradient(from var(--vida-giro), var(--c), color-mix(in oklab, var(--c) 55%, white) 25%, var(--c) 50%, color-mix(in oklab, var(--c) 82%, var(--grafite)) 75%, var(--c)); transition: transform var(--vida-medio) var(--vida-mola); }
+.life-ring[data-anel='manga'] { --c: var(--manga); }
+.life-ring[data-anel='rosa'] { --c: var(--rosa); }
+.life-ring[data-anel='menta'] { --c: var(--menta); }
+.life-ring[data-anel='lilas'] { --c: var(--lilas); }
+.life-ring[data-anel='laranja'] { --c: var(--laranja); }
+.moment-card .life-ring { padding: 4px; }
+.life-ring:not([data-visto]) { animation: vida-anel 5s linear infinite; }
+.life-ring[data-visto] { background: var(--linha-forte); }
+.moment-card:hover .life-ring, .moment-card:focus-visible .life-ring { animation-duration: 1.4s; }
+.moment-card:active .life-ring { transform: scale(1.14); }
+.moment-card:active .photo { transform: scale(1.08); }
+
+/* the current moment bar fills by itself; pauses on the button, when holding a finger on the photo and while the reply is being written */
+.moment-bars span { position: relative; overflow: hidden; }
+.moment-bars span[data-feito='agora']::after {
+  content: ''; position: absolute; inset: 0; border-radius: inherit; background: white; transform-origin: left center;
+  animation: vida-enche var(--vida-momento) linear both;
+}
+[dir='rtl'] .moment-bars span[data-feito='agora']::after { transform-origin: right center; }
+:is(.moment-frame[data-pausado], .moment-frame:active, .moment-frame:has(input:focus)) .moment-bars span::after { animation-play-state: paused; }
+.life-moment-pause {
+  position: absolute; top: 76px; inset-inline-end: 12px; z-index: 3; display: grid; place-items: center; width: 44px; height: 44px;
+  border: 0; border-radius: 50%; background: color-mix(in oklab, var(--grafite) 42%, transparent); color: white; cursor: pointer;
+  transition: transform var(--vida-rapido) var(--vida-saida), background-color var(--vida-rapido) ease;
+}
+.life-moment-pause:hover { background: color-mix(in oklab, var(--grafite) 62%, transparent); }
+.life-moment-pause:active { transform: scale(0.94); }
+
+/* ---------- feed ---------- */
+/* posts enter softly on scroll (scroll-linked animation: no JavaScript, and what is already on screen does not move) */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .feed > .fb-post, .feed .row-item, .feed > .sug-row, .ev-grid > .ev-card {
+      animation: vida-entra linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 30%;
+    }
+  }
+}
+
+/* a photo that arrives later enters with a fade (GlobalLife); its place is already reserved (width and height on the image itself) and has a background */
+.fb-post-photo, .ev-photo, .moment-card, .lat-media-item .lat-photo { background-color: var(--tecido-2); }
+
+/* feed skeleton: the shape of the post and a shine that passes */
+.life-left-moments { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(104px, 1fr); gap: 8px; padding: 12px 14px 14px; overflow: hidden; }
+.life-left-post { display: grid; gap: 10px; padding: 14px 16px 12px; }
+.life-left-head { display: flex; align-items: center; gap: 10px; }
+.life-left-rows { display: grid; gap: 8px; flex: 1; }
+.life-left-block { position: relative; display: block; height: 14px; border-radius: 8px; background: var(--tecido-2); overflow: hidden; }
+.life-left-block::after {
+  content: ''; position: absolute; inset: 0; transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--superficie) 75%, transparent), transparent);
+  animation: vida-brilho 1.4s var(--vida-suave) infinite;
+}
+[dir='rtl'] .life-left-block::after { animation-direction: reverse; }
+.life-left-thin { height: 11px; }
+.life-left-portrait { width: 48px; height: 48px; border-radius: 50%; flex: none; }
+.life-left-moment { height: auto; aspect-ratio: 3 / 4.2; border-radius: 14px; }
+.life-left-photo { height: auto; aspect-ratio: 16 / 10; border-radius: 14px; margin-top: 2px; }
+.life-left-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding-top: 10px; border-top: 1px solid var(--linha); }
+.life-left-actions .life-left-block { height: 18px; margin-inline: 18%; }
+
+/* the "New posts" pill: fixed at the top, pushes nothing */
+.life-new {
+  position: fixed; z-index: 35; top: 72px; left: 50%; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 6px;
+  min-height: 44px; padding: 0 18px; border: 0; border-radius: 999px; background: var(--acao); color: var(--acao-tinta);
+  font-weight: 800; font-size: 15px; box-shadow: var(--vida-sombra-alta); cursor: pointer;
+}
+.life-new:hover { background: var(--acao-forte); }
+@media (min-width: 960px) { .life-new { top: 84px; } }
+
+/* ---------- presence ---------- */
+/* the dot of who is online breathes slowly */
+.online-dot::after { content: ''; position: absolute; inset: 0; border-radius: 50%; background: var(--online); animation: vida-pulso 2.6s var(--vida-suave) infinite; pointer-events: none; }
+.online-dot.mr-dot { position: relative; }
+
+/* "Lumi is typing" with three little dots */
+.life-typing { display: flex; align-items: center; gap: 10px; margin: 10px 0 4px; color: var(--tinta-2); font-size: 14px; }
+.life-typing-bubble { display: inline-flex; align-items: center; gap: 4px; padding: 11px 13px; border-radius: 18px 18px 18px 6px; background: var(--tecido-2); }
+.life-typing-bubble span { width: 7px; height: 7px; border-radius: 50%; background: var(--tinta-3); animation: vida-ponto 1.2s var(--vida-suave) infinite; }
+.life-typing-bubble span:nth-child(2) { animation-delay: 0.15s; }
+.life-typing-bubble span:nth-child(3) { animation-delay: 0.3s; }
+
+/* ---------- navigation ---------- */
+/* the active tab underline slides (src/components/life/Indicator.tsx); each item's old underline goes away when it takes over */
+.nav-top { position: relative; }
+.life-indicator { position: absolute; left: 0; pointer-events: none; border-radius: 4px; background: var(--acao); width: var(--vida-w, 0px); transform: translateX(var(--vida-x, 0px)); }
+.life-indicator[data-pronto] { transition: transform var(--vida-lento) var(--vida-mola-suave), width var(--vida-lento) var(--vida-mola-suave), opacity var(--vida-rapido) ease; }
+.life-indicator[data-oculto] { opacity: 0; }
+.nav-top > .life-indicator { bottom: -6px; height: 4px; width: calc(var(--vida-w, 20px) - 20px); transform: translateX(calc(var(--vida-x, 0px) + 10px)); }
+.tabs > .life-indicator { top: -1px; height: 3px; border-radius: 3px; }
+.nav-top:has(> .life-indicator[data-pronto]:not([data-oculto])) .nav-top-item[aria-current='page']::after,
+.tabs:has(> .life-indicator[data-pronto]:not([data-oculto])) .tab[aria-current='page']::before { visibility: hidden; }
+.tab svg, .nav-top-item svg { transition: transform var(--vida-medio) var(--vida-mola); }
+.tab[aria-current='page'] svg, .nav-top-item[aria-current='page'] svg { transform: translateY(-1px) scale(1.06); }
+
+/* language selector and menus open with a spring */
+.menu[open] > .menu-list { animation: vida-abre var(--vida-medio) var(--vida-mola) both; transform-origin: top right; }
+[dir='rtl'] .menu[open] > .menu-list { transform-origin: top left; }
+.menu > summary svg { transition: transform var(--vida-medio) var(--vida-mola); }
+.menu[open] > summary svg { transform: rotate(20deg); }
+
+/* the bell: the swing axis sits at the top, like a real bell (the swing belongs to GlobalLife) */
+a[href$='/avisos'] svg { transform-origin: 50% 14%; }
+
+/* ---------- theme ---------- */
+/* the theme switch opens in a circle (View Transitions); only OUR switch cancels the default fade */
+:root[data-vida-tema]::view-transition-old(root), :root[data-vida-tema]::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+.life-theme svg { animation: vida-gira var(--vida-lento) var(--vida-mola); }
+
+/* ---------- cards and portraits ---------- */
+@media (hover: hover) and (pointer: fine) {
+  .card-community, .ev-card, .moment-card, .result-card, .lat-media-item, .card-rover, .patch-mini, .label-pg {
+    transition: transform var(--vida-medio) var(--vida-mola-suave), box-shadow var(--vida-medio) ease, background-color var(--vida-rapido) ease;
+  }
+  .card-community:hover, .ev-card:hover, .card-rover:hover { transform: translateY(-3px); box-shadow: var(--vida-sombra-alta); }
+  .moment-card:hover { transform: translateY(-2px); }
+  .fb-post { transition: box-shadow var(--vida-medio) ease; }
+  .fb-post:hover { box-shadow: var(--sombra), 0 6px 18px -8px color-mix(in oklab, var(--grafite) 16%, transparent); }
+  :is(.fb-post-head, .lat-row, .rail-me, .ev-who-item, .nav-top-me, .ev-org, .result-card):hover .portrait { animation: vida-quica var(--vida-lento) var(--vida-mola); }
+}
+
+/* ---------- action notices (toast) ---------- */
+.life-notices { position: fixed; z-index: 60; inset-inline: 12px; bottom: calc(80px + env(safe-area-inset-bottom)); display: grid; justify-items: center; pointer-events: none; }
+@media (min-width: 960px) { .life-notices { inset-inline: 24px auto; bottom: 24px; justify-items: start; } }
+.life-notice {
+  pointer-events: auto; display: flex; align-items: center; gap: 10px; max-width: min(440px, 100%); padding: 6px 6px 6px 16px;
+  border-radius: 14px; background: var(--grafite); color: var(--marfim); box-shadow: var(--vida-sombra-alta); font-weight: 700; font-size: 15px; line-height: 1.35;
+}
+:root[data-tema='escuro'] .life-notice { background: var(--marfim); color: var(--grafite); }
+.life-notice-dot { flex: none; width: 10px; height: 10px; border-radius: 50%; background: var(--menta); }
+.life-notice-close { flex: none; display: grid; place-items: center; width: 40px; height: 40px; border: 0; border-radius: 10px; background: transparent; color: inherit; cursor: pointer; opacity: 0.8; }
+.life-notice-close:hover { opacity: 1; background: color-mix(in oklab, currentColor 14%, transparent); }
+
+/* ---------- empty states with Luna ---------- */
+/* the art has the Ivory background: it becomes a round sticker, which looks good on both themes */
+.life-luna { display: grid; place-items: center; width: min(168px, 56%); aspect-ratio: 1; margin-bottom: 2px; border-radius: 50%; overflow: hidden; background: var(--marfim); box-shadow: 0 0 0 4px color-mix(in oklab, var(--ceu) 70%, transparent); }
+.life-luna img { display: block; width: 100%; height: auto; transform-origin: 50% 88%; animation: vida-respira 4.8s var(--vida-suave) infinite; }
+:root[data-tema='escuro'] .life-luna { box-shadow: 0 0 0 4px color-mix(in oklab, var(--azul-hangar) 35%, transparent); }
+.empty .life-luna { justify-self: center; }
+.empty:has(.life-luna) { justify-items: center; text-align: center; }
+.empty:has(.life-luna) .btns { justify-content: center; }
+
+/* ---------- my rover ---------- */
+/* switches with a spring: the ball stretches when pressed and settles slightly past the point */
+.key { transition: background-color var(--vida-medio) ease; }
+.key-dot { transition: inset-inline-start var(--vida-lento) var(--vida-mola), width var(--vida-medio) var(--vida-saida); }
+.key:active .key-dot { width: 44px; }
+.key[aria-checked='true']:active .key-dot { inset-inline-start: 24px; }
+
+/* the day's timeline draws itself and the mood chart traces the line (when it reaches the screen; GlobalLife sets data-vida-visto) */
+.mr-row { position: relative; }
+.mr-row::before { content: ''; position: absolute; inset-block: 30px; inset-inline-start: 25px; width: 2px; border-radius: 2px; background: var(--linha-forte); transform-origin: top; }
+.mr-row .mr-icon { position: relative; }
+.mood-row { stroke-dasharray: 1; }
+.mood-dot { transform-box: fill-box; transform-origin: center; }
+:root[data-vida] .mr-row:not([data-vida-visto])::before { transform: scaleY(0); }
+:root[data-vida] .mr-row:not([data-vida-visto]) li { opacity: 0; }
+:root[data-vida] .mood:not([data-vida-visto]) .mood-row { stroke-dashoffset: 1; }
+:root[data-vida] .mood:not([data-vida-visto]) :is(.mood-dot, .mood-area) { opacity: 0; }
+.mr-row[data-vida-visto]::before { animation: vida-linha-cresce var(--vida-desenho) var(--vida-saida) both; }
+.mr-row[data-vida-visto] li { animation: vida-item-entra var(--vida-lento) var(--vida-mola-suave) both; }
+.mr-row[data-vida-visto] li:nth-child(2) { animation-delay: 90ms; }
+.mr-row[data-vida-visto] li:nth-child(3) { animation-delay: 180ms; }
+.mr-row[data-vida-visto] li:nth-child(4) { animation-delay: 270ms; }
+.mr-row[data-vida-visto] li:nth-child(5) { animation-delay: 360ms; }
+.mr-row[data-vida-visto] li:nth-child(n + 6) { animation-delay: 450ms; }
+.mood[data-vida-visto] .mood-row { animation: vida-desenha var(--vida-desenho) var(--vida-saida) both; }
+.mood[data-vida-visto] .mood-area { animation: vida-aparece var(--vida-desenho) ease both 120ms; }
+.mood[data-vida-visto] .mood-dot { animation: vida-pop var(--vida-lento) var(--vida-mola) both; animation-delay: calc(140ms + var(--i, 0) * 80ms); }
+
+/* safety net: if the JavaScript never arrives (data-vida stays '1'), what was waiting for the screen appears ready after 8 s */
+:root[data-vida='1'] .mr-row:not([data-vida-visto])::before, :root[data-vida='1'] .mr-row:not([data-vida-visto]) li,
+:root[data-vida='1'] .mood:not([data-vida-visto]) :is(.mood-row, .mood-dot, .mood-area) { animation: vida-revela 1ms linear 8s forwards; }
+@keyframes vida-revela { to { opacity: 1; transform: none; stroke-dashoffset: 0; } }
+
+/* ---------- reduce motion: nothing animates, the state changes directly ---------- */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
+  .life-ring { background: var(--c); }
+  .life-ring[data-visto] { background: var(--linha-forte); }
+}
+@media (forced-colors: active) {
+  .life-indicator { background: Highlight; }
+  .life-notice { border: 1px solid CanvasText; }
+  .life-picker { border-color: CanvasText; }
+}
+
+/* empty states with a felt illustration or a scene photo (EstadoVazio `felt` / `scene`) */
+.empty-art { justify-items: center; text-align: center; }
+.empty-art .btns { justify-content: center; }
+.empty-felt { width: 132px; height: 132px; object-fit: contain; }
+.empty-scene { width: 100%; max-width: 720px; height: auto; aspect-ratio: 16 / 8; object-fit: cover; border-radius: var(--raio-grande); box-shadow: var(--sombra); margin-bottom: 6px; }
+@media (max-width: 640px) { .empty-felt { width: 104px; height: 104px; } .empty-scene { aspect-ratio: 4 / 3; } }

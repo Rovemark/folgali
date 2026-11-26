@@ -1,46 +1,47 @@
-// A volta da Rovemark: confere o estado contra o cookie ANTES de tudo, troca o código pelas fichas (servidor a servidor),
-// guarda as fichas no cofre do servidor e deixa no cookie só o id da sessão.
+// The return from Rovemark: checks the state against the cookie BEFORE anything else, exchanges the code for tokens (server to server),
+// stores the tokens in the server vault and leaves only the session id in the cookie.
 import { NextResponse, type NextRequest } from 'next/server'
-import { novoSid, salvarSessao } from '@/lib/folgali/cofre'
-import { CODIGO_RE, ESTADO_RE, VIDA_DO_PEDIDO_MS, configLogin, iguais, trocarCodigo } from '@/lib/folgali/login'
-import { gravarNaResposta, lerDoPedido } from '@/lib/folgali/sessao'
+import { urlBase } from '@/lib/site'
+import { newSid, saveSession } from '@/lib/folgali/vault'
+import { CODE_RE, STATE_RE, REQUEST_LIFETIME_MS, configLogin, equal, exchangeCode } from '@/lib/folgali/login'
+import { writeToResponse, readFromRequest } from '@/lib/folgali/session'
 
 export const dynamic = 'force-dynamic'
 
-const para = (req: NextRequest, caminho: string) => NextResponse.redirect(new URL(caminho, req.url), 303)
+const to = (req: NextRequest, path: string) => NextResponse.redirect(new URL(path, urlBase() + '/'), 303)
 
 export async function GET(req: NextRequest) {
   const c = configLogin()
-  if (!c) return para(req, '/pt/entrar')
+  if (!c) return to(req, '/pt/entrar')
   const q = req.nextUrl.searchParams
-  const conteudo = lerDoPedido(req, c)
-  const pedido = conteudo.login
-  const lang = pedido?.destino.slice(1, 3) ?? 'pt'
-  const estado = q.get('estado') ?? ''
-  const valido = !!pedido && ESTADO_RE.test(estado) && iguais(estado, pedido.estado) && Date.now() - pedido.em < VIDA_DO_PEDIDO_MS
-  const sem = { sid: conteudo.sid }
-  if (!valido) {
-    const res = para(req, `/${lang}/entrar?erro=pedido`)
-    gravarNaResposta(res, sem, c)
+  const content = readFromRequest(req, c)
+  const request = content.login
+  const lang = request?.destino.slice(1, 3) ?? 'pt'
+  const state = q.get('estado') ?? ''
+  const valid = !!request && STATE_RE.test(state) && equal(state, request.estado) && Date.now() - request.em < REQUEST_LIFETIME_MS
+  const without = { sid: content.sid }
+  if (!valid) {
+    const res = to(req, `/${lang}/entrar?erro=pedido`)
+    writeToResponse(res, without, c)
     return res
   }
   if (q.get('erro')) {
-    const res = para(req, `/${lang}/entrar?erro=cancelado`)
-    gravarNaResposta(res, sem, c)
+    const res = to(req, `/${lang}/entrar?erro=cancelado`)
+    writeToResponse(res, without, c)
     return res
   }
-  const codigo = q.get('codigo') ?? ''
+  const code = q.get('codigo') ?? ''
   try {
-    if (!CODIGO_RE.test(codigo)) throw new Error('codigo')
-    const f = await trocarCodigo(c, codigo, pedido.verificador)
-    const sid = novoSid()
-    salvarSessao(sid, { pessoa: f.pessoa.id, nome: f.pessoa.nome, fichas: { at: f.access_token, rt: f.refresh_token }, venceEm: Date.now() + f.expires_in * 1000 }, c.segredo)
-    const res = para(req, pedido.destino)
-    gravarNaResposta(res, { sid }, c)
+    if (!CODE_RE.test(code)) throw new Error('codigo')
+    const f = await exchangeCode(c, code, request.verificador)
+    const sid = newSid()
+    saveSession(sid, { pessoa: f.pessoa.id, nome: f.pessoa.nome, fichas: { at: f.access_token, rt: f.refresh_token }, venceEm: Date.now() + f.expires_in * 1000 }, c.segredo)
+    const res = to(req, request.destino)
+    writeToResponse(res, { sid }, c)
     return res
   } catch {
-    const res = para(req, `/${lang}/entrar?erro=troca`)
-    gravarNaResposta(res, sem, c)
+    const res = to(req, `/${lang}/entrar?erro=troca`)
+    writeToResponse(res, without, c)
     return res
   }
 }

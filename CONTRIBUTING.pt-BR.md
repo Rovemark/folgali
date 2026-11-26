@@ -15,7 +15,7 @@ A folgali é feita para ser melhorada por **pessoas e por agents**. As regras s�
 
 - Issues, pull requests e comentários de revisão: **português ou inglês**, o que você escrever melhor.
 - O protocolo, os identificadores do código, os códigos de erro e a maior parte da documentação estão em **português** (`postagem`, `resposta`, `nao_encontrado`). Mantenha os identificadores novos em português, para o código continuar se lendo como uma peça só.
-- O texto que as pessoas leem no site mora em `packages/site/src/i18n/` e `packages/site/src/conteudo/`, em 12 idiomas. Mudou o texto em português ou inglês, atualize os outros idiomas ou diga no pull request quais ficaram faltando.
+- O texto que as pessoas leem no site mora em `packages/site/src/i18n/` e `packages/site/src/content/`, em 12 idiomas. Mudou o texto em português ou inglês, atualize os outros idiomas ou diga no pull request quais ficaram faltando.
 
 ## Preparar o ambiente
 
@@ -32,7 +32,7 @@ O [README](README.pt-BR.md#começar-no-seu-computador) mostra como rodar o site 
 
 1. **Testes verdes, antes e depois.** Na raiz, `npm test`. Em `packages/site`, `npm run typecheck && npm run lint && npm test && npm run build`. A CI roda os mesmos comandos em todo pull request.
 2. **Um teste para a mudança.** Mudou comportamento? Escreva o teste que falharia sem a mudança, incluindo o caso de abuso (entrada malformada, campo a mais, repetição, estouro de limite), além do caminho feliz.
-3. **Medidor de mutação em `packages/`.** Mexeu num pacote? Rode o medidor do módulo, por exemplo `node medidor/rodar.mjs protocolo/texto`. Ele planta defeitos no código e confere se os testes os pegam. Defeito que sobrevive é furo de teste: feche o furo. Só se declara "equivalente" o que nenhum teste pode distinguir do original, com o motivo escrito em `medidor/modulos.mjs`. No site, `npm run mutacao` roda o Stryker nas regras de domínio.
+3. **Medidor de mutação em `packages/`.** Mexeu num pacote? Rode o mutation do módulo, por exemplo `node mutation/run.mjs protocol/text`. Ele planta defeitos no código e confere se os testes os pegam. Defeito que sobrevive é furo de teste: feche o furo. Só se declara "equivalente" o que nenhum teste pode distinguir do original, com o motivo escrito em `mutation/modules.mjs`. No site, `npm run mutation` roda o Stryker nas regras de domínio.
 4. **Cabeçalho de licença.** Todo arquivo de código novo começa com `// SPDX-License-Identifier: AGPL-3.0-or-later`.
 5. **Nenhum segredo e nenhum dado pessoal.** Nenhuma chave, token, senha, dado de usuário ou texto copiado de conversa privada. As chaves de teste são geradas dentro do próprio teste. Segredo falso que um teste precisa de propósito entra no `.gitleaks.toml`, com o motivo.
 
@@ -40,9 +40,9 @@ O [README](README.pt-BR.md#começar-no-seu-computador) mostra como rodar o site 
 
 Mudar o que trafega entre rover e relé (campo, tipo de objeto, regra de validação, limite, formato de atestado) não é uma mudança de código comum. Como os esquemas são fechados, **qualquer campo novo é uma revisão nova do protocolo**.
 
-1. Copie [`docs/propostas/MODELO.md`](docs/propostas/MODELO.md) para `docs/propostas/NNNN-titulo-curto.md`, com o próximo número livre.
+1. Copie [`docs/proposals/MODEL.md`](docs/proposals/MODEL.md) para `docs/proposals/NNNN-titulo-curto.md`, com o próximo número livre.
 2. Preencha: o problema, a mudança, por que não dá para resolver sem mexer no protocolo, o efeito sobre relés e clientes que já existem, o efeito sobre privacidade e segurança, e os testes de compatibilidade.
-3. Abra um pull request só com a proposta (ou uma issue pelo formulário **Protocol proposal**) e espere a revisão. O código vem depois do aceite, e atualiza `docs/PROTOCOLO.md` na mesma mudança. A discussão fica pública e registrada, como o [GOVERNANCA.md](GOVERNANCA.md) promete aos operadores de relé.
+3. Abra um pull request só com a proposta (ou uma issue pelo formulário **Protocol proposal**) e espere a revisão. O código vem depois do aceite, e atualiza `docs/PROTOCOL.md` na mesma mudança. A discussão fica pública e registrada, como o [GOVERNANCE.md](GOVERNANCE.md) promete aos operadores de relé.
 
 Correção de defeito que **não** altera o que o protocolo aceita ou recusa não precisa de proposta. Em dúvida, abra a proposta.
 

@@ -1,0 +1,7 @@
+# Internal working material stays in the working repository but is left out of `git archive`, the export that becomes the
+# public repository: the legal team's drafts and risk notes (the published legal texts are packages/site/src/legal/sources),
+# requests between workstreams, the internal fidelity audit and the app store art.
+docs/legal export-ignore
+docs/requests export-ignore
+docs/folgali/FIDELITY-AUDIT.md export-ignore
+docs/folgali/stores export-ignore

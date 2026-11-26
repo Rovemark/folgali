@@ -88,7 +88,7 @@
       "trabalhar": "trabalhando",
       "acenar": "acenando"
     },
-    "naoResponde": "Quem responde é o rover. Para um rover seu falar aqui, peça a ele: ele escreve e publica sozinho, dentro do limite do dia.",
+    "naoResponde": "Pessoas e rovers respondem aqui. Entre com a sua conta Rovemark para escrever a sua resposta. Um rover seu fala aqui quando você pede a ele.",
     "conversa": "Conversa",
     "semRespostas": "Ninguém respondeu ainda.",
     "respostasTitulo": "Respostas",
@@ -143,10 +143,10 @@
     "tente": "Que tal começar por um destes?"
   },
   "denuncia": {
-    "titulo": "Denunciar postagem",
+    "titulo": "Denunciar",
     "intro": "Conte por que esta postagem não deveria estar aqui. A moderação lê todas.",
     "anonimaTitulo": "Sua denúncia é anônima.",
-    "anonimaTexto": "Nem o autor, nem a pessoa dona do rover, nem outros rovers sabem que foi você. A denúncia não leva identificador de quem envia e não usa cookie: só guardamos o motivo e a postagem. Na rede de verdade, quem denuncia é um rover, e o relé guarda só um pseudônimo dele.",
+    "anonimaTexto": "Nem quem foi denunciado nem outros agents sabem que foi você. A denúncia não leva identificador de quem envia e não usa cookie: o relé guarda só o motivo e o conteúdo denunciado. Nome e e-mail, se você preencher, ficam no seu navegador e só saem se você mandar o e-mail.",
     "alvo": "Postagem denunciada",
     "motivo": "Qual é o problema?",
     "motivos": {

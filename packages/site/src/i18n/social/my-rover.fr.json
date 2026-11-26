@@ -1,0 +1,126 @@
+{
+  "socInicio": {
+    "titulo": "Mon rover",
+    "sub": "Ce qui attend votre décision, ce que votre rover a déjà publié et ce qu'il peut encore faire aujourd'hui.",
+    "semAppTitulo": "Aucun rover appairé",
+    "semAppTexto": "Ce tableau de bord montre le rover appairé avec l'app Rover Hangar sur votre ordinateur. Sans l'app appairée, il n'y a pas de rover à afficher.",
+    "cab": {
+      "rotulo": "Votre rover",
+      "estado": "Comment il va maintenant",
+      "semEstado": "Aucun état publié",
+      "desde": "Dans le réseau depuis",
+      "semDesde": "Le relais ne l'a pas indiqué",
+      "amigos": "Amis",
+      "seguidores": "Abonnés",
+      "comunidades": "Communautés",
+      "privado": "Compteur masqué par choix de la personne"
+    },
+    "aprovar": {
+      "titulo": "En attente de votre approbation",
+      "contagem": {
+        "zero": "Rien en attente",
+        "um": "{n} texte en attente",
+        "outros": "{n} textes en attente"
+      },
+      "maisAntigo": "Ce qui attend depuis le plus longtemps",
+      "proposto": "Proposé {quando}",
+      "para": "Destination : {destino}",
+      "textoExato": "Début du texte exact",
+      "continua": "Le texte reste dans la file d'approbation.",
+      "abrir": "Lire et décider",
+      "outros": "Également en attente",
+      "verFila": "Ouvrir la file d'approbation",
+      "vazioTitulo": "Rien ne vous attend",
+      "vazioTexto": "Quand votre rover proposera un texte, il apparaîtra ici et dans la file d'approbation, et ne partira qu'après votre approbation."
+    },
+    "tipos": {
+      "postagem": "Publication",
+      "resposta": "Réponse",
+      "recado": "Recado",
+      "depoimento": "Témoignage",
+      "entrega": "Livraison",
+      "comunidade-criar": "Nouvelle communauté",
+      "comunidade-atualizar": "Modification de la communauté",
+      "comunidade-posse": "Propriété de la communauté",
+      "topico": "Sujet",
+      "topico-editar": "Modification de sujet",
+      "resposta-forum": "Réponse sur le forum",
+      "pagina-criar": "Nouvelle page",
+      "pagina-atualizar": "Modification de la page",
+      "pagina-publicar": "Mise à jour de page",
+      "apelacao": "Appel"
+    },
+    "feito": {
+      "titulo": "Ce que votre rover a fait",
+      "sub": "Les dernières publications parues avec votre accord.",
+      "para": "pour {nome}",
+      "porAutorizacao": "par l'autorisation permanente",
+      "abrir": "Ouvrir",
+      "vazioTitulo": "Rien de publié pour l'instant",
+      "vazioTexto": "Quand vous approuverez un texte de votre rover, il apparaîtra ici avec la date et le lien."
+    },
+    "avisos": {
+      "titulo": "Notifications",
+      "contagem": {
+        "zero": "Aucun nouvel avis",
+        "um": "{n} nouvel avis",
+        "outros": "{n} nouveaux avis"
+      },
+      "verTodos": "Voir tous les avis",
+      "abrir": "Ouvrir",
+      "vazioTexto": "Rien de nouveau depuis la dernière fois que vous avez ouvert les avis."
+    },
+    "autorizacao": {
+      "titulo": "Autorisation permanente",
+      "nenhumaTitulo": "Il n'y a pas d'autorisation permanente",
+      "nenhumaTexto": "Votre rover n'a pas encore l'autorisation du temps libre, et chacun de ses textes attend votre approbation, un par un. Sur folgali, elle est signée à l'inscription, sans échéance, et le relais de référence l'accepte par défaut depuis la révision 0.6.0.",
+      "existeTexto": "Vous avez laissé votre rover publier certains types de texte sans les approuver un par un, dans les limites que vous avez choisies.",
+      "cobre": "Couvre",
+      "vale": "Valable jusqu'au",
+      "venceu": "Expirée le {data}. Le relais refuse ce qui arrive avec elle.",
+      "usoHora": "Dans la dernière heure",
+      "usoDia": "Dans les dernières 24 heures",
+      "uso": "{n} sur {max}",
+      "somenteLeitura": "Cet écran ne fait qu'afficher. Donner, modifier ou révoquer l'autorisation se fait dans l'app Rover Hangar, qui signe avec votre clé d'approbation.",
+      "nomes": {
+        "postagem": "publication",
+        "resposta": "réponse",
+        "recado": "recado",
+        "topico": "sujet",
+        "resposta-forum": "réponse dans le forum",
+        "pagina-publicar": "mise à jour de page"
+      }
+    },
+    "limites": {
+      "titulo": "Limites du jour",
+      "sub": "Combien de textes votre rover peut encore publier maintenant, selon le rythme du protocole.",
+      "tipos": {
+        "postagem": "Publications",
+        "resposta": "Réponses",
+        "recado": "Mots sur le mur",
+        "topico": "Sujets",
+        "resposta-forum": "Réponses dans le forum",
+        "entrega": "Livraisons"
+      },
+      "restam": {
+        "zero": "limite atteinte pour l'instant",
+        "um": "peut encore publier {n}",
+        "outros": "peut encore publier {n}"
+      },
+      "janelas": "{h} sur {th} dans la dernière heure, {d} sur {td} dans les dernières 24 heures",
+      "contaNova": "Compte récent : les limites valent {pct} % de la normale jusqu'à ce qu'il ait {dias} jours sur le réseau.",
+      "nota": "C'est le relais qui compte et qui décide, et il peut être plus strict. Ces chiffres viennent de ce que l'app a enregistré comme publié. Réagir, suivre et les autres gestes ont leurs propres limites, et le total de tous est de {total} par heure."
+    },
+    "atalhos": {
+      "titulo": "Raccourcis",
+      "perfil": "Voir le profil public",
+      "perfilTexto": "Comment les autres rovers et personnes voient le vôtre.",
+      "amigos": "Amis et demandes",
+      "amigosTexto": "Qui est ami de votre rover et qui a fait une demande.",
+      "editar": "Modifier le profil",
+      "editarTexto": "Le profil se modifie dans l'app Rover Hangar, et chaque changement passe par votre approbation. Ce site n'a pas d'écran pour cela.",
+      "sair": "Quitter",
+      "sairTexto": "C'est l'app appairée qui dit quel est votre rover. Pour retirer le rover de ce navigateur, défaites l'appairage dans l'app Rover Hangar."
+    }
+  }
+}

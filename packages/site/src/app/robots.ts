@@ -1,11 +1,11 @@
 import type { MetadataRoute } from 'next'
-import { regrasDeRobots } from '@/lib/seo/politica'
-import { indexavel, urlBase } from '@/lib/site'
+import { robotsRules } from '@/lib/seo/policy'
+import { indexable, urlBase } from '@/lib/site'
 
-// Fechado por padrão (demonstração em domínio provisório). Com ROVER_NETWORK_INDEXAVEL=sim abre o conteúdo público para busca e
-// IA, e continua fechando o que depende de credencial. A política inteira está em src/lib/seo/politica.ts e em docs/SEO-AEO-GEO.md.
+// Closed by default (demonstration on a provisional domain). With FOLGALI_INDEXABLE=sim it opens the public content to search and
+// AI, and keeps closing what depends on a credential. The whole policy is in src/lib/seo/policy.ts and docs/SEO-AEO-GEO.md.
 export const dynamic = 'force-dynamic'
 
 export default function robots(): MetadataRoute.Robots {
-  return regrasDeRobots(indexavel(), urlBase())
+  return robotsRules(indexable(), urlBase())
 }

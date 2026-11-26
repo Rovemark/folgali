@@ -1,0 +1,38 @@
+// Screens of the profile, friends and notices area. Run: node scripts/proof-social.mjs --area perfil --base http://127.0.0.1:3931
+import { click, clickSel, type, id, scrollTo, seq } from '../proof-lib.mjs'
+
+const more = click('Mais opções')
+export const SCREENS = [
+  { nome: 'pipa-selos', rota: '/pt/r/pipa', antes: scrollTo('.pf-badge-list') },
+  { nome: 'pipa-acoes', rota: '/pt/r/pipa', antes: scrollTo('.pf-relationship') },
+  { nome: 'pipa-abas', rota: '/pt/r/pipa', antes: scrollTo('.pf-tabs') },
+  { nome: 'lumi-estado', rota: '/pt/r/lumi', antes: scrollTo('.pf-state-picker') },
+  { nome: 'pipa-mural', rota: '/pt/r/pipa', fim: true, completa: true },
+  { nome: 'pipa-mural-escrevendo', rota: '/pt/r/pipa', antes: seq(scrollTo('.pf-write'), type('textarea', 'Passei para dizer que a foto da nuvem ficou linda. Falo com você em @pipa amanhã. #nuvens')) },
+  { nome: 'pipa-mais-opcoes', rota: '/pt/r/pipa', antes: seq(more, scrollTo('.pf-more-options')) },
+  { nome: 'pipa-depoimentos', rota: '/pt/r/pipa?aba=depoimentos', antes: scrollTo('.pf-tabs'), fim: true, completa: true },
+  { nome: 'pipa-amigos', rota: '/pt/r/pipa?aba=amigos', antes: scrollTo('.pf-tabs'), fim: true },
+  { nome: 'pipa-grupos', rota: '/pt/r/pipa?aba=grupos', antes: scrollTo('.pf-tabs'), fim: true },
+  { nome: 'pipa-postagens', rota: '/pt/r/pipa?aba=postagens', antes: scrollTo('.pf-tabs') },
+  { nome: 'zeca-pedido-recebido', rota: '/pt/r/zeca' },
+  { nome: 'lola-pedido-enviado', rota: '/pt/r/lola' },
+  { nome: 'bento-bloqueado', rota: '/pt/r/bento', fim: true },
+  { nome: 'didi-grafo-privado', rota: '/pt/r/didi' },
+  { nome: 'didi-amigos-privado', rota: '/pt/r/didi?aba=amigos', antes: scrollTo('.pf-tabs') },
+  { nome: 'didi-grupos-privado', rota: '/pt/r/didi?aba=grupos', antes: scrollTo('.pf-tabs') },
+  { nome: 'nina-recados-amigos', rota: '/pt/r/nina' },
+  { nome: 'biscoito-recados-ninguem', rota: '/pt/r/biscoito', fim: true },
+  { nome: 'nuvem-sem-nada', rota: '/pt/r/nuvem', fim: true },
+  { nome: 'nuvem-depoimentos-vazio', rota: '/pt/r/nuvem?aba=depoimentos', antes: scrollTo('.pf-tabs') },
+  { nome: 'lumi-proprio', rota: '/pt/r/lumi', fim: true, completa: true },
+  { nome: 'lumi-depoimentos-pendentes', rota: '/pt/r/lumi?aba=depoimentos', antes: scrollTo('.pf-tabs'), fim: true },
+  { nome: 'lumi-grupos', rota: '/pt/r/lumi?aba=grupos', antes: scrollTo('.pf-tabs'), fim: true },
+  { nome: 'amigos', rota: '/pt/amigos', fim: true, completa: true },
+  { nome: 'avisos', rota: '/pt/avisos', fim: true, completa: true },
+  { nome: 'denuncia-recado', rota: `/pt/denunciar/${id('rdalumi')}?tipo=recado&de=pipa&volta=/r/pipa`, fim: true },
+  { nome: 'denuncia-enviada', rota: `/pt/denunciar/${id('rdalumi')}?tipo=recado&de=pipa`, antes: seq(clickSel('input[value=spam]'), click('Enviar denúncia')) },
+  { nome: 'erro-rele', rota: '/pt/r/fora_do_ar' },
+  { nome: 'nao-encontrado', rota: '/pt/r/nao_existe_mesmo' },
+  { nome: 'pipa-en', rota: '/en/r/pipa' },
+  { nome: 'avisos-en', rota: '/en/avisos' },
+]

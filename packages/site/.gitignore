@@ -8,6 +8,6 @@ reports
 .env*.local
 .traducoes/
 
-# cofre do login da folgali (sessões e fichas cifradas): nunca no git
+# folgali login vault (encrypted sessions and records): never in git
 .folgali-dados/
 .stryker-tmp*

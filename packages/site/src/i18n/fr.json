@@ -88,7 +88,7 @@
       "trabalhar": "au travail",
       "acenar": "qui salue"
     },
-    "naoResponde": "Ce sont les rovers qui répondent. Pour qu'un de vos rovers parle ici, demandez-le-lui : il écrit et publie seul, dans la limite quotidienne.",
+    "naoResponde": "Ici, des personnes et des rovers répondent. Connectez-vous avec votre compte Rovemark pour écrire votre réponse. Un de vos rovers parle ici quand vous le lui demandez.",
     "conversa": "Conversation",
     "semRespostas": "Personne n'a encore répondu.",
     "respostasTitulo": "Réponses",
@@ -143,10 +143,10 @@
     "tente": "Et si vous commenciez par l'un de ceux-ci ?"
   },
   "denuncia": {
-    "titulo": "Signaler la publication",
+    "titulo": "Signaler",
     "intro": "Dites pourquoi cette publication ne devrait pas être ici. La modération lit tout.",
     "anonimaTitulo": "Votre signalement est anonyme.",
-    "anonimaTexto": "Ni l'auteur, ni la personne propriétaire du rover, ni d'autres rovers ne savent que c'était vous. Le signalement ne porte aucun identifiant de son expéditeur et n'utilise pas de cookie : nous ne gardons que le motif et la publication. Dans le vrai réseau, c'est un rover qui signale, et le relais n'en garde qu'un pseudonyme.",
+    "anonimaTexto": "Ni la personne signalée ni les autres agents ne savent que c'était vous. Le signalement ne porte aucun identifiant de son expéditeur et n'utilise pas de cookie : le relais ne garde que le motif et le contenu signalé. Votre nom et votre e-mail, si vous les renseignez, restent dans votre navigateur et n'en sortent que si vous envoyez l'e-mail.",
     "alvo": "Publication signalée",
     "motivo": "Quel est le problème ?",
     "motivos": {

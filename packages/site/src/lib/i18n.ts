@@ -1,34 +1,34 @@
-// Idiomas. A estrutura já é de 12 (os mesmos do Rover Hangar); hoje só pt-BR e en têm texto. Os
-// outros dez estão declarados como pendentes: aparecem no seletor, desligados, e quem abre o endereço
-// deles cai no inglês. Quando um idioma ganhar o arquivo JSON, é só mudar `pronto` para true.
+// Languages. The structure is already 12 (the same as Rover Hangar); today only pt-BR and en have text. The
+// other ten are declared as pending: they appear in the selector, turned off, and whoever opens their
+// address falls back to English. When a language gets its JSON file, just change `pronto` to true.
 
-import { PACOTES } from '@/i18n/pacotes'
-import { LOCALES, type Locale, type Pronto } from './i18n-base'
-import type { DicionarioSocial } from '@/i18n/social'
+import { PACKS } from '@/i18n/packages'
+import { LOCALES, type Locale, type Ready } from './i18n-base'
+import type { SocialDictionary } from '@/i18n/social'
 
-// A regra da casa e a página Sobre moram em casa.<idioma>.json, e só lá: são os textos que a revisão jurídica
-// vai trocar (rascunho em docs/juridico/03-regras-da-casa.*). O resto das mensagens fica em <idioma>.json.
-const juntar = <B extends { linha: object; aprovar: object }, C extends { linha: object; sobre: object; aprovar: object }>(
+// The house rule and the About page live in casa.<language>.json, and only there: they are the texts the legal review
+// will replace (the legal team's draft of the house rules). The rest of the messages stay in <language>.json.
+const merge = <B extends { linha: object; aprovar: object }, C extends { linha: object; sobre: object; aprovar: object }>(
   base: B,
-  casa: C,
+  house: C,
 ): Omit<B, 'linha' | 'aprovar'> & { linha: B['linha'] & C['linha']; aprovar: B['aprovar'] & C['aprovar']; sobre: C['sobre'] } => ({
   ...base,
-  linha: { ...base.linha, ...casa.linha },
-  // o texto que descreve a aprovação (a nuance entre o que pede aprovação e o que é livre) também é da casa
-  aprovar: { ...base.aprovar, ...casa.aprovar },
-  sobre: casa.sobre,
+  linha: { ...base.linha, ...house.linha },
+  // the text describing approval (the nuance between what asks for approval and what is free) also belongs to the house
+  aprovar: { ...base.aprovar, ...house.aprovar },
+  sobre: house.sobre,
 })
 
-export type Dicionario = ReturnType<typeof juntar<typeof PACOTES.pt.base, typeof PACOTES.pt.casa>> & DicionarioSocial
+export type Dictionary = ReturnType<typeof merge<typeof PACKS.pt.base, typeof PACKS.pt.casa>> & SocialDictionary
 
-const montar = (l: Locale): Dicionario => {
-  const p = PACOTES[l]
-  return { ...juntar(p.base, p.casa), ...p.social.comum, ...p.social.perfil, ...p.social.comunidades, ...p.social.paginas, ...p.social.aprovar, ...p.social.home, ...p.social.inicio, ...p.social.mensagens, ...p.social.folgali } as Dicionario
+const build = (l: Locale): Dictionary => {
+  const p = PACKS[l]
+  return { ...merge(p.base, p.casa), ...p.social.comum, ...p.social.perfil, ...p.social.comunidades, ...p.social.paginas, ...p.social.aprovar, ...p.social.home, ...p.social.inicio, ...p.social.mensagens, ...p.social.folgali } as Dictionary
 }
-const DICIONARIOS = Object.fromEntries(LOCALES.map((l) => [l, montar(l)])) as Record<Locale, Dicionario>
+const DICTIONARIES = Object.fromEntries(LOCALES.map((l) => [l, build(l)])) as Record<Locale, Dictionary>
 
-export function dict(lang: Pronto): Dicionario {
-  return DICIONARIOS[lang]
+export function dict(lang: Ready): Dictionary {
+  return DICTIONARIES[lang]
 }
 
 export * from './i18n-base'

@@ -1,17 +1,18 @@
 import 'server-only'
+import '@/lib/legacy-env'
 import { configLogin } from './login'
 
-// Para onde os botões "Entrar com a Rovemark" e "Criar conta" levam. A folgali não tem login próprio nem guarda senha:
-// os dois começam o login pela rota do próprio site (/api/auth/rovemark/inicio), que fala com a Rovemark. Sem a
-// configuração do login (FOLGALI_SESSAO_SEGREDO e companhia, veja src/lib/folgali/login.ts), os botões aparecem "em breve".
+// Where the "Sign in with Rovemark" and "Create account" buttons lead. folgali has no login of its own and stores no password:
+// both start the login through the site's own route (/api/auth/rovemark/inicio), which talks to Rovemark. Without the
+// login configuration (FOLGALI_SESSION_SECRET and company, see src/lib/folgali/login.ts), the buttons show "coming soon".
 
-export interface DestinosRovemark {
+export interface RovemarkDestinations {
   entrar: string | null
   criar: string | null
 }
 
-export function destinosRovemark(lang = 'pt', destino?: string): DestinosRovemark {
+export function rovemarkTargets(lang = 'pt', destination?: string): RovemarkDestinations {
   if (!configLogin()) return { entrar: null, criar: null }
-  const q = (extra: string) => `/api/auth/rovemark/inicio?lang=${lang}${destino ? `&destino=${encodeURIComponent(destino)}` : ''}${extra}`
+  const q = (extra: string) => `/api/auth/rovemark/inicio?lang=${lang}${destination ? `&destino=${encodeURIComponent(destination)}` : ''}${extra}`
   return { entrar: q(''), criar: q('&tela=criar') }
 }

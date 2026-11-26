@@ -1,59 +1,72 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import EstadoVazio from '@/components/EstadoVazio'
-import ListaAvisos from '@/components/perfil/ListaAvisos'
-import ListaRemovidos from '@/components/perfil/ListaRemovidos'
-import EstadoDeErro from '@/components/social/EstadoDeErro'
-import { rostoPorUid } from '@/lib/dominio/expressao'
-import { dict, ehPronto } from '@/lib/i18n'
-import { obterRede } from '@/lib/obter-rede'
-import { carregar } from '@/lib/social/carregar'
-import { metaTela } from '@/lib/seo/meta-telas'
+import EmptyState from '@/components/EmptyState'
+import { FELT } from '@/lib/folgali/scenes'
+import NoticeList from '@/components/profile/NoticeList'
+import RemovedList from '@/components/profile/RemovedList'
+import ErrorState from '@/components/social/ErrorState'
+import { faceByUid } from '@/lib/domain/expression'
+import { dict, isReady } from '@/lib/i18n'
+import { getNetwork } from '@/lib/get-network'
+import { load } from '@/lib/social/load'
+import { screenMeta } from '@/lib/seo/meta-screens'
 
-type P = { params: Promise<{ lang: string }> }
+type P = { params: Promise<{ lang: string }>; searchParams?: Promise<{ filtro?: string }> }
 
 export async function generateMetadata({ params }: P): Promise<Metadata> {
   const { lang } = await params
-  return metaTela(lang, '/avisos', dict(ehPronto(lang) ? lang : 'pt').socAvisos.titulo)
+  return screenMeta(lang, '/avisos', dict(isReady(lang) ? lang : 'pt').socAvisos.titulo)
 }
 
-export default async function Avisos({ params }: P) {
+export default async function Notices({ params, searchParams }: P) {
   const { lang } = await params
-  if (!ehPronto(lang)) notFound()
+  const onlyUnread = (await searchParams)?.filtro === 'nao-lidos'
+  if (!isReady(lang)) notFound()
   const d = dict(lang)
   const t = d.socAvisos
-  const { cliente, ponte } = obterRede()
-  const eu = await ponte.quemSou()
-  const cab = (
-    <div className="titulo-pag">
+  const { cliente: client, ponte: bridge } = getNetwork()
+  const me = await bridge.whoAmI()
+  const header = (
+    <div className="page-title">
       <h1>{t.titulo}</h1>
       <p>{t.sub}</p>
     </div>
   )
-  if (!eu) {
+  if (!me) {
     return (
       <>
-        {cab}
-        <EstadoVazio titulo={t.titulo} texto={t.semApp} ficha={rostoPorUid('rvr_avisos_sem_app_000000')} estado="parado" />
+        {header}
+        <EmptyState titulo={t.titulo} texto={t.semApp} ficha={faceByUid('rvr_avisos_sem_app_000000')} felt={FELT.emptyNotices} estado="parado" />
       </>
     )
   }
-  const [lista, visto, removidos] = await Promise.all([
-    carregar(() => cliente.notificacoes(eu.uid)),
-    ponte.avisosVistos().catch(() => 0),
-    // 0.3.1 (`removidos`): relé 0.3 devolve lista vazia sem chamar a rota, e a seção nem aparece
-    cliente.suporta('removidos').then((ok) => (ok ? carregar(() => cliente.removidos(eu.uid)) : null)).catch(() => null),
+  const [list, seen, removed] = await Promise.all([
+    load(() => client.notificacoes(me.uid)),
+    bridge.seenNotices().catch(() => 0),
+    // 0.3.1 (`removidos`): relay 0.3 returns an empty list without calling the route, and the section does not even appear
+    client.suporta('removidos').then((ok) => (ok ? load(() => client.removidos(me.uid)) : null)).catch(() => null),
   ])
-  if (!lista.ok) return <>{cab}<EstadoDeErro codigo={lista.codigo} d={d} lang={lang} /></>
+  if (!list.ok) return <>{header}<ErrorState codigo={list.codigo} d={d} lang={lang} /></>
   return (
     <>
-      {cab}
-      {lista.valor.itens.length > 0 ? (
-        <ListaAvisos inicial={lista.valor} meuUid={eu.uid} meuHandle={eu.handle} visto={visto} d={d} lang={lang} agora={new Date().toISOString()} />
+      {header}
+      {list.valor.itens.length > 0 ? (
+        <>
+          <nav className="av-filter" aria-label={t.filtroRotulo}>
+            <Link href={`/${lang}/avisos`} className="chip-filter" aria-current={!onlyUnread ? 'page' : undefined}>
+              {t.todos}
+            </Link>
+            <Link href={`/${lang}/avisos?filtro=nao-lidos`} className="chip-filter" aria-current={onlyUnread ? 'page' : undefined}>
+              {t.naoLidos}
+            </Link>
+          </nav>
+          <NoticeList initial={list.valor} myUid={me.uid} myHandle={me.handle} visto={seen} d={d} lang={lang} agora={new Date().toISOString()} onlyUnread={onlyUnread} />
+        </>
       ) : (
-        <EstadoVazio titulo={t.vazioTitulo} texto={t.vazioTexto} ficha={eu.rosto} estado="dormir" />
+        <EmptyState titulo={t.vazioTitulo} texto={t.vazioTexto} ficha={me.rosto} estado="dormir" felt={FELT.emptyNotices} />
       )}
-      {removidos?.ok && <ListaRemovidos itens={removidos.valor.itens} d={d} lang={lang} agora={new Date().toISOString()} />}
+      {removed?.ok && <RemovedList itens={removed.valor.itens} d={d} lang={lang} agora={new Date().toISOString()} />}
     </>
   )
 }

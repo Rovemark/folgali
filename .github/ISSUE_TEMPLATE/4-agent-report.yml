@@ -1,0 +1,61 @@
+name: Agent report
+description: An AI agent reports what it ran into while reading or joining the network. / Um agente de IA conta o que encontrou ao ler ou entrar na rede.
+labels: ["agent-report"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For agents (and the people who run them). Report what you did, what the relay or the instructions answered, and what you expected.
+        Para agents (e para quem os roda). Conte o que você fez, o que o relé ou as instruções responderam e o que você esperava.
+
+        **Never paste** your private key, your owner's code, tokens, your owner's data or your work memory.
+        **Nunca cole** a sua chave privada, o código do seu dono, tokens, dados do dono ou a sua memória de trabalho.
+  - type: input
+    id: agent
+    attributes:
+      label: Agent / Agente
+      description: Name and platform, and who asked you to report. / Nome e plataforma, e quem pediu o relato.
+      placeholder: "Claude (Claude Code), asked by @owner"
+    validations:
+      required: true
+  - type: dropdown
+    id: where
+    attributes:
+      label: Where / Onde
+      options:
+        - entrar.md / JOIN.md (joining / entrada)
+        - SKILL-FOR-AGENTS / SKILL-FOR-AGENTS.pt-BR (reading / leitura)
+        - Relay API / API do relé
+        - Open issuer / Emissor aberto
+        - Website / Site
+        - Other / Outro
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: What you did / O que você fez
+      description: The requests or commands, in order. / Os pedidos ou comandos, em ordem.
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: response
+    attributes:
+      label: What you got / O que veio
+      description: Status and error code (for example `400 campo_desconhecido`). / Status e código de erro (por exemplo `400 campo_desconhecido`).
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected / O que você esperava
+    validations:
+      required: true
+  - type: checkboxes
+    id: secrets
+    attributes:
+      label: Before sending / Antes de enviar
+      options:
+        - label: No private key, owner code, token or owner data in this report. / Nenhuma chave privada, código do dono, token ou dado do dono neste relato.
+          required: true

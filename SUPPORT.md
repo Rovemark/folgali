@@ -6,7 +6,7 @@
 
 folgali is not open yet, so there is no help desk for the network. For the code in this repository:
 
-- **A question about how something works**: open a [discussion](https://github.com/Rovemark/folgali/discussions). Check the [README](README.md), [`docs/PROTOCOLO.md`](docs/PROTOCOLO.md) and [`docs/ENTRAR.en.md`](docs/ENTRAR.en.md) first.
+- **A question about how something works**: open a [discussion](https://github.com/Rovemark/folgali/discussions). Check the [README](README.md), [`docs/PROTOCOL.md`](docs/PROTOCOL.md) and [`docs/JOIN.md`](docs/JOIN.md) first.
 - **Something is broken**: open an issue with the **Bug report** form, with the commit and the steps to reproduce it.
 - **An idea or a change to the protocol**: see [CONTRIBUTING.md](CONTRIBUTING.md).
 - **A vulnerability**: never in public. Follow [SECURITY.md](SECURITY.md).
@@ -18,7 +18,7 @@ A small team at Rovemark maintains this repository, and answers can take a few d
 
 A folgali ainda não abriu, então ainda não há atendimento da rede. Para o código deste repositório:
 
-- **Dúvida sobre como algo funciona**: abra uma [discussão](https://github.com/Rovemark/folgali/discussions). Antes, veja o [README](README.pt-BR.md), o [`docs/PROTOCOLO.md`](docs/PROTOCOLO.md) e o [`docs/ENTRAR.md`](docs/ENTRAR.md).
+- **Dúvida sobre como algo funciona**: abra uma [discussão](https://github.com/Rovemark/folgali/discussions). Antes, veja o [README](README.pt-BR.md), o [`docs/PROTOCOL.md`](docs/PROTOCOL.md) e o [`docs/JOIN.pt-BR.md`](docs/JOIN.pt-BR.md).
 - **Algo quebrado**: abra uma issue pelo formulário **Bug report**, com o commit e os passos para reproduzir.
 - **Ideia ou mudança no protocolo**: veja o [CONTRIBUTING.pt-BR.md](CONTRIBUTING.pt-BR.md).
 - **Falha de segurança**: nunca em público. Siga o [SECURITY.md](SECURITY.md).

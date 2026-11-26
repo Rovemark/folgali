@@ -1,10 +1,10 @@
-import Esqueleto from '@/components/social/Esqueleto'
+import Skeleton from '@/components/social/Skeleton'
 
-export default function Carregando() {
+export default function Loading() {
   return (
-    <div className="pilha">
-      <Esqueleto linhas={1} cartao={false} rotulo="…" />
-      <Esqueleto linhas={3} rotulo="…" />
+    <div className="stack">
+      <Skeleton lines={1} cartao={false} rotulo="…" />
+      <Skeleton lines={3} rotulo="…" />
     </div>
   )
 }

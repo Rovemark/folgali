@@ -1,58 +1,58 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import EstadoVazio from '@/components/EstadoVazio'
-import CabecalhoComunidade from '@/components/comunidades/CabecalhoComunidade'
-import ConvidarRover from '@/components/comunidades/ConvidarRover'
-import { MembrosMais } from '@/components/comunidades/ListasMais'
-import EstadoDeErro from '@/components/social/EstadoDeErro'
-import { ehCompleta, ID_OK, lerComunidade, quemDe } from '@/lib/comunidades/dados'
-import { rostoPorUid } from '@/lib/dominio/expressao'
-import { podeNaComunidade } from '@/lib/dominio/permissoes'
-import { dict, ehPronto } from '@/lib/i18n'
-import { obterRede } from '@/lib/obter-rede'
-import { carregar } from '@/lib/social/carregar'
-import { metaTela } from '@/lib/seo/meta-telas'
+import EmptyState from '@/components/EmptyState'
+import CommunityHeader from '@/components/communities/CommunityHeader'
+import InviteRover from '@/components/communities/InviteRover'
+import { MembersMore } from '@/components/communities/MoreLists'
+import ErrorState from '@/components/social/ErrorState'
+import { isComplete, ID_OK, readCommunity, whoOf } from '@/lib/communities/data'
+import { faceByUid } from '@/lib/domain/expression'
+import { canInCommunity } from '@/lib/domain/permissions'
+import { dict, isReady } from '@/lib/i18n'
+import { getNetwork } from '@/lib/get-network'
+import { load } from '@/lib/social/load'
+import { screenMeta } from '@/lib/seo/meta-screens'
 
 type P = { params: Promise<{ lang: string; id: string }> }
 
 export async function generateMetadata({ params }: P): Promise<Metadata> {
   const { lang, id } = await params
-  return metaTela(lang, `/comunidades/${id}/membros`, dict(ehPronto(lang) ? lang : 'pt').socComunidades.pagina.abas.membros)
+  return screenMeta(lang, `/comunidades/${id}/membros`, dict(isReady(lang) ? lang : 'pt').socComunidades.pagina.abas.membros)
 }
 
-export default async function Membros({ params }: P) {
+export default async function Members({ params }: P) {
   const { lang, id } = await params
-  if (!ehPronto(lang)) notFound()
+  if (!isReady(lang)) notFound()
   const d = dict(lang)
   const t = d.socComunidades
-  const c = ID_OK.test(id) ? await lerComunidade(id) : ({ ok: false, codigo: 'nao-encontrado' } as const)
-  if (!c.ok) return <EstadoDeErro codigo={c.codigo} d={d} lang={lang} />
-  const com = c.valor
-  if (!ehCompleta(com)) return <CabecalhoComunidade c={com} d={d} lang={lang} />
-  const lista = await carregar(() => obterRede().cliente.membros(id))
-  const podeConvidar = podeNaComunidade('convidar', quemDe(com.voce), com.acesso).ok
+  const c = ID_OK.test(id) ? await readCommunity(id) : ({ ok: false, codigo: 'nao-encontrado' } as const)
+  if (!c.ok) return <ErrorState codigo={c.codigo} d={d} lang={lang} />
+  const using = c.valor
+  if (!isComplete(using)) return <CommunityHeader c={using} d={d} lang={lang} />
+  const list = await load(() => getNetwork().cliente.membros(id))
+  const canInvite = canInCommunity('convidar', whoOf(using.voce), using.acesso).ok
   return (
     <>
-      <CabecalhoComunidade c={com} d={d} lang={lang} aba="membros" />
-      <div className="pilha-g">
-        {podeConvidar && (
-          <section className="cartao" aria-labelledby="conv-t">
+      <CommunityHeader c={using} d={d} lang={lang} aba="membros" />
+      <div className="stack-large">
+        {canInvite && (
+          <section className="card" aria-labelledby="conv-t">
             <h2 id="conv-t">{t.convidar.titulo}</h2>
-            <p className="suave">{t.convidar.texto}</p>
-            <ConvidarRover comunidade={id} d={d} />
+            <p className="soft">{t.convidar.texto}</p>
+            <InviteRover comunidade={id} d={d} />
           </section>
         )}
-        <section className="pilha" aria-labelledby="mem-t">
+        <section className="stack" aria-labelledby="mem-t">
           <div>
             <h2 id="mem-t">{t.pagina.membrosTitulo}</h2>
-            <p className="miudo">{t.pagina.membrosNota}</p>
+            <p className="fine">{t.pagina.membrosNota}</p>
           </div>
-          {!lista.ok ? (
-            <EstadoDeErro codigo={lista.codigo} d={d} lang={lang} />
-          ) : lista.valor.itens.length === 0 ? (
-            <EstadoVazio titulo={t.pagina.membrosVazio.titulo} texto={t.pagina.membrosVazio.texto} ficha={rostoPorUid('rvr_membros_vazio_000000')} />
+          {!list.ok ? (
+            <ErrorState codigo={list.codigo} d={d} lang={lang} />
+          ) : list.valor.itens.length === 0 ? (
+            <EmptyState titulo={t.pagina.membrosVazio.titulo} texto={t.pagina.membrosVazio.texto} ficha={faceByUid('rvr_membros_vazio_000000')} />
           ) : (
-            <MembrosMais inicial={lista.valor} comunidade={id} d={d} lang={lang} agora={new Date().toISOString()} />
+            <MembersMore initial={list.valor} comunidade={id} d={d} lang={lang} agora={new Date().toISOString()} />
           )}
         </section>
       </div>
