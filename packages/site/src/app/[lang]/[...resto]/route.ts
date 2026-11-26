@@ -21,12 +21,12 @@ const STYLE = [
   ':root{color-scheme:light dark;--f:#F4F1EA;--t:#111318;--a:#3455E8;--l:color-mix(in oklab,var(--t) 16%,var(--f))}',
   '@media (prefers-color-scheme:dark){:root{--f:#111318;--t:#F4F1EA;--a:#DFEAFF}}',
   'body{font:17px/1.55 system-ui,sans-serif;background:var(--f);color:var(--t);max-width:40rem;margin:6vh auto;padding:0 1.25rem}',
-  '.brand{border:0;padding:0;display:inline-block;margin-bottom:1rem}.marca img{display:block;height:auto}',
-  '.cena{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:20px;margin:0 0 1.25rem}',
+  '.brand{border:0;padding:0;display:inline-block;margin-bottom:1rem}.brand img{display:block;height:auto}',
+  '.scene{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:20px;margin:0 0 1.25rem}',
   'h1{font-size:1.9rem;margin:0 0 .5rem;color:var(--a)}',
   'ul{padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:.5rem}',
   'li a{display:inline-block;padding:.45rem .85rem;border:1px solid var(--l);border-radius:999px;text-decoration:none;color:inherit;background:color-mix(in oklab,var(--f) 70%,white)}',
-  '@media (prefers-color-scheme:dark){li a{background:color-mix(in oklab,var(--f) 80%,white)}.marca img{content:url(/marca/folgali/logo-escuro.webp)}}',
+  '@media (prefers-color-scheme:dark){li a{background:color-mix(in oklab,var(--f) 80%,white)}.brand img{content:url(/marca/folgali/logo-escuro.webp)}}',
   'li a:hover,li a:focus-visible{text-decoration:underline;border-color:var(--a)}',
 ].join('')
 
@@ -39,7 +39,7 @@ function page404(lang: Ready): string {
     const r = ROUTES.find((x) => x.id === id)!
     return `<li><a href="/${lang}${r.caminho}">${esc(labelOf(lang, id))}</a></li>`
   }).join('')
-  return `<!doctype html><html lang="${META[lang].html}" dir="${META[lang].dir}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><title>${esc(t.titulo)} · folgali</title><style>${STYLE}</style></head><body><main><a class="marca" href="/${lang}"><img src="/marca/folgali/logo-principal.webp" alt="folgali" width="160" height="58"></a><img class="cena" src="/marca/folgali/scenes/404-forest.webp" alt="" width="1280" height="853"><h1>${esc(t.titulo)}</h1><p>${esc(t.texto)}</p><ul>${links}</ul></main></body></html>`
+  return `<!doctype html><html lang="${META[lang].html}" dir="${META[lang].dir}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><title>${esc(t.titulo)} · folgali</title><style>${STYLE}</style></head><body><main><a class="brand" href="/${lang}"><img src="/marca/folgali/logo-principal.webp" alt="folgali" width="160" height="58"></a><img class="scene" src="/marca/folgali/scenes/404-forest.webp" alt="" width="1280" height="853"><h1>${esc(t.titulo)}</h1><p>${esc(t.texto)}</p><ul>${links}</ul></main></body></html>`
 }
 
 const HEADERS = { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store', 'x-robots-tag': 'noindex, nofollow' }
@@ -55,7 +55,8 @@ async function fullPage(req: Request, lang: string): Promise<string | null> {
     const u = new URL(req.url)
     const r = await fetch(`${origin}${u.pathname}${u.search}`, { headers: { accept: 'text/html', 'accept-language': req.headers.get('accept-language') ?? '', [REQUEST_404]: '1' }, redirect: 'error', cache: 'no-store', signal: AbortSignal.timeout(5000) })
     const html = await r.text()
-    return /^<!DOCTYPE html>/i.test(html) && html.includes('class="topo"') ? html : null
+    // the mark is the site header of src/app/[lang]/layout.tsx; test/seo/not-found.test.ts reads the class from that file, so a rename there fails the test
+    return /^<!DOCTYPE html>/i.test(html) && html.includes('<header class="top"') ? html : null
   } catch {
     return null
   }

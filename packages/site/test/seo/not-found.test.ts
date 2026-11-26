@@ -39,7 +39,11 @@ describe('useful 404', () => {
   })
   it('the body is the 404 page with the whole site (header and footer), requested from this server, and the status stays 404', async () => {
     const requests: string[] = []
-    const complete = '<!DOCTYPE html><html><body><header class="topo">menu</header><main>404</main><footer class="rodape">rodapé</footer></body></html>'
+    // the header class comes from the real layout: if it is renamed there and not in the route, the route falls back to the minimal page
+    const { readFileSync } = await import('node:fs')
+    const headerClass = /<header className="([a-z-]+)">/.exec(readFileSync(new URL('../../src/app/[lang]/layout.tsx', import.meta.url), 'utf8'))?.[1]
+    expect(headerClass).toBeTruthy()
+    const complete = `<!DOCTYPE html><html><body><header class="${headerClass}">menu</header><main>404</main><footer class="rodape">rodapé</footer></body></html>`
     vi.stubGlobal('fetch', async (url: string, init: RequestInit = {}) => {
       requests.push(`${url} ${new Headers(init.headers).get('x-folgali-404')}`)
       return new Response(complete, { status: 404, headers: { 'content-type': 'text/html' } })
@@ -49,7 +53,7 @@ describe('useful 404', () => {
     expect(r.status).toBe(404)
     expect(r.headers.get('x-robots-tag')).toContain('noindex')
     const html = await r.text()
-    expect(html).toContain('class="topo"')
+    expect(html).toContain(`<header class="${headerClass}">`)
     expect(html).toContain('class="rodape"')
     expect(requests).toEqual(['http://x/pt/nada/aqui 1'])
   })
