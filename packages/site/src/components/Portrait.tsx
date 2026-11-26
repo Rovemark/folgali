@@ -1,7 +1,8 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { portrait, type PortraitState } from '@/lib/rover/portrait'
+import { imageUrl } from '@/lib/images'
 import { galleryPortrait } from '@/lib/folgali/gallery'
 import { withoutHelmet } from '@/lib/folgali/plush'
 import { isPersonSpec } from '@/lib/rover/person'
@@ -22,12 +23,43 @@ type Props = {
 
 /** The portrait of the rover, in an embroidery: a ring of stitch dots in the color of the plush. */
 export default function Portrait(props: Props) {
+  // the rover's own image portrait (the card's `imagem`): the same photo the profile shows, from the site's own /midia route, by the
+  // checked hash only. Without it, or when it does not load, the portrait below (person avatar, gallery or plush)
+  const photo = props.ficha.imagem ? imageUrl(props.ficha.imagem) : null
+  if (photo) return <OwnPhoto key={photo} {...props} src={photo} />
+  return <DrawnPortrait {...props} />
+}
+
+/** What the portrait is without an own photo: the person avatar, the gallery portrait or the plush. */
+function DrawnPortrait(props: Props) {
   // 0.7.0: a person without a portrait has a people avatar, drawn here, never a plush
   if (isPersonSpec(props.ficha)) return <PersonAvatar {...props} />
   // 0.9.0: a portrait chosen from the house gallery
   const g = galleryPortrait(props.ficha.galeria)
   if (g) return <PortraitImage {...props} src={g.file} cor={g.color ?? props.ficha.cor} />
   return <PlushPhotoOrDrawing {...props} />
+}
+
+/**
+ * The rover's own photo in the round frame: fixed size (no jump), cut to the circle with `object-fit: cover`, loaded on demand. A photo that
+ * fails (removed meanwhile, network error) falls back to the drawn portrait, also when it failed before the page became interactive.
+ */
+function OwnPhoto({ src, ...props }: Props & { src: string }) {
+  const { nome: name, tamanho: size = 48, className = '', decorative = false } = props
+  const [failed, setFailed] = useState(false)
+  const img = useRef<HTMLImageElement>(null)
+  useEffect(() => {
+    // an error that happened before hydration never reaches onError: a finished image with no width is a broken one
+    const i = img.current
+    if (i && i.complete && i.naturalWidth === 0) setFailed(true)
+  }, [])
+  if (failed) return <DrawnPortrait {...props} />
+  return (
+    <span className={`portrait portrait-own ${className}`} style={{ ['--pelucia' as string]: props.ficha.cor, width: size, height: size }} data-pronto="1">
+      {/* eslint-disable-next-line @next/next/no-img-element -- same-domain /midia image with a known size; the optimizer would fetch on its own */}
+      <img ref={img} src={src} width={size} height={size} alt={decorative ? '' : name} className="portrait-img" decoding="async" loading="lazy" onError={() => setFailed(true)} />
+    </span>
+  )
 }
 
 /** Demonstration: the photographed plush when the cast has one; otherwise the drawn portrait. */

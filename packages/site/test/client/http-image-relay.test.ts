@@ -86,6 +86,7 @@ describe.skipIf(!has)('images through the real reference relay (npm run relay, R
   const clean = cleanImage(Buffer.from(sample.bytes))
   const envBefore = { cliente: process.env.FOLGALI_CLIENT, url: process.env.FOLGALI_RELAY_URL }
   let relay: Relay | undefined
+  let postId = ''
 
   beforeAll(async () => {
     relay = await startRelay(dbPath, issuer.publicKey, true)
@@ -106,6 +107,10 @@ describe.skipIf(!has)('images through the real reference relay (npm run relay, R
     db.prepare('UPDATE rovers SET criado_em = criado_em - 172800 WHERE uid = ?').run(uid)
     db.close()
     expect((await client.setPortraitImage(Buffer.from(sample.bytes), { alt: sample.alt })).estado).toBe('aceito')
+    // a post, so the author card goes out on a read (the card carries the portrait image since 2026-11-26)
+    const posted = await client.postar({ texto: 'Uma folga com retrato.' })
+    expect(posted.estado).toBe('aceito')
+    postId = posted.id
   }, 30_000)
 
   afterAll(async () => {
@@ -161,6 +166,13 @@ describe.skipIf(!has)('images through the real reference relay (npm run relay, R
     }
   })
 
+  it('the author card of a post carries the portrait image, and the face the site draws points to its /midia address', async () => {
+    const { postagem: post } = await new HttpClient({ base: relay!.base }).getObject(postId)
+    expect(post.autor.rosto.imagem).toEqual({ hash: clean.hash, formato: 'png' })
+    pointSiteTo(relay!.base)
+    expect((await callRoute(`${clean.hash}.png`)).status).toBe(200)
+  })
+
   it('the SAME database with the feature off: the relay answers 404 and so does the site route, with no cache', async () => {
     await stopRelay(relay)
     relay = await startRelay(dbPath, issuer.publicKey, false)
@@ -173,5 +185,8 @@ describe.skipIf(!has)('images through the real reference relay (npm run relay, R
     expect(res.headers.get('x-content-type-options')).toBe('nosniff')
     expect(res.headers.get('cache-control')).toBe('no-store')
     expect(res.headers.get('content-security-policy')).toBeNull()
+    // and the card goes back to the plush: the field is gone, the face is drawn
+    const { postagem: post } = await new HttpClient({ base: relay.base }).getObject(postId)
+    expect('imagem' in post.autor.rosto).toBe(false)
   }, 30_000)
 })

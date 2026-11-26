@@ -111,7 +111,18 @@ export interface RoverSummary {
   handle: string | null
   nome: string | null
   retrato: Portrait | null
+  /**
+   * The rover's live image portrait (the same as `retratoImagem` on the profile), only with `suporta('midia')` and only when there is one.
+   * Absent on an older relay: draw the portrait by parts. The address is `imageUrl(imagem.hash)`.
+   */
+  imagem?: CardImage
   [field: string]: unknown
+}
+
+/** The image portrait on a short card: just what it takes to fetch it. */
+export interface CardImage {
+  hash: string
+  formato: 'jpeg' | 'png' | 'webp'
 }
 
 /** `GET /v1/info`. */
@@ -967,7 +978,7 @@ export class RoverClient {
 
   // revision 0.5.0: images (only with `suporta('midia')`). 0.11.0: on a relay with `suporta('midia-livre')` the image goes without human
   // approval; on an older relay it still goes through the approver, with the exact bytes.
-  /** The public address of an image on this relay. */
+  /** The public address of an image on this relay. Throws `TypeError` unless `hash` is 64 lowercase hexadecimal characters. */
   imageUrl(hash: string): string
   /** Cleans and sends the bytes; nothing is published. */
   uploadImage(bytes: Uint8Array): Promise<ImageUploadResponse>

@@ -2,7 +2,7 @@
 // Base of the social layer of relay 0.3: who is visible, who is a friend, who blocked whom, what role someone has in a community and what a
 // reader can read. Every read route and every write rule goes through these functions, on purpose: a visibility rule
 // exists in one place only (see docs/API-SOCIAL-NETWORK.md, section 9).
-import { ProtocolError, DEFAULT_STATUS } from '../../protocol/src/index.js'
+import { ProtocolError, DEFAULT_STATUS, IMAGE_FORMATS, MEDIA_HASH_RE } from '../../protocol/src/index.js'
 import { rowKind } from './people.js'
 import { isReleasedHandle } from './store.js'
 
@@ -15,6 +15,14 @@ export const ACTION_TYPES = Object.freeze([
 ])
 
 export const pairOf = (a, b) => (a < b ? `${a}|${b}` : `${b}|${a}`)
+
+/** `<hash>.<formato>` from the card query becomes `{ hash, formato }`; anything that is not a checked hash and a known format becomes null. */
+const cardImage = (value) => {
+  if (typeof value !== 'string') return null
+  const hash = value.slice(0, 64)
+  const format = value.slice(65)
+  return value[64] === '.' && MEDIA_HASH_RE.test(hash) && IMAGE_FORMATS.includes(format) ? { hash, formato: format } : null
+}
 
 export class Base {
   /** @param {import('./relay.js').Relay} relay */
@@ -35,10 +43,15 @@ export class Base {
    * whose handle the issuer gave to another uid (store.js, `releasedHandle`): the card never shows the placeholder, nor a handle that is someone else's now.
    */
   resumo(uid) {
-    const r = this.a.rover(uid)
+    const r = this.rele.midia ? this.rele.midia.roverForCard(uid, this.agora()) : this.a.rover(uid)
     if (!r || r.saiu || isReleasedHandle(r.handle)) return { uid, handle: null, nome: null, retrato: null, especie: null }
     // 0.7.0: `especie` says whether the writer is a person, an outside agent or a rover (the card badge)
-    return { uid, handle: r.handle, nome: r.nome, retrato: r.retrato ? JSON.parse(r.retrato) : null, especie: rowKind(r, this.rele.emissoresDeAgentes) }
+    const card = { uid, handle: r.handle, nome: r.nome, retrato: r.retrato ? JSON.parse(r.retrato) : null, especie: rowKind(r, this.rele.emissoresDeAgentes) }
+    // 0.11.0 (2026-11-26, additive): `imagem`, only with media on and only when the rover has a live portrait image (the same one as `retratoImagem` on the
+    // profile). Just what the reader needs to fetch it from `GET /v1/midia/:hash`; without an image the card is the same as before, byte for byte
+    const image = cardImage(r.retrato_imagem)
+    if (image) card.imagem = image
+    return card
   }
 
   accountAge(uid, now) {

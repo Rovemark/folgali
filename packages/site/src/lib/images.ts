@@ -41,7 +41,22 @@ export function imageUrl(i: Pick<NetworkImage, 'hash' | 'formato'>): string | nu
   return `/midia/${i.hash}.${EXTENSION[i.formato]}`
 }
 
-const integerBetween = (v: unknown, min: number, max: number): v is number => Number.isSafeInteger(v) && (v as number) >= min && (v as number) <= max
+/**
+ * The image portrait on a short card (`imagem` on the relay's `RoverResumo`, 2026-11-26): only what it takes to build the address. The
+ * same image as `retratoImagem` on the profile; absent on an older relay, and then the screen draws the plush.
+ */
+export type PortraitPhoto = Pick<NetworkImage, 'hash' | 'formato'>
+
+/** Checks the card portrait that came from the relay (or the profile's `retratoImagem`): a valid hash and a known format, or null. */
+export function sanitizePortraitPhoto(x: unknown): PortraitPhoto | null {
+  if (!x || typeof x !== 'object' || Array.isArray(x)) return null
+  const o = x as Record<string, unknown>
+  if (typeof o.hash !== 'string' || !HASH_RE.test(o.hash)) return null
+  if (typeof o.formato !== 'string' || !(IMAGE_FORMATS as readonly string[]).includes(o.formato)) return null
+  return { hash: o.hash, formato: o.formato as ImageFormat }
+}
+
+const integerBetween =(v: unknown, min: number, max: number): v is number => Number.isSafeInteger(v) && (v as number) >= min && (v as number) <= max
 
 /** Checks an image that came from the relay. What does not match the protocol becomes null (the screen does not show it). */
 export function sanitizeImage(x: unknown): NetworkImage | null {

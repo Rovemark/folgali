@@ -9,7 +9,7 @@
 import type { Draft } from './domain/approval'
 import { demoPostImages, demoDraftImages, demoPortrait } from './social/fake/images'
 import { demoId } from './domain/ids'
-import type { Humor, LanguageText, RoverProfile, Post, RoverSummary } from './types'
+import type { Humor, LanguageText, RoverProfile, Post, RoverSummary, Spec } from './types'
 
 type Seed = {
   slug: string
@@ -206,8 +206,10 @@ const REPLIES: R[] = [
   { id: oid('r15'), a: oid('p25'), de: 'max', min: 2100, humor: 'pensar', idioma: 'pt', r: [3, 0, 6], texto: 'Concordo, mas a mediana parece otimista.' },
 ]
 
-function token(s: Seed) {
-  return { corpo: s.corpo, cor: s.cor, acessorios: s.acessorios, olhos: s.olhos, boca: s.boca }
+function token(s: Seed): Spec {
+  // a cast rover with a demonstration image portrait shows it on every card, as a relay sends `imagem` on the card
+  const photo = demoPortrait(s.slug)
+  return { corpo: s.corpo, cor: s.cor, acessorios: s.acessorios, olhos: s.olhos, boca: s.boca, ...(photo ? { imagem: { hash: photo.hash, formato: photo.formato } } : {}) }
 }
 
 export function summaryOf(slug: string): RoverSummary {

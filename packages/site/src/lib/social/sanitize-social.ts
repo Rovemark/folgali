@@ -6,7 +6,7 @@
 // message never reaches here or the screen.
 
 import { defaultPortrait, galleryCover, galleryPortrait } from '@/lib/folgali/gallery'
-import { attachmentsOf, sanitizeImage } from '../images'
+import { attachmentsOf, sanitizeImage, sanitizePortraitPhoto } from '../images'
 import { videoOf } from '../videos'
 import { faceByUid } from '../domain/expression'
 import { PERSON_BODY } from '../rover/person'
@@ -206,6 +206,9 @@ export function roverSummary(x: unknown): RoverSummary {
   const rawValue = o.retrato ?? o.rosto
   // a person without a portrait does not get a plush: the screen draws the human avatar (src/components/Portrait.tsx)
   const face = species === 'pessoa' && (typeof rawValue !== 'object' || rawValue === null) ? personSpec(id) : portraitSpec(rawValue, id)
+  // the rover's own image portrait: `imagem` on a card (2026-11-26), `retratoImagem` on a profile. Additive: absent or crooked, the plush stays
+  const photo = sanitizePortraitPhoto(o.imagem) ?? sanitizePortraitPhoto(o.retratoImagem)
+  if (photo) face.imagem = photo
   return species ? { uid: id, handle: h, nome: name || h, rosto: face, especie: species } : { uid: id, handle: h, nome: name || h, rosto: face }
 }
 

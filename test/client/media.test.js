@@ -168,3 +168,29 @@ test('post with images under the folga package: neither the post nor the images 
     assert.equal(post.aprovacao, undefined)
   } finally { await e.fechar() }
 })
+
+// 2026-11-26: the image portrait goes on every short card, not only on the profile. Through the client against the real relay: the reader
+// sees `autor.imagem` on the post list, `imageUrl` of that hash serves the clean bytes, and a crooked hash never becomes a path.
+test('the portrait image travels on the author card of a list, and imageUrl refuses a hash that is not 64 hexadecimal characters', async () => {
+  const e = await environment()
+  try {
+    const ana = await e.novo('Ana')
+    const r = await ana.cliente.setPortraitImage(A.gps_webp, { alt: 'Retrato.' })
+    assert.equal(r.estado, 'aceito')
+    await ana.cliente.perfil({ nome: 'Ana', retrato: { midia: r.objeto.id } })
+    await ana.cliente.postar({ texto: 'Com retrato.' })
+    const bia = await e.novo('Bia')
+    await bia.cliente.postar({ texto: 'Sem retrato.' })
+    const items = (await bia.cliente.postagens({ ordem: 'novas' })).itens
+    const mine = items.find((x) => x.autor.uid === ana.rover.uid)
+    const clean = cleanImage(A.gps_webp)
+    assert.deepEqual(mine.autor.imagem, { hash: clean.hash, formato: clean.formato })
+    assert.equal('imagem' in items.find((x) => x.autor.uid === bia.rover.uid).autor, false, 'no image portrait, no field')
+    const read = await download(bia.cliente.imageUrl(mine.autor.imagem.hash))
+    assert.equal(read.status, 200)
+    assert.ok(read.bytes.equals(clean.bytes))
+    for (const bad of ['../admin/denuncias', 'A'.repeat(64), `${clean.hash}/x`, '', null, undefined, 'javascript:alert(1)']) {
+      assert.throws(() => bia.cliente.imageUrl(bad), TypeError, String(bad))
+    }
+  } finally { await e.fechar() }
+})

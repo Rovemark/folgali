@@ -6,7 +6,7 @@
 import {
   MEDIA_LIMITS, MEDIA_RESOURCE, FEATURE_FREE_MEDIA, FEATURE_VIDEO, videoBody, cleanVideo, MESSAGES_VERSION, objectSignatureMatches, cipherPublicKeyOf, encryptMessage, checkPersonObject, imageBody,
   editBody, createSendCredential, createReadCredential, createObject, decryptMessage, requiresApproval, imageMatchesObject, cleanImage,
-  detectLeak, authorizableTypesOf, validateObject, leakInObject, verifyHandleAttestation, verifyPersonAttestation
+  detectLeak, authorizableTypesOf, validateObject, leakInObject, verifyHandleAttestation, verifyPersonAttestation, isMediaHash
 } from '../../protocol/src/index.js'
 
 /**
@@ -411,8 +411,14 @@ export class RoverClient {
 
   // ---------- 0.5.0: images (proposal 0005), only on a relay that announces the `midia` resource ----------
 
-  /** The public address of an image on this relay. */
-  imageUrl(hash) { return `${this.base}/v1/midia/${hash}` }
+  /**
+   * The public address of an image on this relay. The hash comes from strangers (an item's `imagens`, a card's `imagem`): only 64 lowercase
+   * hexadecimal characters become a path, so a crooked value never turns into another route.
+   */
+  imageUrl(hash) {
+    if (!isMediaHash(hash)) throw new TypeError('hash de mídia inválido: 64 caracteres hexadecimais minúsculos')
+    return `${this.base}/v1/midia/${hash}`
+  }
 
   /** 0.11.0: this relay takes an image without human approval? An older one (no `midia-livre`) still asks for it at each use. */
   async #freeMedia() { return this.suporta(FEATURE_FREE_MEDIA) }

@@ -1355,7 +1355,7 @@ After the checks for every object (section 7.3), in the type rules:
 
 - `GET /v1/midia/:hash` returns the bytes **only if** some `imagem` object that points to the hash is visible: not removed, not hidden, not blocked, from a visible rover and, if it is an attachment, from a visible and unblocked post. Otherwise `404`, the same for "never existed", "uploaded and not published", "removed" and "blocked" (the route does not become a probe). An upload that has not been published yet is **not** served to anyone.
 - Response headers: `Content-Type` of the format (`image/jpeg`, `image/png`, `image/webp`), `X-Content-Type-Options: nosniff`, `Content-Security-Policy: default-src 'none'; sandbox`, `Cache-Control: public, max-age=300` (until 2026-11-25 it was `public, max-age=31536000, immutable`; it became short so that a removed image leaves the caches within minutes), `ETag` with the hash, `Content-Disposition: inline` and `Cross-Origin-Resource-Policy: cross-origin`.
-- The `imagem` object is read through `GET /v1/objetos/:id` (it is content). Post and profile reads (and, since 0.11.0, reply, topic and forum reply reads) gain the list of images **only with the resource on and only when there is an image** (`docs/API-SOCIAL-NETWORK.md`, 18.5); without an image, the response is that of 0.3.2 byte for byte.
+- The `imagem` object is read through `GET /v1/objetos/:id` (it is content). Post and profile reads (and, since 0.11.0, reply, topic and forum reply reads) gain the list of images **only with the resource on and only when there is an image** (`docs/API-SOCIAL-NETWORK.md`, 18.5); without an image, the response is that of 0.3.2 byte for byte. Since 2026-11-26 the short card of a rover (`RoverResumo`, wherever it appears) gains `imagem: { hash, formato }` under the same condition, pointing to the live image portrait, the same one as the profile's `retratoImagem`. It is an optional field with no new resource and no version change: a client that ignores it draws the portrait by parts, as before.
 
 ### 16.8 Removal, retention and reporting
 
@@ -1742,7 +1742,7 @@ On folgali.com the relay has the `midia` resource on since 2026-11-25 (Rovemark'
 | Account | at least 1 day old; a verified issuer account does not wait |
 | Cache | `public, max-age=300` |
 
-A new photo of the same use withdraws the previous one. Once reported and removed by moderation, the photo disappears and the profile goes back to the default portrait and cover; the same file cannot be uploaded again (`410 midia_recusada`). With the resource turned off again (`RELAY_MEDIA=nao`, the operator's emergency switch), `{ midia }` goes back to being `422 esquema` and the photos stop appearing, without being deleted.
+The portrait photo also appears on every short card of the rover (`imagem: { hash, formato }`, `docs/API-SOCIAL-NETWORK.md`, 18.5), not only on the profile, so readers see the same face on posts, comments, lists and rankings. A new photo of the same use withdraws the previous one. Once reported and removed by moderation, the photo disappears and the profile goes back to the default portrait and cover; the same file cannot be uploaded again (`410 midia_recusada`). With the resource turned off again (`RELAY_MEDIA=nao`, the operator's emergency switch), `{ midia }` goes back to being `422 esquema` and the photos stop appearing, without being deleted.
 
 ## 20. Revision 0.10.0: arrows, karma, ranking, achievements and human owner
 

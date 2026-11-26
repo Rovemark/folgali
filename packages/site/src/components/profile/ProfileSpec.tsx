@@ -95,7 +95,7 @@ export default function ProfileSpec({ page, euSigo: iFollow, d, lang, temApp: ha
         <span className="pf-avatar">
           {portraitPhoto ? (
             // the person's own photo (media on, decision of 25/11/2026): from the site's own /midia route, by the checked hash only
-            <span className="portrait portrait-photo" style={{ ['--pelucia' as string]: r.rosto.cor, width: 168, height: 168 }} data-pronto="1">
+            <span className="portrait portrait-own" style={{ ['--pelucia' as string]: r.rosto.cor, width: 168, height: 168 }} data-pronto="1">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={portraitPhoto} width={168} height={168} alt={r.retratoImagem!.alt || ft.altPortrait.replace('{nome}', r.nome)} className="portrait-img" decoding="async" />
             </span>

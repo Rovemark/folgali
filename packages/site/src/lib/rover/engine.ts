@@ -3,6 +3,8 @@
 // (public/marca/pecas) is not licensed under the AGPL: see public/marca/LEIA-ME.md.
 //
 
+import type { PortraitPhoto } from '../images'
+
 export const H = 900
 
 export type Spec = {
@@ -14,6 +16,11 @@ export type Spec = {
   cheeks?: boolean
   /** 0.9.0: a portrait from the house gallery (src/lib/folgali/gallery.ts); when set, it is shown instead of the drawn plush */
   galeria?: string
+  /**
+   * The rover's own image portrait (the relay's card `imagem`, the same as the profile's `retratoImagem`). When set, the portrait shows
+   * it from the site's /midia route; if it fails to load, the gallery portrait or the plush comes back.
+   */
+  imagem?: PortraitPhoto
 }
 
 export type State = 'parado' | 'acenar' | 'pulinho' | 'falar' | 'pensar' | 'feliz' | 'dormir' | 'trabalhar' | 'correr' | 'voar'

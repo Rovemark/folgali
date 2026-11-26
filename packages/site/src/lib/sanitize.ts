@@ -8,7 +8,7 @@ import { isObjectId, isUid, TOPIC_RE } from './domain/ids'
 import { faceByUid } from './domain/expression'
 import { PERSON_BODY } from './rover/person'
 import { ACCESSORIES, MOUTHS, BODIES, EYES } from './rover/engine'
-import { attachmentsOf, sanitizeImage } from './images'
+import { attachmentsOf, sanitizeImage, sanitizePortraitPhoto } from './images'
 import { videoOf } from './videos'
 import { galleryPortrait } from './folgali/gallery'
 import { readEdit } from './domain/edit'
@@ -36,7 +36,9 @@ export function sanitizeSpec(x: unknown, uid: string): Spec {
   if (typeof x !== 'object' || x === null || Array.isArray(x)) return faceByUid(uid)
   const o = x as Obj
   // 0.7.0: the person's human avatar without a portrait goes through sanitizing as it is (only the color is checked)
-  if (o.corpo === PERSON_BODY) return { corpo: PERSON_BODY, cor: typeof o.cor === 'string' && /^#[0-9a-fA-F]{6}$/.test(o.cor) ? o.cor.toLowerCase() : '#86b6ff', acessorios: [] }
+  // the rover's own image portrait (card `imagem`), re-checked here too: only a valid hash and a known format ever become an address
+  const photo = sanitizePortraitPhoto(o.imagem)
+  if (o.corpo === PERSON_BODY) return { corpo: PERSON_BODY, cor: typeof o.cor === 'string' && /^#[0-9a-fA-F]{6}$/.test(o.cor) ? o.cor.toLowerCase() : '#86b6ff', acessorios: [], ...(photo ? { imagem: photo } : {}) }
   const body = typeof o.corpo === 'string' && (BODIES as readonly string[]).includes(o.corpo) ? o.corpo : 'seixo'
   const color = typeof o.cor === 'string' && /^#[0-9a-fA-F]{6}$/.test(o.cor) ? o.cor.toLowerCase() : '#f2e8d6'
   const accessories = Array.isArray(o.acessorios) ? o.acessorios.filter((a): a is string => typeof a === 'string' && a in ACCESSORIES).slice(0, 3) : []
@@ -44,6 +46,7 @@ export function sanitizeSpec(x: unknown, uid: string): Spec {
   if (typeof o.olhos === 'string' && (EYES as readonly string[]).includes(o.olhos)) f.olhos = o.olhos
   if (typeof o.boca === 'string' && (MOUTHS as readonly string[]).includes(o.boca)) f.boca = o.boca
   if (galleryPortrait(o.galeria)) f.galeria = o.galeria as string
+  if (photo) f.imagem = photo
   return f
 }
 

@@ -375,6 +375,21 @@ export class Media {
   }
 
   /**
+   * 0.11.0 (2026-11-26, additive): the rover row for a short card, in ONE query, with the live portrait image as `retrato_imagem` (`<hash>.<formato>`, or null).
+   * Same rule as `retratoImagem` of the profile (`profileExtra`): the latest `imagem` with `uso` `retrato` that is live (IMAGE_IN_FLIGHT:
+   * not removed, hidden or blocked, author visible). The card already read the row once per uid; the image rides in that same query, so a
+   * list of N cards costs the same N queries it cost before.
+   */
+  roverForCard(uid, now) {
+    return this.a.um(
+      `SELECT r.*, (SELECT i.hash || '.' || i.formato FROM imagens i JOIN objetos o ON o.id = i.id
+         WHERE i.autor = r.uid AND o.autor = r.uid AND i.uso = 'retrato' AND ${IMAGE_IN_FLIGHT} ORDER BY o.seq DESC LIMIT 1) AS retrato_imagem
+       FROM rovers r WHERE r.uid = :uid`,
+      { uid, ...this.rele._visibilityParams(now) }
+    )
+  }
+
+  /**
    * 0.9.0: `retrato: { midia }` or `capa: { midia }` in the profile points to an `imagem` object of the author's own, online, with the
    * field's use. Otherwise, `alvo_desconhecido` on the field.
    */
