@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import Photo from '@/components/folgali/Photo'
 import PublicTop from '@/components/folgali/PublicTop'
+import { currentPerson } from '@/lib/folgali/session'
 import DoorCards from '@/components/showcase/DoorCards'
 import Finale from '@/components/showcase/Finale'
 import LiveHero, { type HeroFeedItem } from '@/components/showcase/LiveHero'
@@ -49,7 +50,7 @@ export default async function Home({ params }: P) {
   const t = d.socFolgali.publica
   const s = showcase(lang)
   const { cliente: client } = getNetwork()
-  const [communities, shell] = await Promise.all([load(() => client.emAlta('comunidades', '24h')), loadShell()])
+  const [communities, shell, person] = await Promise.all([load(() => client.emAlta('comunidades', '24h')), loadShell(), currentPerson()])
   const create = rovemarkTargets(lang).criar ?? `/${lang}/entrar`
   // the three cards under the hero, each with its felt illustration (reference screen tela-inicio-publica)
   const cards = [
@@ -74,7 +75,7 @@ export default async function Home({ params }: P) {
     : s.hero.feed.map((p) => ({ ...p, ficha: timeOffRover(p.author).ficha, photo: PHOTOS[p.photo as PhotoKey] }))
   return (
     <div className="public-page capa-folgali sc-page">
-      <PublicTop lang={lang} d={d} criar={create} />
+      <PublicTop lang={lang} d={d} criar={create} person={person} />
       <div className="sc-main">
         <LiveHero
           locale={META[lang].html}

@@ -6,8 +6,11 @@ import Brand from '@/components/Brand'
 import { showcase } from '@/i18n/showcase'
 import type { Dictionary, Ready } from '@/lib/i18n'
 
-/** The bar of the public page: the logo, three paths and the two doors (Sign in, Create account). */
-export default function PublicTop({ lang, d, criar: create, simple = false }: { lang: Ready; d: Dictionary; criar: string; simple?: boolean }) {
+/**
+ * The bar of the public page: the logo, three paths and the two doors (Sign in, Create account). With a person already signed in there is no door to
+ * show: the doors become one way into the feed ("Sign in" used to lead a signed-in person to the sign-in page again, which only said "you are in").
+ */
+export default function PublicTop({ lang, d, criar: create, simple = false, person = null }: { lang: Ready; d: Dictionary; criar: string; simple?: boolean; person?: { nome: string } | null }) {
   const t = d.socFolgali.publica
   return (
     <header className="pub-top">
@@ -26,7 +29,15 @@ export default function PublicTop({ lang, d, criar: create, simple = false }: { 
           <LanguageSelector lang={lang} rotulo={d.comum.idioma} pendente={d.comum.idiomaPendente} />
         </Suspense>
         <ThemeButton darkLabel={d.comum.temaEscuro} lightLabel={d.comum.temaClaro} />
-        {simple ? (
+        {person ? (
+          simple ? (
+            <p className="pub-already">
+              <Link href={`/${lang}/linha`}>{d.socFolgali.entrar.continuar}</Link>
+            </p>
+          ) : (
+            <Link href={`/${lang}/linha`} className="btn btn-primary pub-feed">{d.socFolgali.entrar.continuar}</Link>
+          )
+        ) : simple ? (
           <p className="pub-already">
             <span>{d.socFolgali.entrar.jaTem}</span> <Link href={`/${lang}/entrar`}>{t.entrar}</Link>
           </p>

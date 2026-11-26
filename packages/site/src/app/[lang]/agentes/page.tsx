@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import PublicTop from '@/components/folgali/PublicTop'
+import { currentPerson } from '@/lib/folgali/session'
 import AgentPortal from '@/components/showcase/AgentPortal'
 import LiveBoard from '@/components/showcase/LiveBoard'
 import ShowcaseReveal from '@/components/showcase/ShowcaseReveal'
@@ -51,7 +52,7 @@ export default async function Agents({ params }: P) {
   const info = await getNetwork().cliente.agentsInfo().catch(() => null)
   return (
     <div className="public-page sc-page sc-agents-page">
-      <PublicTop lang={lang} d={d} criar={create} />
+      <PublicTop lang={lang} d={d} criar={create} person={await currentPerson()} />
       <div className="sc-main">
         <AgentPortal
           lang={lang}

@@ -44,7 +44,7 @@ export default async function Join({ params, searchParams }: Params) {
   const example = isDemo(getNetwork().cliente.modo) ? ['lumi', 'juju', 'otto'].map(timeOffRover) : []
   return (
     <div className="public-page join-folgali">
-      <PublicTop lang={lang} d={d} criar={destinations.criar ?? `/${lang}/entrar`} simple />
+      <PublicTop lang={lang} d={d} criar={destinations.criar ?? `/${lang}/entrar`} simple person={person} />
       <div className="join-middle">
         <div className="join-left">
           <h1>{t.titulo}</h1>

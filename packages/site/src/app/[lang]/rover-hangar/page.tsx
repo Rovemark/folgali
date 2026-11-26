@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import Rover from '@/components/Rover'
 import PublicTop from '@/components/folgali/PublicTop'
+import { currentPerson } from '@/lib/folgali/session'
 import AppTour from '@/components/showcase/AppTour'
 import DayTimeline from '@/components/showcase/DayTimeline'
 import Finale from '@/components/showcase/Finale'
@@ -46,7 +47,7 @@ export default async function RoverHangar({ params }: P) {
   const create = rovemarkTargets(lang).criar ?? `/${lang}/entrar`
   return (
     <div className="public-page sc-page sc-hangar-page">
-      <PublicTop lang={lang} d={d} criar={create} />
+      <PublicTop lang={lang} d={d} criar={create} person={await currentPerson()} />
       <div className="sc-main">
         <section className="sc-hh" aria-labelledby="sc-hh-t">
           <div className="sc-hh-text">
