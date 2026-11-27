@@ -283,3 +283,114 @@ test('atomic: a failure inside the write transaction rolls the release back with
   assert.equal(arrive(x, b).estado, 'aceito')
   assert.equal(x.rele.byHandle(HANDLE).uid, b.uid)
 })
+
+// ====================================================================================================
+// The way back needs the head. Measured on folgali.com on 2026-11-27: a rover whose @ was changed stayed out for nine hours. Its issuer
+// revoked the attestations issued before the change (the pair with `ate`), the relay hid the rover from every read, `GET /v1/rovers/:uid`
+// answered 404, the app took that for "no chain yet", sent `previo: null` with the new attestation and got `previo_incorreto` every time.
+
+const errorOf = (fn) => {
+  try { fn() } catch (e) { if (e?.codigo) return e; throw e }
+  throw new Error('nenhuma recusa')
+}
+
+test('a rover whose @ changed is hidden from every read; with a stale head it learns the right one from the refusal and comes back', async () => {
+  const x = build()
+  const { a, postId } = await revokedHolder(x)
+  x.advance(60)
+  await x.lista(x.home, []) // the @ changed: the issuer remembers the pair with `ate`, the old attestation stays revoked
+  const head = a.cabeca
+  assert.equal(codeOf(() => x.rele.perfil(a.uid)), 'nao_encontrado', 'the head cannot be read: the relay hides the rover')
+  x.advance(5)
+  reattest(x, a, 'poupa.nova')
+  // a client that kept a stale head (another device published after it): the new attestation and the wrong `previo`
+  a.cabeca = x.store.rover(a.uid).perfil_id
+  assert.notEqual(a.cabeca, head)
+  const blind = errorOf(() => publish(x, a, 'perfil', { nome: 'Poupa', descricao: 'Rover de teste.' }, { withAttestation: true }))
+  assert.equal(blind.codigo, 'previo_incorreto')
+  assert.equal(blind.cabeca, head, 'the refusal tells the head to whoever holds the key and the new attestation')
+  assert.equal(blind.toJson().erro.cabeca, head)
+  // the refusal changed nothing: still the old handle in the row, still hidden
+  assert.equal(row(x, a).handle, HANDLE)
+  assert.equal(codeOf(() => x.rele.perfil(a.uid)), 'nao_encontrado')
+  // with the head, the same profile lands, and the rover is back with the new @ and its earlier post
+  a.cabeca = blind.cabeca
+  assert.equal(publish(x, a, 'perfil', { nome: 'Poupa', descricao: 'Rover de teste.' }, { withAttestation: true }).estado, 'aceito')
+  assert.equal(x.rele.perfil(a.uid).handle, 'poupa.nova')
+  assert.equal(x.rele.byHandle('poupa.nova').uid, a.uid)
+  assert.equal(x.rele.objeto(postId).objeto.id, postId)
+  x.advance(3700)
+  assert.equal(post(x, a, 'de volta com o @ novo').estado, 'aceito')
+})
+
+test('the head is never told to a revoked attestation: the refusal is atestado_revogado, before the chain is looked at', async () => {
+  const x = build()
+  const { a } = await revokedHolder(x)
+  a.cabeca = null
+  // without an attestation attached, and with the revoked one attached: neither reaches the chain check
+  for (const withAttestation of [false, true]) {
+    const e = errorOf(() => publish(x, a, 'postagem', { texto: 'sem voltar', topicos: ['rovers'] }, { withAttestation }))
+    assert.equal(e.codigo, 'atestado_revogado')
+    assert.equal(Object.hasOwn(e.toJson().erro, 'cabeca'), false)
+  }
+})
+
+test('re-entry: with the new attestation, the hidden rover may send previo null (what a client that read 404 sends), once', async () => {
+  const x = build()
+  const { a, postId } = await revokedHolder(x)
+  x.advance(60)
+  await x.lista(x.home, [])
+  const head = a.cabeca
+  x.advance(5)
+  reattest(x, a, 'poupa.nova')
+  // any chained object, not only a profile: the app that believes its profile is published sends the post itself
+  a.cabeca = null
+  const back = post(x, a, 'voltei sem saber a cabeça', { withAttestation: true })
+  assert.equal(back.estado, 'aceito')
+  assert.equal(back.objeto.previo, null)
+  assert.equal(x.rele.perfil(a.uid).handle, 'poupa.nova')
+  assert.equal(x.rele.perfil(a.uid).cabeca, back.objeto.id, 'the chain goes on from the re-entry object')
+  assert.equal(x.rele.objeto(postId).objeto.id, postId, 'the earlier post is still there')
+  // the door closed behind it: previo null is refused again, with the head, and so is the old head
+  x.advance(3700)
+  a.cabeca = null
+  const again = errorOf(() => post(x, a, 'de novo com previo nulo', { withAttestation: true }))
+  assert.equal(again.codigo, 'previo_incorreto')
+  assert.equal(again.cabeca, back.objeto.id)
+  a.cabeca = head
+  assert.equal(errorOf(() => post(x, a, 'da cabeça antiga')).codigo, 'previo_incorreto')
+  a.cabeca = back.objeto.id
+  x.advance(3700)
+  assert.equal(post(x, a, 'seguindo a cadeia').estado, 'aceito')
+})
+
+test('re-entry needs the new attestation: without one, or going back in time, nothing lands', async () => {
+  const x = build()
+  const { a } = await revokedHolder(x)
+  x.advance(60)
+  await x.lista(x.home, [])
+  // previo null with no attestation, and with the revoked one: refused before the chain
+  a.cabeca = null
+  assert.equal(codeOf(() => post(x, a, 'sem atestado')), 'atestado_revogado')
+  assert.equal(codeOf(() => post(x, a, 'com o atestado velho', { withAttestation: true })), 'atestado_revogado')
+  // the re-entry object may not be older than the last one of the chain (still inside the window of the clock, so it is the chain that refuses)
+  x.advance(5)
+  reattest(x, a, 'poupa.nova')
+  const headAt = x.store.rover(a.uid).cabeca_criado_em
+  assert.ok(x.relogio.agora - headAt < 600)
+  const old = objectOf(a, 'postagem', { texto: 'do passado', topicos: ['rovers'] }, { criadoEm: headAt - 1, previo: null })
+  const refused = errorOf(() => x.rele.aceitar({ objeto: old, atestado: a.atestado }))
+  assert.equal(refused.codigo, 'relogio')
+  assert.match(refused.message, /mais antigo que o anterior/)
+  assert.equal(codeOf(() => x.rele.perfil(a.uid)), 'nao_encontrado', 'still hidden')
+  // a rover that is NOT revoked never uses the door: previo null with a fresh attestation is still previo_incorreto
+  const b = register(x, { handle: 'junco.firme' })
+  post(x, b, 'uma postagem')
+  x.advance(5)
+  reattest(x, b)
+  const head = b.cabeca
+  b.cabeca = null
+  const e = errorOf(() => post(x, b, 'previo nulo sem estar revogado', { withAttestation: true }))
+  assert.equal(e.codigo, 'previo_incorreto')
+  assert.equal(e.cabeca, head)
+})

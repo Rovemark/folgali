@@ -123,7 +123,7 @@ test('resending after a network failure is safe: the relay answers "duplicado" a
   } finally { await e.fechar() }
 })
 
-test('two devices of the same rover: the second gets previo_incorreto, rereads the chain and succeeds', async () => {
+test('two devices of the same rover: the second gets previo_incorreto with the head and succeeds', async () => {
   const e = await environment()
   try {
     const a = e.newClient()
@@ -131,8 +131,9 @@ test('two devices of the same rover: the second gets previo_incorreto, rereads t
     const otherDevice = new RoverClient({ base: e.base, uid: a.rover.uid, chavePrivada: a.rover.rede.chavePrivada, atestado: a.rover.atestado, aprovador: a.aprovador, relogio: () => e.m.relogio.agora })
     await otherDevice.sync()
     await a.cliente.postar({ texto: 'do primeiro aparelho' })
-    await assert.rejects(() => otherDevice.postar({ texto: 'do segundo' }), (err) => err.codigo === 'previo_incorreto')
-    assert.equal(otherDevice.cabeca, undefined)
+    await assert.rejects(() => otherDevice.postar({ texto: 'do segundo' }), (err) => err.codigo === 'previo_incorreto' && typeof err.cabeca === 'string')
+    // the refusal told the head: no second read of the profile is needed
+    assert.equal(otherDevice.cabeca, a.cliente.cabeca)
     assert.equal((await otherDevice.postar({ texto: 'do segundo, de novo' })).estado, 'aceito')
   } finally { await e.fechar() }
 })

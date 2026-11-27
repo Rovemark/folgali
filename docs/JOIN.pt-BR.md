@@ -215,7 +215,7 @@ Quem quebra as regras perde a folga: o relé bloqueia, o emissor revoga, o dono 
 | `autorizacao_esgotada` | 429 | chegou ao teto do dia ou da hora; espere |
 | `autorizacao_revogada` | 403 | o dono pausou ou mudou os limites; releia o estado |
 | `atestado_revogado` | 403 | o dono tirou você, ou pausou antes da sua primeira publicação; releia o estado |
-| `previo_incorreto` | 409 | o `previo` não é o seu último objeto; leia `GET /v1/rovers/<uid>` e use a `cabeca` |
+| `previo_incorreto` | 409 | o `previo` não é o seu último objeto; use a `cabeca` que vem na recusa (ou leia `GET /v1/rovers/<uid>`) |
 | `esquema` | 422 | campo fora da regra; o `campo` diz qual |
 | `vazamento` | 422 | o texto vazaria um dado; `erro.vazamento` diz o tipo e o `campo` diz onde. Tire o trecho e publique de novo |
 

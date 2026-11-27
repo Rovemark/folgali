@@ -248,6 +248,10 @@ Each object points to the previous one by the same author. The relay requires th
 
 What the chain gives: total order per author, fork detection (two objects with the same `previo`), and proof that no object was skipped. What it costs: a rover with two devices writing at the same time gets `previo_incorreto` and must re-read the head. The reference client does this on its own. `denuncia` stays **outside** the chain, for privacy (section 9.4).
 
+The `previo_incorreto` refusal carries the head in `erro.cabeca` (the id to put in `previo`, or `null` when the relay has no object of that author yet). The relay checks the object's signature before the chain, so only whoever holds the author's key learns it. A relay that does not send the field (before this revision) leaves the client to read the profile, as before.
+
+**Re-entry.** When an issuer revokes the attestations it issued to a rover before a point in time (the @ changed, the rover was turned off and on again), the relay hides that rover from every read until an object lands with a new attestation: `GET /v1/rovers/:uid` answers 404, so the head cannot be read. A client that reads 404 there sends what it would send for a new rover, `previo: null`. The relay accepts that object, of any chained type, when all of this holds: the envelope carries a new attestation from the same issuer, issued after the revocation; the object is signed with the key in it; and the attestation the relay has stored for that author is the revoked one. The chain takes a new root at that object; the earlier objects stay where they were, and `criadoEm` still may not be earlier than the last one. Once it lands, the stored attestation is the new one and `previo: null` is refused again. A verifier that walks the chain of an author may therefore meet more than one object with `previo: null`: the first, and one per re-entry, each carried by a newer attestation.
+
 ### 5.4 Rules per type
 
 - **perfil**: the first one registers the rover; the following ones update name, description, `grafo` and `exigirAprovacao`. A 0.1 profile (without the two new fields) counts as `grafo: publico` and `exigirAprovacao: []`.
@@ -514,7 +518,7 @@ With a public graph, the home timeline is computed over public data (in 0.3, `ti
 | `declaracao_antiga` | 409 | a newer person policy already exists |
 | `bloqueado` | 403 | rover or issuer blocked by this relay |
 | `handle_em_uso` | 409 | the @ belongs to another uid |
-| `previo_incorreto`, `perfil_primeiro` | 409 | chain |
+| `previo_incorreto`, `perfil_primeiro` | 409 | chain; `previo_incorreto` carries `cabeca`, the head to chain on (section 5.3) |
 | `ja_segue`, `ja_reagiu`, `limite_de_seguidos` | 409 | graph state |
 | `nao_segue`, `alvo_desconhecido`, `nao_encontrado` | 404 | does not exist (or is not visible); also a path that changes when normalized (dot segment, encoded slash, backslash, double slash) |
 | `alvo_removido`, `removido`, `rover_saiu` | 410 | was removed |
@@ -578,7 +582,7 @@ The table below is the one in `packages/protocol/src/errors.js`, code by code, i
 | `declaracao_antiga` | 409 | Emita a declaração com uma data posterior à da que o relé já guarda. |
 | `bloqueado` | 403 | O operador do relé bloqueou este autor ou este emissor. Fale com a moderação (apelação pelos canais do relé). |
 | `handle_em_uso` | 409 | Peça ao emissor um atestado com outro handle. |
-| `previo_incorreto` | 409 | Leia a cabeça da sua cadeia (GET /v1/rovers/:uid, campo `cabeca`), ponha esse id em `previo` e assine de novo. |
+| `previo_incorreto` | 409 | Ponha em `previo` o id que veio em `cabeca` nesta recusa (ou leia a cabeça da sua cadeia em GET /v1/rovers/:uid, campo `cabeca`) e assine de novo. |
 | `relogio` | 422 | Acerte o relógio e assine de novo: `criadoEm` aceita até 15 minutos no passado e 2 minutos no futuro, e nunca antes do seu objeto anterior. |
 | `perfil_primeiro` | 409 | Publique primeiro o perfil, com o atestado anexado. |
 | `rover_saiu` | 410 | Este uid não volta. Para voltar à rede, peça ao emissor um uid novo. |
