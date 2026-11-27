@@ -89,6 +89,8 @@ export class NetworkReader {
   postagens({ ordem: order, janela: window, antes: before, limite: limit } = {}) { return this.#read('/v1/postagens', { ordem: order, janela: window, antes: before, limite: limit }) }
   ranking({ lista: list = 'autores', periodo: period, especie: species, antes: before, limite: limit } = {}) { return this.#read(`/v1/ranking/${segment(list)}`, { periodo: period, especie: species, antes: before, limite: limit }) }
   placar(uid) { return this.#read(`/v1/rovers/${segment(uid)}/placar`) }
+  /** Addition of 2026-11-26 to 0.11.0 (`lembrancas`): the rover's memories, by window (yesterday, weeks ago, a month ago, its first day). */
+  lembrancas(uid, { limite: limit } = {}) { return this.#read(`/v1/rovers/${segment(uid)}/lembrancas`, { limite: limit }) }
   karma(uids) { return this.#read('/v1/karma', { uids: [].concat(uids).join(',') }) }
   conquistas() { return this.#read('/v1/conquistas') }
 }

@@ -5,7 +5,9 @@
 // Rules of this layer:
 //   - the BYTES stay outside SQLite, in <dir>/<2 hex>/<hash>, and the path is built ONLY from the hash checked against ^[0-9a-f]{64}$;
 //   - the format comes from the bytes and the cleanup is that of `cleanImage` (the same as the client's): the hash is that of the cleaned bytes;
-//   - an upload that is not published is served to nobody and disappears after 1 hour; a file that no retained object cites disappears at once;
+//   - an upload that is not published is served to nobody and disappears after 1 hour (a re-upload extends it, never past 2 hours from the
+//     first one); a file that no retained object cites disappears at once;
+//   - each account holds at most `pendingCap` bytes uploaded and still not cited (pending), on top of the relay's global quota;
 //   - nothing here fetches a URL.
 import { randomBytes } from 'node:crypto'
 import { existsSync, mkdirSync, readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs'
@@ -72,6 +74,12 @@ const IMAGE_IN_FLIGHT = `
   AND (i.alvo IS NULL OR EXISTS (SELECT 1 FROM objetos p WHERE p.id = i.alvo AND p.envelope IS NOT NULL AND p.removido_em IS NULL
        AND p.oculto_em IS NULL AND p.id NOT IN (SELECT alvo FROM bloqueios WHERE tipo = 'objeto')))`
 
+// A file that is PENDING (uploaded, cited by no `imagem` object and no video poster) and still kept: some upload of it in the last
+// `pendenteS`, and the file younger than `pendenteMaxS`. Alias `m` (midia); parameters :desde (now - pendenteS) and :limite (now - pendenteMaxS).
+const pendingWhere = (videos) => `NOT EXISTS (SELECT 1 FROM imagens i WHERE i.hash = m.hash)
+  ${videos ? 'AND NOT EXISTS (SELECT 1 FROM videos v WHERE v.miniatura = m.hash)' : ''}
+  AND EXISTS (SELECT 1 FROM midia_envios e WHERE e.hash = m.hash AND e.em > :desde) AND m.recebida_em > :limite`
+
 const summary = (l) => ({ id: l.id, hash: l.hash, formato: l.formato, largura: l.largura, altura: l.altura, bytes: l.bytes, alt: l.alt, ordem: l.ordem })
 
 /** The only place where a disk path is born. Throws unless the hash is exactly 64 lowercase hexadecimal characters. */
@@ -92,6 +100,9 @@ export class Media {
     this.a = relay.store
     this.dir = dir
     this.cotaBytes = quotaBytes
+    // per account, what may be uploaded and not cited yet: 16 MiB, or 1/64 of a smaller quota, never less than a post's 4 attachments
+    this.pendingCap = Math.max(MEDIA_LIMITS.anexosPorPostagem * MEDIA_LIMITS.bytesMax, Math.min(MEDIA_LIMITS.pendingBytesPerAccount, Math.floor(quotaBytes / 64)))
+    this._lastCollect = -Infinity
     mkdirSync(dir, { recursive: true, mode: 0o700 })
     this.a.db.exec(MEDIA_SCHEMA)
   }
@@ -165,10 +176,17 @@ export class Media {
     // 0.11.0: the same refusal the object would get, before the bytes are stored
     if (this.a.um('SELECT 1 AS x FROM midia_recusadas WHERE hash = :hash', { hash })) throw new ProtocolError('midia_recusada')
     const reply = { hash, formato: clean.formato, largura: clean.largura, altura: clean.altura, bytes: clean.bytes.length }
-    const existing = this.a.um('SELECT hash FROM midia WHERE hash = :hash', { hash })
+    // orphans of other accounts must not count against this upload: collect them first, at most every few minutes
+    if (now - this._lastCollect >= MEDIA_LIMITS.collectEveryS) this.collect(now)
+    this._checkPending(hash, uid, clean.bytes.length, now)
+    const existing = this.a.um('SELECT hash, recebida_em FROM midia WHERE hash = :hash', { hash })
     const path = hashPath(this.dir, hash)
     if (existing && existsSync(path)) {
-      this.a.executar('INSERT INTO midia_envios (hash, uid, em) VALUES (:hash, :uid, :agora)', { hash, uid, agora: now })
+      this.a.transaction(() => {
+        this.a.executar('INSERT INTO midia_envios (hash, uid, em) VALUES (:hash, :uid, :agora)', { hash, uid, agora: now })
+        // a file past its pending age starts a new one (as if it were uploaded now); inside it, a re-upload does not move it
+        if (existing.recebida_em <= now - MEDIA_LIMITS.pendenteMaxS) this.a.executar('UPDATE midia SET recebida_em = :agora WHERE hash = :hash', { hash, agora: now })
+      })
       return { estado: 'duplicada', ...reply }
     }
     const taken = this.a.um('SELECT COALESCE(SUM(bytes), 0) AS n FROM midia').n
@@ -187,6 +205,26 @@ export class Media {
       throw e
     }
     return { estado: 'recebida', ...reply }
+  }
+
+  /**
+   * The per-account ceiling of pending bytes (F-03 of the security review): what this account uploaded in the last `pendenteS` that no
+   * object cites yet. A file already pending for this account counts once; a new one must fit. Refused with `limite_de_taxa`, with the
+   * wait until its oldest pending upload expires.
+   */
+  _checkPending(hash, uid, size, now) {
+    // a file some object already cites is not pending: uploading it again holds nothing new
+    if (this.a.um(`SELECT 1 AS x FROM imagens WHERE hash = :hash ${this.rele.videos ? 'UNION SELECT 1 FROM videos WHERE miniatura = :hash' : ''} LIMIT 1`, { hash })) return
+    const params = { uid, desde: now - MEDIA_LIMITS.pendenteS, limite: now - MEDIA_LIMITS.pendenteMaxS }
+    const mine = `${pendingWhere(this.rele.videos)} AND EXISTS (SELECT 1 FROM midia_envios e2 WHERE e2.hash = m.hash AND e2.uid = :uid AND e2.em > :desde)`
+    const r = this.a.um(`SELECT COALESCE(SUM(m.bytes), 0) AS n, MAX(CASE WHEN m.hash = :hash THEN 1 ELSE 0 END) AS ja FROM midia m WHERE ${mine}`, { ...params, hash })
+    if (r.ja === 1 || r.n + size <= this.pendingCap) return
+    const oldest = this.a.um(`SELECT MIN(e.em) AS em FROM midia_envios e JOIN midia m ON m.hash = e.hash WHERE e.uid = :uid AND e.em > :desde AND ${mine}`, params).em
+    const mb = (n) => `${(n / 1048576).toFixed(1)} MB`
+    throw new ProtocolError('limite_de_taxa', {
+      retryAfterS: Math.max(1, (oldest ?? now) + MEDIA_LIMITS.pendenteS - now),
+      detalhe: `Esta conta já tem ${mb(r.n)} de mídia enviada e ainda não publicada (até ${mb(this.pendingCap)}). Publique ou espere o envio antigo vencer.`
+    })
   }
 
   /** 0.11.0: the quota refusal says how much the relay holds, how much is taken and how much this file needs. */
@@ -292,12 +330,14 @@ export class Media {
    * in the last hour, a file row whose file vanished from disk, and the upload history older than one day. Returns how many files it deleted.
    */
   collect(now = this.agora()) {
+    this._lastCollect = now
     this.a.executar('DELETE FROM imagens WHERE NOT EXISTS (SELECT 1 FROM objetos o WHERE o.id = imagens.id AND o.envelope IS NOT NULL)')
+    // uncited and no longer pending: no upload in the last `pendenteS`, or the file older than `pendenteMaxS`
     const orphans = this.a.todos(
       `SELECT hash FROM midia m WHERE NOT EXISTS (SELECT 1 FROM imagens i WHERE i.hash = m.hash)
-         AND NOT EXISTS (SELECT 1 FROM midia_envios e WHERE e.hash = m.hash AND e.em > :desde)
-         ${this.rele.videos ? 'AND NOT EXISTS (SELECT 1 FROM videos v WHERE v.miniatura = m.hash)' : ''}`,
-      { desde: now - MEDIA_LIMITS.pendenteS }
+         ${this.rele.videos ? 'AND NOT EXISTS (SELECT 1 FROM videos v WHERE v.miniatura = m.hash)' : ''}
+         AND NOT (EXISTS (SELECT 1 FROM midia_envios e WHERE e.hash = m.hash AND e.em > :desde) AND m.recebida_em > :limite)`,
+      { desde: now - MEDIA_LIMITS.pendenteS, limite: now - MEDIA_LIMITS.pendenteMaxS }
     )
     for (const { hash } of orphans) this._deleteFile(hash)
     for (const { hash } of this.a.todos('SELECT hash FROM midia')) {

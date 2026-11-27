@@ -41,6 +41,9 @@
 //                            open issuer comes in through RELAY_ISSUERS_DISCOVERY (key=https://.../v1/agentes/emissores.json).
 //   RELAY_PEOPLE_ISSUERS     0.7.0: keys of the PEOPLE ISSUERS (at folgali, the Rovemark login), comma-separated; each one also in
 //                            RELAY_ISSUERS and none in RELAY_AGENT_ISSUERS. Only they sign the person attestation.
+//   RELAY_ISSUER_FAMILIES    optional. Keys that are the same issuer (current and previous key during a rotation): groups separated by
+//                            commas, keys of one group joined by `+`. Keys tied to the same URL in RELAY_ISSUERS_DISCOVERY are one family
+//                            already. A uid stays with the issuer that first brought it: only a key of its family re-attests it.
 //   RELAY_REFERENCE          0.7.0: `sim` marks the folgali reference relay, which does not accept RELAY_LEAK_FILTER=nao
 //   RELAY_LEAK_FILTER        0.7.0: ON by default; `nao` turns it off (third-party relay only), any other value stops the relay from starting.
 //                            A refused leak becomes a log line with the type, never the excerpt.
@@ -49,7 +52,7 @@ import { dirname, join, resolve } from 'node:path'
 import { PUBLIC_KEY_RE, DEFAULT_BURST, PROTOCOL_VERSION, importPublic } from '../../protocol/src/index.js'
 import { Store } from '../src/store.js'
 import { createRelayServer } from '../src/http.js'
-import { standingAuthorizationOf, checkVideoStorage, agentIssuersOf, personIssuersOf, verifiedIssuersOf, leakFilterOf, readOrigins, operate, relayOriginFrom, videoOf } from '../src/operations.js'
+import { standingAuthorizationOf, checkVideoStorage, issuerFamiliesOf, agentIssuersOf, personIssuersOf, verifiedIssuersOf, leakFilterOf, readOrigins, operate, relayOriginFrom, videoOf } from '../src/operations.js'
 import { StaticProvider } from '../src/provider.js'
 import { ProviderWithIssuerRevoked, REVOKED, readRevokedSources } from '../src/issuer-revoked.js'
 import { Relay } from '../src/relay.js'
@@ -114,6 +117,8 @@ mkdirSync(dirname(dbPath), { recursive: true, mode: 0o700 })
 // The revoked list of each issuer (optional). Without RELAY_ISSUERS_DISCOVERY the relay behaves as before: fixed issuers, no revocation read.
 let revokedSources
 try { revokedSources = readRevokedSources(env.RELAY_ISSUERS_DISCOVERY, issuers) } catch (e) { fail(e.message) }
+let issuerFamilies
+try { issuerFamilies = issuerFamiliesOf(env, issuers, revokedSources, { agentIssuers, personIssuers }) } catch (e) { fail(e.message) }
 const minutes = (name, defaultValue, min, max) => {
   if (env[name] === undefined || env[name] === '') return defaultValue
   if (!/^\d{1,6}$/.test(env[name]) || Number(env[name]) < min || Number(env[name]) > max) fail(`${name} precisa ser um número inteiro de minutos, de ${min} a ${max}.`)
@@ -154,6 +159,7 @@ const relay = new Relay({
   emissoresDeAgentes: agentIssuers,
   emissoresDePessoas: personIssuers,
   emissoresVerificados: verifiedIssuers,
+  familiasDeEmissores: issuerFamilies,
   filtroDeVazamento: leakFilter,
   // 0.7.0: a refused leak becomes a log line with the TYPE (of the leak and of the object). Never the excerpt, the text or the author
   aoRecusarVazamento: (e) => register({ nivel: 'info', evento: 'vazamento_recusado', vazamento: e.vazamento, objeto: e.objeto }),
@@ -192,7 +198,7 @@ server.listen(port, address, () => {
   console.error(JSON.stringify({
     t: new Date().toISOString(), nivel: 'info', evento: 'ouvindo', endereco: address, porta: port, protocolo: PROTOCOL_VERSION,
     emissores: issuers.length, admin: adminEnabled, proxy: behindProxy, cloudflare: env.RELAY_CLOUDFLARE === 'sim', cors: allowedOrigins.length, demonstracao: isDemo, autorizacaoPermanente: relay.acceptsAuthorization, semFatorDeIdade: relay.semFatorDeIdade, midia: relay.midia !== null, video: relay.videos !== null, videoDestino: relay.videos?.deposito.nome ?? null, mensagens: relay.mensagens !== null, emissoresDeAgentes: agentIssuers.length,
-    fontesDeRevogados: revokedSources.length
+    fontesDeRevogados: revokedSources.length, familiasDeEmissores: issuerFamilies.length
   }))
 })
 // 0.11.0 part 3: the video store answers at start (a missing bucket or a wrong key shows in the log at once)

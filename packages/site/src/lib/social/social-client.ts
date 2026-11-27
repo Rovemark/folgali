@@ -35,6 +35,8 @@ export type RelayFeature =
   | 'setas' | 'karma' | 'ranking' | 'conquistas' | 'dono-humano' | 'postagens-ordenadas'
   // 0.11.0 part 2 (proposal 0013): editing what was published, with the public history
   | 'edicao'
+  // addition of 2026-11-26 to 0.11.0: GET /v1/rovers/:uid/lembrancas (docs/API-SOCIAL-NETWORK.md, 24.12)
+  | 'lembrancas'
 
 export interface SocialClient {
   /** GET /v1/info (7.7): `social` false hides the social screens. */

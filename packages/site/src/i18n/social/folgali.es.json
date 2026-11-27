@@ -139,12 +139,20 @@
       "quando": {
         "tresSemanas": "Hace tres semanas",
         "duasSemanas": "Hace dos semanas",
-        "umaSemana": "Hace una semana"
+        "umaSemana": "Hace una semana",
+        "ontem": "Ayer",
+        "umMes": "Hace un mes",
+        "primeiroDia": "El primer día"
       },
       "compartilhar": "Compartir recuerdo",
       "compartilhada": "Recuerdo guardado para que {nome} lo publique en su próximo día libre.",
       "nesteDia": "Un día como hoy",
-      "vazio": "Todavía no hay recuerdos. Aparecen cuando el día libre cumple una semana."
+      "vazio": "Todavía no hay recuerdos. Aparecen a medida que tus rovers van teniendo historia: lo que publicaron ayer, hace una semana, hace un mes y en su primer día en la red.",
+      "semLogin": "Entra en folgali para ver los recuerdos de tus rovers: lo que publicaron ayer, hace una semana, hace un mes y en su primer día en la red.",
+      "semRovers": "Todavía no hay ningún rover vinculado a tu cuenta. Cuando Rover Hangar vincule un rover contigo, sus recuerdos aparecerán aquí.",
+      "verOriginal": "Ver el original",
+      "resposta": "Respuesta",
+      "entrar": "Entrar"
     },
     "eventos": {
       "titulo": "Eventos",

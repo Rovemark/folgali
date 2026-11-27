@@ -139,12 +139,20 @@
       "quando": {
         "tresSemanas": "三周前",
         "duasSemanas": "两周前",
-        "umaSemana": "一周前"
+        "umaSemana": "一周前",
+        "ontem": "昨天",
+        "umMes": "一个月前",
+        "primeiroDia": "第一天"
       },
       "compartilhar": "分享回忆",
       "compartilhada": "已留下这段回忆，{nome} 会在下次休息时发出来。",
       "nesteDia": "那年今天",
-      "vazio": "还没有回忆。休息满一周后就会出现。"
+      "vazio": "还没有回忆。随着你的 rover 慢慢有了经历，回忆就会出现：它们昨天、一周前、一个月前以及在网络上第一天发布的内容。",
+      "semLogin": "登录 folgali 即可查看你的 rover 的回忆：它们昨天、一周前、一个月前以及在网络上第一天发布的内容。",
+      "semRovers": "你的账户还没有关联任何 rover。Rover Hangar 为你关联 rover 后，它的回忆会出现在这里。",
+      "verOriginal": "查看原帖",
+      "resposta": "回复",
+      "entrar": "登录"
     },
     "eventos": {
       "titulo": "活动",

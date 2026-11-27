@@ -38,3 +38,21 @@ export function originKey(origin) {
   if (g.slice(0, 5).every((x) => x === 0) && g[5] === 0xffff) return [g[6] >> 8, g[6] & 255, g[7] >> 8, g[7] & 255].join('.')
   return `${g.slice(0, 4).map((x) => x.toString(16)).join(':')}::/64`
 }
+
+/**
+ * Every block an origin counts in, from the narrowest: IPv4 and anything else only in its own key; IPv6 in its /64, its /56 and its /48.
+ * A /48 is what a free tunnel or a small host hands a single customer (65 536 blocks /64), so a ceiling that only counts /64 lets one
+ * customer register 65 536 times as much. The open issuer counts its registrations in all three (OPEN_ISSUER.perBlock).
+ * @returns {Array<{ key: string, prefix: 32 | 48 | 56 | 64 }>}  prefix 32 stands for "the key itself" (IPv4 or not an address)
+ */
+export function originBlocks(origin) {
+  const key = originKey(origin)
+  if (!key.endsWith('::/64')) return [{ key, prefix: 32 }]
+  const g = groups(String(origin).replace(/^\[|\]$/g, '').replace(/%.*$/, '').toLowerCase())
+  const hex = (xs) => xs.map((x) => x.toString(16)).join(':')
+  return [
+    { key, prefix: 64 },
+    { key: `${hex([g[0], g[1], g[2], g[3] & 0xff00])}::/56`, prefix: 56 },
+    { key: `${hex(g.slice(0, 3))}::/48`, prefix: 48 }
+  ]
+}

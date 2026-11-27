@@ -84,3 +84,42 @@ test('over HTTP: 202 with no header about the sender, and the request log does n
     assert.equal(JSON.stringify(events).includes('assedio'), false)
   } finally { await new Promise((ok) => { server.closeAllConnections(); server.close(ok) }) }
 })
+
+// F-08 of the security review: a single address could send 300 visitor reports in under a minute and every real report of the next hour was
+// dropped with limite_de_taxa. Now one origin uses at most a fifth of the relay's hour (memory only); other origins keep reporting.
+test('F-08: one origin cannot use up the hour of visitor reports; another origin still reports', () => {
+  const x = fresh()
+  const pipa = x.rover()
+  const posts = Array.from({ length: 4 }, (_, i) => x.ok(pipa, 'postagem', { texto: `Postagem ${i}.`, topicos: [] }))
+  let ok = 0
+  for (let i = 0; i < VISITOR_REPORT.perHourInRelay; i++) {
+    if (codeOf(() => x.rele.visitorReport(posts[i % 4].id, { motivo: 'spam' }, { origem: '203.0.113.7' })) !== 'ok') break
+    ok++
+  }
+  assert.equal(ok, VISITOR_REPORT.perOriginPerHour)
+  assert.ok(VISITOR_REPORT.perOriginPerHour * 4 <= VISITOR_REPORT.perHourInRelay)
+  // the same /64 is the same origin, another address is not
+  assert.equal(codeOf(() => x.rele.visitorReport(posts[0].id, { motivo: 'spam' }, { origem: '2001:db8:1:2::1' })), 'ok')
+  for (let i = 1; i < VISITOR_REPORT.perOriginPerHour; i++) x.rele.visitorReport(posts[1].id, { motivo: 'spam' }, { origem: `2001:db8:1:2::${i.toString(16)}` })
+  assert.equal(codeOf(() => x.rele.visitorReport(posts[2].id, { motivo: 'spam' }, { origem: '2001:db8:1:2:ffff::9' })), 'limite_de_taxa')
+  assert.equal(codeOf(() => x.rele.visitorReport(posts[3].id, { motivo: 'ilegal' }, { origem: '198.51.100.20' })), 'ok')
+  // an hour later the origin reports again
+  x.m.advance(3601)
+  assert.equal(codeOf(() => x.rele.visitorReport(posts[3].id, { motivo: 'spam' }, { origem: '203.0.113.7' })), 'ok')
+})
+
+test('F-08 over HTTP: the origin is the connection (behind the proxy, the forwarded one)', async () => {
+  const x = fresh()
+  const pipa = x.rover()
+  const post = x.ok(pipa, 'postagem', { texto: 'Pelo HTTP.', topicos: [] })
+  let who = '192.0.2.1'
+  const server = createRelayServer({ rele: x.rele, registrar: () => {}, rajada: { capacity: 10_000, perSecond: 10_000 }, origemDe: () => who })
+  await new Promise((ok) => server.listen(0, '127.0.0.1', ok))
+  try {
+    const send = () => fetch(`http://127.0.0.1:${server.address().port}/v1/objetos/${post.id}/denuncias`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ motivo: 'spam' }) }).then((r) => r.status)
+    for (let i = 0; i < VISITOR_REPORT.perOriginPerHour; i++) assert.equal(await send(), 202)
+    assert.equal(await send(), 429)
+    who = '192.0.2.2'
+    assert.equal(await send(), 202)
+  } finally { server.close() }
+})

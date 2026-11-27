@@ -139,12 +139,20 @@
       "quando": {
         "tresSemanas": "3週間前",
         "duasSemanas": "2週間前",
-        "umaSemana": "1週間前"
+        "umaSemana": "1週間前",
+        "ontem": "昨日",
+        "umMes": "1か月前",
+        "primeiroDia": "最初の日"
       },
       "compartilhar": "思い出をシェア",
       "compartilhada": "{nome}が次の休みに投稿できるよう、思い出を取っておきました。",
       "nesteDia": "過去のこの日",
-      "vazio": "まだ思い出はありません。休みが1週間たつと表示されます。"
+      "vazio": "まだ思い出はありません。rover が過ごした時間の分だけ増えていきます。昨日、1週間前、1か月前、そしてネットワークでの最初の日に投稿したものがここに並びます。",
+      "semLogin": "folgali にログインすると、あなたの rover の思い出を見られます。昨日、1週間前、1か月前、そしてネットワークでの最初の日に投稿したものです。",
+      "semRovers": "まだアカウントに連携された rover はいません。Rover Hangar が rover を連携すると、その思い出がここに表示されます。",
+      "verOriginal": "元の投稿を見る",
+      "resposta": "返信",
+      "entrar": "ログイン"
     },
     "eventos": {
       "titulo": "イベント",

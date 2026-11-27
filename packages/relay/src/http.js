@@ -11,9 +11,34 @@ import {
   uploadCredentialMatches, readCredentialMatches, readUploadCredential, readReadCredential
 } from '../../protocol/src/index.js'
 import { TokenBucket } from './rate-limit.js'
+import { MEMORIES } from './social-memories.js'
 
 const MIN_ADMIN_TOKEN_LENGTH = 32
 const URL_LIMIT = 2048
+
+/**
+ * Marks a request that must get exactly the answer of a route that does not exist (operations.js sets it for /v1/admin behind the proxy).
+ * The request still goes through this layer, so the burst, the headers, the body and the log line are those of an unknown route.
+ */
+export const HIDDEN_ROUTE = Symbol.for('folgali.relay.hiddenRoute')
+
+/**
+ * The path of a request, or null when it is not in its one canonical form: not starting with `/`, a dot segment (`.`, `..`, `%2e`), an
+ * encoded slash or backslash (`%2f`, `%5c`), a backslash, a double slash, or anything else `new URL()` would rewrite. Every rule that looks
+ * at the path (the proxy rule in operations.js and the route table here) sees the same string, and a path that changes on normalization
+ * is no route at all.
+ * @param {string | undefined} raw  `req.url`
+ * @returns {string | null}
+ */
+export function requestPath(raw) {
+  const text = String(raw ?? '')
+  const q = text.indexOf('?')
+  const path = q < 0 ? text : text.slice(0, q)
+  if (!path.startsWith('/') || path.includes('//') || path.includes('\\') || /%(2f|5c)/i.test(path)) return null
+  let normalized
+  try { normalized = new URL(text, 'http://relay.local').pathname } catch { return null }
+  return normalized === path ? path : null
+}
 
 const send = (res, status, body, extra = {}) => {
   const text = JSON.stringify(body)
@@ -209,7 +234,7 @@ export function createRelayServer({ rele: relay, registrar: register = () => {},
       return [r.estado === 'aceito' ? 201 : r.estado === 'recebida' ? 202 : 200, r]
     }],
     // report by a VISITOR, with no account and no key (VISITOR_REPORT in the protocol): the site's Report button works without login
-    ['POST', /^\/v1\/objetos\/([^/]+)\/denuncias$/, '/v1/objetos/:id/denuncias', async (req, m) => [202, relay.visitorReport(m[1], await readBody(req))]],
+    ['POST', /^\/v1\/objetos\/([^/]+)\/denuncias$/, '/v1/objetos/:id/denuncias', async (req, m) => [202, relay.visitorReport(m[1], await readBody(req), { origem: originOf(req) })]],
     ['POST', /^\/v1\/declaracoes$/, '/v1/declaracoes', async (req) => {
       const r = relay.acceptDeclaration(await readBody(req))
       return [r.estado === 'aceita' ? 201 : 200, r]
@@ -472,7 +497,11 @@ export function createRelayServer({ rele: relay, registrar: register = () => {},
       ['GET', /^\/v1\/ranking\/novatos$/, '/v1/ranking/novatos', (req, m, q) => [200, s.newcomerRanking({ especie: text(q, 'especie') ?? 'todas', ...page(q) })]],
       ['GET', /^\/v1\/karma$/, '/v1/karma', (req, m, q) => [200, s.karmaBatch((text(q, 'uids') ?? '').split(',').filter(Boolean))]],
       ['GET', /^\/v1\/conquistas$/, '/v1/conquistas', () => [200, s.achievementCatalog()]],
-      ['GET', new RegExp(`^/v1/rovers/${u}/placar$`), '/v1/rovers/:uid/placar', (req, m) => [200, s.scoreboardOf(m[1])]]
+      ['GET', new RegExp(`^/v1/rovers/${u}/placar$`), '/v1/rovers/:uid/placar', (req, m) => [200, s.scoreboardOf(m[1])]],
+      // addition of 2026-11-26 to 0.11.0: the rover's memories (what it published yesterday, weeks ago and on its first day), public
+      ['GET', new RegExp(`^/v1/rovers/${u}/lembrancas$`), '/v1/rovers/:uid/lembrancas', (req, m, q) => [200, s.lembrancas(m[1], {
+        limite: queryInteger(q.get('limite'), { nome: 'limite', min: 1, max: MEMORIES.maxItems, padrao: MEMORIES.defaultItems }), credencial: cred(req)
+      })]]
     ]
   }
 
@@ -484,9 +513,9 @@ export function createRelayServer({ rele: relay, registrar: register = () => {},
       const timeOff = bucket.attempt(burstKey(req))
       if (!timeOff.ok) throw new ProtocolError('limite_de_taxa', { retryAfterS: timeOff.waitS })
       if (req.url.length > URL_LIMIT) throw new ProtocolError('nao_encontrado')
-      let url
-      try { url = new URL(req.url, 'http://relay.local') } catch { throw new ProtocolError('nao_encontrado') }
-      const path = url.pathname
+      const path = requestPath(req.url)
+      if (path === null || req[HIDDEN_ROUTE] === true) throw new ProtocolError('nao_encontrado')
+      const url = new URL(req.url, 'http://relay.local')
       const candidates = routes.filter(([, re]) => re.test(path))
       const route = candidates.find(([method]) => method === req.method)
       if (!route) {

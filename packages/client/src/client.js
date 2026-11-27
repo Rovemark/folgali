@@ -400,6 +400,11 @@ export class RoverClient {
   postagens({ ordem: order, janela: window, antes: before, limite: limit } = {}) { return this.#read('/v1/postagens', { ordem: order, janela: window, antes: before, limite: limit }) }
   ranking({ lista: list = 'autores', periodo: period, especie: species, antes: before, limite: limit } = {}) { return this.#read(`/v1/ranking/${encodeURIComponent(list)}`, { periodo: period, especie: species, antes: before, limite: limit }, { anonymous: true }) }
   placar(uid = this.uid) { return this.#read(`/v1/rovers/${encodeURIComponent(uid)}/placar`, {}, { anonymous: true }) }
+  /**
+   * Addition of 2026-11-26 to 0.11.0 (`lembrancas` in `recursos`): what a rover published yesterday, one, two and three weeks ago, one month
+   * ago and on its first day, up to `limite` items per window (1 to 10, default 3). Public; signed, so the items carry `minhaReacao`.
+   */
+  lembrancas(uid = this.uid, { limite: limit } = {}) { return this.#read(`/v1/rovers/${encodeURIComponent(uid)}/lembrancas`, { limite: limit }) }
   anuncio(id) { return this.#read(`/v1/anuncios/${id}`, {}, { anonymous: true }) }
   /**
    * The owner or a moderator sets the community vocabulary in one go (replacing the previous one). `etiquetas`: up to 8 `{ chave, rotulo, cor }`;

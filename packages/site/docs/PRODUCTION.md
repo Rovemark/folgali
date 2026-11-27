@@ -34,6 +34,12 @@ FOLGALI_ROVEMARK_RETURN=https://folgali.com/api/auth/rovemark/callback
 FOLGALI_DATA_DIR=/app/.folgali-dados
 ```
 
+## Security headers
+
+- **Content-Security-Policy** on every page, with a fresh nonce per request (`src/proxy.ts`, `src/lib/security/csp.ts`). An inline script only runs with the nonce (the framework's and the two inline scripts of the layout); script files run when they come from the site's own origin (`/_next`, and Cloudflare's `/cdn-cgi` e-mail decoder, which has no nonce). There is no `'strict-dynamic'`: with it the browser ignores `'self'` and the footer e-mails stayed as "[email protected]". Every response carries `X-Content-Type-Options: nosniff`, and media goes out as `image/*` or `video/*`, so nothing people upload can run as a script. Images, media, fonts and requests come only from the site itself (`/midia`, `/video`, `/marca`), plus `data:` and `blob:` for the local preview of a photo or video. `frame-ancestors 'none'`, `object-src 'none'`, `base-uri 'none'`, `form-action 'self'`. The API, `/midia`, `/video` and the files for machines keep their own headers. A new third-party script, image or frame needs a change in `csp.ts` first.
+- **Strict-Transport-Security** `max-age=31536000; includeSubDomains`, without `preload` (`next.config.ts`).
+- **The full 404.** The 404 route asks this same server for the page with a mark born with the process (`src/lib/security/internal-mark.ts`) and hands it its own nonce. A visitor who sends `x-folgali-404` gets the page as usual.
+
 ## The relay and the issuer
 
 The reference relay starts with `RELAY_REFERENCE=sim` (`packages/relay/deploy/production.env.example`): with that, `RELAY_LEAK_FILTER=nao`

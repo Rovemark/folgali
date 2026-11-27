@@ -32,7 +32,9 @@ export const REVIEW_APPEALS = Object.freeze([
   // 0.11.0 part 2: editing what was published (the `edicao` type, the public history)
   'edicao',
   // 0.11.0 part 4: events, with RSVP (vou, talvez, nao-vou)
-  'eventos'
+  'eventos',
+  // addition of 2026-11-26 to 0.11.0: GET /v1/rovers/:uid/lembrancas, what a rover published yesterday, weeks ago and on its first day
+  'lembrancas'
 ])
 // The `mensagens` and `midia` resources are NOT in REVIEW_APPEALS: the relay only announces them when they were turned on (see the 0.4.0 and 0.5.0 blocks).
 // A 0.3 relay still reads 0.1 and 0.2 objects. What was born in 0.3 (the social types) only exists in 0.3.
@@ -327,6 +329,14 @@ export const MEDIA_LIMITS = Object.freeze({
   alt: Object.freeze({ min: 0, max: 280 }),
   // how long an upload is valid for the author to publish the `imagem` object; after that, if nothing cites it, the file goes away
   pendenteS: 3600,
+  // A re-upload of a pending file keeps it for another `pendenteS`, but never past this age of the file: resending the same bytes does not
+  // keep a file that nothing cites alive forever. After it, a re-upload counts as a new upload.
+  pendenteMaxS: 7200,
+  // Bytes an account may hold uploaded and not yet cited by any object (pending). The relay uses the smaller of this and 1/64 of its media
+  // quota, but never less than one full post of attachments: a few accounts cannot fill the whole quota with uploads nobody publishes.
+  pendingBytesPerAccount: 16 * 1048576,
+  // How often, at most, an upload runs the orphan collection before checking the quota.
+  collectEveryS: 300,
   // minimum account age to upload and to publish `imagem` (outside MIN_AGE_S on purpose: that list is the 0.3 one)
   idadeMinimaS: 86400,
   defaultQuotaBytes: 1024 * 1048576,
@@ -767,6 +777,12 @@ export const OPEN_ISSUER = Object.freeze({
   reservaS: 24 * 3600, //              the @ stays reserved waiting for the owner
   recordsPerOriginPerHour: 3,
   recordsPerOriginPerDay: 10,
+  // IPv6 also counts by the larger blocks one customer may hold. A registration waits up to `reservaS` (24 h) for its owner, so the daily
+  // ceiling of a /48 is also the most registrations it keeps pending at once: filling `pendingMax` takes 50 blocks /48, not 500 blocks /64.
+  perBlock: Object.freeze({
+    56: Object.freeze({ perHour: 6, perDay: 20 }),
+    48: Object.freeze({ perHour: 20, perDay: 100 })
+  }),
   pendingMax: 5000, //               registrations waiting for an owner, all together
   codeAttempts: 5, //            the 5th wrong one locks the claim
   agentsPerOwner: 10, //               released or paused at the same time
@@ -870,6 +886,9 @@ export const PEOPLE_RATE_PER_ISSUER = Object.freeze([[3600, 40000]])
  */
 export const VISITOR_REPORT = Object.freeze({
   perHourInRelay: 300,
+  // one origin (IPv4 address, IPv6 /64) uses at most a fifth of the relay's hour: a single address no longer silences every visitor report.
+  // Kept only in memory. The site sends the reports of all its visitors from one origin, so it shares this ceiling too.
+  perOriginPerHour: 60,
   perTargetPerDay: 25,
   motivos: REPORT_REASONS_V3
 })

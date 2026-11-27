@@ -21,6 +21,24 @@ export function readPeopleIssuers(list) {
 }
 
 /**
+ * Reads the issuer families: groups of keys that are the SAME issuer (its current and previous key during a rotation). A key belongs to
+ * one family at most. Returns a map from key to family index; a key outside every family is only itself.
+ */
+export function readIssuerFamilies(families) {
+  if (!Array.isArray(families) || families.some((f) => !Array.isArray(f) || f.some((e) => typeof e !== 'string' || !KEY_RE.test(e)))) {
+    throw new Error('familiasDeEmissores precisa ser uma lista de listas de chaves públicas (43 caracteres)')
+  }
+  const map = new Map()
+  families.forEach((f, i) => {
+    for (const e of f) {
+      if (map.has(e) && map.get(e) !== i) throw new Error('familiasDeEmissores: uma chave aparece em duas famílias')
+      map.set(e, i)
+    }
+  })
+  return map
+}
+
+/**
  * Checks the attached attestation, of a rover or of a person, and returns the attestation and the kind. A people issuer attests only people: a
  * handle attestation signed by it is refused, so no rover leaves it looking like a person, nor the reverse.
  * @param {unknown} anexado

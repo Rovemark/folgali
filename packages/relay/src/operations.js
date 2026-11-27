@@ -13,6 +13,7 @@ import { ProtocolError, PROTOCOL_VERSION } from '../../protocol/src/index.js'
 import { cloudflareOrigin, readCloudflareConfig } from '../../protocol/src/cloudflare.js'
 import { originKey } from '../../protocol/src/origin.js'
 import { videoStorageOf } from './storage.js'
+import { HIDDEN_ROUTE, requestPath } from './http.js'
 
 const ORIGIN_RE = /^https?:\/\/[a-z0-9.-]+(?::\d{1,5})?$/i
 const DISCOVERY_PATH = '/.well-known/rover-network'
@@ -119,10 +120,14 @@ export function operate(server, { allowedOrigins = [], behindProxy = false, desc
       res.setHeader('access-control-expose-headers', 'retry-after, x-rover-protocolo')
     }
 
-    const path = (req.url ?? '').split('?')[0]
+    // The same canonical path as the route table (http.js): a path that changes on normalization (`/v1/./admin`, `/v1/%2e/admin`,
+    // `/v1/x/../admin`) is null here and a 404 there, so it can never slip past this rule into an admin route.
+    const path = requestPath(req.url)
 
-    if (behindProxy && (path === '/v1/admin' || path.startsWith('/v1/admin/')) && cameViaProxy(req)) {
-      return json(res, 404, new ProtocolError('nao_encontrado').toJson())
+    // Behind the proxy, administration does not exist: the request goes on to http.js marked as hidden and gets the very answer of an
+    // unknown route (same status, headers, body, burst and log), so nobody outside can tell whether administration is on.
+    if (behindProxy && path !== null && (path === '/v1/admin' || path.startsWith('/v1/admin/')) && cameViaProxy(req)) {
+      req[HIDDEN_ROUTE] = true
     }
 
     if (discovery && path === DISCOVERY_PATH) {
@@ -189,6 +194,47 @@ export function verifiedIssuersOf(env, issuers, agentIssuers = []) {
     if (agentIssuers.includes(e)) throw new Error('RELAY_VERIFIED_ISSUERS tem uma chave que também está em RELAY_AGENT_ISSUERS: emissor aberto não é verificado.')
   }
   return [...new Set(list)]
+}
+
+/**
+ * `RELAY_ISSUER_FAMILIES`: keys that are the SAME issuer (its current and previous key during a rotation). Groups separated by commas,
+ * keys of one group joined by `+`: `<current>+<previous>`. Keys that `RELAY_ISSUERS_DISCOVERY` ties to the same URL are one family too
+ * (the documented way to rotate an issuer key), with no extra variable. Every key must be in `RELAY_ISSUERS`, appear in one family only,
+ * and a family cannot mix an open agent issuer or a people issuer with an issuer of another kind. A uid stays with the issuer that first
+ * brought it to the relay: only another key of its family may re-attest it.
+ * @param {Array<{ emissor: string, url: string }>} [revokedSources] what readRevokedSources returned
+ * @returns {string[][]}
+ */
+export function issuerFamiliesOf(env, issuers, revokedSources = [], { agentIssuers = [], personIssuers = [] } = {}) {
+  const groups = []
+  for (const item of (env.RELAY_ISSUER_FAMILIES ?? '').split(',').map((s) => s.trim()).filter(Boolean)) {
+    const keys = item.split('+').map((s) => s.trim()).filter(Boolean)
+    if (keys.length < 2) throw new Error('RELAY_ISSUER_FAMILIES: cada família tem duas chaves ou mais, unidas por +.')
+    groups.push(keys)
+  }
+  const byUrl = new Map()
+  for (const { emissor, url } of revokedSources) byUrl.set(url, [...(byUrl.get(url) ?? []), emissor])
+  for (const keys of byUrl.values()) if (keys.length > 1) groups.push(keys)
+  // merge groups that share a key (a key declared in the variable and also tied to a shared discovery URL is one family)
+  const families = []
+  for (const g of groups) {
+    for (const e of g) {
+      if (!/^[A-Za-z0-9_-]{43}$/.test(e)) throw new Error('RELAY_ISSUER_FAMILIES tem uma chave que não é uma chave pública em base64url (43 caracteres).')
+      if (!issuers.includes(e)) throw new Error('RELAY_ISSUER_FAMILIES tem uma chave que não está em RELAY_ISSUERS.')
+    }
+    const touching = families.filter((f) => g.some((e) => f.has(e)))
+    const merged = new Set(g)
+    for (const f of touching) { for (const e of f) merged.add(e); families.splice(families.indexOf(f), 1) }
+    families.push(merged)
+  }
+  for (const f of families) {
+    const keys = [...f]
+    const allOrNone = (list) => keys.every((e) => list.includes(e)) || keys.every((e) => !list.includes(e))
+    if (!allOrNone(agentIssuers) || !allOrNone(personIssuers)) {
+      throw new Error('RELAY_ISSUER_FAMILIES: uma família junta chaves do mesmo emissor; não misture emissor aberto, de pessoas e de rovers.')
+    }
+  }
+  return families.map((f) => [...f])
 }
 
 /**

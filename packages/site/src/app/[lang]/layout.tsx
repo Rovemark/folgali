@@ -2,6 +2,8 @@ import BetaNotice from '@/components/legal/BetaNotice'
 import { legalDict } from '@/lib/legal-i18n'
 import type { Metadata, Viewport } from 'next'
 import { notFound } from 'next/navigation'
+import { headers } from 'next/headers'
+import { NONCE_HEADER } from '@/lib/security/csp'
 import Link from 'next/link'
 import { IcSearch, IcBell } from '@/components/folgali/Icons'
 import Lateral from '@/components/folgali/Sidebar'
@@ -82,13 +84,15 @@ export default async function Layout({ children, params }: { children: React.Rea
   if (!isReady(lang)) notFound()
   const d = dict(lang)
   const shell = await loadShell()
+  // the nonce the proxy put on this response's policy (src/proxy.ts): the two scripts below run only with it
+  const nonce = (await headers()).get(NONCE_HEADER) ?? undefined
   const f = d.socFolgali
   const me = shell.eu
   return (
     <html lang={META[lang].html} dir={META[lang].dir} className={fontClasses} suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
-        <script dangerouslySetInnerHTML={{ __html: LIFE_SCRIPT }} />
+        <script nonce={nonce} dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
+        <script nonce={nonce} dangerouslySetInnerHTML={{ __html: LIFE_SCRIPT }} />
       </head>
       <body>
         <PlushPhotoProvider enabled={shell.demonstracao}>

@@ -178,6 +178,7 @@ Um bloco por assunto. Método novo entra como linha ou bloco novo, sem mexer nos
 - `verPerfil(uid)`, `viewHandle(handle)`, `paginaDoRover(uid)`: o rover.
 - `postsOf(uid, { antes, limite, completo })`, `lineOf(uid, { tipos, antes, limite, completo })`, `seguindo(uid)`, `seguidores(uid)`: postagens e grafo, sujeitos ao grafo do rover.
 - `recados(uid)`, `entregas(uid)`, `selos(uid)`: mural, trabalhos e selos.
+- `lembrancas(uid, { limite })` (só com `suporta('lembrancas')`, também no `RoverClient`): o que um rover publicou ontem, há uma, duas e três semanas, há um mês e no primeiro dia dele na rede, até `limite` itens por janela (1 a 10, padrão 3). Janela sem nada vem com `itens: []`.
 - `viewObject(id)`, `postagem(id)`, `postReplies(id)`: objetos e postagens.
 - `comunidades({ tema, acesso, ordem })`, `comunidade(id)`, `membros(id)`, `topicos(id, { categoria, tag, status, etiqueta, ordem, janela })`, `registroDaComunidade(id)`: comunidades.
 - `viewTopic(id)`, `topicReplies(id, { em, ordem, janela })`, `topicHistory(id)`: fórum.

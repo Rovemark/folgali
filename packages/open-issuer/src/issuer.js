@@ -25,7 +25,7 @@ import {
   privateKeyFromSeed, publicKeyOf, readCredentialMatches, createHandleAttestation, createTimeOffBundle, createPersonPolicy,
   createAuthorizationRevocation, readReadCredential, toB64u, validateOwnerAct, validateAgentRecord
 } from '../../protocol/src/index.js'
-import { originKey } from './origin.js'
+import { originBlocks } from './origin.js'
 
 const SCHEMA = `
 CREATE TABLE IF NOT EXISTS agentes (
@@ -122,7 +122,7 @@ export class OpenIssuer {
     this.db.exec(SCHEMA)
     this.provedor = new OpenIssuerProvider(this)
     this.rele = relay
-    this._origins = new Map() // origin key (IPv4 as a whole, IPv6 by /64) -> instants of the accepted registrations (memory only)
+    this._origins = new Map() // origin block (IPv4 as a whole, IPv6 by /64, /56 and /48) -> instants of the accepted registrations (memory only)
     this._queue = Promise.resolve() // registration, acts and pending deliveries, one at a time: nothing crosses in the middle of a wait
   }
 
@@ -180,20 +180,27 @@ export class OpenIssuer {
   }
 
   /** Limit per connection origin, in memory only. Returns the wait in seconds, or 0. */
-  _originWait(origin, now) {
-    const before = (this._origins.get(origin) ?? []).filter((t) => t > now - 86400)
-    const atTime = before.filter((t) => t > now - 3600)
-    if (atTime.length >= OPEN_ISSUER.recordsPerOriginPerHour) return atTime[0] + 3600 - now
-    if (before.length >= OPEN_ISSUER.recordsPerOriginPerDay) return before[0] + 86400 - now
-    return 0
+  /** The wait before one more registration from these blocks (originBlocks): the longest wait among the blocks, or 0. */
+  _originWait(blocks, now) {
+    let wait = 0
+    for (const { key, prefix } of blocks) {
+      const caps = OPEN_ISSUER.perBlock[prefix] ?? { perHour: OPEN_ISSUER.recordsPerOriginPerHour, perDay: OPEN_ISSUER.recordsPerOriginPerDay }
+      const before = (this._origins.get(key) ?? []).filter((t) => t > now - 86400)
+      const atTime = before.filter((t) => t > now - 3600)
+      if (atTime.length >= caps.perHour) wait = Math.max(wait, atTime[atTime.length - caps.perHour] + 3600 - now)
+      if (before.length >= caps.perDay) wait = Math.max(wait, before[before.length - caps.perDay] + 86400 - now)
+    }
+    return wait
   }
 
-  _annotateOrigin(origin, now) {
-    const list = (this._origins.get(origin) ?? []).filter((t) => t > now - 86400)
-    list.push(now)
-    this._origins.delete(origin)
-    this._origins.set(origin, list)
-    if (this._origins.size > 100_000) this._origins.delete(this._origins.keys().next().value)
+  _annotateOrigin(blocks, now) {
+    for (const { key } of blocks) {
+      const list = (this._origins.get(key) ?? []).filter((t) => t > now - 86400)
+      list.push(now)
+      this._origins.delete(key)
+      this._origins.set(key, list)
+    }
+    while (this._origins.size > 100_000) this._origins.delete(this._origins.keys().next().value)
   }
 
   _drawPortrait() {
@@ -242,7 +249,7 @@ export class OpenIssuer {
 
   /**
    * `POST /v1/agentes/registro` with `{ registro }`. Order: envelope and shape of the registration (schema, key, signature, clock) -> origin limit
-   * (IPv4 by address, IPv6 by /64 block) -> global ceiling of pending ones -> free @ (here and on the relay) -> new key -> write.
+   * (IPv4 by address, IPv6 by its /64, /56 and /48 blocks) -> global ceiling of pending ones -> free @ (here and on the relay) -> new key -> write.
    * Only an accepted registration counts toward the origin limit.
    */
   registrar(body, { origem: origin = 'desconhecida' } = {}) {
@@ -252,7 +259,7 @@ export class OpenIssuer {
       if (!r.ok) throw r.erro
       const g = r.registro
       this._sweep(now)
-      const key = originKey(origin)
+      const key = originBlocks(origin)
       const wait = this._originWait(key, now)
       if (wait > 0) throw new ProtocolError('limite_de_taxa', { detalhe: 'Registros demais desta origem.', retryAfterS: wait })
       const pending = this._one("SELECT COUNT(*) AS n FROM agentes WHERE situacao = 'aguardando-dono'").n

@@ -94,6 +94,9 @@ test('the hosted relay fails closed: without an issuer, with a bad key, without 
     // 0.6.0: the outside-agent seal only counts for an issuer the relay already trusts
     [{ RELAY_ISSUERS: issuer, RELAY_REPORT_SECRET: secret, RELAY_AGENT_ISSUERS: 'curta' }, /RELAY_AGENT_ISSUERS/],
     [{ RELAY_ISSUERS: issuer, RELAY_REPORT_SECRET: secret, RELAY_AGENT_ISSUERS: 'Z'.repeat(43) }, /não está em RELAY_ISSUERS/],
+    // an issuer family (key rotation) only joins keys the relay already trusts, two or more
+    [{ RELAY_ISSUERS: issuer, RELAY_REPORT_SECRET: secret, RELAY_ISSUER_FAMILIES: issuer }, /RELAY_ISSUER_FAMILIES/],
+    [{ RELAY_ISSUERS: issuer, RELAY_REPORT_SECRET: secret, RELAY_ISSUER_FAMILIES: `${issuer}+${'Z'.repeat(43)}` }, /RELAY_ISSUER_FAMILIES tem uma chave que não está em RELAY_ISSUERS/],
     [{ RELAY_ISSUERS: issuer, RELAY_REPORT_SECRET: secret, RELAY_CORS_ORIGINS: '*' }, /origem de CORS inválida/],
     [{ RELAY_ISSUERS: issuer, RELAY_REPORT_SECRET: secret, RELAY_BURST_CAPACITY: '0' }, /RELAY_BURST_CAPACITY/],
     [{ RELAY_ISSUERS: issuer, RELAY_REPORT_SECRET: secret, RELAY_BURST_PER_SECOND: 'muito' }, /RELAY_BURST_PER_SECOND/],

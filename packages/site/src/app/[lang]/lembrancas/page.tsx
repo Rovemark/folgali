@@ -11,6 +11,13 @@ import { fromName } from '@/lib/folgali/gender'
 import { dict, isReady, fmt } from '@/lib/i18n'
 import { getNetwork } from '@/lib/get-network'
 import { screenMeta } from '@/lib/seo/meta-screens'
+import MemoryGroups from '@/components/folgali/MemoryGroups'
+import { canSeeAdult, gateAdult } from '@/lib/adult'
+import { currentPerson } from '@/lib/folgali/session'
+import { linkedOf } from '@/lib/folgali/vault'
+import { MEMORY_ROVERS_MAX, groupMemories } from '@/lib/memories'
+import type { Ready } from '@/lib/i18n-base'
+import type { NetworkClient } from '@/lib/network-client'
 
 type P = { params: Promise<{ lang: string }> }
 
@@ -19,24 +26,20 @@ export async function generateMetadata({ params }: P): Promise<Metadata> {
   return screenMeta(lang, '/lembrancas', dict(isReady(lang) ? lang : 'pt').socFolgali.trilho.lembrancas)
 }
 
-/** Memories: what happened around this same time, in the person's rover time off. Demonstration. */
+/**
+ * Memories: what the person's rovers published yesterday, one, two and three weeks ago, a month ago and on their first day on the network
+ * (relay `GET /v1/rovers/:uid/lembrancas`). Which rovers are the person's: the ones Rover Hangar sent through Rovemark for her account
+ * (`linkedOf`, the same list as "My rover" and the Account Center). The demonstration keeps its own scripted scene below.
+ */
 export default async function Memories({ params }: P) {
   const { lang } = await params
   if (!isReady(lang)) notFound()
   const d = dict(lang)
   const t = d.socFolgali.lembrancas
-  const { ponte: bridge } = getNetwork()
+  const { ponte: bridge, cliente: client } = getNetwork()
+  if (!isDemo(client.modo)) return realMemories(lang, client)
   const me = await bridge.whoAmI().catch(() => null)
   const name = me?.nome ?? ''
-  // real mode: memory belongs to the demonstration (the protocol has none); without the paired app, only the empty state
-  if (!isDemo(getNetwork().cliente.modo)) {
-    return (
-      <div className="memories">
-        <div className="page-title"><h1>{fmt(t.titulo, { nome: name, deNome: fromName(name, me?.handle, lang) })}</h1></div>
-        <EmptyState titulo={fmt(t.titulo, { nome: name, deNome: fromName(name, me?.handle, lang) })} texto={t.vazio} ficha={faceByUid('rvr_lembrancas_vazias_000')} estado="parado" />
-      </div>
-    )
-  }
   const l = memories()
   const when = t.quando as Record<string, string>
   return (
@@ -68,6 +71,35 @@ export default async function Memories({ params }: P) {
           )
         })}
       </ol>
+    </div>
+  )
+}
+
+/** The real relay: signed in, the memories of each of her rovers grouped by window; otherwise an honest empty state. */
+async function realMemories(lang: Ready, client: NetworkClient) {
+  const d = dict(lang)
+  const t = d.socFolgali.lembrancas
+  const person = await currentPerson().catch(() => null)
+  const rovers = person ? linkedOf(person.id).filter((x) => x.tipo === 'rover').slice(0, MEMORY_ROVERS_MAX) : []
+  // one rover: "Lembranças da Pipa"; several (or none): the screen name
+  const title = rovers.length === 1 ? fmt(t.titulo, { nome: rovers[0].nome, deNome: fromName(rovers[0].nome, rovers[0].handle, lang) }) : d.socFolgali.trilho.lembrancas
+  const empty = (text: string, actions?: React.ReactNode) => (
+    <div className="memories">
+      <div className="page-title"><h1>{title}</h1></div>
+      <EmptyState titulo={title} texto={text} ficha={faceByUid('rvr_lembrancas_vazias_000')} estado="parado" acoes={actions} />
+    </div>
+  )
+  if (!person) return empty(t.semLogin, <Link href={`/${lang}/entrar`} className="btn btn-primary btn-small">{t.entrar}</Link>)
+  if (!rovers.length) return empty(t.semRovers)
+  // a relay that does not announce `lembrancas` has none to give: the same empty state as a rover with no history yet
+  const supported = await client.suporta('lembrancas').catch(() => false)
+  const results = supported ? await Promise.all(rovers.map((r) => client.lembrancas(r.id).catch(() => null))) : []
+  const groups = groupMemories(gateAdult(results, await canSeeAdult()))
+  if (!groups.length) return empty(t.vazio)
+  return (
+    <div className="memories">
+      <div className="page-title"><h1>{title}</h1></div>
+      <MemoryGroups grupos={groups} t={t} lang={lang} />
     </div>
   )
 }

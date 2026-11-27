@@ -55,3 +55,49 @@ test('at the issuer: three registrations from different addresses of the same /6
   assert.equal(await codeAsync(() => register(m, '::ffff:198.51.100.1')), 'limite_de_taxa', 'the mapped IPv4 counts together with the IPv4')
   assert.equal((await register(m, '198.51.100.2')).situacao, 'aguardando-dono', 'a neighboring IPv4 is another origin')
 })
+
+// F-06 of the security review: counting IPv6 only by /64 let one customer holding a /48 (a free tunnel hands one) register from 65 536 blocks,
+// and about 500 of them filled the global ceiling of pending registrations (OPEN_ISSUER.pendingMax) for everybody. The /56 and the /48 count too.
+test('originBlocks: IPv6 counts in its /64, /56 and /48; IPv4 and anything else only in their own key', async () => {
+  const { originBlocks } = await import('../../packages/open-issuer/src/origin.js')
+  assert.deepEqual(originBlocks('2001:db8:1:2a3b::9'), [
+    { key: '2001:db8:1:2a3b::/64', prefix: 64 }, { key: '2001:db8:1:2a00::/56', prefix: 56 }, { key: '2001:db8:1::/48', prefix: 48 }
+  ])
+  assert.equal(originBlocks('[2001:DB8:1:2AFF::1]')[1].key, '2001:db8:1:2a00::/56')
+  assert.notEqual(originBlocks('2001:db8:1:2a3b::9')[1].key, originBlocks('2001:db8:1:2b00::9')[1].key)
+  assert.equal(originBlocks('2001:db8:1:ffff::1')[2].key, originBlocks('2001:db8:1::1')[2].key)
+  assert.notEqual(originBlocks('2001:db8:1::1')[2].key, originBlocks('2001:db8:2::1')[2].key)
+  assert.deepEqual(originBlocks('203.0.113.5'), [{ key: '203.0.113.5', prefix: 32 }])
+  assert.deepEqual(originBlocks('::ffff:203.0.113.5'), [{ key: '203.0.113.5', prefix: 32 }])
+  assert.deepEqual(originBlocks('desconhecida'), [{ key: 'desconhecida', prefix: 32 }])
+})
+
+test('F-06: many /64 blocks of one /48 share its ceiling, and of one /56 share a smaller one; another /48 stays free', async () => {
+  const { OPEN_ISSUER } = await import('../../packages/protocol/src/index.js')
+  const m = newWorld({ openIssuer: true })
+  // one registration from each /64 of the same /56: the /56 stops it at its hourly ceiling
+  let ok = 0
+  for (let i = 0; i < 256; i++) {
+    if ((await codeAsync(() => register(m, `2001:db8:7:${(0x1100 + i).toString(16)}::1`))) !== 'ok') break
+    ok++
+  }
+  assert.equal(ok, OPEN_ISSUER.perBlock[56].perHour)
+  // one from each /56 of the same /48: the /48 stops it at its hourly ceiling (counting the ones above)
+  for (let i = 0; i < 256; i++) {
+    if ((await codeAsync(() => register(m, `2001:db8:7:${(0x2000 + i * 256).toString(16)}::1`))) !== 'ok') break
+    ok++
+  }
+  assert.equal(ok, OPEN_ISSUER.perBlock[48].perHour)
+  assert.equal(await codeAsync(() => register(m, '2001:db8:7:ffff::1')), 'limite_de_taxa')
+  assert.equal(await codeAsync(() => register(m, '2001:db8:8:1::1')), 'ok')
+  // after the hour, the day ceiling of the /48 is what bounds its pending registrations (they wait up to 24 hours for the owner)
+  let day = ok
+  for (let h = 1; h < 24 && day < OPEN_ISSUER.perBlock[48].perDay + 5; h++) {
+    m.advance(3600)
+    for (let i = 0; i < 256; i++) {
+      if ((await codeAsync(() => register(m, `2001:db8:7:${(i * 256 + h).toString(16)}::1`))) !== 'ok') break
+      day++
+    }
+  }
+  assert.equal(day, OPEN_ISSUER.perBlock[48].perDay)
+})

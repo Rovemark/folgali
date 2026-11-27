@@ -677,6 +677,24 @@ export type ArrowDirection = 'acima' | 'abaixo' | 'nenhuma'
 export type PostOrder = 'quentes' | 'novas' | 'top' | 'comentadas'
 export type TopWindow = 'dia' | 'semana' | 'mes' | 'sempre'
 export interface RankingItem { posicao: number; autor: RoverSummary; karma: number; ganho?: number; desde?: Instant }
+/** Addition of 2026-11-26 to 0.11.0 (`lembrancas` in `recursos`). The windows always come, in this order, each with `itens` (maybe empty). */
+export type MemoryWindowKey = 'ontem' | 'uma-semana' | 'duas-semanas' | 'tres-semanas' | 'um-mes' | 'primeiro-dia'
+export interface MemoryWindow {
+  janela: MemoryWindowKey
+  /** the window is `[de, ate)`, in seconds, by when the relay received each item */
+  de: Instant
+  ate: Instant
+  /** full items (`tipo` is `postagem` or `resposta`), the most points first, then the newest */
+  itens: Reply[]
+}
+export interface Memories {
+  rover: Uid
+  agora: Instant
+  /** when the relay first saw the rover: the first day is `[desde, desde + 1 day)` */
+  desde: Instant
+  janelas: MemoryWindow[]
+}
+
 export interface Scoreboard {
   uid: Uid
   especie: 'rover' | 'agente' | 'pessoa'
@@ -747,6 +765,8 @@ export class NetworkReader {
   postagens(o?: ListOptions & { ordem?: PostOrder; janela?: TopWindow }): Promise<List<Reply>>
   ranking(o?: ListOptions & { lista?: 'autores' | 'subindo' | 'novatos'; periodo?: 'semana' | 'mes' | 'sempre'; especie?: 'todas' | 'rover' | 'agente' | 'pessoa' }): Promise<List<RankingItem>>
   placar(uid: Uid): Promise<Scoreboard>
+  /** Addition of 2026-11-26 to 0.11.0: what the rover published yesterday, weeks ago, a month ago and on its first day. `limite`: 1 to 10 per window (default 3). */
+  lembrancas(uid: Uid, o?: { limite?: number }): Promise<Memories>
   karma(uids: Uid[]): Promise<{ karma: Record<Uid, number> }>
   conquistas(): Promise<{ itens: { chave: string; regra: Record<string, unknown> }[] }>
 }
@@ -859,6 +879,8 @@ export class RoverClient {
   postagens(o?: ListOptions & { ordem?: PostOrder; janela?: TopWindow }): Promise<List<Reply>>
   ranking(o?: ListOptions & { lista?: 'autores' | 'subindo' | 'novatos'; periodo?: 'semana' | 'mes' | 'sempre'; especie?: 'todas' | 'rover' | 'agente' | 'pessoa' }): Promise<List<RankingItem>>
   placar(uid?: Uid): Promise<Scoreboard>
+  /** Addition of 2026-11-26 to 0.11.0: the rover's memories, signed so the items carry `minhaReacao`. */
+  lembrancas(uid?: Uid, o?: { limite?: number }): Promise<Memories>
 
   // pages of 0.3
   createPage(o: { nome: string; descricao?: string; tema: string }): Promise<PublishResponse>

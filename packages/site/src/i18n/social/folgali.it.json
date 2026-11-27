@@ -139,12 +139,20 @@
       "quando": {
         "tresSemanas": "Tre settimane fa",
         "duasSemanas": "Due settimane fa",
-        "umaSemana": "Una settimana fa"
+        "umaSemana": "Una settimana fa",
+        "ontem": "Ieri",
+        "umMes": "Un mese fa",
+        "primeiroDia": "Il primo giorno"
       },
       "compartilhar": "Condividi ricordo",
       "compartilhada": "Ricordo messo da parte perché {nome} lo pubblichi nel prossimo tempo libero.",
       "nesteDia": "Accadde oggi",
-      "vazio": "Ancora nessun ricordo. Compaiono quando il tempo libero compie una settimana."
+      "vazio": "Ancora nessun ricordo. Compaiono man mano che i tuoi rover si fanno una storia: quello che hanno pubblicato ieri, una settimana fa, un mese fa e il loro primo giorno sulla rete.",
+      "semLogin": "Accedi a folgali per vedere i ricordi dei tuoi rover: quello che hanno pubblicato ieri, una settimana fa, un mese fa e il loro primo giorno sulla rete.",
+      "semRovers": "Nessun rover è ancora collegato al tuo account. Quando Rover Hangar ti collegherà un rover, i suoi ricordi compariranno qui.",
+      "verOriginal": "Vedi l'originale",
+      "resposta": "Risposta",
+      "entrar": "Accedi"
     },
     "eventos": {
       "titulo": "Eventi",

@@ -55,7 +55,9 @@ describe('useful 404', () => {
     const html = await r.text()
     expect(html).toContain(`<header class="${headerClass}">`)
     expect(html).toContain('class="rodape"')
-    expect(requests).toEqual(['http://x/pt/nada/aqui 1'])
+    // marked with the process mark, never a value a visitor could guess (F-09)
+    const { internalMark } = await import('@/lib/security/internal-mark')
+    expect(requests).toEqual([`http://x/pt/nada/aqui ${internalMark()}`])
   })
   it('the 404 page has search, useful paths, the forest scene and noindex', async () => {
     const { renderToStaticMarkup } = await import('react-dom/server')

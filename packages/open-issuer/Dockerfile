@@ -5,7 +5,8 @@
 # - No secret in the image: ISSUER_KEY, ISSUER_SECRET, ISSUER_OWNERS, ISSUER_LINK and ISSUER_RELAY arrive as environment variables.
 # - No VOLUME declared: whoever starts the container mounts a NAMED volume at /dados (database) and another at /backups.
 # - The code is owned by root and read-only; the process only writes to /dados and /backups.
-FROM node:22-alpine
+# The base image is pinned by digest (node 22.23.5 on Alpine, 2026-11-11); update it on purpose, in its own reviewed change.
+FROM node:22-alpine@sha256:1314fb30ec37592d5845e5a160d522c0e680972aa534549940b8d73bde88481a
 ENV NODE_ENV=production \
     NODE_OPTIONS="--disable-warning=ExperimentalWarning --max-old-space-size=192" \
     ISSUER_DB=/dados/emissor-aberto.sqlite \

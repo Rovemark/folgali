@@ -27,8 +27,9 @@ import { Events } from './events.js'
 import { DiskStorage } from './storage.js'
 import { join } from 'node:path'
 import { Social } from './social.js'
-import { rowKind, requireSameKind, readPeopleIssuers, authorRates, verifyAttachedAttestation } from './people.js'
+import { rowKind, requireSameKind, readPeopleIssuers, readIssuerFamilies, authorRates, verifyAttachedAttestation } from './people.js'
 import { checkLeak, readLeakFilter } from './leak.js'
+import { originKey } from '../../protocol/src/origin.js'
 
 const any = () => null
 const ENVELOPE_SCHEMA = closedObject({ objeto: any, atestado: optional(any), aprovacao: optional(any), autorizacao: optional(any) })
@@ -70,8 +71,10 @@ export class Relay {
    *   person attestation, and they sign only that. Each one must also be among the provider's trusted issuers
    * @param {boolean} [o.filtroDeVazamento]  0.7.0: on by default; `false` turns it off (a third-party relay that filters another way)
    * @param {(e: { vazamento: string, objeto: string }) => void} [o.aoRecusarVazamento]  0.7.0: the operator's log; only the types
+   * @param {string[][]} [o.familiasDeEmissores]  keys the operator declared as the SAME issuer (key rotation: current and previous key).
+   *   A uid stays with the issuer that first brought it to this relay; only another key of the same family may re-attest it
    */
-  constructor({ store, provedor: provider, reportSecret, relogio: clock = () => Math.floor(Date.now() / 1000), retencaoDenunciasDias: reportRetentionDays = 180, rates = {}, maxFollowing = LIMITS.seguidosPorRover, aceitarAutorizacaoPermanente: acceptStandingAuthorization = true, semFatorDeIdade: withoutAgeFactor = false, midia: media = null, mensagens: messages = false, emissoresDeAgentes: agentIssuers = [], emissoresDePessoas: personIssuers = [], emissoresVerificados: verifiedIssuers = [], filtroDeVazamento: leakFilter, aoRecusarVazamento: onLeakRefused = () => {}, galleryBase = GALLERY_BASE }) {
+  constructor({ store, provedor: provider, reportSecret, relogio: clock = () => Math.floor(Date.now() / 1000), retencaoDenunciasDias: reportRetentionDays = 180, rates = {}, maxFollowing = LIMITS.seguidosPorRover, aceitarAutorizacaoPermanente: acceptStandingAuthorization = true, semFatorDeIdade: withoutAgeFactor = false, midia: media = null, mensagens: messages = false, emissoresDeAgentes: agentIssuers = [], emissoresDePessoas: personIssuers = [], emissoresVerificados: verifiedIssuers = [], filtroDeVazamento: leakFilter, aoRecusarVazamento: onLeakRefused = () => {}, familiasDeEmissores: issuerFamilies = [], galleryBase = GALLERY_BASE }) {
     if (!Buffer.isBuffer(reportSecret) || reportSecret.length < 32) throw new Error('segredoDeDenuncias precisa ter pelo menos 32 bytes')
     this.store = store
     this.provedor = provider
@@ -101,6 +104,8 @@ export class Relay {
       verifiedIssuer: rates.verifiedIssuer ?? RATE_PER_VERIFIED_ISSUER
     }
     this._revocationsVersion = null
+    // visitor reports per connection origin in the last hour (memory only, like the burst limit)
+    this._visitorOrigins = new Map()
     // 0.6.0: the open issuers of outside agents. They are separate services: the relay only knows the keys (for the badge) and trusts them
     // through the issuer list and the revoked list it reads from each one, like any issuer.
     if (!Array.isArray(agentIssuers) || agentIssuers.some((e) => typeof e !== 'string' || !/^[A-Za-z0-9_-]{43}$/.test(e))) {
@@ -114,6 +119,7 @@ export class Relay {
     this.emissoresVerificados = [...new Set(verifiedIssuers)]
     // 0.7.0 (proposal 0009): who attests people, the leak filter and the log of what it refused
     this.emissoresDePessoas = readPeopleIssuers(personIssuers)
+    this._familyOf = readIssuerFamilies(issuerFamilies)
     this.filtroDeVazamento = readLeakFilter(leakFilter)
     this.aoRecusarVazamento = onLeakRefused
     this.social = new Social(this)
@@ -237,6 +243,11 @@ export class Relay {
         }
         if (this.store.revogado(a.emissor, a.uid, a.emitidoEm)) throw new ProtocolError('atestado_revogado')
         requireSameKind(stored, species)
+        // A uid belongs to the issuer that first brought it here. Another trusted issuer must not take over the account (key, approval key,
+        // handle), so only the same issuer, or another key the operator declared as the same issuer (rotation), re-attests it.
+        if (stored && !this.sameIssuer(stored.emissor, a.emissor)) {
+          throw new ProtocolError('atestado_invalido', { campo: 'atestado.emissor', detalhe: 'Este uid é de outro emissor neste relé.' })
+        }
         if (stored && a.emitidoEm <= stored.atestado_emitido_em) throw new ProtocolError('atestado_antigo', { campo: 'atestado.emitidoEm' })
         // Only checked here; the handle changes hands inside the write transaction (`_takeHandle`), so a refusal later on leaves it where it was
         this._handleHolder(a)
@@ -255,6 +266,13 @@ export class Relay {
     }
   }
 
+  /** Are the two keys the same issuer on this relay: the same key, or two keys of one family declared by the operator (rotation)? */
+  sameIssuer(a, b) {
+    if (a === b) return true
+    const f = this._familyOf.get(a)
+    return f !== undefined && f === this._familyOf.get(b)
+  }
+
   /**
    * Who holds the handle of the new attestation `a` on this relay. Null when nobody does, when it is the same uid, or when the holder
    * may lose it: a rover of the SAME issuer (the issuer is the authority over its own namespace) whose stored attestation the relay counts
@@ -264,7 +282,7 @@ export class Relay {
   _handleHolder(a) {
     const holder = this.store.roverByHandle(a.handle)
     if (!holder || holder.uid === a.uid) return null
-    if (holder.emissor === a.emissor && this.store.revogado(holder.emissor, holder.uid, holder.atestado_emitido_em)) return holder
+    if (this.sameIssuer(holder.emissor, a.emissor) && this.store.revogado(holder.emissor, holder.uid, holder.atestado_emitido_em)) return holder
     throw new ProtocolError('handle_em_uso', { campo: 'atestado.handle' })
   }
 
@@ -601,17 +619,25 @@ export class Relay {
   /**
    * Report by a visitor, with no account (VISITOR_REPORT). The same response whether the target exists or not, so it does not become a probe; only a target that
    * exists and that any visitor can read goes into the log. Nothing about the reporter is stored: the pseudonym is random and serves
-   * only so the row does not collide with another.
+   * only so the row does not collide with another. `origem` (the connection origin) only counts, in memory, toward the per-origin ceiling.
    */
-  visitorReport(targetId, body) {
+  visitorReport(targetId, body, { origem: origin = 'desconhecida' } = {}) {
     this._sync()
     const now = this.relogio()
     if (!isPlainObject(body) || Object.keys(body).some((k) => !['motivo', 'alvo'].includes(k))) throw new ProtocolError('esquema', { campo: 'corpo', detalhe: 'O corpo é só { motivo } (e, se vier, o mesmo alvo do caminho).' })
     if (!VISITOR_REPORT.motivos.includes(body.motivo)) throw new ProtocolError('esquema', { campo: 'motivo', detalhe: `O motivo precisa ser um destes: ${VISITOR_REPORT.motivos.join(', ')}.` })
     if (typeof targetId !== 'string' || !ID_RE.test(targetId) || (body.alvo !== undefined && body.alvo !== targetId)) throw new ProtocolError('esquema', { campo: 'alvo' })
     const a = this.store
+    // per origin first (memory only, never on disk), so one address cannot use up the relay's hour for everybody
+    const key = originKey(origin)
+    const recent = (this._visitorOrigins.get(key) ?? []).filter((t) => t > now - 3600)
+    if (recent.length >= VISITOR_REPORT.perOriginPerHour) throw new ProtocolError('limite_de_taxa', { retryAfterS: Math.max(1, recent[0] + 3600 - now) })
     const atTime = a.um("SELECT COUNT(*) AS n FROM denuncias WHERE pseudonimo LIKE 'visitante:%' AND criado_em > :desde", { desde: now - 3600 }).n
     if (atTime >= VISITOR_REPORT.perHourInRelay) throw new ProtocolError('limite_de_taxa', { retryAfterS: 3600 })
+    recent.push(now)
+    this._visitorOrigins.delete(key)
+    this._visitorOrigins.set(key, recent)
+    while (this._visitorOrigins.size > 100_000) this._visitorOrigins.delete(this._visitorOrigins.keys().next().value)
     const target = a.objeto(targetId)
     if (target && target.removido_em === null && this.social.readableSpace(target, null)) {
       const ofTarget = a.um("SELECT COUNT(*) AS n FROM denuncias WHERE alvo = :alvo AND pseudonimo LIKE 'visitante:%' AND criado_em > :desde", { alvo: target.id, desde: now - 86400 }).n

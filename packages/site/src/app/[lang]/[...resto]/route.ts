@@ -1,7 +1,9 @@
 import { dict, isReady, META, DEFAULT, type Ready } from '@/lib/i18n'
 import { labelOf } from '@/lib/i18n-extra'
 import { ROUTES } from '@/lib/seo/routes'
-import { REQUEST_404 } from '@/proxy'
+import { NONCE_404, REQUEST_404 } from '@/proxy'
+import { NONCE_HEADER, NONCE_RE } from '@/lib/security/csp'
+import { internalMark } from '@/lib/security/internal-mark'
 
 // An address that does not exist inside a valid language: answers a real 404 (the app's pages go through a loading skeleton
 // that has already sent status 200 when they find there is nothing there). The body is the 404 page with the whole site around it (header, menu,
@@ -53,7 +55,11 @@ async function fullPage(req: Request, lang: string): Promise<string | null> {
     // the SAME address, marked: the proxy rewrites it to /{lang}/endereco-inexistente, so the page renders with the address the
     // browser shows (the language links of the footer and the router agree on the server and in the browser)
     const u = new URL(req.url)
-    const r = await fetch(`${origin}${u.pathname}${u.search}`, { headers: { accept: 'text/html', 'accept-language': req.headers.get('accept-language') ?? '', [REQUEST_404]: '1' }, redirect: 'error', cache: 'no-store', signal: AbortSignal.timeout(5000) })
+    // the nonce of the policy the proxy put on THIS response goes along, so the scripts of the page it returns may run (src/lib/security/csp.ts)
+    const nonce = req.headers.get(NONCE_HEADER)
+    const headers: Record<string, string> = { accept: 'text/html', 'accept-language': req.headers.get('accept-language') ?? '', [REQUEST_404]: internalMark() }
+    if (nonce !== null && NONCE_RE.test(nonce)) headers[NONCE_404] = nonce
+    const r = await fetch(`${origin}${u.pathname}${u.search}`, { headers, redirect: 'error', cache: 'no-store', signal: AbortSignal.timeout(5000) })
     const html = await r.text()
     // the mark is the site header of src/app/[lang]/layout.tsx; test/seo/not-found.test.ts reads the class from that file, so a rename there fails the test
     return /^<!DOCTYPE html>/i.test(html) && html.includes('<header class="top"') ? html : null

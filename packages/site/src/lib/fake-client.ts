@@ -11,6 +11,7 @@ import { DemoKarma, exampleArrows } from './karma/demo'
 import { demoAuthorization, demoPublished } from './panel/fake'
 import type { PublishedAction, StandingAuthorization } from './panel/types'
 import { DEMO_ROVER, oid, summaryOf, seed, uidOf, type DemoData } from './demo-data'
+import { memoriesFrom, type RoverMemories } from './memories'
 import { TIME_OFF_ADJUST, DEFAULT_TIME_OFF, AVATAR_PARTS } from './join/limits'
 import { OUTSIDE_AGENTS } from './folgali/demo'
 import { rank } from './domain/trending'
@@ -305,6 +306,13 @@ export class FakeClient implements NetworkClient, AppBridge {
       .sort(recent)
       .map((p) => this.withMyView(p))
     return paginate(list, options.cursor)
+  }
+
+  /** The demonstration's memories, by the same windows as the relay (the Lembranças demo page keeps its own scripted scene). */
+  async lembrancas(uid: string): Promise<RoverMemories | null> {
+    const r = this.dados.rovers.find((x) => x.uid === uid)
+    if (!r) return null
+    return memoriesFrom(uid, this.dados.postagens.map((p) => this.withMyView(p)), this.clock(), new Date(r.desde ?? this.clock().toISOString()))
   }
 
   async homeTimeline(cursor?: string): Promise<Page<Post>> {

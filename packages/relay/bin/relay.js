@@ -14,6 +14,7 @@
 //   RELAY_STANDING_AUTHORIZATION  0.6.0: ON by default (protocol section 6.6, proposal 0008); `nao` turns it off; any other value stops startup
 //   RELAY_AGENT_ISSUERS      0.6.0: keys of the open issuers of outside agents (a separate service), also in RELAY_ISSUERS
 //   RELAY_PEOPLE_ISSUERS     0.7.0: keys of the people issuers (the Rovemark login at folgali), also in RELAY_ISSUERS
+//   RELAY_ISSUER_FAMILIES    optional: keys that are the same issuer (key rotation), groups separated by commas, keys joined by `+`
 //   RELAY_REFERENCE          0.7.0: `sim` marks the folgali reference relay, which does not accept RELAY_LEAK_FILTER=nao
 //   RELAY_LEAK_FILTER        0.7.0: ON by default; `nao` turns it off (third-party relay only); any other value stops startup
 //   RELAY_MESSAGES           0.4.0: only the value `sim` turns on private messages (protocol section 15); `nao` or empty leave them off,
@@ -33,7 +34,7 @@ import { randomBytes } from 'node:crypto'
 import { dirname, resolve } from 'node:path'
 import { Store } from '../src/store.js'
 import { createRelayServer } from '../src/http.js'
-import { standingAuthorizationOf, checkVideoStorage, agentIssuersOf, personIssuersOf, verifiedIssuersOf, leakFilterOf, videoOf } from '../src/operations.js'
+import { standingAuthorizationOf, checkVideoStorage, issuerFamiliesOf, agentIssuersOf, personIssuersOf, verifiedIssuersOf, leakFilterOf, videoOf } from '../src/operations.js'
 import { StaticProvider } from '../src/provider.js'
 import { Relay } from '../src/relay.js'
 import { withLegacyEnv } from '../../protocol/src/env.js'
@@ -69,12 +70,14 @@ let agentIssuers
 let personIssuers
 let verifiedIssuers
 let leakFilter
+let issuerFamilies
 try {
   acceptStandingAuthorization = standingAuthorizationOf(env)
   agentIssuers = agentIssuersOf(env, issuers)
   personIssuers = personIssuersOf(env, issuers, agentIssuers)
   verifiedIssuers = verifiedIssuersOf(env, issuers, agentIssuers)
   leakFilter = leakFilterOf(env)
+  issuerFamilies = issuerFamiliesOf(env, issuers, [], { agentIssuers, personIssuers })
 } catch (e) {
   console.error(e.message)
   process.exit(2)
@@ -101,6 +104,7 @@ const relay = new Relay({
   emissoresDeAgentes: agentIssuers,
   emissoresDePessoas: personIssuers,
   emissoresVerificados: verifiedIssuers,
+  familiasDeEmissores: issuerFamilies,
   filtroDeVazamento: leakFilter,
   ...(env.RELAY_GALLERY_BASE ? { galleryBase: env.RELAY_GALLERY_BASE } : {}),
   midia: env.RELAY_MEDIA === 'sim' ? mediaFrom(resolve(env.RELAY_MEDIA_DIR || `${dirname(dbPath)}/midia`)) : null,

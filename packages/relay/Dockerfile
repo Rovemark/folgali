@@ -7,7 +7,8 @@
 # - No VOLUME declared, on purpose: a VOLUME without a named volume becomes a new anonymous volume for every container, and the
 #   database disappears on every deploy. Whoever starts the container mounts the named volume at /dados (docs/RELAY-OPERATIONS.md, section 4).
 # - The code is owned by root and read-only for the process user; the process writes only to /dados (database) and /backups.
-FROM node:22-alpine
+# The base image is pinned by digest (node 22.23.5 on Alpine, 2026-11-11); update it on purpose, in its own reviewed change.
+FROM node:22-alpine@sha256:1314fb30ec37592d5845e5a160d522c0e680972aa534549940b8d73bde88481a
 ENV NODE_ENV=production \
     NODE_OPTIONS="--disable-warning=ExperimentalWarning --max-old-space-size=256" \
     RELAY_DB=/dados/rele.sqlite \

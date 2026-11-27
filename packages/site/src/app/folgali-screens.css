@@ -266,6 +266,11 @@
 .mem-item { position: relative; display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 14px; align-items: center; padding: 8px; }
 .mem-item::before { content: ''; position: absolute; inset-inline-start: -24px; top: 50%; width: 14px; height: 14px; translate: 0 -50%; border-radius: 50%; background: var(--superficie); border: 3px solid var(--acao); }
 .mem-mini { border-radius: 12px; aspect-ratio: 4 / 3; }
+/* the real relay: the rover's portrait in the photo column, the text, who and when, the link to the original */
+.mem-group { display: grid; gap: 12px; }
+.mem-real { grid-template-columns: 64px minmax(0, 1fr); align-items: start; padding: 12px 14px; }
+.mem-real .mem-body { display: grid; gap: 4px; min-width: 0; }
+.mem-real .mem-title { font-size: 17px; overflow-wrap: anywhere; }
 
 /* ---------- perfil ---------- */
 /* The header and the two columns follow the width of the CARD, not of the window: the side rail and the right column change how

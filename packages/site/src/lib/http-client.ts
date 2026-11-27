@@ -12,6 +12,7 @@ import { isObjectId, isUid } from './domain/ids'
 import { HASH_RE, IMAGE_LIMITS, MIME_TYPE, type ImageFormat } from './images'
 import { RANGE_RE, VIDEO_LIMITS, VIDEO_MIME_TYPE, type VideoFormat, type VideoResponse } from './videos'
 import { sanitizePost } from './sanitize'
+import { sanitizeMemories, type RoverMemories } from './memories'
 import { sanitizeKarma, sanitizeScoreboard, sanitizeRanking } from './karma/sanitize'
 import { RANKING_LISTS, type PostOrder, type RankingItem, type RankingList, type RankingPeriod, type Scoreboard, type SpeciesFilter, type TopWindow } from './karma/types'
 import * as S from './social/sanitize-social'
@@ -294,6 +295,20 @@ export class HttpClient extends HttpSocialRead implements NetworkClient {
     if (!isUid(uid)) return null
     try {
       return S.outsideAgent(await this.call('GET', `/v1/agentes/${uid}`))
+    } catch (e) {
+      if (e instanceof NetworkError && e.codigo === 'nao-encontrado') return null
+      throw e
+    }
+  }
+
+  /**
+   * Addition of 2026-11-26 to 0.11.0 (`lembrancas`): the rover's memories, a public read (it goes into the short cache). Each item becomes a
+   * post through the same full-item reader as the lists; 404 (unknown or gone rover, or an older relay without the route) becomes `null`.
+   */
+  async lembrancas(uid: string): Promise<RoverMemories | null> {
+    if (!isUid(uid)) return null
+    try {
+      return sanitizeMemories(await this.call('GET', `/v1/rovers/${uid}/lembrancas`), (i) => this.postFromItem(i))
     } catch (e) {
       if (e instanceof NetworkError && e.codigo === 'nao-encontrado') return null
       throw e

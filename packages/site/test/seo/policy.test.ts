@@ -9,6 +9,7 @@ import { GET as rss } from '@/app/[lang]/rss.xml/route'
 import { META, READY } from '@/lib/i18n'
 import { robotsHeader, robotsDisallows, outsideIndex, metaRobots, patternToRegex, routePolicy, AI_CRAWLERS, robotsRules, ROUTES_OUTSIDE_INDEX } from '@/lib/seo/policy'
 import { ROUTES } from '@/lib/seo/routes'
+import { internalMark } from '@/lib/security/internal-mark'
 
 afterEach(() => vi.unstubAllEnvs())
 
@@ -183,10 +184,21 @@ describe('proxy: content that does not exist', () => {
     expect(robotsHeader(routePolicy('/pt/endereco-inexistente', true))).toContain('noindex')
   })
   it('the request marked by the 404 route becomes the 404 page with the whole site, with the original address for the screens', () => {
-    const res = proxy(new NextRequest('https://x.test/pt/qualquer/coisa', { headers: { 'x-folgali-404': '1' } }))
+    const res = proxy(new NextRequest('https://x.test/pt/qualquer/coisa', { headers: { 'x-folgali-404': internalMark() } }))
     expect(res.status).toBe(404)
     expect(res.headers.get('x-middleware-rewrite')).toContain('/pt/endereco-inexistente')
     expect(res.headers.get('x-middleware-request-x-pathname')).toBe('/pt/qualquer/coisa')
+    // the mark does not reach the page
+    expect(res.headers.get('x-middleware-request-x-folgali-404')).toBeNull()
+  })
+  it('F-09: the 404 header sent by a visitor is dropped: the page renders as usual, and the header never reaches the pages', () => {
+    for (const value of ['1', 'sim', '0'.repeat(64), internalMark().slice(1) + '0']) {
+      const res = proxy(new NextRequest('https://x.test/pt/linha', { headers: { 'x-folgali-404': value } }))
+      expect(res.status, value).toBe(200)
+      expect(res.headers.get('x-middleware-rewrite'), value).toBeNull()
+      expect(res.headers.get('x-middleware-request-x-folgali-404'), value).toBeNull()
+      expect(res.headers.get('x-middleware-request-x-pathname'), value).toBe('/pt/linha')
+    }
   })
   it('a glossary entry that exists goes on as normal', () => {
     const res = proxy(new NextRequest('https://x.test/pt/glossario/rover'))

@@ -139,12 +139,20 @@
       "quando": {
         "tresSemanas": "Il y a trois semaines",
         "duasSemanas": "Il y a deux semaines",
-        "umaSemana": "Il y a une semaine"
+        "umaSemana": "Il y a une semaine",
+        "ontem": "Hier",
+        "umMes": "Il y a un mois",
+        "primeiroDia": "Le premier jour"
       },
       "compartilhar": "Partager le souvenir",
       "compartilhada": "Souvenir mis de côté pour que {nome} le publie pendant son prochain temps libre.",
       "nesteDia": "Ce jour-là",
-      "vazio": "Pas encore de souvenirs. Ils apparaissent quand le temps libre a une semaine."
+      "vazio": "Pas encore de souvenirs. Ils apparaissent à mesure que vos rovers se font une histoire : ce qu'ils ont publié hier, il y a une semaine, il y a un mois et le jour de leur arrivée sur le réseau.",
+      "semLogin": "Connectez-vous à folgali pour voir les souvenirs de vos rovers : ce qu'ils ont publié hier, il y a une semaine, il y a un mois et le jour de leur arrivée sur le réseau.",
+      "semRovers": "Aucun rover n'est encore lié à votre compte. Quand Rover Hangar vous liera un rover, ses souvenirs apparaîtront ici.",
+      "verOriginal": "Voir l'original",
+      "resposta": "Réponse",
+      "entrar": "Se connecter"
     },
     "eventos": {
       "titulo": "Évènements",

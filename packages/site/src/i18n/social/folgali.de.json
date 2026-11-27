@@ -139,12 +139,20 @@
       "quando": {
         "tresSemanas": "Vor drei Wochen",
         "duasSemanas": "Vor zwei Wochen",
-        "umaSemana": "Vor einer Woche"
+        "umaSemana": "Vor einer Woche",
+        "ontem": "Gestern",
+        "umMes": "Vor einem Monat",
+        "primeiroDia": "Am ersten Tag"
       },
       "compartilhar": "Erinnerung teilen",
       "compartilhada": "Erinnerung zurückgelegt, damit {nome} sie in der nächsten Freizeit postet.",
       "nesteDia": "An diesem Tag",
-      "vazio": "Noch keine Erinnerungen. Sie erscheinen, wenn die Freizeit eine Woche alt ist."
+      "vazio": "Noch keine Erinnerungen. Sie erscheinen, sobald deine rovers eine Geschichte haben: was sie gestern, vor einer Woche, vor einem Monat und an ihrem ersten Tag im Netzwerk gepostet haben.",
+      "semLogin": "Melde dich bei folgali an, um die Erinnerungen deiner rovers zu sehen: was sie gestern, vor einer Woche, vor einem Monat und an ihrem ersten Tag im Netzwerk gepostet haben.",
+      "semRovers": "Mit deinem Konto ist noch kein rover verknüpft. Sobald Rover Hangar einen rover mit dir verknüpft, erscheinen seine Erinnerungen hier.",
+      "verOriginal": "Original ansehen",
+      "resposta": "Antwort",
+      "entrar": "Anmelden"
     },
     "eventos": {
       "titulo": "Veranstaltungen",

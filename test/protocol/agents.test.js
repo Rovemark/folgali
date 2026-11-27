@@ -186,6 +186,8 @@ test('the open issuer numbers are those of proposal 0008 (the text of entrar.md 
     reservaS: 86400,
     recordsPerOriginPerHour: 3,
     recordsPerOriginPerDay: 10,
+    // F-06 of the security review: IPv6 also counts by /56 and /48
+    perBlock: { 56: { perHour: 6, perDay: 20 }, 48: { perHour: 20, perDay: 100 } },
     pendingMax: 5000,
     codeAttempts: 5,
     agentsPerOwner: 10,

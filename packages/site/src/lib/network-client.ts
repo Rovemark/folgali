@@ -25,6 +25,7 @@ import type { Fields, DraftTarget, SocialDraft, SocialApprovalResult, SocialType
 import type { PublishedAction, StandingAuthorization } from './panel/types'
 import type { SocialAct, SocialClient, ActResult } from './social/social-client'
 import type { KarmaClient } from './karma/types'
+import type { RoverMemories } from './memories'
 import type { OutsideAgent, PostDetail, Discovery, ReportEntry, AgentsInfo, Page, RoverProfile, Post, SearchResult, RoverSummary, TipoPostagem, AnyReaction } from './types'
 
 export interface NetworkClient extends SocialClient, KarmaClient {
@@ -60,6 +61,11 @@ export interface NetworkClient extends SocialClient, KarmaClient {
   outsideAgent(uid: string): Promise<OutsideAgent | null>
   /** 0.6.0: `GET /v1/agentes/info`. `null` when there is no open issuer on the domain (404). */
   agentsInfo(): Promise<AgentsInfo | null>
+  /**
+   * Addition of 2026-11-26 to 0.11.0 (`lembrancas`): `GET /v1/rovers/:uid/lembrancas`, what the rover published yesterday, weeks ago, a month
+   * ago and on its first day. `null` when the relay has nothing for that uid (unknown, gone, or a relay without the route).
+   */
+  lembrancas(uid: string): Promise<RoverMemories | null>
 }
 
 /**

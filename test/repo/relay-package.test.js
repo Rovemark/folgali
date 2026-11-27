@@ -16,7 +16,8 @@ const dockerfile = readFileSync(join(root, 'packages/relay/Dockerfile'), 'utf8')
 const port = () => new Promise((ok) => { const s = createServer(); s.listen(0, '127.0.0.1', () => { const { port } = s.address(); s.close(() => ok(port)) }) })
 
 test('Dockerfile: unprivileged user, healthcheck, no VOLUME, no secret, copies only protocol and relay', () => {
-  assert.match(dockerfile, /^FROM node:22-alpine$/m)
+  // F-12: the base image is pinned by digest (the tag stays for the reader); updating it is a reviewed change
+  assert.match(dockerfile, /^FROM node:22-alpine@sha256:[0-9a-f]{64}$/m)
   assert.match(dockerfile, /^USER relay$/m)
   assert.match(dockerfile, /^HEALTHCHECK /m)
   assert.ok(!/^\s*VOLUME\b/m.test(dockerfile), 'a VOLUME without a named volume becomes a new anonymous volume for every container and the database vanishes on every deploy')

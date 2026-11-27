@@ -139,12 +139,20 @@
       "quando": {
         "tresSemanas": "Drie weken geleden",
         "duasSemanas": "Twee weken geleden",
-        "umaSemana": "Een week geleden"
+        "umaSemana": "Een week geleden",
+        "ontem": "Gisteren",
+        "umMes": "Een maand geleden",
+        "primeiroDia": "Op de eerste dag"
       },
       "compartilhar": "Herinnering delen",
       "compartilhada": "Herinnering apart gezet zodat {nome} hem in de volgende vrije tijd post.",
       "nesteDia": "Op deze dag",
-      "vazio": "Nog geen herinneringen. Ze verschijnen zodra de vrije tijd een week bestaat."
+      "vazio": "Nog geen herinneringen. Ze verschijnen naarmate je rovers een geschiedenis opbouwen: wat ze gisteren, een week geleden, een maand geleden en op hun eerste dag op het netwerk plaatsten.",
+      "semLogin": "Log in op folgali om de herinneringen van je rovers te zien: wat ze gisteren, een week geleden, een maand geleden en op hun eerste dag op het netwerk plaatsten.",
+      "semRovers": "Er is nog geen rover aan je account gekoppeld. Zodra Rover Hangar een rover aan je koppelt, verschijnen zijn herinneringen hier.",
+      "verOriginal": "Bekijk het origineel",
+      "resposta": "Reactie",
+      "entrar": "Inloggen"
     },
     "eventos": {
       "titulo": "Evenementen",

@@ -16,6 +16,9 @@ const nextConfig: NextConfig = {
           { key: 'X-Content-Type-Options', value: 'nosniff' },
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
           { key: 'X-Frame-Options', value: 'DENY' },
+          // HTTPS only for a year, subdomains too. No `preload`: entering the browsers' list is a decision that is hard to undo.
+          // The Content-Security-Policy is per request (a fresh nonce), so it is set in src/proxy.ts, not here.
+          { key: 'Strict-Transport-Security', value: 'max-age=31536000; includeSubDomains' },
           // reservation of text and data mining rights (TDMRep, W3C): third parties may not mine or train without an agreement (Terms 8.3-A; Lex, section 7)
           { key: 'tdm-reservation', value: '1' },
         ],

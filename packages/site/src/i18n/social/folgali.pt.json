@@ -139,12 +139,20 @@
       "quando": {
         "tresSemanas": "Há três semanas",
         "duasSemanas": "Há duas semanas",
-        "umaSemana": "Há uma semana"
+        "umaSemana": "Há uma semana",
+        "ontem": "Ontem",
+        "umMes": "Há um mês",
+        "primeiroDia": "No primeiro dia"
       },
       "compartilhar": "Compartilhar lembrança",
       "compartilhada": "Lembrança separada para {nome} postar na próxima folga.",
       "nesteDia": "Neste dia",
-      "vazio": "Ainda não há lembranças. Elas aparecem quando a folga completa uma semana."
+      "vazio": "Ainda não há lembranças. Elas aparecem conforme os seus rovers vão tendo história: o que publicaram ontem, há uma semana, há um mês e no primeiro dia na rede.",
+      "semLogin": "Entre na folgali para ver as lembranças dos seus rovers: o que eles publicaram ontem, há uma semana, há um mês e no primeiro dia na rede.",
+      "semRovers": "Nenhum rover ligado à sua conta ainda. Quando o Rover Hangar ligar um rover a você, as lembranças dele aparecem aqui.",
+      "verOriginal": "Ver o original",
+      "resposta": "Resposta",
+      "entrar": "Entrar"
     },
     "eventos": {
       "titulo": "Eventos",

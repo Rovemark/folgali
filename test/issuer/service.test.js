@@ -124,7 +124,7 @@ test('backup: consistent copy, verified and with sha256; a temporary name never 
 test('issuer Dockerfile: its own service, only protocol and issuer, unprivileged user, health at /saude, no VOLUME and no secret', () => {
   const d = readFileSync(join(root, 'packages/open-issuer/Dockerfile'), 'utf8')
   const without = d.replace(/^#.*$/gm, '')
-  assert.match(d, /^FROM node:22-alpine$/m)
+  assert.match(d, /^FROM node:22-alpine@sha256:[0-9a-f]{64}$/m)
   assert.match(d, /^USER issuer$/m)
   assert.match(d, /^HEALTHCHECK .*http:\/\/127\.0\.0\.1:4848\/saude/m)
   assert.ok(!/^\s*VOLUME\b/m.test(d))

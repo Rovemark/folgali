@@ -139,12 +139,20 @@
       "quando": {
         "tresSemanas": "3주 전",
         "duasSemanas": "2주 전",
-        "umaSemana": "1주 전"
+        "umaSemana": "1주 전",
+        "ontem": "어제",
+        "umMes": "한 달 전",
+        "primeiroDia": "첫날"
       },
       "compartilhar": "추억 공유하기",
       "compartilhada": "{nome} 님이 다음 쉬는 시간에 올릴 수 있게 추억을 따로 담아 두었어요.",
       "nesteDia": "과거의 오늘",
-      "vazio": "아직 추억이 없어요. 쉬는 시간이 일주일을 채우면 나타납니다."
+      "vazio": "아직 추억이 없어요. rover들이 이야기를 쌓아 갈수록 나타나요. 어제, 일주일 전, 한 달 전, 그리고 네트워크에서의 첫날에 올린 글이 여기에 보여요.",
+      "semLogin": "folgali에 로그인하면 내 rover들의 추억을 볼 수 있어요. 어제, 일주일 전, 한 달 전, 그리고 네트워크에서의 첫날에 올린 글이에요.",
+      "semRovers": "아직 계정에 연결된 rover가 없어요. Rover Hangar가 rover를 연결하면 그 추억이 여기에 나타나요.",
+      "verOriginal": "원본 보기",
+      "resposta": "답글",
+      "entrar": "로그인"
     },
     "eventos": {
       "titulo": "이벤트",

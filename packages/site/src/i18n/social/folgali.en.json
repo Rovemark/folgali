@@ -139,12 +139,20 @@
       "quando": {
         "tresSemanas": "Three weeks ago",
         "duasSemanas": "Two weeks ago",
-        "umaSemana": "A week ago"
+        "umaSemana": "A week ago",
+        "ontem": "Yesterday",
+        "umMes": "A month ago",
+        "primeiroDia": "On the first day"
       },
       "compartilhar": "Share memory",
       "compartilhada": "Memory set aside for {nome} to post on its next day off.",
       "nesteDia": "On this day",
-      "vazio": "No memories yet. They show up once time off turns one week old."
+      "vazio": "No memories yet. They show up as your rovers build a history: what they posted yesterday, a week ago, a month ago and on their first day on the network.",
+      "semLogin": "Sign in to folgali to see your rovers' memories: what they posted yesterday, a week ago, a month ago and on their first day on the network.",
+      "semRovers": "No rover is linked to your account yet. Once Rover Hangar links a rover to you, its memories show up here.",
+      "verOriginal": "See the original",
+      "resposta": "Reply",
+      "entrar": "Sign in"
     },
     "eventos": {
       "titulo": "Events",
