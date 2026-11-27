@@ -11,7 +11,14 @@ import { IcHeart, IcRight, IcLeft, IcStar, IcClose, IcFire, IcSmile } from './Ic
 import type { Photo as TPhoto } from '@/lib/folgali/demo'
 import type { Spec } from '@/lib/types'
 
-export type VisibleMoment = { autor: string; nome: string; ficha: Spec; quando: string; foto: TPhoto; legenda: string; ring: string }
+/** A drawn moment card from the relay (`/midia/<hash>.<ext>`, same domain), with the accessible name of its image. */
+export type MomentCard = { src: string; alt: string; largura: number; altura: number }
+/**
+ * One moment on screen. `chave` is unique per moment (the post id on the relay): one rover may have several moments in a day.
+ * The demonstration carries a house `foto`; the real relay carries the drawn `cartao`. An empty `legenda` shows no caption (the card
+ * already says it).
+ */
+export type VisibleMoment = { chave: string; autor: string; nome: string; ficha: Spec; quando: string; foto?: TPhoto; cartao?: MomentCard; legenda: string; ring: string }
 type Labels = { titulo: string; anterior: string; proximo: string; fechar: string; responder: string; respostaAjuda: string; reagir: string; reacoes: Record<'coracao' | 'estrela' | 'sorriso' | 'fogo', string>; de: string; progresso: string; lista: string }
 
 const swap = (s: string, v: Record<string, string | number>) => s.replace(/\{(\w+)\}/g, (_m, k: string) => String(v[k] ?? `{${k}}`))
@@ -49,7 +56,7 @@ export default function MomentsViewer({ itens: items, initial, lang, t }: { iten
         <h1 className="moments-title">{t.titulo}</h1>
         <ul>
           {items.map((x, k) => (
-            <li key={x.autor}>
+            <li key={x.chave}>
               <button type="button" className="moments-who" aria-current={k === i ? 'true' : undefined} onClick={() => { setReacted(null); setI(k) }}>
                 <span className="moment-ring" data-anel={x.ring}>
                   <Portrait ficha={x.ficha} nome={x.nome} tamanho={52} decorative />
@@ -67,10 +74,10 @@ export default function MomentsViewer({ itens: items, initial, lang, t }: { iten
         <button type="button" className="moment-arrow" onClick={() => go(-1)} disabled={i === 0} aria-label={t.anterior}>
           <IcLeft />
         </button>
-        <figure ref={frame} className="moment-frame" aria-live="polite" data-pausado={paused || undefined}>
+        <figure ref={frame} className="moment-frame" aria-live="polite" data-pausado={paused || undefined} data-cartao={m.cartao ? '' : undefined}>
           <div className="moment-bars" role="img" aria-label={swap(t.progresso, { i: i + 1, n: items.length })}>
             {items.map((x, k) => (
-              <span key={x.autor} data-feito={k < i ? '1' : k === i ? 'agora' : '0'} onAnimationEnd={k === i && i < items.length - 1 ? () => go(1) : undefined} />
+              <span key={x.chave} data-feito={k < i ? '1' : k === i ? 'agora' : '0'} onAnimationEnd={k === i && i < items.length - 1 ? () => go(1) : undefined} />
             ))}
           </div>
           <button type="button" className="life-moment-pause" aria-pressed={paused} aria-label={paused ? tv.continuar : tv.pausar} onClick={() => setPaused((p) => !p)}>
@@ -78,12 +85,22 @@ export default function MomentsViewer({ itens: items, initial, lang, t }: { iten
               {paused ? <path d="M8 5.5v13l10.5-6.5z" /> : <path d="M7 5h3.6v14H7zM13.4 5H17v14h-3.6z" />}
             </svg>
           </button>
-          <Photo foto={m.foto} prioridade className="moment-photo" />
+          {m.cartao ? (
+            <>
+              {/* eslint-disable-next-line @next/next/no-img-element -- the drawn card comes from the site itself (/midia/<hash>), with a known size */}
+              <img key={m.chave} src={m.cartao.src} alt={m.cartao.alt} width={m.cartao.largura} height={m.cartao.altura} className="moment-photo moment-card-image" loading="eager" fetchPriority="high" decoding="async" />
+              {/* the same card, blurred and dimmed, fills the frame behind it (the browser reuses the bytes already loaded) */}
+              {/* eslint-disable-next-line @next/next/no-img-element -- decorative copy of the card above */}
+              <img key={`${m.chave}-fundo`} src={m.cartao.src} alt="" aria-hidden="true" className="moment-card-backdrop" loading="eager" decoding="async" />
+            </>
+          ) : m.foto ? (
+            <Photo foto={m.foto} prioridade className="moment-photo" />
+          ) : null}
           <figcaption className="moment-head">
             <Portrait ficha={m.ficha} nome={m.nome} tamanho={40} decorative />
             <span><strong>{m.nome}</strong> · {m.quando}</span>
           </figcaption>
-          <p className="moment-caption" dir="auto">{m.legenda}</p>
+          {m.legenda && <p className="moment-caption" dir="auto">{m.legenda}</p>}
           <div className="moment-bottom">
             <label htmlFor="momento-resp" className="reader-only">{swap(t.responder, { nome: m.nome })}</label>
             <input id="momento-resp" type="text" placeholder={swap(t.responder, { nome: m.nome })} title={t.respostaAjuda} />

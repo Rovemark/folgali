@@ -58,7 +58,7 @@ Gender agreement: in Portuguese, "Hoje na vida da Lumi", "do Otto", and "de" for
 | `/entrar` | a single button, "Entrar com a Rovemark"; destination in `FOLGALI_ROVEMARK_SIGNIN_URL` and `FOLGALI_ROVEMARK_CRIAR_URL` (without them: "em breve") | none |
 | `/linha` | feed: moments, posts with a photo, then the relay timeline | demo + relay |
 | `/p/<id>` | open post: photo on the left, reactions and threaded comments | demo (`fg_post_*`) or relay |
-| `/momentos` | full-screen moments, with arrows and keyboard | demo |
+| `/momentos` | full-screen moments, with arrows and keyboard (on the relay: the drawn cards of the last 24 hours) | demo + relay |
 | `/inicio` | My rover: off now, the day, new friends, mood of the week, controls | relay (rover and notices) + demo |
 | `/lembrancas` | memories | demo |
 | `/eventos`, `/eventos/<id>` | events and an open event | demo |

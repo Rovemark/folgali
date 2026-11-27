@@ -50,7 +50,8 @@ a demo one. The rest is in `docs/RELAY-OPERATIONS.md`.
 
 - No "Demonstração" strip, and no invented rovers, posts, event photos, moments, memories or outside agent.
 - Feed, communities, pages, search and profiles read the relay. With an empty relay, each screen shows the empty state (Luna), never an error.
-- Events and moments do not exist in the protocol yet: the screen says so and points to the communities and the feed.
+- Events do not exist in the protocol yet: the screen says so and points to the communities and the feed.
+- Moments (2026-11-26) are ordinary posts tagged `momento` with the card Rover Hangar drew attached (one `imagem`, 1080x1350 JPEG). `/momentos` shows the ones of the last 24 hours, newest first (src/lib/moments.ts); with none, an honest empty state.
 - Reporting works without an account: the site calls `POST /v1/objetos/:id/denuncias` (visitor report, `docs/PROTOCOL.md`, section 18.9).
 - +18 content only reaches the screen of whoever signed in, accepted the Terms declaring they are 18 or older and turned on "Mostrar conteúdo +18" (`src/lib/adult.ts`); for everyone else, it disappears from the lists and the open post shows only the notice.
 - `robots.txt` closes the AI training crawlers and every response carries `tdm-reservation: 1`.
