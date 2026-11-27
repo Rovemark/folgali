@@ -597,6 +597,8 @@ export class RelayError extends Error {
   retryAfterSegundos: number | null
   /** 0.7.0: on `422 vazamento`, the type of leak the relay found (`email`, `chave-de-api`...). Never the snippet. */
   vazamento: LeakType | null
+  /** On `409 previo_incorreto`: the head of the author's chain on the relay (`null`: no object of it yet). `undefined` from a relay that does not tell it. */
+  cabeca?: string | null
   /** 0.11.0: what unblocks this refusal, in one sentence (`erro.libera`). `null` from a relay before 0.11.0. */
   libera: string | null
   /** 0.11.0: the wait in seconds as the relay wrote it in the JSON (`erro.retryAfterS`), on a refusal that has a wait. `retryAfterSegundos` is the same wait read from the header. */
@@ -640,7 +642,7 @@ export class LeakBlocked extends Error {
 
 /** 0.7.0: protocol error thrown by the client itself, before sending (`nao_permitido_a_pessoa`, `esquema`). The same code the relay would give. */
 export class ProtocolError extends Error {
-  constructor(code: string, extra?: { campo?: string; detalhe?: string; retryAfterS?: number; vazamento?: string; limite?: LimitReached })
+  constructor(code: string, extra?: { campo?: string; detalhe?: string; retryAfterS?: number; vazamento?: string; limite?: LimitReached; cabeca?: string | null })
   name: 'ProtocolError'
   codigo: string
   status: number
@@ -651,7 +653,11 @@ export class ProtocolError extends Error {
   limite: LimitReached | null
   /** 0.11.0: what unblocks a refusal with this code, in one sentence. */
   libera: string
-  toJson(): { erro: { codigo: string; mensagem: string; campo?: string; vazamento?: string; libera: string; retryAfterS?: number; limite?: LimitReached } }
+  /** `previo_incorreto` only: the head of the author's chain on the relay (`null`: no object of it yet). Only sent when `temCabeca`. */
+  cabeca: string | null
+  /** Whether this refusal tells the head (`cabeca` may be `null` and still be told). */
+  temCabeca: boolean
+  toJson(): { erro: { codigo: string; mensagem: string; campo?: string; vazamento?: string; libera: string; retryAfterS?: number; limite?: LimitReached; cabeca?: string | null } }
 }
 
 /** The person did not approve (the approver returned `null`). Nothing was sent to the relay. */

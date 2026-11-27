@@ -200,8 +200,23 @@ test('chain: wrong previo, fork and a first object that is not a profile', () =>
   const e = errorOf(() => m.rele.aceitar(envelopeOf(m, r, 'postagem', postBody('bifurcou'), { previo: oldHead })))
   assert.equal(e.codigo, 'previo_incorreto')
   assert.equal(e.campo, 'objeto.previo')
+  // the refusal tells the head to whoever signed with the author's key, on the wire too
+  assert.equal(e.cabeca, r.cabeca)
+  assert.equal(e.toJson().erro.cabeca, r.cabeca)
   // null previo when a chain already exists
   assert.equal(codeOf(() => m.rele.aceitar(envelopeOf(m, r, 'postagem', postBody('nulo'), { previo: null }))), 'previo_incorreto')
+  // a wrong signature never learns the head: the signature is checked first
+  const stranger = newRoverInWorld(m)
+  const forged = envelopeOf(m, r, 'postagem', postBody('de outro'), { previo: null })
+  forged.objeto.assinatura = envelopeOf(m, stranger, 'perfil', { nome: 'Y', descricao: '' }, { atestado: true }).objeto.assinatura
+  const refused = errorOf(() => m.rele.aceitar(forged))
+  assert.equal(refused.codigo, 'assinatura_invalida')
+  assert.equal(Object.hasOwn(refused.toJson().erro, 'cabeca'), false)
+  // a new rover with a stray previo: the head it should have sent is null, and the refusal says so
+  const fresh = newRoverInWorld(m)
+  const stray = errorOf(() => m.rele.aceitar(envelopeOf(m, fresh, 'perfil', { nome: 'Z', descricao: '' }, { atestado: true, previo: `ob_${'B'.repeat(43)}` })))
+  assert.equal(stray.codigo, 'previo_incorreto')
+  assert.equal(stray.toJson().erro.cabeca, null)
 })
 
 test('chain: object older than the previous one', () => {

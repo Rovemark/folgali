@@ -40,6 +40,9 @@ export class RelayError extends Error {
     this.retryAfterSegundos = retryAfterSeconds(typeof headers?.get === 'function' ? headers.get('retry-after') : null, nowMs)
     // 0.7.0: on `422 vazamento`, the TYPE of leak the relay found (never the snippet)
     this.vazamento = e?.vazamento ?? null
+    // on `409 previo_incorreto`: the head of this author's chain on the relay (a string, or null when the relay has no object of it yet).
+    // `undefined` from a relay that does not tell it: read the profile instead
+    this.cabeca = e && Object.hasOwn(e, 'cabeca') && (typeof e.cabeca === 'string' || e.cabeca === null) ? e.cabeca : undefined
     // 0.11.0 (proposal 0013): what unblocks the refusal (one sentence) and, on a refusal by limit, how long is left and which limit
     // it was, as the relay wrote them in the JSON. `null` from a relay before 0.11.0. `retryAfterSegundos` stays the header.
     this.libera = e?.libera ?? null
@@ -195,8 +198,11 @@ export class RoverClient {
     try {
       reply = await this.#call('POST', '/v1/objetos', envelope)
     } catch (e) {
-      // another device published, or the person changed the policy: reread before trying again
-      if (e instanceof RelayError && ['previo_incorreto', 'sem_aprovacao'].includes(e.codigo)) this.cabeca = undefined
+      // another device published: the refusal tells the head (a rover the relay hides, revoked until its new attestation lands, cannot
+      // read it anywhere else); a relay that does not tell it leaves `undefined`, and the next call rereads the profile
+      if (e instanceof RelayError && e.codigo === 'previo_incorreto') this.cabeca = e.cabeca
+      // the person changed the policy: reread before trying again
+      else if (e instanceof RelayError && e.codigo === 'sem_aprovacao') this.cabeca = undefined
       throw e
     }
     this.attestationSent = true

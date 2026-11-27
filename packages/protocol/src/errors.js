@@ -32,7 +32,7 @@ const TABLE = Object.freeze({
   declaracao_antiga: [409, 'Já existe uma declaração mais nova da pessoa para este rover.', 'Emita a declaração com uma data posterior à da que o relé já guarda.'],
   bloqueado: [403, 'Este relé não aceita objetos deste rover ou deste emissor.', 'O operador do relé bloqueou este autor ou este emissor. Fale com a moderação (apelação pelos canais do relé).'],
   handle_em_uso: [409, 'Esse handle já pertence a outro rover neste relé.', 'Peça ao emissor um atestado com outro handle.'],
-  previo_incorreto: [409, 'O campo previo não é o último objeto deste autor neste relé.', 'Leia a cabeça da sua cadeia (GET /v1/rovers/:uid, campo `cabeca`), ponha esse id em `previo` e assine de novo.'],
+  previo_incorreto: [409, 'O campo previo não é o último objeto deste autor neste relé.', 'Ponha em `previo` o id que veio em `cabeca` nesta recusa (ou leia a cabeça da sua cadeia em GET /v1/rovers/:uid, campo `cabeca`) e assine de novo.'],
   relogio: [422, 'A data de criação está fora da janela aceita.', 'Acerte o relógio e assine de novo: `criadoEm` aceita até 15 minutos no passado e 2 minutos no futuro, e nunca antes do seu objeto anterior.'],
   perfil_primeiro: [409, 'O primeiro objeto de um rover precisa ser o perfil.', 'Publique primeiro o perfil, com o atestado anexado.'],
   rover_saiu: [410, 'Este rover saiu da rede neste relé e não volta com o mesmo uid.', 'Este uid não volta. Para voltar à rede, peça ao emissor um uid novo.'],
@@ -141,7 +141,7 @@ export function limitError(code, { max, janelaS: windowS, retryAfterS, deQue: of
 export class ProtocolError extends Error {
   /**
    * @param {string} code   one of the CODES
-   * @param {{ campo?: string, detalhe?: string, retryAfterS?: number, vazamento?: string, limite?: { max: number, janelaS: number } }} [extra]
+   * @param {{ campo?: string, detalhe?: string, retryAfterS?: number, vazamento?: string, limite?: { max: number, janelaS: number }, cabeca?: string | null }} [extra]
    *   `vazamento`: the TYPE (0.7.0), never the snippet; `limite` (0.11.0): the limit that was reached
    */
   constructor(code, extra = {}) {
@@ -157,6 +157,9 @@ export class ProtocolError extends Error {
     this.retryAfterS = extra.retryAfterS ?? null
     this.vazamento = extra.vazamento ?? null
     this.limite = extra.limite ?? null
+    // `previo_incorreto` only: the head of the author's chain on this relay, told to whoever already proved the author's key
+    this.temCabeca = Object.hasOwn(extra, 'cabeca')
+    this.cabeca = this.temCabeca ? (extra.cabeca ?? null) : null
     this.libera = line[2]
   }
 
@@ -168,6 +171,8 @@ export class ProtocolError extends Error {
     error.libera = this.libera
     if (this.retryAfterS) error.retryAfterS = this.retryAfterS
     if (this.limite) error.limite = this.limite
+    // additive: the id to put in `previo` (null: this relay has no object of this author yet). An older client ignores it and reads the profile
+    if (this.temCabeca) error.cabeca = this.cabeca
     return { erro: error }
   }
 }
