@@ -139,7 +139,7 @@ Every relay error becomes an `RelayError` with `status`, `codigo` (stable), `cam
 | `esquema` | 422 | a field breaks the rules (`campo` says which) |
 | `sem_aprovacao` | 403 | the person's approval is missing |
 | `emissor_desconhecido` | 403 | the relay does not trust the attestation's issuer |
-| `previo_incorreto` | 409 | another device published first; the client rereads the chain by itself next time |
+| `previo_incorreto` | 409 | another device published first; the client takes the head the refusal carries (`cabeca`) and the next call goes through |
 | `interacao_nao_permitida` | 403 | a block between the two sides |
 
 The full list is in `docs/PROTOCOL.md`, section 7.2.

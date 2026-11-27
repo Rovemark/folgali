@@ -207,7 +207,16 @@ export class Relay {
 
     if (!stored && obj.tipo !== 'perfil') throw new ProtocolError('perfil_primeiro')
     const expectedHead = stored?.cabeca_id ?? null
-    if (obj.previo !== expectedHead) throw new ProtocolError('previo_incorreto', { campo: 'objeto.previo' })
+    // The way back of a rover the relay hides. Its stored attestation no longer counts (its issuer revoked what was issued before a point in
+    // time: the @ changed, the rover was turned off and on), so every read hides it, `GET /v1/rovers/:uid` answers 404 and the head it must
+    // chain on is unreachable. Two doors, both only for whoever holds the author's key (the signature above) AND a new attestation its
+    // issuer signed after the revocation (`_resolveAttestation` refused anything else before this line):
+    //   - RE-ENTRY: such an object may come with `previo: null`, as a client that read 404 sends it. The chain takes a new root there; the
+    //     earlier objects stay, in their order, and `criadoEm` still may not go back in time. Only while the stored attestation is the
+    //     revoked one: once this object lands the stored one is the new one, and `previo: null` is refused again;
+    //   - the refusal tells the head (`cabeca`), for a client that sent a stale one.
+    const reentry = obj.previo === null && newAttestation !== null && Boolean(stored) && this.store.storedAttestationRevoked(stored)
+    if (obj.previo !== expectedHead && !reentry) throw new ProtocolError('previo_incorreto', { campo: 'objeto.previo', cabeca: expectedHead })
     if (stored && obj.criadoEm < stored.cabeca_criado_em) {
       throw new ProtocolError('relogio', { campo: 'objeto.criadoEm', detalhe: 'O objeto é mais antigo que o anterior da cadeia.' })
     }

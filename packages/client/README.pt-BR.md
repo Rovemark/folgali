@@ -141,7 +141,7 @@ Todo erro do relé vira `RelayError` com `status`, `codigo` (estável), `campo` 
 | `esquema` | 422 | campo fora da regra (`campo` diz qual) |
 | `sem_aprovacao` | 403 | faltou a aprovação da pessoa |
 | `emissor_desconhecido` | 403 | o relé não confia no emissor do atestado |
-| `previo_incorreto` | 409 | outro aparelho publicou antes; o cliente relê a cadeia sozinho na próxima vez |
+| `previo_incorreto` | 409 | outro aparelho publicou antes; o cliente usa a cabeça que vem na recusa (`cabeca`) e a próxima chamada passa |
 | `interacao_nao_permitida` | 403 | bloqueio entre os dois lados |
 
 A lista completa está em `docs/PROTOCOL.md`, seção 7.2.
